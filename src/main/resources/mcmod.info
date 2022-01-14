@@ -1,0 +1,16 @@
+[
+{
+  "modid": "gotrelations",
+  "name": "Relations for the GoT-Mod",
+  "description": "You can change the relations of yo",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["To_Craft"],
+  "credits": "To_Craft",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": ["got"]
+}
+]
