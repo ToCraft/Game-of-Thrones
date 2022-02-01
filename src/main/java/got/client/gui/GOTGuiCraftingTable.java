@@ -66,6 +66,11 @@ public abstract class GOTGuiCraftingTable extends GuiContainer {
 		buttonList.add(tableSwitcher);
 	}
 
+	public static class Targaryen extends GOTGuiCraftingTable {
+		public Targaryen(InventoryPlayer inv, World world, int i, int j, int k) {
+			super(new GOTContainerCraftingTable.Targaryen(inv, world, i, j, k), "targaryen");
+		}
+	}
 	public static class Arryn extends GOTGuiCraftingTable {
 		public Arryn(InventoryPlayer inv, World world, int i, int j, int k) {
 			super(new GOTContainerCraftingTable.Arryn(inv, world, i, j, k), "arryn");

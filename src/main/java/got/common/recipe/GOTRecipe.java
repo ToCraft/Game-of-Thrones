@@ -25,6 +25,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.oredict.*;
 
 public class GOTRecipe {
+	public static List<IRecipe> targaryen = new ArrayList<>();
 	public static List<IRecipe> slab = new ArrayList<>();
 	public static List<IRecipe> north = new ArrayList<>();
 	public static List<IRecipe> hillmen = new ArrayList<>();
@@ -122,6 +123,15 @@ public class GOTRecipe {
 		return target.getItem().equals(input.getItem()) && (target.getItemDamage() == 32767 || target.getItemDamage() == input.getItemDamage());
 	}
 
+	public static void createTargaryenRecipes() {
+		targaryen.add(new ShapedOreRecipe(new ItemStack(GOTRegistry.tableTargaryen), "XX", "YY", Character.valueOf('X'), "plankWood", Character.valueOf('Y'), new ItemStack(GOTRegistry.rock, 1, 1)));
+		targaryen.add(new ShapedOreRecipe(new ItemStack(GOTRegistry.targaryenHelmet), "XXX", "X X", Character.valueOf('X'), "ingotIron"));
+		targaryen.add(new ShapedOreRecipe(new ItemStack(GOTRegistry.targaryenChestplate), "X X", "XXX", "XXX", Character.valueOf('X'), "ingotIron"));
+		targaryen.add(new ShapedOreRecipe(new ItemStack(GOTRegistry.targaryenLeggings), "XXX", "X X", "X X", Character.valueOf('X'), "ingotIron"));
+		targaryen.add(new ShapedOreRecipe(new ItemStack(GOTRegistry.targaryenBoots), "X X", "X X", Character.valueOf('X'), "ingotIron"));
+		targaryen.add(new ShapedOreRecipe(new ItemStack(GOTRegistry.banner, 1, GOTItemBanner.BannerType.TARGARYEN.bannerID), "X", "Y", "Z", Character.valueOf('X'), Blocks.wool, Character.valueOf('Y'), "stickWood", Character.valueOf('Z'), "plankWood"));
+		targaryen.addAll(commonWesteros);
+	}
 	public static void createArrynRecipes() {
 		arryn.add(new ShapedOreRecipe(new ItemStack(GOTRegistry.tableArryn), "XX", "YY", Character.valueOf('X'), "plankWood", Character.valueOf('Y'), new ItemStack(GOTRegistry.rock, 1, 1)));
 		arryn.add(new ShapedOreRecipe(new ItemStack(GOTRegistry.arrynHelmet), "XXX", "X X", Character.valueOf('X'), "ingotIron"));
@@ -1769,6 +1779,7 @@ public class GOTRecipe {
 		RecipeSorter.register("got:treasurePile", GOTRecipeTreasurePile.class, RecipeSorter.Category.SHAPELESS, "after:minecraft:shapeless");
 		RecipeSorter.register("got:partyHatDye", GOTRecipePartyHatDye.class, RecipeSorter.Category.SHAPELESS, "after:minecraft:shapeless");
 		GOTRecipe.modifyStandardRecipes();
+		GOTRecipe.createTargaryenRecipes();
 		GOTRecipe.createStandardRecipes();
 		GOTRecipe.createPoisonedArrowRecipes();
 		GOTRecipe.createCommonWesterosRecipes();

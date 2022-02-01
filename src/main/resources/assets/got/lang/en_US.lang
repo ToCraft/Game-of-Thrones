@@ -1,4 +1,68 @@
+entity.got.TargaryenGoldsmith.name=Targaryen Goldsmith
 
+entity.got.TargaryenAlchemist.name=Targaryen Alchemist
+entity.got.TargaryenArcher.name=Targaryen archer
+entity.got.TargaryenBaker.name=Targaryen Baker
+entity.got.TargaryenBannerBearer.name=Targaryen Banner Bearer
+entity.got.TargaryenBartender.name=Targaryen host
+entity.got.TargaryenBlacksmith.name=Targaryen Blacksmith
+entity.got.TargaryenBrewer.name=Targaryen Brewer
+entity.got.TargaryenButcher.name=Targaryen Butcher
+entity.got.TargaryenCaptain.name=Targaryen captain
+entity.got.TargaryenFarmer.name=Targaryen Farmer
+entity.got.TargaryenFarmhand.name=Targaryen farmhand
+entity.got.TargaryenFishmonger.name=Targaryen Fishmonger
+entity.got.TargaryenFlorist.name=Targaryen Florist
+entity.got.TargaryenGreengrocer.name=Targaryen Greengrocer
+entity.got.TargaryenKingsguard.name=Kingsguard of Targaryen
+entity.got.TargaryenLevyman.name=Targaryen Militia
+entity.got.TargaryenLevymanArcher.name=Targaryen Archer Militia
+entity.got.TargaryenLumberman.name=Targaryen Lumberman
+entity.got.TargaryenMan.name=Targaryen dweller
+entity.got.TargaryenMason.name=Targaryen stonemason
+entity.got.TargaryenSoldier.name=Targaryen warrior
+entity.got.TargaryenSoldierArcher.name=Targaryen warrior archer
+
+got.container.crafting.targaryen=Targaryen workbench
+
+got.faction.TARGARYEN.achieveRank=Earn% s reputation with the Targaryen faction
+got.faction.TARGARYEN.achieveRankPledge=Swear and earn% s reputation with the Targaryen Faction
+got.faction.TARGARYEN.entity=Targaryer
+got.faction.TARGARYEN.name=Targaryen
+got.faction.TARGARYEN.rank.warrior.f=Targaryen warrior
+got.faction.TARGARYEN.rank.warrior=warrior
+got.faction.TARGARYEN.rank.commander.f=Lord of Targaryen
+got.faction.TARGARYEN.rank.commander=Lord
+got.faction.TARGARYEN.rank.kingsguard.f=Targaryen warlord
+got.faction.TARGARYEN.rank.kingsguard=Warlord
+got.faction.TARGARYEN.rank.friend.f=Targaryen's friend
+got.faction.TARGARYEN.rank.friend=friend
+got.faction.TARGARYEN.rank.guest.f=Guest of Targaryen
+got.faction.TARGARYEN.rank.guest=Guest
+got.faction.TARGARYEN.rank.general.f=King of Westeros
+got.faction.TARGARYEN.rank.general=King
+got.faction.TARGARYEN.rank.leordin.f=Commander of Targaryen
+got.faction.TARGARYEN.rank.leutenant=Commander
+got.faction.TARGARYEN.subtitle=Targaryen remaining
+
+
+got.invasion.TARGARYEN.horn=Summon invasion - Targaryen
+
+got.structure.TargaryenBarn.name=Targaryen Barn
+got.structure.TargaryenBath.name=Targaryen Swimming Pool
+got.structure.TargaryenCityBig.name=Targaryen City
+got.structure.TargaryenCityLittle.name=Targaryen Village
+got.structure.TargaryenCityMedium.name=Targaryen Castle
+got.structure.TargaryenCottage.name=Targaryen Cottage
+got.structure.TargaryenFortress.name=Targaryen Fortress
+got.structure.TargaryenHouse.name=Targaryen Villa
+got.structure.TargaryenSmithy.name=Targaryen Forge
+got.structure.TargaryenStables.name=Targaryen Stables
+got.structure.TargaryenStoneHouse.name=Targaryen Villa
+got.structure.TargaryenTavern.name=Targaryen Tavern
+got.structure.TargaryenTurret.name=Targaryen Tower
+got.structure.TargaryenWatchfort.name=Targaryen Fort
+got.structure.TargaryenWatchtower.name=Targaryen Tower
 got.achievement.KILL_PRIEST.desc=Kill the priest
 got.achievement.KILL_PRIEST.title=Atheist
 got.achievement.WEAR_FULL_JOGOS.desc=Wear full set of Jogos Nhai

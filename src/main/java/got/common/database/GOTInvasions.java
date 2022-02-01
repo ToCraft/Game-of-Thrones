@@ -24,6 +24,9 @@ import got.common.entity.westeros.north.*;
 import got.common.entity.westeros.reach.*;
 import got.common.entity.westeros.riverlands.*;
 import got.common.entity.westeros.stormlands.*;
+import got.common.entity.westeros.targaryen.GOTEntityTargaryenBannerBearer;
+import got.common.entity.westeros.targaryen.GOTEntityTargaryenSoldier;
+import got.common.entity.westeros.targaryen.GOTEntityTargaryenSoldierArcher;
 import got.common.entity.westeros.westerlands.*;
 import got.common.entity.westeros.wildling.*;
 import got.common.entity.westeros.wildling.thenn.*;
@@ -34,7 +37,7 @@ import net.minecraft.item.*;
 import net.minecraft.util.*;
 
 public enum GOTInvasions {
-	DOTHRAKI(GOTFaction.DOTHRAKI), JOGOS(GOTFaction.JOGOS), VOLANTIS(GOTFaction.VOLANTIS), BRAAVOS(GOTFaction.BRAAVOS), PENTOS(GOTFaction.PENTOS), TYROSH(GOTFaction.TYROSH), MYR(GOTFaction.MYR), LYS(GOTFaction.LYS), NORVOS(GOTFaction.NORVOS), IRONBORN(GOTFaction.IRONBORN), WESTERLANDS(GOTFaction.WESTERLANDS), RIVERLANDS(GOTFaction.RIVERLANDS), NORTH(GOTFaction.NORTH), THENN(GOTFaction.WILDLING, "THENN"), WILDLING(GOTFaction.WILDLING), GIANT(GOTFaction.WILDLING, "GIANT"), ARRYN(GOTFaction.ARRYN), DRAGONSTONE(GOTFaction.DRAGONSTONE), STORMLANDS(GOTFaction.STORMLANDS), REACH(GOTFaction.REACH), DORNE(GOTFaction.DORNE), YI_TI(GOTFaction.YI_TI), GHISCAR(GOTFaction.GHISCAR), HILL_TRIBES(GOTFaction.HILL_TRIBES), IBBEN(GOTFaction.IBBEN);
+	TARGARYEN(GOTFaction.TARGARYEN), DOTHRAKI(GOTFaction.DOTHRAKI), JOGOS(GOTFaction.JOGOS), VOLANTIS(GOTFaction.VOLANTIS), BRAAVOS(GOTFaction.BRAAVOS), PENTOS(GOTFaction.PENTOS), TYROSH(GOTFaction.TYROSH), MYR(GOTFaction.MYR), LYS(GOTFaction.LYS), NORVOS(GOTFaction.NORVOS), IRONBORN(GOTFaction.IRONBORN), WESTERLANDS(GOTFaction.WESTERLANDS), RIVERLANDS(GOTFaction.RIVERLANDS), NORTH(GOTFaction.NORTH), THENN(GOTFaction.WILDLING, "THENN"), WILDLING(GOTFaction.WILDLING), GIANT(GOTFaction.WILDLING, "GIANT"), ARRYN(GOTFaction.ARRYN), DRAGONSTONE(GOTFaction.DRAGONSTONE), STORMLANDS(GOTFaction.STORMLANDS), REACH(GOTFaction.REACH), DORNE(GOTFaction.DORNE), YI_TI(GOTFaction.YI_TI), GHISCAR(GOTFaction.GHISCAR), HILL_TRIBES(GOTFaction.HILL_TRIBES), IBBEN(GOTFaction.IBBEN);
 
 	public GOTFaction invasionFaction;
 	public String subfaction;
@@ -112,6 +115,10 @@ public enum GOTInvasions {
 	}
 
 	public static void preInit() {
+		GOTInvasions.TARGARYEN.invasionIcon = GOTRegistry.rhaegarSword;
+		GOTInvasions.TARGARYEN.invasionMobs.add(new InvasionSpawnEntry(GOTEntityTargaryenSoldier.class, 10));
+		GOTInvasions.TARGARYEN.invasionMobs.add(new InvasionSpawnEntry(GOTEntityTargaryenSoldierArcher.class, 5));
+		GOTInvasions.TARGARYEN.invasionMobs.add(new InvasionSpawnEntry(GOTEntityTargaryenBannerBearer.class, 2));
 		GOTInvasions.JOGOS.invasionIcon = GOTRegistry.nomadSword;
 		GOTInvasions.DOTHRAKI.invasionIcon = GOTRegistry.nomadSword;
 		GOTInvasions.VOLANTIS.invasionIcon = GOTRegistry.summerSword;

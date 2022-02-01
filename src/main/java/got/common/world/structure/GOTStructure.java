@@ -1,5 +1,7 @@
 package got.common.world.structure;
 
+import got.common.world.structure.westeros.targaryen.*;
+
 import got.common.faction.GOTFaction;
 import got.common.world.biome.GOTBiome;
 import got.common.world.fixed.GOTStructureAsshaiFort;
@@ -46,6 +48,19 @@ public class GOTStructure {
 	public static int id = 0;
 
 	public static void onInit() {
+		GOTStructureRegistry.register(id++, GOTStructureTargaryenWatchfort.class, "TargaryenWatchfort", GOTFaction.TARGARYEN);
+		GOTStructureRegistry.register(id++, GOTStructureTargaryenSmithy.class, "TargaryenSmithy", GOTFaction.TARGARYEN);
+		GOTStructureRegistry.register(id++, GOTStructureTargaryenTower.class, "TargaryenTurret", GOTFaction.TARGARYEN);
+		GOTStructureRegistry.register(id++, GOTStructureTargaryenHouse.class, "TargaryenHouse", GOTFaction.TARGARYEN);
+		GOTStructureRegistry.register(id++, GOTStructureTargaryenCottage.class, "TargaryenCottage", GOTFaction.TARGARYEN);
+		GOTStructureRegistry.register(id++, GOTStructureTargaryenStoneHouse.class, "TargaryenStoneHouse", GOTFaction.TARGARYEN);
+		GOTStructureRegistry.register(id++, GOTStructureTargaryenWatchtower.class, "TargaryenWatchtower", GOTFaction.TARGARYEN);
+		GOTStructureRegistry.register(id++, GOTStructureTargaryenStables.class, "TargaryenStables", GOTFaction.TARGARYEN);
+		GOTStructureRegistry.register(id++, GOTStructureTargaryenBarn.class, "TargaryenBarn", GOTFaction.TARGARYEN);
+		GOTStructureRegistry.register(id++, GOTStructureTargaryenFortress.class, "TargaryenFortress", GOTFaction.TARGARYEN);
+		GOTStructureRegistry.register(id++, GOTStructureTargaryenTavern.class, "TargaryenTavern", GOTFaction.TARGARYEN);
+		GOTStructureRegistry.register(id++, GOTStructureTargaryenBath.class, "TargaryenBath", GOTFaction.TARGARYEN);
+		
 		GOTStructureRegistry.register(id++, GOTStructureBarrow.class, "Barrow", 9605778);
 		GOTStructureRegistry.register(id++, GOTStructureRuinedHouse.class, "RuinedGiftHouse", 9605778);
 		GOTStructureRegistry.register(id++, GOTStructureBurntHouse.class, "GiftBurntHouse", 9605778);
@@ -394,6 +409,50 @@ public class GOTStructure {
 		GOTStructureRegistry.register(id++, GOTStructureSothoryosHouseLarge.class, "SothoryosHouseLarge", GOTFaction.SOTHORYOS);
 		GOTStructureRegistry.register(id++, GOTStructureSothoryosChieftainPyramid.class, "SothoryosChieftainPyramid", GOTFaction.SOTHORYOS);
 		GOTStructureRegistry.register(id++, GOTStructureSothoryosSmithy.class, "SothoryosSmithy", GOTFaction.SOTHORYOS);
+
+		GOTStructureRegistry.register(id++, new GOTStructureTargaryenCity(GOTBiome.dragonstoneTargaryen, 1.0f), "TargaryenCityLittle", GOTFaction.TARGARYEN, new GOTStructureRegistry.IVillageProperties<GOTStructureTargaryenCity.Instance>() {
+
+			@Override
+	public void apply(GOTStructureTargaryenCity.Instance instance) {
+		instance.villageType = GOTStructureTargaryenCity.VillageType.VILLAGE;
+			}
+		});
+GOTStructureRegistry.register(id++, new GOTStructureTargaryenCity(GOTBiome.dragonstoneTargaryen, 1.0f), "TargaryenCityBig", GOTFaction.TARGARYEN, new GOTStructureRegistry.IVillageProperties<GOTStructureTargaryenCity.Instance>() {
+
+			@Override
+	public void apply(GOTStructureTargaryenCity.Instance instance) {
+		instance.villageType = GOTStructureTargaryenCity.VillageType.TOWN;
+			}
+		});
+GOTStructureRegistry.register(id++, new GOTStructureTargaryenCity(GOTBiome.dragonstoneTargaryen, 1.0f), "TargaryenCityMedium", GOTFaction.TARGARYEN, new GOTStructureRegistry.IVillageProperties<GOTStructureTargaryenCity.Instance>() {
+
+			@Override
+	public void apply(GOTStructureTargaryenCity.Instance instance) {
+		instance.villageType = GOTStructureTargaryenCity.VillageType.FORT;
+			}
+		});
+
+GOTStructureRegistry.register(id++, new GOTStructureTargaryenCity(GOTBiome.crownlandsTargaryen, 1.0f), "TargaryenCityLittle", GOTFaction.TARGARYEN, new GOTStructureRegistry.IVillageProperties<GOTStructureTargaryenCity.Instance>() {
+
+			@Override
+	public void apply(GOTStructureTargaryenCity.Instance instance) {
+		instance.villageType = GOTStructureTargaryenCity.VillageType.VILLAGE;
+			}
+		});
+GOTStructureRegistry.register(id++, new GOTStructureTargaryenCity(GOTBiome.crownlandsTargaryen, 1.0f), "TargaryenCityBig", GOTFaction.TARGARYEN, new GOTStructureRegistry.IVillageProperties<GOTStructureTargaryenCity.Instance>() {
+
+			@Override
+	public void apply(GOTStructureTargaryenCity.Instance instance) {
+		instance.villageType = GOTStructureTargaryenCity.VillageType.TOWN;
+			}
+		});
+GOTStructureRegistry.register(id++, new GOTStructureTargaryenCity(GOTBiome.crownlandsTargaryen, 1.0f), "TargaryenCityMedium", GOTFaction.TARGARYEN, new GOTStructureRegistry.IVillageProperties<GOTStructureTargaryenCity.Instance>() {
+
+			@Override
+	public void apply(GOTStructureTargaryenCity.Instance instance) {
+		instance.villageType = GOTStructureTargaryenCity.VillageType.FORT;
+			}
+		});
 
 		GOTStructureRegistry.register(id++, new GOTStructureGiftVillage(GOTBiome.giftNew, 1.0f), "GiftVillage", GOTFaction.NIGHT_WATCH, new GOTStructureRegistry.IVillageProperties<GOTStructureGiftVillage.Instance>() {
 

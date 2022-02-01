@@ -33,6 +33,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.util.EnumChatFormatting;
 
 public class GOTRegistry {
+	public static Block tableTargaryen;
 	public static Map<GOTEnumDyeColor, GOTBlockConcretePowder> concretePowder = new HashMap();
 	public static Map<GOTEnumDyeColor, GOTBlockConcrete> concrete = new HashMap();
 	public static Item ibbenChestplate;
@@ -1744,6 +1745,7 @@ public class GOTRegistry {
 		stalactiteIce = new GOTBlockStalactite(Blocks.packed_ice, 0);
 		stalactiteObsidian = new GOTBlockStalactite(Blocks.obsidian, 0);
 		strawBed = new GOTBlockBed(Blocks.planks, 0);
+		tableTargaryen = new GOTBlockTableTargaryen();
 		tableArryn = new GOTBlockTableArryn();
 		tableAsshai = new GOTBlockTableAsshai();
 		tableBraavos = new GOTBlockTableBraavos();
@@ -3130,6 +3132,7 @@ public class GOTRegistry {
 		registerBlock(fenceGateWeirwood, "fenceGateWeirwood");
 		registerBlock(brickIce, "brickIce");
 		registerBlock(tableArryn, "tableArryn");
+		registerBlock(tableTargaryen, "tableTargaryen");
 		registerBlock(tableRiverlands, "tableRiverlands");
 		registerBlock(tableWesterlands, "tableWesterlands");
 		registerBlock(tableDragonstone, "tableDragonstone");

@@ -1,5 +1,7 @@
 package got.common.entity;
 
+import got.common.entity.westeros.targaryen.*;
+
 import got.common.entity.animal.*;
 import got.common.entity.dragon.GOTEntityDragon;
 import got.common.entity.essos.*;
@@ -59,6 +61,29 @@ public class GOTEntity {
 	public static int id = 0;
 
 	public static void preInit() {
+		GOTEntityRegistry.register(GOTEntityTargaryenMan.class, "TargaryenMan", id++, GOTFaction.TARGARYEN);
+		GOTEntityRegistry.register(GOTEntityTargaryenLevyman.class, "TargaryenLevyman", id++, GOTFaction.TARGARYEN);
+		GOTEntityRegistry.register(GOTEntityTargaryenLevymanArcher.class, "TargaryenLevymanArcher", id++, GOTFaction.TARGARYEN);
+		GOTEntityRegistry.register(GOTEntityTargaryenSoldier.class, "TargaryenSoldier", id++, GOTFaction.TARGARYEN);
+		GOTEntityRegistry.register(GOTEntityTargaryenSoldierArcher.class, "TargaryenSoldierArcher", id++, GOTFaction.TARGARYEN);
+		GOTEntityRegistry.register(GOTEntityTargaryenBannerBearer.class, "TargaryenBannerBearer", id++, GOTFaction.TARGARYEN);
+		GOTEntityRegistry.register(GOTEntityTargaryenCaptain.class, "TargaryenCaptain", id++, GOTFaction.TARGARYEN);
+		GOTEntityRegistry.register(GOTEntityTargaryenBaker.class, "TargaryenBaker", id++, GOTFaction.TARGARYEN);
+		GOTEntityRegistry.register(GOTEntityTargaryenBartender.class, "TargaryenBartender", id++, GOTFaction.TARGARYEN);
+		GOTEntityRegistry.register(GOTEntityTargaryenBlacksmith.class, "TargaryenBlacksmith", id++, GOTFaction.TARGARYEN);
+		GOTEntityRegistry.register(GOTEntityTargaryenGoldsmith.class, "TargaryenGoldsmith", id++, GOTFaction.TARGARYEN);
+		GOTEntityRegistry.register(GOTEntityTargaryenBrewer.class, "TargaryenBrewer", id++, GOTFaction.TARGARYEN);
+		GOTEntityRegistry.register(GOTEntityTargaryenButcher.class, "TargaryenButcher", id++, GOTFaction.TARGARYEN);
+		GOTEntityRegistry.register(GOTEntityTargaryenFarmer.class, "TargaryenFarmer", id++, GOTFaction.TARGARYEN);
+		GOTEntityRegistry.register(GOTEntityTargaryenFarmhand.class, "TargaryenFarmhand", id++, GOTFaction.TARGARYEN);
+		GOTEntityRegistry.register(GOTEntityTargaryenFishmonger.class, "TargaryenFishmonger", id++, GOTFaction.TARGARYEN);
+		GOTEntityRegistry.register(GOTEntityTargaryenFlorist.class, "TargaryenFlorist", id++, GOTFaction.TARGARYEN);
+		GOTEntityRegistry.register(GOTEntityTargaryenGreengrocer.class, "TargaryenGreengrocer", id++, GOTFaction.TARGARYEN);
+		GOTEntityRegistry.register(GOTEntityTargaryenLumberman.class, "TargaryenLumberman", id++, GOTFaction.TARGARYEN);
+		GOTEntityRegistry.register(GOTEntityTargaryenMason.class, "TargaryenMason", id++, GOTFaction.TARGARYEN);
+		GOTEntityRegistry.register(GOTEntityTargaryenKingsguard.class, "TargaryenKingsguard", id++, GOTFaction.TARGARYEN);
+		GOTEntityRegistry.register(GOTEntityTargaryenAlchemist.class, "TargaryenAlchemist", id++, GOTFaction.TARGARYEN);
+
 		GOTEntityRegistry.register(GOTEntityBison.class, "Bison", id++, 7488812);
 		GOTEntityRegistry.register(GOTEntityBear.class, "Bear", id++, 7492416);
 		GOTEntityRegistry.register(GOTEntityBird.class, "Bird", id++, 7451872);

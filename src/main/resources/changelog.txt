@@ -34,6 +34,15 @@ CHANGELOG
 - Removed 28 technical biomes
 
 >>VERSION 17.5
++ADDED TARGARYEN-Faction
++added Targaryen Mobs
++added Targaryen structures
++added 2. map
++added Targarye Waypoints
++added Targaryen Crafting Table
++added Targaryen recipes
++updated Config
++changed de_DE file
 * Reworked Mossovy. Added table, new mobs, structures, villages and fixed genstructures.
 * Reworked economics. New gold, silver and valyrian prices. New prices for all items made of these materials
 * Reworked units, their prices and armor stats. Balance everywhere!

@@ -34,6 +34,12 @@ import got.common.entity.westeros.north.hillmen.*;
 import got.common.entity.westeros.reach.*;
 import got.common.entity.westeros.riverlands.*;
 import got.common.entity.westeros.stormlands.*;
+import got.common.entity.westeros.targaryen.GOTEntityTargaryenBannerBearer;
+import got.common.entity.westeros.targaryen.GOTEntityTargaryenFarmhand;
+import got.common.entity.westeros.targaryen.GOTEntityTargaryenLevyman;
+import got.common.entity.westeros.targaryen.GOTEntityTargaryenLevymanArcher;
+import got.common.entity.westeros.targaryen.GOTEntityTargaryenSoldier;
+import got.common.entity.westeros.targaryen.GOTEntityTargaryenSoldierArcher;
 import got.common.entity.westeros.westerlands.*;
 import got.common.entity.westeros.wildling.*;
 import got.common.entity.westeros.wildling.thenn.*;
@@ -52,6 +58,8 @@ public class GOTUnitTradeEntries {
 	public static int SLAVE = 10;
 	public static float SLAVE_F = 0.0f;
 
+	public static GOTUnitTradeEntries TARGARYEN = new GOTUnitTradeEntries(50.0f, new GOTUnitTradeEntry(GOTEntityTargaryenLevyman.class, 5, 5.0f), new GOTUnitTradeEntry(GOTEntityTargaryenLevymanArcher.class, 10, 10.0f), new GOTUnitTradeEntry(GOTEntityTargaryenLevyman.class, GOTEntityHorse.class, "Rider", 15, 15.0f), new GOTUnitTradeEntry(GOTEntityTargaryenSoldier.class, 10, 10.0f), new GOTUnitTradeEntry(GOTEntityTargaryenSoldierArcher.class, 15, 15.0f), new GOTUnitTradeEntry(GOTEntityTargaryenSoldier.class, GOTEntityHorse.class, "Rider", 20, 20.0f).setMountArmor(GOTRegistry.westerosHorseArmor), new GOTUnitTradeEntry(GOTEntityTargaryenBannerBearer.class, 10, 20.0f), new GOTUnitTradeEntry(GOTEntityTargaryenBannerBearer.class, GOTEntityHorse.class, "Rider", 20, 30.0f).setMountArmor(GOTRegistry.westerosHorseArmor));
+	public static GOTUnitTradeEntries TARGARYEN_FARMER = new GOTUnitTradeEntries(0.0f, new GOTUnitTradeEntry(GOTEntityTargaryenFarmhand.class, 10, 10.0f).setTask(GOTHiredNPCInfo.Task.FARMER));
 	public static GOTUnitTradeEntries ARRYN = new GOTUnitTradeEntries(50.0f, new GOTUnitTradeEntry(GOTEntityArrynLevyman.class, LEVYMAN, LEVYMAN_F), new GOTUnitTradeEntry(GOTEntityArrynLevymanArcher.class, LEVYMANA, LEVYMANA_F), new GOTUnitTradeEntry(GOTEntityArrynSoldier.class, SOLDIER, SOLDIER_F), new GOTUnitTradeEntry(GOTEntityArrynSoldierArcher.class, SOLDIERA, SOLDIERA_F), new GOTUnitTradeEntry(GOTEntityArrynSoldier.class, GOTEntityHorse.class, "Rider", SOLDIERH, SOLDIERH_F).setMountArmor(GOTRegistry.westerosHorseArmor), new GOTUnitTradeEntry(GOTEntityArrynBannerBearer.class, SOLDIER, SOLDIER_F), new GOTUnitTradeEntry(GOTEntityArrynBannerBearer.class, GOTEntityHorse.class, "Rider", SOLDIERH, SOLDIERH_F).setMountArmor(GOTRegistry.westerosHorseArmor), new GOTUnitTradeEntry(GOTEntityArrynGuard.class, SOLDIER, SOLDIER_F));
 	public static GOTUnitTradeEntries BRAAVOS = new GOTUnitTradeEntries(50.0f, new GOTUnitTradeEntry(GOTEntityBraavosLevyman.class, LEVYMAN, LEVYMAN_F), new GOTUnitTradeEntry(GOTEntityBraavosLevymanArcher.class, LEVYMANA, LEVYMANA_F), new GOTUnitTradeEntry(GOTEntityBraavosSoldier.class, SOLDIER, SOLDIER_F), new GOTUnitTradeEntry(GOTEntityBraavosSoldierArcher.class, SOLDIERA, SOLDIERA_F), new GOTUnitTradeEntry(GOTEntityBraavosSoldier.class, GOTEntityHorse.class, "Rider", SOLDIERH, SOLDIERH_F).setMountArmor(GOTRegistry.essosHorseArmor), new GOTUnitTradeEntry(GOTEntityBraavosBannerBearer.class, SOLDIER, SOLDIER_F), new GOTUnitTradeEntry(GOTEntityBraavosBannerBearer.class, GOTEntityHorse.class, "Rider", SOLDIERH, SOLDIERH_F).setMountArmor(GOTRegistry.essosHorseArmor));
 	public static GOTUnitTradeEntries DORNE = new GOTUnitTradeEntries(50.0f, new GOTUnitTradeEntry(GOTEntityDorneLevyman.class, LEVYMAN, LEVYMAN_F), new GOTUnitTradeEntry(GOTEntityDorneLevymanArcher.class, LEVYMANA, LEVYMANA_F), new GOTUnitTradeEntry(GOTEntityDorneSoldier.class, SOLDIER, SOLDIER_F), new GOTUnitTradeEntry(GOTEntityDorneSoldierArcher.class, SOLDIERA, SOLDIERA_F), new GOTUnitTradeEntry(GOTEntityDorneSoldier.class, GOTEntityHorse.class, "Rider", SOLDIERH, SOLDIERH_F).setMountArmor(GOTRegistry.westerosHorseArmor), new GOTUnitTradeEntry(GOTEntityDorneBannerBearer.class, SOLDIER, SOLDIER_F), new GOTUnitTradeEntry(GOTEntityDorneBannerBearer.class, GOTEntityHorse.class, "Rider", SOLDIERH, SOLDIERH_F).setMountArmor(GOTRegistry.westerosHorseArmor));

@@ -5,6 +5,7 @@ import java.util.*;
 import com.mojang.authlib.GameProfile;
 
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.network.IGuiHandler;
 import got.GOT;
@@ -22,6 +23,7 @@ import got.common.quest.GOTMiniQuest;
 import got.common.tileentity.*;
 import got.common.util.*;
 import got.common.world.map.*;
+import got.common.world.map.GOTWaypoint.Region;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.*;
@@ -357,6 +359,8 @@ public class GOTCommonProxy implements IGuiHandler {
 			return new GOTGuiCraftingTable.Jogos(entityplayer.inventory, world, i, j, k);
 		case 88:
 			return new GOTGuiCraftingTable.Mossovy(entityplayer.inventory, world, i, j, k);
+		case 89:
+			return new GOTGuiCraftingTable.Targaryen(entityplayer.inventory, world, i, j, k);
 		default:
 			break;
 		}
@@ -650,6 +654,8 @@ public class GOTCommonProxy implements IGuiHandler {
 			return new GOTContainerCraftingTable.Jogos(entityplayer.inventory, world, i, j, k);
 		case 88:
 			return new GOTContainerCraftingTable.Mossovy(entityplayer.inventory, world, i, j, k);
+		case 89:
+			return new GOTContainerCraftingTable.Targaryen(entityplayer.inventory, world, i, j, k);
 		default:
 			break;
 		}
@@ -760,6 +766,41 @@ public class GOTCommonProxy implements IGuiHandler {
 	}
 
 	public void onPostload() {
+		if (GOTConfig.replaceCrownlandsDragonstoneWithTargaryen) {
+			GOTCommander.removeFactions(GOTFaction.CROWNLANDS, GOTFaction.DRAGONSTONE);
+			FMLLog.info("Hummel009: CROWNLANDS faction successfully deleted");
+			FMLLog.info("Hummel009: DRAGONSTONE faction successfully deleted");
+			
+			
+			GOTCommander.removeWaypoints(GOTWaypoint.ClawIsle, GOTWaypoint.Dragonstone, GOTWaypoint.Driftmark, GOTWaypoint.HighTide, GOTWaypoint.Hull, GOTWaypoint.SharpPoint, GOTWaypoint.Spicetown, GOTWaypoint.Stonedance, GOTWaypoint.SweetportSound, GOTWaypoint.Antlers, GOTWaypoint.Briarwhite, GOTWaypoint.Brownhollow, GOTWaypoint.Duskendale, GOTWaypoint.DyreDen, GOTWaypoint.Hayford, GOTWaypoint.HollardCastle, GOTWaypoint.KingsLanding, GOTWaypoint.RooksRest, GOTWaypoint.Rosby, GOTWaypoint.Stokeworth, GOTWaypoint.Whispers);
+			
+			GOTCommander.addWaypoint("ClawIsle", Region.TARGARYEN, GOTFaction.TARGARYEN, 977, 1483);
+			GOTCommander.addWaypoint("Dragonstone", Region.TARGARYEN, GOTFaction.TARGARYEN, 942, 1545);
+			GOTCommander.addWaypoint("Driftmark", Region.TARGARYEN, GOTFaction.TARGARYEN, 909, 1557);
+			GOTCommander.addWaypoint("HighTide", Region.TARGARYEN, GOTFaction.TARGARYEN, 926, 1554);
+			GOTCommander.addWaypoint("Hull", Region.TARGARYEN, GOTFaction.TARGARYEN, 914, 1548);
+			GOTCommander.addWaypoint("SharpPoint", Region.TARGARYEN, GOTFaction.TARGARYEN, 939, 1596);
+			GOTCommander.addWaypoint("Spicetown", Region.TARGARYEN, GOTFaction.TARGARYEN, 897, 1556);
+			GOTCommander.addWaypoint("Stonedance", Region.TARGARYEN, GOTFaction.TARGARYEN, 946, 1621);
+			GOTCommander.addWaypoint("SweetportSound", Region.TARGARYEN, GOTFaction.TARGARYEN, 924, 1618);
+			GOTCommander.addWaypoint("Antlers", Region.TARGARYEN, GOTFaction.TARGARYEN, 789, 1580);
+			GOTCommander.addWaypoint("Briarwhite", Region.TARGARYEN, GOTFaction.TARGARYEN, 729, 1577);
+			GOTCommander.addWaypoint("Brownhollow", Region.TARGARYEN, GOTFaction.TARGARYEN, 981, 1447);
+			GOTCommander.addWaypoint("Duskendale", Region.TARGARYEN, GOTFaction.TARGARYEN, 833, 1577);
+			GOTCommander.addWaypoint("DyreDen", Region.TARGARYEN, GOTFaction.TARGARYEN, 932, 1481);
+			GOTCommander.addWaypoint("Hayford", Region.TARGARYEN, GOTFaction.TARGARYEN, 761, 1618);
+			GOTCommander.addWaypoint("HollardCastle", Region.TARGARYEN, GOTFaction.TARGARYEN, 842, 1565);
+			GOTCommander.addWaypoint("KingsLanding", Region.TARGARYEN, GOTFaction.TARGARYEN, 771, 1631);
+			GOTCommander.addWaypoint("RooksRest", Region.TARGARYEN, GOTFaction.TARGARYEN, 863, 1532);
+			GOTCommander.addWaypoint("Rosby", Region.TARGARYEN, GOTFaction.TARGARYEN, 804, 1605);
+			GOTCommander.addWaypoint("Stokeworth", Region.TARGARYEN, GOTFaction.TARGARYEN, 809, 1586);
+			GOTCommander.addWaypoint("Whispers", Region.TARGARYEN, GOTFaction.TARGARYEN, 956, 1506);			
+		}
+		else {
+			GOTCommander.removeFaction(GOTFaction.TARGARYEN);
+			FMLLog.info("Hummel009: TARGARYEN faction successfully deleted");
+		}
+		
 		if (GOTConfig.enableGrapplingHooks) {
 			FMLCommonHandler.instance().bus().register(this);
 			MinecraftForge.EVENT_BUS.register(this);

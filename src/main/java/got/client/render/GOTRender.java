@@ -1,5 +1,7 @@
 package got.client.render;
 
+import got.common.entity.westeros.targaryen.GOTEntityTargaryenMan;
+
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import got.client.effect.GOTEntityAlignmentBonus;
 import got.client.render.animal.*;
@@ -65,6 +67,7 @@ import net.minecraft.init.Items;
 
 public class GOTRender {
 	public static void renderFactionNPC() {
+		RenderingRegistry.registerEntityRenderingHandler(GOTEntityTargaryenMan.class, new GOTRenderFactionNPC("westeros/westeros"));
 		RenderingRegistry.registerEntityRenderingHandler(GOTEntityHillman.class, new GOTRenderFactionNPCLayered("westeros/wild"));
 		RenderingRegistry.registerEntityRenderingHandler(GOTEntityIbbenMan.class, new GOTRenderFactionNPCLayered("essos/ibben"));
 		RenderingRegistry.registerEntityRenderingHandler(GOTEntityNorthHillman.class, new GOTRenderFactionNPCLayered("westeros/wild"));

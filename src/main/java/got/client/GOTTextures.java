@@ -411,7 +411,7 @@ public class GOTTextures implements IResourceManagerReloadListener {
 	}
 
 	public static void loadMapTextures() {
-		mapTexture = new ResourceLocation("got:map/map.png");
+		mapTexture = new ResourceLocation("got:map/" + GOTConfig.changeMap + ".png");
 		try {
 			BufferedImage mapImage = ImageIO.read(mc.getResourceManager().getResource(mapTexture).getInputStream());
 			sepiaMapTexture = GOTTextures.convertToSepia(mapImage, new ResourceLocation("got:map_sepia"));

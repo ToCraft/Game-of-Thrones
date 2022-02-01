@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.*;
 
 import got.common.*;
+import got.common.database.GOTAchievement.Category;
 import got.common.faction.GOTFaction;
 import got.common.util.GOTEnumDyeColor;
 import got.common.world.biome.GOTBiome;
@@ -18,6 +19,8 @@ import net.minecraft.util.*;
 public class GOTAchievement {
 	public static int id = 1;
 	public static Map<ItemArmor.ArmorMaterial, GOTAchievement> armorAchievements = new HashMap<>();
+	public static GOTAchievement VISIT_TARGARYEN;
+	public static GOTAchievement VISIT_TARGARYEN_FOREST;
 	public static GOTAchievement BANDIT;
 	public static GOTAchievement BANNER_PROTECT;
 	public static GOTAchievement BREW_DRINK_IN_BARREL;
@@ -609,6 +612,8 @@ public class GOTAchievement {
 		UNSMELT = new GOTAchievement(Category.GENERAL, id++, GOTRegistry.unsmeltery, "UNSMELT");
 		ENGRAVE = new GOTAchievement(Category.GENERAL, id++, Blocks.anvil, "ENGRAVE");
 		STEAL = new GOTAchievement(Category.GENERAL, id++, GOTRegistry.coin, "STEAL");
+		VISIT_TARGARYEN = new GOTAchievement(Category.VISIT, id++, GOTRegistry.rhaegarSword, "VISIT_TARGARYEN");
+		VISIT_TARGARYEN_FOREST = new GOTAchievement(Category.VISIT, id++, GOTRegistry.mugRedWine, "VISIT_TARGARYENFOREST");
 		VISIT_ALWAYS_WINTER = new GOTAchievement(Category.VISIT, id++, Blocks.ice, "VISIT_ALWAYS_WINTER");
 		VISIT_ARBOR = new GOTAchievement(Category.VISIT, id++, GOTRegistry.grapeRed, "VISIT_ARBOR");
 		VISIT_ARRYN = new GOTAchievement(Category.VISIT, id++, GOTRegistry.arrynHelmet, "VISIT_ARRYN");

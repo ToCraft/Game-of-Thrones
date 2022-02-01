@@ -52,6 +52,11 @@ public abstract class GOTContainerCraftingTable extends ContainerWorkbench {
 		}
 	}
 
+	public static class Targaryen extends GOTContainerCraftingTable {
+		public Targaryen(InventoryPlayer inv, World world, int i, int j, int k) {
+			super(inv, world, i, j, k, GOTRecipe.targaryen, GOTRegistry.tableTargaryen);
+		}
+	}
 	public static class Arryn extends GOTContainerCraftingTable {
 		public Arryn(InventoryPlayer inv, World world, int i, int j, int k) {
 			super(inv, world, i, j, k, GOTRecipe.arryn, GOTRegistry.tableArryn);

@@ -39,6 +39,11 @@ import got.common.entity.westeros.north.hillmen.*;
 import got.common.entity.westeros.reach.*;
 import got.common.entity.westeros.riverlands.*;
 import got.common.entity.westeros.stormlands.*;
+import got.common.entity.westeros.targaryen.GOTEntityTargaryenLevyman;
+import got.common.entity.westeros.targaryen.GOTEntityTargaryenLevymanArcher;
+import got.common.entity.westeros.targaryen.GOTEntityTargaryenMan;
+import got.common.entity.westeros.targaryen.GOTEntityTargaryenSoldier;
+import got.common.entity.westeros.targaryen.GOTEntityTargaryenSoldierArcher;
 import got.common.entity.westeros.westerlands.*;
 import got.common.entity.westeros.wildling.*;
 import got.common.entity.westeros.wildling.thenn.*;
@@ -48,6 +53,10 @@ import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.World;
 
 public class GOTSpawnList {
+	public static GOTSpawnList TARGARYEN_CIVILIAN = new GOTSpawnList(new GOTSpawnEntry(GOTEntityTargaryenMan.class, 10, 2, 4));
+	public static GOTSpawnList TARGARYEN_CONQUEST = new GOTSpawnList(new GOTSpawnEntry(GOTEntityTargaryenSoldier.class, 10, 1, 3), new GOTSpawnEntry(GOTEntityTargaryenSoldierArcher.class, 5, 1, 3));
+	public static GOTSpawnList TARGARYEN_MILITARY = new GOTSpawnList(new GOTSpawnEntry(GOTEntityTargaryenLevyman.class, 10, 1, 3), new GOTSpawnEntry(GOTEntityTargaryenLevymanArcher.class, 5, 1, 3));
+
 	public static GOTSpawnList ARRYN_CIVILIAN = new GOTSpawnList(new GOTSpawnEntry(GOTEntityArrynMan.class, 10, 1, 2));
 	public static GOTSpawnList ARRYN_CONQUEST = new GOTSpawnList(new GOTSpawnEntry(GOTEntityArrynSoldier.class, 10, 1, 2), new GOTSpawnEntry(GOTEntityArrynSoldierArcher.class, 5, 1, 2));
 	public static GOTSpawnList ARRYN_GUARDIAN = new GOTSpawnList(new GOTSpawnEntry(GOTEntityArrynGuard.class, 10, 1, 2));

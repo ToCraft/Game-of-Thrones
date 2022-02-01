@@ -88,6 +88,9 @@ public class GOTConfig {
 	public static boolean cwpLog;
 	public static String languageCode = "ru";
 
+	public static boolean replaceCrownlandsDragonstoneWithTargaryen;
+	public static String changeMap = "mapN";
+
 	static {
 		allCategories = new ArrayList<>();
 		CATEGORY_LANGUAGE = GOTConfig.getCategory("1_language");
@@ -125,6 +128,8 @@ public class GOTConfig {
 	}
 
 	public static void load() {
+		changeMap = config.getString("changeMap", CATEGORY_GAMEPLAY, changeMap, "Choose: mapT (Map with Targaryen) or mapN (normal Map)");
+		replaceCrownlandsDragonstoneWithTargaryen = config.get(CATEGORY_GAMEPLAY, "replace Crownlands & Dragonstone with Targaryen", false, "replaces the waypoints and the factions of Dragonstone and Crownlands at Targaryen.").getBoolean();
 		languageCode = config.getString("languageCode", CATEGORY_LANGUAGE, languageCode, "Choose: ru, en, de or zh.");
 		clearMap = config.get(CATEGORY_GAMEPLAY, "No fixed structures and characters", false, "Useful for servers. Disable fixed structures to build your own").getBoolean();
 		enableGrapplingHooks = config.get(CATEGORY_GAMEPLAY, "Enable Grappling hooks. SINGLEPLAYER ONLY!", false).getBoolean();

@@ -39,6 +39,11 @@ public abstract class GOTBiome extends BiomeGenBase {
 	public static Class[][] correctCreatureTypeParams = { { EnumCreatureType.class, Class.class, Integer.TYPE, Material.class, Boolean.TYPE, Boolean.TYPE } };
 	public static EnumCreatureType creatureType_GOTAmbient = EnumHelper.addEnum(correctCreatureTypeParams, EnumCreatureType.class, "GOTAmbient", GOTAmbientCreature.class, 45, Material.air, true, false);
 	public static GOTBiome alwaysWinter;
+	public static GOTBiome crownlandsTargaryen;
+	public static GOTBiome crownlandsForestTargaryen;
+	public static GOTBiome crownlandsTownTargaryen;
+	public static GOTBiome dragonstoneTargaryen;
+	public static GOTBiome massyTargaryen;
 	public static GOTBiome arryn;
 	public static GOTBiome arrynMountains;
 	public static GOTBiome arrynMountainsFoothills;
@@ -1141,6 +1146,11 @@ public abstract class GOTBiome extends BiomeGenBase {
 		yiTiWasteland = new GOTBiomeYiTiWasteland(163, true).setIsNeverWinter().setMinMaxHeight(0.1f, 0.0f).setColor(0xBEB74F).setBiomeName("yiTi");
 		yunkai = new GOTBiomeYunkai(164, true).setIsNeverWinter().setMinMaxHeight(0.1f, 0.0f).setColor(0xA3AA48).setBiomeName("yunkai");
 		ibbenMountains = new GOTBiomeIbbenMountains(165, true).setIsLongWinterAZ().setMinMaxHeight(2.0f, 2.0f).setColor(0x808081).setBiomeName("ibbenMountains");
+		crownlandsTargaryen = new GOTBiomeTargaryen(166, true).setIsSeasonalWinter().setMinMaxHeight(0.1f, 0.15f).setColor(0x789F46).setBiomeName("crownlands");
+		crownlandsForestTargaryen = new GOTBiomeTargaryenForest(167, true).setIsNeverWinter().setMinMaxHeight(0.1f, 0.15f).setColor(0x70991E).setBiomeName("crownlandsForest");
+		crownlandsTownTargaryen = new GOTBiomeTargaryenTown(168, true).setIsSeasonalWinter().setMinMaxHeight(0.1f, 0.0f).setColor(0x789E46).setBiomeName("crownlandsTown");
+		dragonstoneTargaryen = new GOTBiomeTargaryen(169, true).setIsSeasonalWinter().setMinMaxHeight(0.3f, 0.35f).setColor(0x78A446).setBiomeName("dragonstone");
+		massyTargaryen = new GOTBiomeMassyTargaryen(170, true).setIsSeasonalWinter().setMinMaxHeight(0.1f, 1.0f).setColor(0x78A246).setBiomeName("massy");
 	}
 
 	public static void updateWaterColor(int i, int j, int k) {

@@ -13,6 +13,7 @@ import com.google.common.math.IntMath;
 
 import cpw.mods.fml.common.*;
 import got.GOT;
+import got.common.GOTConfig;
 import got.common.GOTDimension;
 import got.common.database.GOTRegistry;
 import got.common.world.biome.GOTBiome;
@@ -37,7 +38,7 @@ public class GOTGenLayerWorld extends GOTGenLayer {
 		if (!GOTGenLayerWorld.loadedBiomeImage()) {
 			try {
 				BufferedImage biomeImage = null;
-				imageName = "assets/got/map/map.png";
+				imageName = "assets/got/map/" + GOTConfig.changeMap + ".png";
 				ModContainer mc = GOT.getModContainer();
 				if (mc.getSource().isFile()) {
 					ZipFile zip = new ZipFile(mc.getSource());
