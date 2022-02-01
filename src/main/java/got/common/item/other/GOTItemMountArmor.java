@@ -58,7 +58,7 @@ public class GOTItemMountArmor extends Item {
 			if (materialName.startsWith("got_")) {
 				materialName = materialName.substring("got_".length());
 			}
-			path = "got:armor/mount/" + mountName + "_" + materialName + ".png";
+			path = "got:textures/armor/mount/" + mountName + "_" + materialName + ".png";
 		}
 		return path;
 	}
@@ -108,7 +108,7 @@ public class GOTItemMountArmor extends Item {
 	}
 
 	public boolean isValid(GOTNPCMount mount) {
-		if (mount instanceof GOTEntityGiraffe || mount instanceof GOTEntityDeer || mount instanceof GOTEntityElephant || mount instanceof GOTEntityMammoth || mount instanceof GOTEntityWildBoar || mount instanceof GOTEntityCamel) {
+		if (mount instanceof GOTEntityGiraffe || mount instanceof GOTEntityDeer || mount instanceof GOTEntityElephant || mount instanceof GOTEntityMammoth || mount instanceof GOTEntityBoar || mount instanceof GOTEntityCamel) {
 			return false;
 		}
 		if (mount instanceof GOTEntityRhino || mount instanceof GOTEntityWoolyRhino) {

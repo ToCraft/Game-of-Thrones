@@ -16,14 +16,14 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public class GOTStructureNorthCity extends GOTVillageGen {
-	private boolean isTown;
-	private boolean isCastle;
-	private boolean isSmallTown;
+	public boolean isTown;
+	public boolean isCastle;
+	public boolean isSmallTown;
 
 	public GOTStructureNorthCity(GOTBiome biome, float f) {
 		super(biome);
-		gridScale = 16;
-		gridRandomDisplace = 2;
+		gridScale = 12;
+		gridRandomDisplace = 1;
 		spawnChance = f;
 		villageChunkRadius = 6;
 	}
@@ -56,17 +56,7 @@ public class GOTStructureNorthCity extends GOTVillageGen {
 		}
 
 		@Override
-		public void addStructure(GOTStructureBase structure, int x, int z, int r, boolean force) {
-			super.addStructure(structure, x, z, r, force);
-		}
-
-		@Override
 		public void addVillageStructures(Random random) {
-			if (isTown || isSmallTown) {
-				villageType = VillageType.TOWN;
-			} else if (isCastle) {
-				villageType = VillageType.FORT;
-			}
 			switch (villageType) {
 			case TOWN:
 				setupTown(random);
@@ -548,7 +538,13 @@ public class GOTStructureNorthCity extends GOTVillageGen {
 
 		@Override
 		public void setupVillageProperties(Random random) {
-			villageType = VillageType.VILLAGE;
+			if (isTown || isSmallTown) {
+				villageType = VillageType.TOWN;
+			} else if (isCastle || random.nextInt(4) == 0) {
+				villageType = VillageType.FORT;
+			} else {
+				villageType = VillageType.VILLAGE;
+			}
 		}
 	}
 

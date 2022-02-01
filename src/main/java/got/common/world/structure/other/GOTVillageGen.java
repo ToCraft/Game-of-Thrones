@@ -7,7 +7,6 @@ import got.common.GOTConfig;
 import got.common.util.CentredSquareArray;
 import got.common.world.GOTWorldChunkManager;
 import got.common.world.biome.GOTBiome;
-import got.common.world.genlayer.GOTGenLayerWorld;
 import got.common.world.map.*;
 import net.minecraft.block.*;
 import net.minecraft.init.Blocks;
@@ -26,6 +25,7 @@ public abstract class GOTVillageGen {
 	public int villageChunkRadius;
 	public int fixedVillageChunkRadius;
 	public List<LocationInfo> fixedLocations = new ArrayList<>();
+	public int notCheckRange;
 
 	public GOTVillageGen(GOTBiome biome) {
 		villageBiome = biome;
@@ -33,33 +33,20 @@ public abstract class GOTVillageGen {
 		spawnBiomes.add(villageBiome);
 	}
 
-	public LocationInfo addFixedLocation(GOTWaypoint wp, int addX, int addZ, int rotation) {
-		LocationInfo loc = new LocationInfo(wp.getXCoord() + addX, wp.getZCoord() + addZ, rotation, wp.toString()).setFixedLocation(wp);
-		fixedLocations.add(loc);
+	public LocationInfo affix(GOTWaypoint... wps) {
+		LocationInfo loc = null;
+		for (GOTWaypoint wp : wps) {
+			loc = new LocationInfo(wp.getXCoord() + wp.getAddX(), wp.getZCoord() + wp.getAddZ(), wp.getRotation(), wp.getCodeName()).setFixedLocation(wp);
+			fixedLocations.add(loc);
+		}
 		return loc;
-	}
-
-	public LocationInfo affix(GOTWaypoint wp) {
-		return addFixedLocation(wp, 0, 0, 0);
-	}
-
-	public LocationInfo affix(GOTWaypoint wp, int rotation) {
-		return addFixedLocation(wp, 0, 0, rotation);
-	}
-
-	public LocationInfo affix(GOTWaypoint wp, int addX, int addZ) {
-		return addFixedLocation(wp, addX * GOTGenLayerWorld.scale, addZ * GOTGenLayerWorld.scale, 0);
-	}
-
-	public LocationInfo affix(GOTWaypoint wp, int addX, int addZ, int rotation) {
-		return addFixedLocation(wp, addX * GOTGenLayerWorld.scale, addZ * GOTGenLayerWorld.scale, rotation);
 	}
 
 	public boolean anyFixedVillagesAt(World world, int i, int k) {
 		if (!GOTVillageGen.hasFixedSettlements(world)) {
 			return false;
 		}
-		int checkRange = 15;
+		int checkRange = 15 - notCheckRange;
 		checkRange <<= 4;
 		for (LocationInfo loc : fixedLocations) {
 			int dx = Math.abs(loc.posX - i);
@@ -276,6 +263,9 @@ public abstract class GOTVillageGen {
 					GOTVillageGen.seedVillageRand(world, i1, k1);
 					LocationInfo loc = LocationInfo.RANDOM_GEN_HERE;
 					createAndSetupVillageInstance(world, i1, k1, villageRand, loc);
+					if (worldChunkMgr.areBiomesViable(i1, k1, villageRange, spawnBiomes) && worldChunkMgr.areVariantsSuitableVillage(i1, k1, villageRange, false)) {
+						return cache.markResult(chunkX, chunkZ, loc);
+					}
 				}
 			}
 		}

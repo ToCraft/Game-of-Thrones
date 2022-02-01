@@ -12,8 +12,8 @@ public class GOTEntityDothrakiKhalin extends GOTEntityDothraki implements GOTTra
 	public GOTEntityDothrakiKhalin(World world) {
 		super(world);
 		canBeMarried = false;
-		spawnRidingHorse = false;
 		addTargetTasks(false);
+		spawnRidingHorse = false;
 	}
 
 	@Override
@@ -39,14 +39,6 @@ public class GOTEntityDothrakiKhalin extends GOTEntityDothraki implements GOTTra
 	@Override
 	public GOTTradeEntries getSellPool() {
 		return GOTTradeEntries.COMMON_FARMER_SELL;
-	}
-
-	@Override
-	public String getSpeechBank(EntityPlayer entityplayer) {
-		if (isFriendly(entityplayer)) {
-			return "essos/dothraki/khalin/friendly";
-		}
-		return "essos/dothraki/khalin/hostile";
 	}
 
 	@Override

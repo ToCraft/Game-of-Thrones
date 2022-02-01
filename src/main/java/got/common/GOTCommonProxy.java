@@ -32,12 +32,11 @@ import net.minecraft.entity.item.EntityMinecartContainer;
 import net.minecraft.entity.player.*;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.*;
-import net.minecraft.item.*;
+import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 
@@ -128,26 +127,36 @@ public class GOTCommonProxy implements IGuiHandler {
 		TileEntity barrel;
 		switch (ID) {
 		case 0:
-			if ((oven = world.getTileEntity(i, j, k)) instanceof GOTTileEntityOven) {
+			oven = world.getTileEntity(i, j, k);
+			if (oven instanceof GOTTileEntityOven) {
 				return new GOTGuiOven(entityplayer.inventory, (GOTTileEntityOven) oven);
+			}
+			break;
+		case 1:
+			entity = world.getEntityByID(i);
+			if (entity instanceof GOTEntityNPC) {
+				return new GOTGuiHiredInteractNoFunc((GOTEntityNPC) entity);
 			}
 			break;
 		case 2:
 			return new GOTGuiCraftingTable.Ibben(entityplayer.inventory, world, i, j, k);
 		case 3:
-			if ((entity = world.getEntityByID(i)) instanceof GOTTradeable) {
+			entity = world.getEntityByID(i);
+			if (entity instanceof GOTTradeable) {
 				return new GOTGuiTrade(entityplayer.inventory, (GOTTradeable) entity, world);
 			}
 			break;
 		case 4:
-			return new GOTGuiIronBank(entityplayer);
+			return new GOTGuiIronBank();
 		case 5:
-			if ((forge = world.getTileEntity(i, j, k)) instanceof GOTTileEntityAlloyForge) {
+			forge = world.getTileEntity(i, j, k);
+			if (forge instanceof GOTTileEntityAlloyForge) {
 				return new GOTGuiAlloyForge(entityplayer.inventory, (GOTTileEntityAlloyForge) forge);
 			}
 			break;
 		case 7:
-			if ((entity = world.getEntityByID(i)) instanceof GOTUnitTradeable) {
+			entity = world.getEntityByID(i);
+			if (entity instanceof GOTUnitTradeable) {
 				return new GOTGuiUnitTrade(entityplayer, (GOTUnitTradeable) entity, world);
 			}
 			break;
@@ -160,36 +169,42 @@ public class GOTCommonProxy implements IGuiHandler {
 		case 15:
 			return new GOTGuiPouch(entityplayer, i);
 		case 16:
-			if ((barrel = world.getTileEntity(i, j, k)) instanceof GOTTileEntityBarrel) {
+			barrel = world.getTileEntity(i, j, k);
+			if (barrel instanceof GOTTileEntityBarrel) {
 				return new GOTGuiBarrel(entityplayer.inventory, (GOTTileEntityBarrel) barrel);
 			}
 			break;
 		case 17:
-			if ((stand = world.getTileEntity(i, j, k)) instanceof GOTTileEntityArmorStand) {
+			stand = world.getTileEntity(i, j, k);
+			if (stand instanceof GOTTileEntityArmorStand) {
 				return new GOTGuiArmorStand(entityplayer.inventory, (GOTTileEntityArmorStand) stand);
 			}
 			break;
 		case 18:
 			return new GOTGuiCraftingTable.Hillmen(entityplayer.inventory, world, i, j, k);
 		case 19:
-			if ((entity = world.getEntityByID(i)) instanceof GOTTradeable) {
+			entity = world.getEntityByID(i);
+			if (entity instanceof GOTTradeable) {
 				return new GOTGuiTradeInteract((GOTEntityNPC) entity);
 			}
 			break;
 		case 20:
-			if ((entity = world.getEntityByID(i)) instanceof GOTUnitTradeable) {
+			entity = world.getEntityByID(i);
+			if (entity instanceof GOTUnitTradeable) {
 				return new GOTGuiUnitTradeInteract((GOTEntityNPC) entity);
 			}
 			break;
 		case 21:
-			if ((entity = world.getEntityByID(i)) instanceof GOTEntityNPC) {
+			entity = world.getEntityByID(i);
+			if (entity instanceof GOTEntityNPC) {
 				return new GOTGuiHiredInteract((GOTEntityNPC) entity);
 			}
 			break;
 		case 22:
-			if ((entity = world.getEntityByID(i)) instanceof GOTEntityNPC) {
+			entity = world.getEntityByID(i);
+			if (entity instanceof GOTEntityNPC) {
 				npc = (GOTEntityNPC) entity;
-				if (npc.hiredNPCInfo.isActive && npc.hiredNPCInfo.getHiringPlayer() == entityplayer && npc.hiredNPCInfo.getTask() == GOTHiredNPCInfo.Task.FARMER) {
+				if (npc.hiredNPCInfo.isActive && npc.hiredNPCInfo.getHiringPlayer().equals(entityplayer) && npc.hiredNPCInfo.getTask() == GOTHiredNPCInfo.Task.FARMER) {
 					return new GOTGuiHiredFarmerInventory(entityplayer.inventory, npc);
 				}
 			}
@@ -197,7 +212,8 @@ public class GOTCommonProxy implements IGuiHandler {
 		case 23:
 			return new GOTGuiCraftingTable.Wildling(entityplayer.inventory, world, i, j, k);
 		case 24:
-			if ((entity = world.getEntityByID(i)) instanceof GOTTradeable) {
+			entity = world.getEntityByID(i);
+			if (entity instanceof GOTTradeable) {
 				return new GOTGuiTradeUnitTradeInteract((GOTEntityNPC) entity);
 			}
 			break;
@@ -208,13 +224,13 @@ public class GOTCommonProxy implements IGuiHandler {
 		case 29:
 			GOTEntityNPCRideable npc2;
 			entity = world.getEntityByID(i);
-			int invSize = j;
 			if (entity instanceof GOTEntityHorse) {
 				GOTEntityHorse horse = (GOTEntityHorse) entity;
-				return new GOTGuiMountInventory(entityplayer.inventory, new AnimalChest(horse.getCommandSenderName(), invSize), horse);
+				return new GOTGuiMountInventory(entityplayer.inventory, new AnimalChest(horse.getCommandSenderName(), j), horse);
 			}
-			if (entity instanceof GOTEntityNPCRideable && (npc2 = (GOTEntityNPCRideable) entity).getMountInventory() != null) {
-				return new GOTGuiNPCMountInventory(entityplayer.inventory, new AnimalChest(npc2.getCommandSenderName(), invSize), npc2);
+			npc2 = (GOTEntityNPCRideable) entity;
+			if (entity instanceof GOTEntityNPCRideable && npc2.getMountInventory() != null) {
+				return new GOTGuiNPCMountInventory(entityplayer.inventory, new AnimalChest(npc2.getCommandSenderName(), j), npc2);
 			}
 			break;
 		case 32:
@@ -222,39 +238,44 @@ public class GOTCommonProxy implements IGuiHandler {
 		case 33:
 			return new GOTGuiSquadronItem();
 		case 35:
-			if ((entity = world.getEntityByID(i)) instanceof GOTEntityNPC) {
-				npc = (GOTEntityNPC) entity;
-				return new GOTGuiCoinExchange(entityplayer, npc);
+			entity = world.getEntityByID(i);
+			if (entity instanceof GOTEntityNPC) {
+				return new GOTGuiCoinExchange(entityplayer, (GOTEntityNPC) entity);
 			}
 			break;
 		case 37:
 			return new GOTGuiCraftingTable.Lhazar(entityplayer.inventory, world, i, j, k);
 		case 38:
-			if ((unsmeltery = world.getTileEntity(i, j, k)) instanceof GOTTileEntityUnsmeltery) {
+			unsmeltery = world.getTileEntity(i, j, k);
+			if (unsmeltery instanceof GOTTileEntityUnsmeltery) {
 				return new GOTGuiUnsmeltery(entityplayer.inventory, (GOTTileEntityUnsmeltery) unsmeltery);
 			}
 			break;
 		case 39:
 			return new GOTGuiCraftingTable.Sothoryos(entityplayer.inventory, world, i, j, k);
 		case 40:
-			if ((trap = world.getTileEntity(i, j, k)) instanceof GOTTileEntitySarbacaneTrap) {
+			trap = world.getTileEntity(i, j, k);
+			if (trap instanceof GOTTileEntitySarbacaneTrap) {
 				return new GuiDispenser(entityplayer.inventory, (GOTTileEntitySarbacaneTrap) trap);
 			}
 			break;
 		case 41:
-			if ((chest = world.getTileEntity(i, j, k)) instanceof GOTTileEntityChest) {
+			chest = world.getTileEntity(i, j, k);
+			if (chest instanceof GOTTileEntityChest) {
 				return new GuiChest(entityplayer.inventory, (GOTTileEntityChest) chest);
 			}
 			break;
 		case 45:
-			if ((entity = world.getEntityByID(i)) instanceof GOTEntityNPCRespawner) {
+			entity = world.getEntityByID(i);
+			if (entity instanceof GOTEntityNPCRespawner) {
 				return new GOTGuiNPCRespawner((GOTEntityNPCRespawner) entity);
 			}
 			break;
 		case 46:
-			if ((entity = world.getEntityByID(i)) instanceof GOTEntityNPC) {
+			entity = world.getEntityByID(i);
+			if (entity instanceof GOTEntityNPC) {
 				npc = (GOTEntityNPC) entity;
-				if (npc.hiredNPCInfo.isActive && npc.hiredNPCInfo.getHiringPlayer() == entityplayer && npc.hiredNPCInfo.getTask() == GOTHiredNPCInfo.Task.WARRIOR) {
+				if (npc.hiredNPCInfo.isActive && npc.hiredNPCInfo.getHiringPlayer().equals(entityplayer) && npc.hiredNPCInfo.getTask() == GOTHiredNPCInfo.Task.WARRIOR) {
 					return new GOTGuiHiredWarriorInventory(entityplayer.inventory, npc);
 				}
 			}
@@ -277,14 +298,16 @@ public class GOTCommonProxy implements IGuiHandler {
 		case 49:
 			return new GOTGuiCraftingTable.YiTi(entityplayer.inventory, world, i, j, k);
 		case 52:
-			if ((millstone = world.getTileEntity(i, j, k)) instanceof GOTTileEntityMillstone) {
+			millstone = world.getTileEntity(i, j, k);
+			if (millstone instanceof GOTTileEntityMillstone) {
 				return new GOTGuiMillstone(entityplayer.inventory, (GOTTileEntityMillstone) millstone);
 			}
 			break;
 		case 53:
 			return new GOTGuiAnvil(entityplayer, i, j, k);
 		case 54:
-			if ((entity = world.getEntityByID(i)) instanceof GOTEntityNPC) {
+			entity = world.getEntityByID(i);
+			if (entity instanceof GOTEntityNPC) {
 				return new GOTGuiAnvil(entityplayer, (GOTEntityNPC) entity);
 			}
 			break;
@@ -293,17 +316,20 @@ public class GOTCommonProxy implements IGuiHandler {
 			if (world.getBlock(i, j, k) == Blocks.bookshelf) {
 				world.setBlock(i, j, k, GOTRegistry.bookshelfStorage, 0, 3);
 			}
-			if ((bookshelf = world.getTileEntity(i, j, k)) instanceof GOTTileEntityBookshelf) {
+			bookshelf = world.getTileEntity(i, j, k);
+			if (bookshelf instanceof GOTTileEntityBookshelf) {
 				return new GOTGuiBookshelf(entityplayer.inventory, (GOTTileEntityBookshelf) bookshelf);
 			}
 			break;
 		case 58:
-			if ((entity = world.getEntityByID(i)) instanceof GOTMercenary) {
+			entity = world.getEntityByID(i);
+			if (entity instanceof GOTMercenary) {
 				return new GOTGuiMercenaryInteract((GOTEntityNPC) entity);
 			}
 			break;
 		case 59:
-			if ((entity = world.getEntityByID(i)) instanceof GOTMercenary) {
+			entity = world.getEntityByID(i);
+			if (entity instanceof GOTMercenary) {
 				return new GOTGuiMercenaryHire(entityplayer, (GOTMercenary) entity, world);
 			}
 			break;
@@ -437,10 +463,6 @@ public class GOTCommonProxy implements IGuiHandler {
 		return 0;
 	}
 
-	public String getkeyname(GOTCommonProxy.keys keyenum) {
-		return null;
-	}
-
 	public int getPlantainRenderID() {
 		return 0;
 	}
@@ -466,38 +488,39 @@ public class GOTCommonProxy implements IGuiHandler {
 		TileEntity unsmeltery;
 		TileEntity forge;
 		TileEntity chest;
-		IInventory chest2;
 		GOTEntityNPC npc;
 		TileEntity oven;
 		Entity entity;
 		TileEntity trap;
-		int slot;
 		TileEntity millstone;
 		TileEntity barrel;
 		TileEntity bookshelf;
-		Entity minecart;
 		switch (ID) {
 		case 0:
-			if ((oven = world.getTileEntity(i, j, k)) instanceof GOTTileEntityOven) {
+			oven = world.getTileEntity(i, j, k);
+			if (oven instanceof GOTTileEntityOven) {
 				return new GOTContainerOven(entityplayer.inventory, (GOTTileEntityOven) oven);
 			}
 			break;
 		case 2:
 			return new GOTContainerCraftingTable.Ibben(entityplayer.inventory, world, i, j, k);
 		case 3:
-			if ((entity = world.getEntityByID(i)) instanceof GOTTradeable) {
+			entity = world.getEntityByID(i);
+			if (entity instanceof GOTTradeable) {
 				return new GOTContainerTrade(entityplayer.inventory, (GOTTradeable) entity, world);
 			}
 			break;
 		case 4:
-			return new GOTGuiIronBank(entityplayer);
+			return new GOTGuiIronBank();
 		case 5:
-			if ((forge = world.getTileEntity(i, j, k)) instanceof GOTTileEntityAlloyForge) {
+			forge = world.getTileEntity(i, j, k);
+			if (forge instanceof GOTTileEntityAlloyForge) {
 				return new GOTContainerAlloyForge(entityplayer.inventory, (GOTTileEntityAlloyForge) forge);
 			}
 			break;
 		case 7:
-			if ((entity = world.getEntityByID(i)) instanceof GOTUnitTradeable) {
+			entity = world.getEntityByID(i);
+			if (entity instanceof GOTUnitTradeable) {
 				return new GOTContainerUnitTrade(entityplayer, (GOTUnitTradeable) entity, world);
 			}
 			break;
@@ -509,21 +532,24 @@ public class GOTCommonProxy implements IGuiHandler {
 			}
 			break;
 		case 16:
-			if ((barrel = world.getTileEntity(i, j, k)) instanceof GOTTileEntityBarrel) {
+			barrel = world.getTileEntity(i, j, k);
+			if (barrel instanceof GOTTileEntityBarrel) {
 				return new GOTContainerBarrel(entityplayer.inventory, (GOTTileEntityBarrel) barrel);
 			}
 			break;
 		case 17:
-			if ((stand = world.getTileEntity(i, j, k)) instanceof GOTTileEntityArmorStand) {
+			stand = world.getTileEntity(i, j, k);
+			if (stand instanceof GOTTileEntityArmorStand) {
 				return new GOTContainerArmorStand(entityplayer.inventory, (GOTTileEntityArmorStand) stand);
 			}
 			break;
 		case 18:
 			return new GOTContainerCraftingTable.Hillmen(entityplayer.inventory, world, i, j, k);
 		case 22:
-			if ((entity = world.getEntityByID(i)) instanceof GOTEntityNPC) {
+			entity = world.getEntityByID(i);
+			if (entity instanceof GOTEntityNPC) {
 				npc = (GOTEntityNPC) entity;
-				if (npc.hiredNPCInfo.isActive && npc.hiredNPCInfo.getHiringPlayer() == entityplayer && npc.hiredNPCInfo.getTask() == GOTHiredNPCInfo.Task.FARMER) {
+				if (npc.hiredNPCInfo.isActive && npc.hiredNPCInfo.getHiringPlayer().equals(entityplayer) && npc.hiredNPCInfo.getTask() == GOTHiredNPCInfo.Task.FARMER) {
 					return new GOTContainerHiredFarmerInventory(entityplayer.inventory, npc);
 				}
 			}
@@ -540,12 +566,13 @@ public class GOTCommonProxy implements IGuiHandler {
 				GOTEntityHorse horse = (GOTEntityHorse) entity;
 				return new GOTContainerMountInventory(entityplayer.inventory, GOTReflection.getHorseInv(horse), horse);
 			}
-			if (entity instanceof GOTEntityNPCRideable && ((GOTEntityNPCRideable) (npc = (GOTEntityNPCRideable) entity)).getMountInventory() != null) {
-				return new GOTContainerNPCMountInventory(entityplayer.inventory, ((GOTEntityNPCRideable) npc).getMountInventory(), (GOTEntityNPCRideable) npc);
+			if (entity instanceof GOTEntityNPCRideable && ((GOTEntityNPCRideable) entity).getMountInventory() != null) {
+				return new GOTContainerNPCMountInventory(entityplayer.inventory, ((GOTEntityNPCRideable) entity).getMountInventory(), (GOTEntityNPCRideable) entity);
 			}
 			break;
 		case 35:
-			if ((entity = world.getEntityByID(i)) instanceof GOTEntityNPC) {
+			entity = world.getEntityByID(i);
+			if (entity instanceof GOTEntityNPC) {
 				npc = (GOTEntityNPC) entity;
 				return new GOTContainerCoinExchange(entityplayer, npc);
 			}
@@ -553,26 +580,30 @@ public class GOTCommonProxy implements IGuiHandler {
 		case 37:
 			return new GOTContainerCraftingTable.Lhazar(entityplayer.inventory, world, i, j, k);
 		case 38:
-			if ((unsmeltery = world.getTileEntity(i, j, k)) instanceof GOTTileEntityUnsmeltery) {
+			unsmeltery = world.getTileEntity(i, j, k);
+			if (unsmeltery instanceof GOTTileEntityUnsmeltery) {
 				return new GOTContainerUnsmeltery(entityplayer.inventory, (GOTTileEntityUnsmeltery) unsmeltery);
 			}
 			break;
 		case 39:
 			return new GOTContainerCraftingTable.Sothoryos(entityplayer.inventory, world, i, j, k);
 		case 40:
-			if ((trap = world.getTileEntity(i, j, k)) instanceof GOTTileEntitySarbacaneTrap) {
+			trap = world.getTileEntity(i, j, k);
+			if (trap instanceof GOTTileEntitySarbacaneTrap) {
 				return new ContainerDispenser(entityplayer.inventory, (GOTTileEntitySarbacaneTrap) trap);
 			}
 			break;
 		case 41:
-			if ((chest = world.getTileEntity(i, j, k)) instanceof GOTTileEntityChest) {
+			chest = world.getTileEntity(i, j, k);
+			if (chest instanceof GOTTileEntityChest) {
 				return new ContainerChest(entityplayer.inventory, (GOTTileEntityChest) chest);
 			}
 			break;
 		case 46:
-			if ((entity = world.getEntityByID(i)) instanceof GOTEntityNPC) {
+			entity = world.getEntityByID(i);
+			if (entity instanceof GOTEntityNPC) {
 				npc = (GOTEntityNPC) entity;
-				if (npc.hiredNPCInfo.isActive && npc.hiredNPCInfo.getHiringPlayer() == entityplayer && npc.hiredNPCInfo.getTask() == GOTHiredNPCInfo.Task.WARRIOR) {
+				if (npc.hiredNPCInfo.isActive && npc.hiredNPCInfo.getHiringPlayer().equals(entityplayer) && npc.hiredNPCInfo.getTask() == GOTHiredNPCInfo.Task.WARRIOR) {
 					return new GOTContainerHiredWarriorInventory(entityplayer.inventory, npc);
 				}
 			}
@@ -585,24 +616,28 @@ public class GOTCommonProxy implements IGuiHandler {
 		case 49:
 			return new GOTContainerCraftingTable.YiTi(entityplayer.inventory, world, i, j, k);
 		case 52:
-			if ((millstone = world.getTileEntity(i, j, k)) instanceof GOTTileEntityMillstone) {
+			millstone = world.getTileEntity(i, j, k);
+			if (millstone instanceof GOTTileEntityMillstone) {
 				return new GOTContainerMillstone(entityplayer.inventory, (GOTTileEntityMillstone) millstone);
 			}
 			break;
 		case 53:
 			return new GOTContainerAnvil(entityplayer, i, j, k);
 		case 54:
-			if ((entity = world.getEntityByID(i)) instanceof GOTEntityNPC) {
+			entity = world.getEntityByID(i);
+			if (entity instanceof GOTEntityNPC) {
 				return new GOTContainerAnvil(entityplayer, (GOTEntityNPC) entity);
 			}
 			break;
 		case 55:
-			if ((bookshelf = world.getTileEntity(i, j, k)) instanceof GOTTileEntityBookshelf) {
+			bookshelf = world.getTileEntity(i, j, k);
+			if (bookshelf instanceof GOTTileEntityBookshelf) {
 				return new GOTContainerBookshelf(entityplayer.inventory, (GOTTileEntityBookshelf) bookshelf);
 			}
 			break;
 		case 59:
-			if ((entity = world.getEntityByID(i)) instanceof GOTMercenary) {
+			entity = world.getEntityByID(i);
+			if (entity instanceof GOTMercenary) {
 				return new GOTContainerUnitTrade(entityplayer, (GOTMercenary) entity, world);
 			}
 			break;
@@ -659,10 +694,13 @@ public class GOTCommonProxy implements IGuiHandler {
 		default:
 			break;
 		}
-		if (GOTCommonProxy.testForSlotPackedGuiID(ID, 63) && GOTItemPouch.isHoldingPouch(entityplayer, slot = GOTCommonProxy.unpackSlot(ID)) && (chest2 = GOTItemPouch.getChestInvAt(entityplayer, world, i, j, k)) != null) {
+		IInventory chest2;
+		int slot = GOTCommonProxy.unpackSlot(ID);
+		if (GOTCommonProxy.testForSlotPackedGuiID(ID, 63) && GOTItemPouch.isHoldingPouch(entityplayer, slot) && (chest2 = GOTItemPouch.getChestInvAt(entityplayer, world, i, j, k)) != null) {
 			return new GOTContainerChestWithPouch(entityplayer, slot, chest2);
 		}
-		if (GOTCommonProxy.testForSlotPackedGuiID(ID, 64) && GOTItemPouch.isHoldingPouch(entityplayer, slot = GOTCommonProxy.unpackSlot(ID)) && (minecart = world.getEntityByID(i)) instanceof EntityMinecartContainer) {
+		Entity minecart = world.getEntityByID(i);
+		if (GOTCommonProxy.testForSlotPackedGuiID(ID, 64) && GOTItemPouch.isHoldingPouch(entityplayer, slot) && minecart instanceof EntityMinecartContainer) {
 			return new GOTContainerChestWithPouch(entityplayer, slot, (EntityMinecartContainer) minecart);
 		}
 		return null;
@@ -724,23 +762,6 @@ public class GOTCommonProxy implements IGuiHandler {
 	}
 
 	public void launchplayer(EntityPlayer player) {
-	}
-
-	@SubscribeEvent
-	public void onBlockBreak(BreakEvent event) {
-		EntityPlayer player = event.getPlayer();
-		if (player != null) {
-			ItemStack stack = player.getHeldItem();
-			if (stack != null) {
-				Item item = stack.getItem();
-				if (item instanceof GOTItemGrapplingHook) {
-					event.setCanceled(true);
-					return;
-				}
-			}
-		}
-
-		blockbreak(event);
 	}
 
 	@SubscribeEvent
@@ -884,7 +905,7 @@ public class GOTCommonProxy implements IGuiHandler {
 	}
 
 	public static int packGuiIDWithSlot(int guiID, int slotNo) {
-		return guiID | slotNo << 16;
+		return guiID | (slotNo << 16);
 	}
 
 	public static void sendClientsideGUI(EntityPlayerMP entityplayer, int guiID, int x, int y, int z) {
@@ -898,9 +919,5 @@ public class GOTCommonProxy implements IGuiHandler {
 
 	public static int unpackSlot(int fullID) {
 		return fullID >> 16;
-	}
-
-	public enum keys {
-		keyBindUseItem, keyBindForward, keyBindLeft, keyBindBack, keyBindRight, keyBindJump, keyBindSneak, keyBindAttack
 	}
 }

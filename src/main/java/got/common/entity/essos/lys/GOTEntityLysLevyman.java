@@ -17,7 +17,6 @@ public class GOTEntityLysLevyman extends GOTEntityLysMan {
 		super(world);
 		canBeMarried = false;
 		addTargetTasks(true);
-		spawnRidingHorse = false;
 	}
 
 	@Override
@@ -42,11 +41,11 @@ public class GOTEntityLysLevyman extends GOTEntityLysMan {
 	public String getSpeechBank(EntityPlayer entityplayer) {
 		if (isFriendly(entityplayer)) {
 			if (hiredNPCInfo.getHiringPlayer() == entityplayer) {
-				return "essos/lys/warrior/hired";
+				return "standart/civilized/hired_soldier";
 			}
-			return "essos/lys/warrior/friendly";
+			return "standart/civilized/usual_friendly";
 		}
-		return "essos/lys/warrior/hostile";
+		return "standart/civilized/usual_hostile";
 	}
 
 	@Override

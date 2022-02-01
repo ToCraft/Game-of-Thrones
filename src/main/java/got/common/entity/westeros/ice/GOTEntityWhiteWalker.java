@@ -13,7 +13,7 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.DamageSource;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
 
 public class GOTEntityWhiteWalker extends GOTEntityNPC {
@@ -22,9 +22,11 @@ public class GOTEntityWhiteWalker extends GOTEntityNPC {
 	public GOTEntityWhiteWalker(World world) {
 		super(world);
 		canBeMarried = false;
+		spawnsInDarkness = true;
 		isImmuneToFrost = true;
-		isImmuneToFire = true;
 		isChilly = true;
+		isImmuneToFire = true;
+		isNotHuman = true;
 		setSize(0.6f, 1.8f);
 		getNavigator().setAvoidsWater(true);
 		getNavigator().setBreakDoors(true);
@@ -34,7 +36,6 @@ public class GOTEntityWhiteWalker extends GOTEntityNPC {
 		tasks.addTask(3, new EntityAIWatchClosest2(this, EntityPlayer.class, 8.0f, 0.02f));
 		tasks.addTask(4, new EntityAIWatchClosest2(this, GOTEntityNPC.class, 5.0f, 0.02f));
 		addTargetTasks(true, GOTEntityAINearestAttackableTargetPatriot.class);
-		isNotHuman = true;
 	}
 
 	@Override
@@ -80,6 +81,22 @@ public class GOTEntityWhiteWalker extends GOTEntityNPC {
 	@Override
 	public float getAlignmentBonus() {
 		return 10.0f;
+	}
+
+	@Override
+	public boolean getCanSpawnHere() {
+		if (super.getCanSpawnHere()) {
+			if (liftSpawnRestrictions) {
+				return true;
+			}
+			int i = MathHelper.floor_double(posX);
+			int j = MathHelper.floor_double(boundingBox.minY);
+			int k = MathHelper.floor_double(posZ);
+			if (j > 62 && j < 140 && worldObj.getBlock(i, j - 1, k) == worldObj.getBiomeGenForCoords(i, k).topBlock) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	@Override

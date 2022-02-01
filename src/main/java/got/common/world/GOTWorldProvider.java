@@ -56,7 +56,7 @@ public class GOTWorldProvider extends WorldProvider {
 	public boolean canBlockFreeze(int i, int j, int k, boolean isBlockUpdate) {
 		BiomeGenBase biome = worldObj.getBiomeGenForCoords(i, k);
 		if (biome instanceof GOTBiomeOcean) {
-			return GOTBiomeOcean.isFrozen(i, k) && canFreeze_ignoreTemp(i, j, k, isBlockUpdate);
+			return GOTBiomeOcean.isFrozen(i, k) && canFreezeIgnoreTemp(i, j, k, isBlockUpdate);
 		}
 		if (((GOTBiome) biome).isAlwaysWinter) {
 			return worldObj.canBlockFreezeBody(i, j, k, isBlockUpdate);
@@ -67,7 +67,7 @@ public class GOTWorldProvider extends WorldProvider {
 		return false;
 	}
 
-	public boolean canFreeze_ignoreTemp(int i, int j, int k, boolean isBlockUpdate) {
+	public boolean canFreezeIgnoreTemp(int i, int j, int k, boolean isBlockUpdate) {
 		Block block;
 		if (j >= 0 && j < worldObj.getHeight() && worldObj.getSavedLightValue(EnumSkyBlock.Block, i, j, k) < 10 && ((block = worldObj.getBlock(i, j, k)) == Blocks.water || block == Blocks.flowing_water) && worldObj.getBlockMetadata(i, j, k) == 0) {
 			if (!isBlockUpdate) {
@@ -98,18 +98,11 @@ public class GOTWorldProvider extends WorldProvider {
 		return true;
 	}
 
-	public boolean canSnow_ignoreTemp(int i, int j, int k, boolean checkLight) {
-		if (!checkLight) {
-			return true;
-		}
-		return j >= 0 && j < worldObj.getHeight() && worldObj.getSavedLightValue(EnumSkyBlock.Block, i, j, k) < 10 && (worldObj.getBlock(i, j, k)).getMaterial() == Material.air && Blocks.snow_layer.canPlaceBlockAt(worldObj, i, j, k);
-	}
-
 	@Override
 	public boolean canSnowAt(int i, int j, int k, boolean checkLight) {
 		BiomeGenBase biome = worldObj.getBiomeGenForCoords(i, k);
 		if (biome instanceof GOTBiomeOcean) {
-			return GOTBiomeOcean.isFrozen(i, k) && canSnow_ignoreTemp(i, j, k, checkLight);
+			return GOTBiomeOcean.isFrozen(i, k) && canSnowIgnoreTemp(i, j, k, checkLight);
 		}
 		if (((GOTBiome) biome).isAlwaysWinter) {
 			return worldObj.canSnowAtBody(i, j, k, checkLight);
@@ -118,6 +111,13 @@ public class GOTWorldProvider extends WorldProvider {
 			return j >= 140 && worldObj.canSnowAtBody(i, j, k, checkLight);
 		}
 		return false;
+	}
+
+	public boolean canSnowIgnoreTemp(int i, int j, int k, boolean checkLight) {
+		if (!checkLight) {
+			return true;
+		}
+		return j >= 0 && j < worldObj.getHeight() && worldObj.getSavedLightValue(EnumSkyBlock.Block, i, j, k) < 10 && (worldObj.getBlock(i, j, k)).getMaterial() == Material.air && Blocks.snow_layer.canPlaceBlockAt(worldObj, i, j, k);
 	}
 
 	@Override

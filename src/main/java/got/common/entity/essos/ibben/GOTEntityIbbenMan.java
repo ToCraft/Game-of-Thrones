@@ -36,7 +36,6 @@ public class GOTEntityIbbenMan extends GOTEntityHumanBase implements IPickpocket
 		tasks.addTask(7, new EntityAIWatchClosest2(this, GOTEntityNPC.class, 5.0f, 0.02f));
 		tasks.addTask(8, new EntityAIWatchClosest(this, EntityLiving.class, 8.0f, 0.02f));
 		tasks.addTask(9, new EntityAILookIdle(this));
-		spawnRidingHorse = false;
 		isImmuneToFrost = true;
 		addTargetTasks(false);
 	}
@@ -102,7 +101,7 @@ public class GOTEntityIbbenMan extends GOTEntityHumanBase implements IPickpocket
 			int i = MathHelper.floor_double(posX);
 			int j = MathHelper.floor_double(boundingBox.minY);
 			int k = MathHelper.floor_double(posZ);
-			if (j > 62 && worldObj.getBlock(i, j - 1, k) == worldObj.getBiomeGenForCoords(i, k).topBlock) {
+			if (j > 62 && j < 140 && worldObj.getBlock(i, j - 1, k) == worldObj.getBiomeGenForCoords(i, k).topBlock) {
 				return true;
 			}
 		}
@@ -126,13 +125,10 @@ public class GOTEntityIbbenMan extends GOTEntityHumanBase implements IPickpocket
 
 	@Override
 	public String getSpeechBank(EntityPlayer entityplayer) {
-		if (isDrunkard()) {
-			return "special/drunkard";
-		}
 		if (isFriendly(entityplayer)) {
-			return "essos/ibben/man/friendly";
+			return "standart/civilized/usual_friendly";
 		}
-		return "essos/ibben/man/hostile";
+		return "standart/civilized/usual_hostile";
 	}
 
 	@Override

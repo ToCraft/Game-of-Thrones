@@ -15,14 +15,14 @@ import net.minecraft.block.Block;
 import net.minecraft.world.World;
 
 public class GOTStructureVolantisCity extends GOTVillageGen {
-	private boolean isTown;
+	public boolean isTown;
 
 	public GOTStructureVolantisCity(GOTBiome biome, float f) {
 		super(biome);
-		gridScale = 14;
+		gridScale = 12;
 		gridRandomDisplace = 1;
 		spawnChance = f;
-		villageChunkRadius = 5;
+		villageChunkRadius = 6;
 	}
 
 	@Override
@@ -44,9 +44,6 @@ public class GOTStructureVolantisCity extends GOTVillageGen {
 
 		@Override
 		public void addVillageStructures(Random random) {
-			if (isTown) {
-				villageType = VillageType.TOWN;
-			}
 			switch (villageType) {
 			case VILLAGE:
 				setupVillage(random);
@@ -599,11 +596,17 @@ public class GOTStructureVolantisCity extends GOTVillageGen {
 
 		@Override
 		public void setupVillageProperties(Random random) {
-			villageType = random.nextInt(4) == 0 ? VillageType.FORT : VillageType.VILLAGE;
+			if (isTown) {
+				villageType = VillageType.TOWN;
+			} else if (random.nextInt(4) == 0) {
+				villageType = VillageType.FORT;
+			} else {
+				villageType = VillageType.VILLAGE;
+			}
 		}
 
 		public void setWarriorSpawnClasses(GOTEntityNPCRespawner spawner) {
-			spawner.setSpawnClasses(GOTEntityVolantisLevyman.class, GOTEntityVolantisLevymanArcher.class);
+			spawner.setSpawnClasses(GOTEntityVolantisSoldier.class, GOTEntityVolantisSoldierArcher.class);
 		}
 
 	}

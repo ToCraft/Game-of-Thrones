@@ -12,7 +12,6 @@ public abstract class GOTEntityIbbenMarketTrader extends GOTEntityIbbenMan imple
 		super(world);
 		canBeMarried = false;
 		addTargetTasks(false);
-		spawnRidingHorse = false;
 	}
 
 	@Override
@@ -23,14 +22,6 @@ public abstract class GOTEntityIbbenMarketTrader extends GOTEntityIbbenMan imple
 	@Override
 	public float getAlignmentBonus() {
 		return 2.0f;
-	}
-
-	@Override
-	public String getSpeechBank(EntityPlayer entityplayer) {
-		if (isFriendly(entityplayer)) {
-			return "essos/ibben/marketTrader/friendly";
-		}
-		return "essos/ibben/marketTrader/hostile";
 	}
 
 	@Override

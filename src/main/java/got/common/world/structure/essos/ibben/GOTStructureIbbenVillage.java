@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 public class GOTStructureIbbenVillage extends GOTVillageGen {
 	public GOTStructureIbbenVillage(GOTBiome biome, float f) {
 		super(biome);
-		gridScale = 14;
+		gridScale = 12;
 		gridRandomDisplace = 1;
 		spawnChance = f;
 		villageChunkRadius = 6;

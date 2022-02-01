@@ -2,6 +2,7 @@ package got.common.entity.westeros.riverlands;
 
 import got.common.database.*;
 import got.common.entity.ai.*;
+import got.common.entity.animal.GOTEntityHorse;
 import got.common.entity.other.*;
 import got.common.faction.GOTFaction;
 import got.common.quest.*;
@@ -53,7 +54,9 @@ public class GOTEntityRiverlandsMan extends GOTEntityHumanBase implements IPickp
 
 	@Override
 	public GOTNPCMount createMountToRide() {
-		return super.createMountToRide();
+		GOTEntityHorse horse = (GOTEntityHorse) super.createMountToRide();
+		horse.setMountArmor(new ItemStack(GOTRegistry.westerosHorseArmor));
+		return horse;
 	}
 
 	public EntityAIBase createRiverlandsAttackAI() {
@@ -105,7 +108,7 @@ public class GOTEntityRiverlandsMan extends GOTEntityHumanBase implements IPickp
 			int i = MathHelper.floor_double(posX);
 			int j = MathHelper.floor_double(boundingBox.minY);
 			int k = MathHelper.floor_double(posZ);
-			if (j > 62 && worldObj.getBlock(i, j - 1, k) == worldObj.getBiomeGenForCoords(i, k).topBlock) {
+			if (j > 62 && j < 140 && worldObj.getBlock(i, j - 1, k) == worldObj.getBiomeGenForCoords(i, k).topBlock) {
 				return true;
 			}
 		}
@@ -124,13 +127,10 @@ public class GOTEntityRiverlandsMan extends GOTEntityHumanBase implements IPickp
 
 	@Override
 	public String getSpeechBank(EntityPlayer entityplayer) {
-		if (isDrunkard()) {
-			return "special/drunkard";
-		}
 		if (isFriendly(entityplayer)) {
-			return "westeros/riverlands/man/friendly";
+			return "standart/civilized/usual_friendly";
 		}
-		return "westeros/riverlands/man/hostile";
+		return "standart/civilized/usual_hostile";
 	}
 
 	@Override

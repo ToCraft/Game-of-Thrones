@@ -2,13 +2,13 @@ package got.common.entity.westeros.westerlands;
 
 import got.common.GOTLevelData;
 import got.common.database.*;
-import got.common.entity.other.GOTTradeable;
+import got.common.entity.other.*;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class GOTEntityWesterlandsBartender extends GOTEntityWesterlandsMan implements GOTTradeable.Bartender {
+public class GOTEntityWesterlandsBartender extends GOTEntityWesterlandsMan implements GOTBartender, GOTTradeable {
 	public GOTEntityWesterlandsBartender(World world) {
 		super(world);
 		canBeMarried = false;
@@ -46,11 +46,13 @@ public class GOTEntityWesterlandsBartender extends GOTEntityWesterlandsMan imple
 	}
 
 	@Override
-	public String getSpeechBank(EntityPlayer entityplayer) {
-		if (isFriendly(entityplayer)) {
-			return "westeros/westerlands/bartender/friendly";
-		}
-		return "westeros/westerlands/bartender/hostile";
+	public GOTUnitTradeEntries getUnits() {
+		return GOTUnitTradeEntries.PROSTITUTE_KEEPER;
+	}
+
+	@Override
+	public GOTInvasions getWarhorn() {
+		return null;
 	}
 
 	@Override
@@ -63,5 +65,9 @@ public class GOTEntityWesterlandsBartender extends GOTEntityWesterlandsMan imple
 		data = super.onSpawnWithEgg(data);
 		npcItemsInv.setIdleItem(new ItemStack(GOTRegistry.mug));
 		return data;
+	}
+
+	@Override
+	public void onUnitTrade(EntityPlayer var1) {
 	}
 }

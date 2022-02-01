@@ -17,7 +17,6 @@ public class GOTEntityMyrLevyman extends GOTEntityMyrMan {
 		super(world);
 		canBeMarried = false;
 		addTargetTasks(true);
-		spawnRidingHorse = false;
 	}
 
 	@Override
@@ -42,11 +41,11 @@ public class GOTEntityMyrLevyman extends GOTEntityMyrMan {
 	public String getSpeechBank(EntityPlayer entityplayer) {
 		if (isFriendly(entityplayer)) {
 			if (hiredNPCInfo.getHiringPlayer() == entityplayer) {
-				return "essos/myr/warrior/hired";
+				return "standart/civilized/hired_soldier";
 			}
-			return "essos/myr/warrior/friendly";
+			return "standart/civilized/usual_friendly";
 		}
-		return "essos/myr/warrior/hostile";
+		return "standart/civilized/usual_hostile";
 	}
 
 	@Override

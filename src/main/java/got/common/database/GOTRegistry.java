@@ -3,7 +3,6 @@ package got.common.database;
 import java.util.*;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import got.common.GOTConfig;
 import got.common.block.*;
 import got.common.block.brick.*;
 import got.common.block.leaves.*;
@@ -31,24 +30,14 @@ import net.minecraft.init.*;
 import net.minecraft.item.*;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraftforge.common.MinecraftForge;
 
 public class GOTRegistry {
 	public static Block tableTargaryen;
 	public static Map<GOTEnumDyeColor, GOTBlockConcretePowder> concretePowder = new HashMap();
 	public static Map<GOTEnumDyeColor, GOTBlockConcrete> concrete = new HashMap();
-	public static Item ibbenChestplate;
-	public static Item ibbenLeggings;
-	public static Item ibbenBoots;
-	public static Item ibbenHarpoon;
-	public static Item ibbenSword;
-	public static Item yitiHelmetFrontier;
-	public static Item yitiChestplateFrontier;
-	public static Item yitiLeggingsFrontier;
-	public static Item yitiBootsFrontier;
-	public static Item dothrakiHelmet;
-	public static Item dothrakiChestplate;
-	public static Item dothrakiLeggings;
-	public static Item dothrakiBoots;
+	public static Item rice;
+	public static Block ricePlant;
 	public static Block aleHornBlock;
 	public static Block aleHornGoldBlock;
 	public static Block alloyForge;
@@ -219,6 +208,8 @@ public class GOTRegistry {
 	public static Block fenceRotten;
 	public static Block flaxCrop;
 	public static Block flaxPlant;
+	public static Block cucumberCrop;
+	public static Block cucumberPlant;
 	public static Block flowerPot;
 	public static Block fruitLeaves;
 	public static Block fruitSapling;
@@ -252,6 +243,7 @@ public class GOTRegistry {
 	public static Block kebabBlock;
 	public static Block kebabStand;
 	public static Block kebabStandSand;
+	public static Block kelp;
 	public static Block leaves1;
 	public static Block leaves2;
 	public static Block leaves3;
@@ -292,11 +284,11 @@ public class GOTRegistry {
 	public static Block pillar2;
 	public static Block pipeweedCrop;
 	public static Block pipeweedPlant;
-	public static Block plantain;
 	public static Block planks1;
 	public static Block planks2;
 	public static Block planks3;
 	public static Block planksRotten;
+	public static Block plantain;
 	public static Block plateBlock;
 	public static Block pressurePlateAndesite;
 	public static Block pressurePlateBasalt;
@@ -501,15 +493,18 @@ public class GOTRegistry {
 	public static Block tableBraavos;
 	public static Block tableCrownlands;
 	public static Block tableDorne;
+	public static Block tableDothraki;
 	public static Block tableDragonstone;
 	public static Block tableGhiscar;
 	public static Block tableGift;
 	public static Block tableHillTribes;
 	public static Block tableIbben;
 	public static Block tableIronborn;
+	public static Block tableJogos;
 	public static Block tableLhazar;
 	public static Block tableLorath;
 	public static Block tableLys;
+	public static Block tableMossovy;
 	public static Block tableMyr;
 	public static Block tableNorth;
 	public static Block tableNorvos;
@@ -526,8 +521,6 @@ public class GOTRegistry {
 	public static Block tableWesterlands;
 	public static Block tableWildling;
 	public static Block tableYiTi;
-	public static Block tableJogos;
-	public static Block tableDothraki;
 	public static Block tallGrass;
 	public static Block termiteMound;
 	public static Block thatch;
@@ -640,7 +633,6 @@ public class GOTRegistry {
 	public static Item aegonHelmet;
 	public static Item aleHorn;
 	public static Item aleHornGold;
-	public static Item almond;
 	public static Item alloySteelAxe;
 	public static Item alloySteelDagger;
 	public static Item alloySteelDaggerPoisoned;
@@ -651,6 +643,7 @@ public class GOTRegistry {
 	public static Item alloySteelPickaxe;
 	public static Item alloySteelShovel;
 	public static Item alloySteelSword;
+	public static Item almond;
 	public static Item amber;
 	public static Item amethyst;
 	public static Item anonymousMask;
@@ -682,10 +675,12 @@ public class GOTRegistry {
 	public static Item asshaiSpear;
 	public static Item asshaiStaff;
 	public static Item asshaiSword;
+	public static Item baelishBrooch;
 	public static Item baelishDagger;
 	public static Item banana;
 	public static Item bananaBread;
 	public static Item bananaCakeItem;
+	public static Item bane;
 	public static Item banner;
 	public static Item bannerTab;
 	public static Item bearRug;
@@ -700,6 +695,7 @@ public class GOTRegistry {
 	public static Item blackfyreLeggings;
 	public static Item blackfyreSword;
 	public static Item blackrootStick;
+	public static Item blackskinChestplate;
 	public static Item blacksmithHammer;
 	public static Item bloodOfTrueKings;
 	public static Item blueberry;
@@ -716,15 +712,6 @@ public class GOTRegistry {
 	public static Item braavosLeggings;
 	public static Item brandingIron;
 	public static Item brightroar;
-	public static Item bane;
-	public static Item cutwave;
-	public static Item fin;
-	public static Item pruner;
-	public static Item tidewings;
-	public static Item reminder;
-	public static Item indomitable;
-	public static Item honor;
-	public static Item hearteater;
 	public static Item bronzeAxe;
 	public static Item bronzeBattleaxe;
 	public static Item bronzeBoots;
@@ -774,9 +761,12 @@ public class GOTRegistry {
 	public static Item crownlandsChestplate;
 	public static Item crownlandsHelmet;
 	public static Item crownlandsLeggings;
+	public static Item cutwave;
 	public static Item daarioArakh;
 	public static Item darkSister;
 	public static Item darkstar;
+	public static Item dart;
+	public static Item dartPoisoned;
 	public static Item date;
 	public static Item dawn;
 	public static Item deerCooked;
@@ -787,7 +777,11 @@ public class GOTRegistry {
 	public static Item dorneChestplate;
 	public static Item dorneHelmet;
 	public static Item dorneLeggings;
+	public static Item dothrakiBoots;
+	public static Item dothrakiChestplate;
+	public static Item dothrakiHelmet;
 	public static Item dothrakiHorseArmor;
+	public static Item dothrakiLeggings;
 	public static Item dragonstoneBoots;
 	public static Item dragonstoneChestplate;
 	public static Item dragonstoneHelmet;
@@ -807,9 +801,12 @@ public class GOTRegistry {
 	public static Item essosSword;
 	public static Item euronDagger;
 	public static Item featherDyed;
+	public static Item fin;
 	public static Item firePot;
 	public static Item flax;
 	public static Item flaxSeeds;
+	public static Item cucumber;
+	public static Item cucumberSeeds;
 	public static Item flintDagger;
 	public static Item flintSpear;
 	public static Item fur;
@@ -851,25 +848,29 @@ public class GOTRegistry {
 	public static Item goldRing;
 	public static Item grapeRed;
 	public static Item grapeWhite;
-	public static Item grapplingHook;
 	public static Item gregorCleganeSword;
 	public static Item handGold;
 	public static Item handSilver;
-	public static Item baelishBrooch;
-	public static Item lannisterBrooch;
-	public static Item velaryonBrooch;
 	public static Item harpy;
+	public static Item hearteater;
 	public static Item heartsbane;
 	public static Item hillmenBoots;
 	public static Item hillmenChestplate;
 	public static Item hillmenHelmet;
 	public static Item hillmenLeggings;
+	public static Item honor;
 	public static Item horn;
+	public static Item ibbenBoots;
+	public static Item ibbenChestplate;
+	public static Item ibbenHarpoon;
+	public static Item ibbenLeggings;
+	public static Item ibbenSword;
 	public static Item ice;
 	public static Item iceHeavySword;
 	public static Item iceShard;
 	public static Item iceSpear;
 	public static Item iceSword;
+	public static Item indomitable;
 	public static Item ironBattleaxe;
 	public static Item ironCrossbow;
 	public static Item ironDagger;
@@ -884,18 +885,22 @@ public class GOTRegistry {
 	public static Item ironbornLeggings;
 	public static Item jaimeSword;
 	public static Item joffreyCrossbow;
+	public static Item jogosBoots;
+	public static Item jogosChestplate;
+	public static Item jogosHelmet;
+	public static Item jogosLeggings;
 	public static Item justMaid;
 	public static Item kaftanChestplate;
 	public static Item kaftanLeggings;
 	public static Item katana;
 	public static Item kebab;
-	public static Item whiteBisonHorn;
 	public static Item kingsguardBoots;
 	public static Item kingsguardChestplate;
 	public static Item kingsguardHelmet;
 	public static Item kingsguardLeggings;
 	public static Item ladyForlorn;
 	public static Item lamentation;
+	public static Item lannisterBrooch;
 	public static Item leatherHat;
 	public static Item leek;
 	public static Item leekSoup;
@@ -940,10 +945,9 @@ public class GOTRegistry {
 	public static Item melonSoup;
 	public static Item mossovyBoots;
 	public static Item mossovyChestplate;
+	public static Item mossovyDagger;
 	public static Item mossovyLeggings;
 	public static Item mossovySword;
-	public static Item mossovyDagger;
-	public static Item motorGrapplingHook;
 	public static Item mug;
 	public static Item mugAle;
 	public static Item mugAppleJuice;
@@ -1050,6 +1054,7 @@ public class GOTRegistry {
 	public static Item plum;
 	public static Item pomegranate;
 	public static Item pouch;
+	public static Item pruner;
 	public static Item qarthBoots;
 	public static Item qarthChestplate;
 	public static Item qarthHelmet;
@@ -1078,6 +1083,7 @@ public class GOTRegistry {
 	public static Item redkingChestplate;
 	public static Item redkingHelmet;
 	public static Item redkingLeggings;
+	public static Item reminder;
 	public static Item renlyBoots;
 	public static Item renlyChestplate;
 	public static Item renlyHelmet;
@@ -1103,7 +1109,6 @@ public class GOTRegistry {
 	public static Item royceChestplate;
 	public static Item royceHelmet;
 	public static Item royceLeggings;
-	public static Item blackskinChestplate;
 	public static Item ruby;
 	public static Item salt;
 	public static Item saltedFlesh;
@@ -1111,8 +1116,6 @@ public class GOTRegistry {
 	public static Item sandorCleganeSword;
 	public static Item sandorHelmet;
 	public static Item sapphire;
-	public static Item dart;
-	public static Item dartPoisoned;
 	public static Item seedsGrapeRed;
 	public static Item seedsGrapeWhite;
 	public static Item shishKebab;
@@ -1126,7 +1129,6 @@ public class GOTRegistry {
 	public static Item sothoryosAmulet;
 	public static Item sothoryosAxe;
 	public static Item sothoryosBattleaxe;
-	public static Item sothoryosSarbacane;
 	public static Item sothoryosBoots;
 	public static Item sothoryosBootsGold;
 	public static Item sothoryosChestplate;
@@ -1143,6 +1145,7 @@ public class GOTRegistry {
 	public static Item sothoryosLeggingsGold;
 	public static Item sothoryosPickaxe;
 	public static Item sothoryosPike;
+	public static Item sarbacane;
 	public static Item sothoryosShovel;
 	public static Item sothoryosSpear;
 	public static Item sothoryosSword;
@@ -1172,12 +1175,14 @@ public class GOTRegistry {
 	public static Item targaryenHelmet;
 	public static Item targaryenLeggings;
 	public static Item termite;
+	public static Item tidewings;
 	public static Item tinIngot;
 	public static Item topaz;
 	public static Item tormundSword;
 	public static Item trident;
 	public static Item truth;
 	public static Item trystaneSword;
+	public static Item tugarKhanSword;
 	public static Item turnip;
 	public static Item turnipCooked;
 	public static Item tyeneDagger;
@@ -1215,6 +1220,7 @@ public class GOTRegistry {
 	public static Item valyrianShovel;
 	public static Item valyrianSpear;
 	public static Item valyrianSword;
+	public static Item velaryonBrooch;
 	public static Item victarionAxe;
 	public static Item victarionHelmet;
 	public static Item vigilance;
@@ -1247,9 +1253,9 @@ public class GOTRegistry {
 	public static Item westkingHelmet;
 	public static Item westkingLeggings;
 	public static Item wheel;
+	public static Item whiteBisonHorn;
 	public static Item whiteWalkersBoots;
 	public static Item whiteWalkersChestplate;
-	public static Item iceHoe;
 	public static Item whiteWalkersLeggings;
 	public static Item widowWail;
 	public static Item wildberry;
@@ -1267,17 +1273,21 @@ public class GOTRegistry {
 	public static Item yamRoast;
 	public static Item yitiBattleaxe;
 	public static Item yitiBoots;
+	public static Item yitiBootsFrontier;
 	public static Item yitiBootsSamurai;
 	public static Item yitiBow;
 	public static Item yitiChestplate;
+	public static Item yitiChestplateFrontier;
 	public static Item yitiChestplateSamurai;
 	public static Item yitiDagger;
 	public static Item yitiDaggerPoisoned;
 	public static Item yitiHelmet;
+	public static Item yitiHelmetFrontier;
 	public static Item yitiHelmetSamurai;
 	public static Item yitiHelmetShogune;
 	public static Item yitiHorseArmor;
 	public static Item yitiLeggings;
+	public static Item yitiLeggingsFrontier;
 	public static Item yitiLeggingsSamurai;
 	public static Item yitiPike;
 	public static Item yitiPolearm;
@@ -1286,12 +1296,6 @@ public class GOTRegistry {
 	public static Item yitiSword;
 	public static Item zebraCooked;
 	public static Item zebraRaw;
-	public static Block tableMossovy;
-	public static Item jogosHelmet;
-	public static Item jogosChestplate;
-	public static Item jogosLeggings;
-	public static Item jogosBoots;
-	public static Item tugarKhanSword;
 
 	public static void assignContent() {
 		planks1 = new GOTBlockPlanks1();
@@ -1300,7 +1304,8 @@ public class GOTRegistry {
 		planksRotten = new GOTBlockPlanksRotten();
 		thatch = new GOTBlockThatch();
 		whiteSandstone = new GOTBlockSandstone();
-
+		
+		ricePlant = new GOTBlockRice().setHardness(0.0f).setStepSound(Block.soundTypeGrass).setResistance(0.0f).setBlockName("rice").setBlockTextureName("complexcrops:rice/rice");
 		aleHornBlock = new GOTBlockAleHorn();
 		aleHornGoldBlock = new GOTBlockAleHorn();
 		alloyForge = new GOTBlockAlloyForge();
@@ -1472,6 +1477,8 @@ public class GOTRegistry {
 		fenceRotten = new GOTBlockFence(planksRotten);
 		flaxCrop = new GOTBlockFlaxCrop();
 		flaxPlant = new GOTBlockFlower().setFlowerBounds(0.2f, 0.0f, 0.2f, 0.8f, 0.8f, 0.8f);
+		cucumberCrop = new GOTBlockCucumberCrop();
+		cucumberPlant = new GOTBlockFlower().setFlowerBounds(0.2f, 0.0f, 0.2f, 0.8f, 0.8f, 0.8f);
 		flowerPot = new GOTBlockFlowerPot().setHardness(0.0f).setStepSound(Block.soundTypeStone);
 		fruitLeaves = new GOTBlockLeavesFruit();
 		fruitSapling = new GOTBlockSaplingFruit();
@@ -1886,28 +1893,22 @@ public class GOTRegistry {
 		woodSlabSingle5 = new GOTBlockWoodSlab5(false);
 		yamCrop = new GOTBlockYamCrop();
 		yitiFlower = new GOTBlockYiTiFlower();
+		kelp = new GOTBlockKelp();
 
-		jogosHelmet = new GOTItemArmor(GOTMaterial.JOGOS, 0);
-		jogosChestplate = new GOTItemArmor(GOTMaterial.JOGOS, 1);
-		jogosLeggings = new GOTItemArmor(GOTMaterial.JOGOS, 2);
-		jogosBoots = new GOTItemArmor(GOTMaterial.JOGOS, 3);
-		dothrakiHelmet = new GOTItemArmor(GOTMaterial.DOTHRAKI, 0);
-		dothrakiChestplate = new GOTItemArmor(GOTMaterial.DOTHRAKI, 1);
-		dothrakiLeggings = new GOTItemArmor(GOTMaterial.DOTHRAKI, 2);
-		dothrakiBoots = new GOTItemArmor(GOTMaterial.DOTHRAKI, 3);
+		rice = new GOTItemRice(2, 0.2f, ricePlant, Blocks.water).setUnlocalizedName("rice").setTextureName("complexcrops:rice");
 		aegonHelmet = new GOTItemArmor(GOTMaterial.HELMET, 0, "aegon").setCreativeTab(GOTCreativeTabs.tabStory);
 		aleHorn = new GOTItemVessel();
 		aleHornGold = new GOTItemVessel();
-		alloySteelAxe = new GOTItemAxe(GOTMaterial.COBALT);
-		alloySteelDagger = new GOTItemDagger(GOTMaterial.COBALT);
-		alloySteelDaggerPoisoned = new GOTItemDagger(GOTMaterial.COBALT, GOTItemDagger.DaggerEffect.POISON);
-		alloySteelHalberd = new GOTItemPolearmLong(GOTMaterial.COBALT);
-		alloySteelHoe = new GOTItemHoe(GOTMaterial.COBALT);
+		alloySteelAxe = new GOTItemAxe(GOTMaterial.ALLOY_STEEL);
+		alloySteelDagger = new GOTItemDagger(GOTMaterial.ALLOY_STEEL);
+		alloySteelDaggerPoisoned = new GOTItemDagger(GOTMaterial.ALLOY_STEEL, GOTItemDagger.DaggerEffect.POISON);
+		alloySteelHalberd = new GOTItemPolearmLong(GOTMaterial.ALLOY_STEEL);
+		alloySteelHoe = new GOTItemHoe(GOTMaterial.ALLOY_STEEL);
 		alloySteelIgnot = new Item().setCreativeTab(GOTCreativeTabs.tabMaterials);
 		alloySteelNugget = new Item().setCreativeTab(GOTCreativeTabs.tabMaterials);
-		alloySteelPickaxe = new GOTItemPickaxe(GOTMaterial.COBALT);
-		alloySteelShovel = new GOTItemShovel(GOTMaterial.COBALT);
-		alloySteelSword = new GOTItemSword(GOTMaterial.COBALT);
+		alloySteelPickaxe = new GOTItemPickaxe(GOTMaterial.ALLOY_STEEL);
+		alloySteelShovel = new GOTItemShovel(GOTMaterial.ALLOY_STEEL);
+		alloySteelSword = new GOTItemSword(GOTMaterial.ALLOY_STEEL);
 		almond = new GOTItemFood(2, 0.2f, false);
 		amber = new GOTItemGemWithAnvilNameColor(EnumChatFormatting.YELLOW);
 		amethyst = new GOTItemGemWithAnvilNameColor(EnumChatFormatting.LIGHT_PURPLE);
@@ -1925,7 +1926,7 @@ public class GOTRegistry {
 		arrynLeggings = new GOTItemArmor(GOTMaterial.ARRYN, 2);
 		arrynguardBoots = new GOTItemArmor(GOTMaterial.ARRYNGUARD, 3);
 		arrynguardChestplate = new GOTItemArmor(GOTMaterial.ARRYNGUARD, 1);
-		arrynguardHelmet = new GOTItemArmor(GOTMaterial.ARRYNGUARD, 0, "helmet");
+		arrynguardHelmet = new GOTItemArmor(GOTMaterial.ARRYNGUARD, 0);
 		arrynguardLeggings = new GOTItemArmor(GOTMaterial.ARRYNGUARD, 2);
 		asshaiBattleaxe = new GOTItemBattleaxe(GOTMaterial.ASSHAI);
 		asshaiBoots = new GOTItemArmor(GOTMaterial.ASSHAI, 3);
@@ -1940,10 +1941,12 @@ public class GOTRegistry {
 		asshaiSpear = new GOTItemSpear(GOTMaterial.ASSHAI);
 		asshaiStaff = new GOTItemAsshaiShadowbinderStaff();
 		asshaiSword = new GOTItemSword(GOTMaterial.ASSHAI);
+		baelishBrooch = new GOTItemArmor(GOTMaterial.HAND, 1, "baelish").setCreativeTab(GOTCreativeTabs.tabStory);
 		baelishDagger = new GOTItemLegendaryDagger(GOTMaterial.VALYRIAN);
 		banana = new GOTItemHangingFruit(2, 0.5f, false, bananaBlock);
 		bananaBread = new GOTItemFood(5, 0.6f, false);
 		bananaCakeItem = new GOTItemPlaceableFood(bananaCake);
+		bane = new GOTItemLegendarySword(GOTMaterial.VALYRIAN);
 		banner = new GOTItemBanner();
 		bannerTab = new GOTItemBannerTab();
 		bearRug = new GOTItemBearRug();
@@ -1957,6 +1960,7 @@ public class GOTRegistry {
 		blackfyreLeggings = new GOTItemArmor(GOTMaterial.BLACKFYRE, 2).setCreativeTab(GOTCreativeTabs.tabStory);
 		blackfyreSword = new GOTItemLegendarySword(GOTMaterial.VALYRIAN);
 		blackrootStick = new Item().setCreativeTab(GOTCreativeTabs.tabMaterials).setFull3D();
+		blackskinChestplate = new GOTItemArmor(GOTMaterial.BLACKSKIN, 1).setCreativeTab(GOTCreativeTabs.tabStory);
 		blacksmithHammer = new GOTItemHammer(GOTMaterial.NORTH);
 		bloodOfTrueKings = new Item().setCreativeTab(GOTCreativeTabs.tabMaterials);
 		blueberry = new GOTItemBerry();
@@ -1973,15 +1977,6 @@ public class GOTRegistry {
 		braavosLeggings = new GOTItemArmor(GOTMaterial.BRAAVOS, 2);
 		brandingIron = new GOTItemBrandingIron();
 		brightroar = new GOTItemLegendarySword(GOTMaterial.VALYRIAN);
-		bane = new GOTItemLegendarySword(GOTMaterial.VALYRIAN);
-		cutwave = new GOTItemLegendarySword(GOTMaterial.VALYRIAN);
-		fin = new GOTItemLegendarySword(GOTMaterial.VALYRIAN);
-		indomitable = new GOTItemLegendarySword(GOTMaterial.VALYRIAN);
-		pruner = new GOTItemLegendarySword(GOTMaterial.VALYRIAN);
-		reminder = new GOTItemLegendarySword(GOTMaterial.VALYRIAN);
-		tidewings = new GOTItemLegendarySword(GOTMaterial.VALYRIAN);
-		honor = new GOTItemLegendarySword(GOTMaterial.VALYRIAN);
-		hearteater = new GOTItemLegendarySword(GOTMaterial.STEEL);
 		bronzeAxe = new GOTItemAxe(GOTMaterial.BRONZE);
 		bronzeBattleaxe = new GOTItemBattleaxe(GOTMaterial.BRONZE);
 		bronzeBoots = new GOTItemArmor(GOTMaterial.BRONZE, 3);
@@ -2012,6 +2007,7 @@ public class GOTRegistry {
 		clayMug = new Item().setCreativeTab(GOTCreativeTabs.tabFood);
 		clayPlate = new Item().setCreativeTab(GOTCreativeTabs.tabFood);
 		club = new GOTItemHammer(GOTMaterial.LOG);
+		cobaltIngot = new Item().setCreativeTab(GOTCreativeTabs.tabMaterials);
 		coin = new GOTItemCoin().setCreativeTab(GOTCreativeTabs.tabMisc);
 		commandHorn = new GOTItemCommandHorn();
 		commandSword = new GOTItemCommandSword();
@@ -2030,9 +2026,12 @@ public class GOTRegistry {
 		crownlandsChestplate = new GOTItemArmor(GOTMaterial.CROWNLANDS, 1);
 		crownlandsHelmet = new GOTItemArmor(GOTMaterial.CROWNLANDS, 0);
 		crownlandsLeggings = new GOTItemArmor(GOTMaterial.CROWNLANDS, 2);
+		cutwave = new GOTItemLegendarySword(GOTMaterial.VALYRIAN);
 		daarioArakh = new GOTItemLegendarySword(GOTMaterial.STEEL);
 		darkSister = new GOTItemLegendarySword(GOTMaterial.VALYRIAN);
 		darkstar = new GOTItemLegendarySword(GOTMaterial.STEEL);
+		dart = new GOTItemDart();
+		dartPoisoned = new GOTItemDart().setPoisoned();
 		date = new GOTItemHangingFruit(2, 0.3f, false, dateBlock);
 		dawn = new GOTItemLegendarySword(GOTMaterial.STEEL).setIsGlowing();
 		deerCooked = new GOTItemFood(8, 0.8f, true);
@@ -2043,7 +2042,11 @@ public class GOTRegistry {
 		dorneChestplate = new GOTItemArmor(GOTMaterial.DORNE, 1);
 		dorneHelmet = new GOTItemArmor(GOTMaterial.DORNE, 0);
 		dorneLeggings = new GOTItemArmor(GOTMaterial.DORNE, 2);
+		dothrakiBoots = new GOTItemArmor(GOTMaterial.DOTHRAKI, 3);
+		dothrakiChestplate = new GOTItemArmor(GOTMaterial.DOTHRAKI, 1);
+		dothrakiHelmet = new GOTItemArmor(GOTMaterial.DOTHRAKI, 0);
 		dothrakiHorseArmor = new GOTItemMountArmor(GOTMaterial.DOTHRAKI, GOTItemMountArmor.Mount.HORSE);
+		dothrakiLeggings = new GOTItemArmor(GOTMaterial.DOTHRAKI, 2);
 		dragonstoneBoots = new GOTItemArmor(GOTMaterial.DRAGONSTONE, 3);
 		dragonstoneChestplate = new GOTItemArmor(GOTMaterial.DRAGONSTONE, 1);
 		dragonstoneHelmet = new GOTItemArmor(GOTMaterial.DRAGONSTONE, 0);
@@ -2063,9 +2066,12 @@ public class GOTRegistry {
 		essosSword = new GOTItemSword(GOTMaterial.VOLANTIS);
 		euronDagger = new GOTItemLegendaryDagger(GOTMaterial.VALYRIAN);
 		featherDyed = new GOTItemFeatherDyed();
+		fin = new GOTItemLegendarySword(GOTMaterial.VALYRIAN);
 		firePot = new GOTItemFirePot();
 		flax = new Item().setCreativeTab(GOTCreativeTabs.tabMaterials);
 		flaxSeeds = new GOTItemSeeds(flaxCrop, Blocks.farmland);
+		cucumber = new GOTItemFood(4, 0.3f, false);
+		cucumberSeeds = new GOTItemSeeds(cucumberCrop, Blocks.farmland);
 		flintDagger = new GOTItemDagger(GOTMaterial.FLINT);
 		flintSpear = new GOTItemSpear(GOTMaterial.FLINT);
 		fur = new Item().setCreativeTab(GOTCreativeTabs.tabMaterials);
@@ -2107,25 +2113,29 @@ public class GOTRegistry {
 		goldRing = new GOTItemRing();
 		grapeRed = new GOTItemFood(2, 0.2f, false);
 		grapeWhite = new GOTItemFood(2, 0.2f, false);
-		grapplingHook = new GOTItemGrapplingHook();
 		gregorCleganeSword = new GOTItemLegendaryGreatsword(GOTMaterial.WESTERLANDS);
 		handGold = new GOTItemArmor(GOTMaterial.HAND, 1, "gold").setCreativeTab(GOTCreativeTabs.tabStory);
 		handSilver = new GOTItemArmor(GOTMaterial.HAND, 1, "silver").setCreativeTab(GOTCreativeTabs.tabStory);
-		baelishBrooch = new GOTItemArmor(GOTMaterial.HAND, 1, "baelish").setCreativeTab(GOTCreativeTabs.tabStory);
-		lannisterBrooch = new GOTItemArmor(GOTMaterial.HAND, 1, "lannister").setCreativeTab(GOTCreativeTabs.tabStory);
-		velaryonBrooch = new GOTItemArmor(GOTMaterial.HAND, 1, "velaryon").setCreativeTab(GOTCreativeTabs.tabStory);
 		harpy = new GOTItemArmor(GOTMaterial.GHISCAR, 0, "harpy");
+		hearteater = new GOTItemLegendarySword(GOTMaterial.STEEL);
 		heartsbane = new GOTItemLegendarySword(GOTMaterial.VALYRIAN);
 		hillmenBoots = new GOTItemArmor(GOTMaterial.HILLMEN, 3);
 		hillmenChestplate = new GOTItemArmor(GOTMaterial.HILLMEN, 1);
-		hillmenHelmet = new GOTItemArmor(GOTMaterial.HILLMEN, 0);
+		hillmenHelmet = new GOTItemArmor(GOTMaterial.HILLMEN, 0, "helmet");
 		hillmenLeggings = new GOTItemArmor(GOTMaterial.HILLMEN, 2);
+		honor = new GOTItemLegendarySword(GOTMaterial.VALYRIAN);
 		horn = new Item().setCreativeTab(GOTCreativeTabs.tabMaterials);
+		ibbenBoots = new GOTItemArmor(GOTMaterial.IBBEN, 3);
+		ibbenChestplate = new GOTItemArmor(GOTMaterial.IBBEN, 1);
+		ibbenHarpoon = new GOTItemSpear(GOTMaterial.IBBEN);
+		ibbenLeggings = new GOTItemArmor(GOTMaterial.IBBEN, 2);
+		ibbenSword = new GOTItemSword(GOTMaterial.IBBEN);
 		ice = new GOTItemLegendaryGreatsword(GOTMaterial.VALYRIAN);
 		iceHeavySword = new GOTItemBattleaxe(GOTMaterial.ICE);
 		iceShard = new Item().setCreativeTab(GOTCreativeTabs.tabMaterials);
 		iceSpear = new GOTItemSpear(GOTMaterial.ICE);
 		iceSword = new GOTItemSword(GOTMaterial.ICE);
+		indomitable = new GOTItemLegendarySword(GOTMaterial.VALYRIAN);
 		ironBattleaxe = new GOTItemBattleaxe(GOTMaterial.STEEL);
 		ironCrossbow = new GOTItemCrossbow(GOTMaterial.STEEL);
 		ironDagger = new GOTItemDagger(GOTMaterial.STEEL);
@@ -2138,26 +2148,24 @@ public class GOTRegistry {
 		ironbornChestplate = new GOTItemArmor(GOTMaterial.IRONBORN, 1);
 		ironbornHelmet = new GOTItemArmor(GOTMaterial.IRONBORN, 0);
 		ironbornLeggings = new GOTItemArmor(GOTMaterial.IRONBORN, 2);
-		ibbenChestplate = new GOTItemArmor(GOTMaterial.IBBEN, 1);
-		ibbenLeggings = new GOTItemArmor(GOTMaterial.IBBEN, 2);
-		ibbenBoots = new GOTItemArmor(GOTMaterial.IBBEN, 3);
-		ibbenHarpoon = new GOTItemSpear(GOTMaterial.IBBEN);
-		ibbenSword = new GOTItemSword(GOTMaterial.IBBEN);
 		jaimeSword = new GOTItemLegendarySword(GOTMaterial.STEEL);
 		joffreyCrossbow = new GOTItemLegendaryCrossbow();
+		jogosBoots = new GOTItemArmor(GOTMaterial.JOGOS, 3);
+		jogosChestplate = new GOTItemArmor(GOTMaterial.JOGOS, 1);
+		jogosHelmet = new GOTItemArmor(GOTMaterial.JOGOS, 0);
+		jogosLeggings = new GOTItemArmor(GOTMaterial.JOGOS, 2);
 		justMaid = new GOTItemLegendarySword(GOTMaterial.VALYRIAN);
-		tugarKhanSword = new GOTItemLegendarySword(GOTMaterial.STEEL);
 		kaftanChestplate = new GOTItemKaftan(1);
 		kaftanLeggings = new GOTItemKaftan(2);
 		katana = new GOTItemLegendarySword(GOTMaterial.STEEL);
 		kebab = new GOTItemKebab(8, 0.8f, true);
-		whiteBisonHorn = new Item().setCreativeTab(GOTCreativeTabs.tabMaterials);
 		kingsguardBoots = new GOTItemArmor(GOTMaterial.KINGSGUARD, 3);
 		kingsguardChestplate = new GOTItemArmor(GOTMaterial.KINGSGUARD, 1);
 		kingsguardHelmet = new GOTItemArmor(GOTMaterial.KINGSGUARD, 0);
 		kingsguardLeggings = new GOTItemArmor(GOTMaterial.KINGSGUARD, 2);
 		ladyForlorn = new GOTItemLegendarySword(GOTMaterial.VALYRIAN);
 		lamentation = new GOTItemLegendarySword(GOTMaterial.VALYRIAN);
+		lannisterBrooch = new GOTItemArmor(GOTMaterial.HAND, 1, "lannister").setCreativeTab(GOTCreativeTabs.tabStory);
 		leatherHat = new GOTItemLeatherHat();
 		leek = new ItemSeedFood(2, 0.3f, leekCrop, Blocks.farmland).setCreativeTab(GOTCreativeTabs.tabFood);
 		leekSoup = new GOTItemStew(8, 0.8f, false);
@@ -2202,10 +2210,9 @@ public class GOTRegistry {
 		melonSoup = new GOTItemStew(5, 0.5f, false);
 		mossovyBoots = new GOTItemArmor(GOTMaterial.MOSSOVY, 3);
 		mossovyChestplate = new GOTItemArmor(GOTMaterial.MOSSOVY, 1);
+		mossovyDagger = new GOTItemDagger(GOTMaterial.SILVER);
 		mossovyLeggings = new GOTItemArmor(GOTMaterial.MOSSOVY, 2);
 		mossovySword = new GOTItemSword(GOTMaterial.SILVER);
-		mossovyDagger = new GOTItemDagger(GOTMaterial.SILVER);
-		motorGrapplingHook = new GOTItemMotorGrapplingHook();
 		mug = new GOTItemVessel();
 		mugAle = new GOTItemMug(0.3f).setDrinkStats(3, 0.3f);
 		mugAppleJuice = new GOTItemMug(true, true).setDrinkStats(6, 0.6f);
@@ -2311,6 +2318,7 @@ public class GOTRegistry {
 		plum = new GOTItemFood(4, 0.3f, false);
 		pomegranate = new GOTItemFood(4, 0.3f, false);
 		pouch = new GOTItemPouch();
+		pruner = new GOTItemLegendarySword(GOTMaterial.VALYRIAN);
 		qarthBoots = new GOTItemArmor(GOTMaterial.QARTH, 3);
 		qarthChestplate = new GOTItemArmor(GOTMaterial.QARTH, 1);
 		qarthHelmet = new GOTItemArmor(GOTMaterial.QARTH, 0);
@@ -2339,6 +2347,7 @@ public class GOTRegistry {
 		redkingChestplate = new GOTItemArmor(GOTMaterial.REDKING, 1).setCreativeTab(GOTCreativeTabs.tabStory);
 		redkingHelmet = new GOTItemArmor(GOTMaterial.REDKING, 0).setCreativeTab(GOTCreativeTabs.tabStory);
 		redkingLeggings = new GOTItemArmor(GOTMaterial.REDKING, 2).setCreativeTab(GOTCreativeTabs.tabStory);
+		reminder = new GOTItemLegendarySword(GOTMaterial.VALYRIAN);
 		renlyBoots = new GOTItemArmor(GOTMaterial.RENLY, 3).setCreativeTab(GOTCreativeTabs.tabStory);
 		renlyChestplate = new GOTItemArmor(GOTMaterial.RENLY, 1).setCreativeTab(GOTCreativeTabs.tabStory);
 		renlyHelmet = new GOTItemArmor(GOTMaterial.RENLY, 0, "helmet").setCreativeTab(GOTCreativeTabs.tabStory);
@@ -2364,7 +2373,6 @@ public class GOTRegistry {
 		royceChestplate = new GOTItemArmor(GOTMaterial.ROYCE, 1).setCreativeTab(GOTCreativeTabs.tabStory);
 		royceHelmet = new GOTItemArmor(GOTMaterial.ROYCE, 0, "helmet").setCreativeTab(GOTCreativeTabs.tabStory);
 		royceLeggings = new GOTItemArmor(GOTMaterial.ROYCE, 2).setCreativeTab(GOTCreativeTabs.tabStory);
-		blackskinChestplate = new GOTItemArmor(GOTMaterial.BLACKSKIN, 1).setCreativeTab(GOTCreativeTabs.tabStory);
 		ruby = new GOTItemGemWithAnvilNameColor(EnumChatFormatting.RED);
 		salt = new GOTItemSalt();
 		saltedFlesh = new GOTItemFood(6, 0.6f, true);
@@ -2372,13 +2380,10 @@ public class GOTRegistry {
 		sandorCleganeSword = new GOTItemLegendarySword(GOTMaterial.STEEL);
 		sandorHelmet = new GOTItemArmor(GOTMaterial.HELMET, 0, "sandor").setCreativeTab(GOTCreativeTabs.tabStory);
 		sapphire = new GOTItemGemWithAnvilNameColor(EnumChatFormatting.BLUE);
-		dart = new GOTItemDart();
-		dartPoisoned = new GOTItemDart().setPoisoned();
 		seedsGrapeRed = new GOTItemGrapeSeeds(grapevineRed);
 		seedsGrapeWhite = new GOTItemGrapeSeeds(grapevineWhite);
 		shishKebab = new GOTItemKebab(8, 0.8f, false).setFull3D();
 		silverIngot = new Item().setCreativeTab(GOTCreativeTabs.tabMaterials);
-		cobaltIngot = new Item().setCreativeTab(GOTCreativeTabs.tabMaterials);
 		silverNugget = new Item().setCreativeTab(GOTCreativeTabs.tabMaterials);
 		silverRing = new GOTItemRing();
 		skullCup = new GOTItemVessel();
@@ -2388,7 +2393,6 @@ public class GOTRegistry {
 		sothoryosAmulet = new Item().setCreativeTab(GOTCreativeTabs.tabMisc);
 		sothoryosAxe = new GOTItemAxe(GOTMaterial.OBSIDIAN);
 		sothoryosBattleaxe = new GOTItemBattleaxe(GOTMaterial.OBSIDIAN);
-		sothoryosSarbacane = new GOTItemSarbacane(GOTMaterial.LOG);
 		sothoryosBoots = new GOTItemArmor(GOTMaterial.SOTHORYOS, 3);
 		sothoryosBootsGold = new GOTItemArmor(GOTMaterial.SOTHORYOS_GOLD, 3);
 		sothoryosChestplate = new GOTItemArmor(GOTMaterial.SOTHORYOS, 1);
@@ -2405,6 +2409,7 @@ public class GOTRegistry {
 		sothoryosLeggingsGold = new GOTItemArmor(GOTMaterial.SOTHORYOS_GOLD, 2);
 		sothoryosPickaxe = new GOTItemPickaxe(GOTMaterial.OBSIDIAN);
 		sothoryosPike = new GOTItemPike(GOTMaterial.OBSIDIAN);
+		sarbacane = new GOTItemSarbacane(GOTMaterial.LOG);
 		sothoryosShovel = new GOTItemShovel(GOTMaterial.OBSIDIAN);
 		sothoryosSpear = new GOTItemSpear(GOTMaterial.OBSIDIAN);
 		sothoryosSword = new GOTItemSword(GOTMaterial.OBSIDIAN);
@@ -2434,12 +2439,14 @@ public class GOTRegistry {
 		targaryenHelmet = new GOTItemArmor(GOTMaterial.TARGARYEN, 0, "helmet").setCreativeTab(GOTCreativeTabs.tabStory);
 		targaryenLeggings = new GOTItemArmor(GOTMaterial.TARGARYEN, 2).setCreativeTab(GOTCreativeTabs.tabStory);
 		termite = new GOTItemTermite();
+		tidewings = new GOTItemLegendarySword(GOTMaterial.VALYRIAN);
 		tinIngot = new Item().setCreativeTab(GOTCreativeTabs.tabMaterials);
 		topaz = new GOTItemGemWithAnvilNameColor(EnumChatFormatting.GOLD);
 		tormundSword = new GOTItemLegendarySword(GOTMaterial.STEEL);
 		trident = new GOTItemTrident(GOTMaterial.STEEL);
 		truth = new GOTItemLegendarySword(GOTMaterial.VALYRIAN);
 		trystaneSword = new GOTItemLegendarySword(GOTMaterial.STEEL);
+		tugarKhanSword = new GOTItemLegendarySword(GOTMaterial.STEEL);
 		turnip = new ItemSeedFood(2, 0.3f, turnipCrop, Blocks.farmland).setCreativeTab(GOTCreativeTabs.tabFood);
 		turnipCooked = new GOTItemFood(6, 0.6f, false);
 		tyeneDagger = new GOTItemLegendaryDagger(GOTMaterial.STEEL, GOTItemLegendaryDagger.DaggerEffect.POISON);
@@ -2477,6 +2484,7 @@ public class GOTRegistry {
 		valyrianShovel = new GOTItemShovel(GOTMaterial.VALYRIAN);
 		valyrianSpear = new GOTItemSpear(GOTMaterial.VALYRIAN);
 		valyrianSword = new GOTItemSword(GOTMaterial.VALYRIAN);
+		velaryonBrooch = new GOTItemArmor(GOTMaterial.HAND, 1, "velaryon").setCreativeTab(GOTCreativeTabs.tabStory);
 		victarionAxe = new GOTItemLegendaryBattleaxe(GOTMaterial.IRONBORN);
 		victarionHelmet = new GOTItemArmor(GOTMaterial.HELMET, 0, "victarion").setCreativeTab(GOTCreativeTabs.tabStory);
 		vigilance = new GOTItemLegendarySword(GOTMaterial.VALYRIAN);
@@ -2493,7 +2501,7 @@ public class GOTRegistry {
 		westerlandsLeggings = new GOTItemArmor(GOTMaterial.WESTERLANDS, 2);
 		westerlandsguardBoots = new GOTItemArmor(GOTMaterial.WESTERLANDSGUARD, 3);
 		westerlandsguardChestplate = new GOTItemArmor(GOTMaterial.WESTERLANDSGUARD, 1);
-		westerlandsguardHelmet = new GOTItemArmor(GOTMaterial.WESTERLANDSGUARD, 0, "helmet");
+		westerlandsguardHelmet = new GOTItemArmor(GOTMaterial.WESTERLANDSGUARD, 0);
 		westerlandsguardLeggings = new GOTItemArmor(GOTMaterial.WESTERLANDSGUARD, 2);
 		westerosBow = new GOTItemBow(GOTMaterial.NORTH, 1.125);
 		westerosDagger = new GOTItemDagger(GOTMaterial.NORTH);
@@ -2509,9 +2517,9 @@ public class GOTRegistry {
 		westkingHelmet = new GOTItemArmor(GOTMaterial.WESTKING, 0, "helmet").setCreativeTab(GOTCreativeTabs.tabStory);
 		westkingLeggings = new GOTItemArmor(GOTMaterial.WESTKING, 2).setCreativeTab(GOTCreativeTabs.tabStory);
 		wheel = new GOTItemWheel();
+		whiteBisonHorn = new Item().setCreativeTab(GOTCreativeTabs.tabMaterials);
 		whiteWalkersBoots = new GOTItemArmor(GOTMaterial.ICE, 3);
 		whiteWalkersChestplate = new GOTItemArmor(GOTMaterial.ICE, 1);
-		iceHoe = new GOTItemHoe(GOTMaterial.ICE).setCreativeTab(GOTCreativeTabs.tabStory);
 		whiteWalkersLeggings = new GOTItemArmor(GOTMaterial.ICE, 2);
 		widowWail = new GOTItemLegendarySword(GOTMaterial.VALYRIAN);
 		wildberry = new GOTItemBerry().setPoisonous();
@@ -2600,6 +2608,7 @@ public class GOTRegistry {
 		slabDouble11.setCreativeTab(null);
 		slabDouble12.setCreativeTab(null);
 		slabDouble6.setCreativeTab(null);
+		MinecraftForge.addGrassSeed(new ItemStack(rice), 2);
 	}
 
 	public static void preInit() {
@@ -2755,6 +2764,8 @@ public class GOTRegistry {
 		registerBlock(essosFlower, "essosFlower", GOTItemBlockMetadata.class);
 		registerBlock(flaxPlant, "flaxPlant");
 		registerBlock(flaxCrop, "flax");
+		registerBlock(cucumberPlant, "cucumberPlant");
+		registerBlock(cucumberCrop, "cucumber");
 		registerBlock(berryBush, "berryBush", GOTItemBlockMetadata.class);
 		registerBlock(planks2, "planks2", GOTItemBlockMetadata.class);
 		registerBlock(fence2, "fence2", GOTItemBlockMetadata.class);
@@ -3217,6 +3228,8 @@ public class GOTRegistry {
 		registerBlock(tableDothraki, "tableDothraki");
 		registerBlock(tableJogos, "tableJogos");
 		registerBlock(tableMossovy, "tableMossovy");
+		registerBlock(kelp, "kelp", GOTItemKelp.class);
+		registerBlock(ricePlant, "rice");
 	}
 
 	public static void registerItem(Item item, String codename) {
@@ -3406,6 +3419,8 @@ public class GOTRegistry {
 		registerItem(termite, "termite");
 		registerItem(flaxSeeds, "flaxSeeds");
 		registerItem(flax, "flax");
+		registerItem(cucumberSeeds, "cucumberSeeds");
+		registerItem(cucumber, "cucumber");
 		registerItem(blueberry, "blueberry");
 		registerItem(blackberry, "blackberry");
 		registerItem(raspberry, "raspberry");
@@ -3491,7 +3506,7 @@ public class GOTRegistry {
 		registerItem(sothoryosHelmetChieftain, "sothoryosHelmetChieftain");
 		registerItem(essosPolearm, "essosPolearm");
 		registerItem(essosHorseArmor, "essosHorseArmor");
-		registerItem(sothoryosSarbacane, "sothoryosSarbacane");
+		registerItem(sarbacane, "sarbacane");
 		registerItem(dart, "dart");
 		registerItem(dartPoisoned, "dartPoisoned");
 		registerItem(muttonRaw, "muttonRaw");
@@ -3650,11 +3665,11 @@ public class GOTRegistry {
 		registerItem(royceChestplate, "royceChestplate");
 		registerItem(royceLeggings, "royceLeggings");
 		registerItem(royceBoots, "royceBoots");
-		registerItem(blackskinChestplate, "blackskinChestplate");
 		registerItem(targaryenHelmet, "targaryenHelmet");
 		registerItem(targaryenChestplate, "targaryenChestplate");
 		registerItem(targaryenLeggings, "targaryenLeggings");
 		registerItem(targaryenBoots, "targaryenBoots");
+		registerItem(blackskinChestplate, "blackskinChestplate");
 		registerItem(redkingHelmet, "redkingHelmet");
 		registerItem(redkingChestplate, "redkingChestplate");
 		registerItem(redkingLeggings, "redkingLeggings");
@@ -3855,10 +3870,6 @@ public class GOTRegistry {
 		registerItem(kingsguardBoots, "kingsguardBoots");
 		registerItem(bloodOfTrueKings, "bloodOfTrueKings");
 		registerItem(arrowFire, "arrowFire");
-		if (GOTConfig.enableGrapplingHooks) {
-			registerItem(grapplingHook, "grapplingHook");
-			registerItem(motorGrapplingHook, "motorGrapplingHook");
-		}
 		registerItem(anonymousMask, "anonymousMask");
 		registerItem(alloySteelIgnot, "alloySteelIgnot");
 		registerItem(alloySteelNugget, "alloySteelNugget");
@@ -3870,7 +3881,6 @@ public class GOTRegistry {
 		registerItem(alloySteelHalberd, "alloySteelHalberd");
 		registerItem(alloySteelPickaxe, "alloySteelPickaxe");
 		registerItem(alloySteelSword, "alloySteelSword");
-		registerItem(iceHoe, "whiteWalkersHoe");
 		registerItem(iceShard, "iceShard");
 		registerItem(whiteWalkersChestplate, "whiteWalkersChestplate");
 		registerItem(whiteWalkersLeggings, "whiteWalkersLeggings");
@@ -3895,5 +3905,6 @@ public class GOTRegistry {
 		registerItem(jogosLeggings, "jogosLeggings");
 		registerItem(jogosBoots, "jogosBoots");
 		registerItem(tugarKhanSword, "tugarKhanSword");
+		registerItem(rice, "rice");
 	}
 }

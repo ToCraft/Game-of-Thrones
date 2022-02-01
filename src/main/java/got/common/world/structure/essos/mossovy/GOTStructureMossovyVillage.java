@@ -13,8 +13,8 @@ import net.minecraft.world.World;
 public class GOTStructureMossovyVillage extends GOTVillageGen {
 	public GOTStructureMossovyVillage(GOTBiome biome, float f) {
 		super(biome);
-		gridScale = 16;
-		gridRandomDisplace = 2;
+		gridScale = 12;
+		gridRandomDisplace = 1;
 		spawnChance = f;
 		villageChunkRadius = 6;
 	}
@@ -25,15 +25,8 @@ public class GOTStructureMossovyVillage extends GOTVillageGen {
 	}
 
 	public class Instance extends GOTVillageGen.AbstractInstance {
-		public VillageType villageType;
-
 		public Instance(GOTStructureMossovyVillage village, World world, int i, int k, Random random, LocationInfo loc) {
 			super(village, world, i, k, random, loc);
-		}
-
-		@Override
-		public void addStructure(GOTStructureBase structure, int x, int z, int r, boolean force) {
-			super.addStructure(structure, x, z, r, force);
 		}
 
 		@Override
@@ -121,7 +114,7 @@ public class GOTStructureMossovyVillage extends GOTVillageGen {
 		public GOTBezierType getPath(Random random, int i, int k) {
 			int i1 = Math.abs(i);
 			int k1 = Math.abs(k);
-			if (villageType == VillageType.VILLAGE) {
+			if (true) {
 				int dSq = i * i + k * k;
 				int imn = 20 + random.nextInt(4);
 				if (dSq < imn * imn) {
@@ -143,12 +136,6 @@ public class GOTStructureMossovyVillage extends GOTVillageGen {
 
 		@Override
 		public void setupVillageProperties(Random random) {
-			villageType = VillageType.VILLAGE;
 		}
-
-	}
-
-	public enum VillageType {
-		VILLAGE;
 	}
 }

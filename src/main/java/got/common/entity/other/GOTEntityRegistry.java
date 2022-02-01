@@ -9,6 +9,7 @@ import got.common.faction.GOTFaction;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.*;
 import net.minecraft.item.*;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
 public class GOTEntityRegistry {
@@ -17,6 +18,7 @@ public class GOTEntityRegistry {
 	public static Map<Class<? extends Entity>, String> classToNameMapping = new HashMap<>();
 	public static Map<Integer, String> IDToStringMapping = new HashMap<>();
 	public static Map<Class<? extends Entity>, Integer> classToIDMapping = new HashMap<>();
+	public static Map<Class<? extends Entity>, GOTFaction> classToFactionMapping = new HashMap<>();
 
 	public void getSubItems(Item item, CreativeTabs tab, List list) {
 
@@ -51,6 +53,10 @@ public class GOTEntityRegistry {
 		return classToIDMapping.get(entityClass);
 	}
 
+	public static String getEntityName(Class<? extends Entity> entityClass) {
+		return StatCollector.translateToLocal("entity.got." + GOTEntityRegistry.getEntityNameFromClass(entityClass) + ".name");
+	}
+
 	public static String getEntityNameFromClass(Class entityClass) {
 		return classToNameMapping.get(entityClass);
 	}
@@ -81,6 +87,7 @@ public class GOTEntityRegistry {
 	public static void register(Class<? extends Entity> entityClass, String name, int id, GOTFaction faction) {
 		register(entityClass, name, id, 80, 3, true);
 		spawnEggs.put(id, new SpawnEggInfo(id, faction.eggColor, faction.eggColor));
+		classToFactionMapping.put(entityClass, faction);
 	}
 
 	public static void register(Class<? extends Entity> entityClass, String name, int id, int color) {
@@ -95,6 +102,11 @@ public class GOTEntityRegistry {
 		IDToStringMapping.put(id, fullName);
 		classToIDMapping.put(entityClass, id);
 		classToNameMapping.put(entityClass, name);
+	}
+
+	public static void registerLegendaryNPC(Class<? extends Entity> entityClass, String name, int id, GOTFaction faction) {
+		register(entityClass, name, id, 80, 3, true);
+		spawnEggs.put(id, new SpawnEggInfo(id, 9605778, faction.eggColor));
 	}
 
 	public static class SpawnEggInfo {

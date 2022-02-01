@@ -31,14 +31,14 @@ public class GOTBiomeSothoryosMangrove extends GOTBiome {
 		decorator.addTree(GOTTreeType.MANGROVE, 1000);
 		decorator.addTree(GOTTreeType.ACACIA, 10);
 		decorator.addTree(GOTTreeType.OAK_DESERT, 5);
-		registerSwampFlowers();
+		registerDefaultFlowers();
 		SpawnListContainer[] c = new SpawnListContainer[1];
 		c[0] = GOTBiomeSpawnList.entry(GOTSpawnList.SOTHORYOS_MILITARY, 4).setSpawnChance(GOTBiome.SPAWN);
 		npcSpawnList.newFactionList(10).add(c);
 		SpawnListContainer[] c1 = new SpawnListContainer[1];
 		c1[0] = GOTBiomeSpawnList.entry(GOTSpawnList.CROCODILE, 1).setSpawnChance(GOTBiome.SPAWN);
 		npcSpawnList.newFactionList(1).add(c1);
-		decorator.affix(new GOTStructureSothoryosVillage(this, 1.0f));
+		decorator.addVillage(new GOTStructureSothoryosVillage(this, 1.0f));
 		setUnreliableChance(GOTEventSpawner.EventChance.NEVER);
 	}
 
@@ -74,11 +74,6 @@ public class GOTBiomeSothoryosMangrove extends GOTBiome {
 	@Override
 	public Region getBiomeWaypoints() {
 		return Region.SOTHORYOS;
-	}
-
-	@Override
-	public float getChanceToSpawnAnimals() {
-		return 0.25f;
 	}
 
 	@Override

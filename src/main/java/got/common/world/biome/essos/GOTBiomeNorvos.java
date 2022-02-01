@@ -5,7 +5,6 @@ import got.client.sound.GOTBiomeMusic.MusicRegion;
 import got.common.database.*;
 import got.common.world.biome.GOTBiome;
 import got.common.world.biome.variant.GOTBiomeVariant;
-import got.common.world.map.GOTWaypoint;
 import got.common.world.spawning.*;
 import got.common.world.spawning.GOTBiomeSpawnList.SpawnListContainer;
 import got.common.world.structure.essos.norvos.GOTStructureNorvosCity;
@@ -20,7 +19,6 @@ public class GOTBiomeNorvos extends GOTBiomeEssos {
 		this.addBiomeVariant(GOTBiomeVariant.ORCHARD_ALMOND, 0.2f);
 		this.addBiomeVariant(GOTBiomeVariant.ORCHARD_PLUM, 0.2f);
 		this.addBiomeVariant(GOTBiomeVariant.ORCHARD_DATE, 0.2f);
-		this.addBiomeVariant(GOTBiomeVariant.FIELD_CORN, 0.2f);
 
 		SpawnListContainer[] c0 = new SpawnListContainer[1];
 		c0[0] = GOTBiomeSpawnList.entry(GOTSpawnList.NORVOS_MILITARY, 10).setSpawnChance(GOTBiome.SPAWN);
@@ -30,11 +28,7 @@ public class GOTBiomeNorvos extends GOTBiomeEssos {
 		c1[0] = GOTBiomeSpawnList.entry(GOTSpawnList.VOLANTIS_CONQUEST, 10).setSpawnChance(GOTBiome.CONQUEST_SPAWN);
 		npcSpawnList.newFactionList(0).add(c1);
 
-		decorator.affix(new GOTStructureNorvosCity(this, 1.0f));
-
-		GOTStructureNorvosCity town = new GOTStructureNorvosCity(this, 0.0f).setIsTown();
-		town.affix(GOTWaypoint.Norvos, 0, -1, 2);
-		decorator.affix(town);
+		decorator.addVillage(new GOTStructureNorvosCity(this, 1.0f));
 
 		invasionSpawns.addInvasion(GOTInvasions.VOLANTIS, GOTEventSpawner.EventChance.UNCOMMON);
 		invasionSpawns.addInvasion(GOTInvasions.DOTHRAKI, GOTEventSpawner.EventChance.UNCOMMON);

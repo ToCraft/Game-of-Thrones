@@ -2,13 +2,13 @@ package got.common.entity.essos.braavos;
 
 import got.common.GOTLevelData;
 import got.common.database.*;
-import got.common.entity.other.GOTTradeable;
+import got.common.entity.other.*;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class GOTEntityBraavosBartender extends GOTEntityBraavosMan implements GOTTradeable.Bartender {
+public class GOTEntityBraavosBartender extends GOTEntityBraavosMan implements GOTBartender, GOTTradeable {
 	public GOTEntityBraavosBartender(World world) {
 		super(world);
 		canBeMarried = false;
@@ -46,11 +46,13 @@ public class GOTEntityBraavosBartender extends GOTEntityBraavosMan implements GO
 	}
 
 	@Override
-	public String getSpeechBank(EntityPlayer entityplayer) {
-		if (isFriendly(entityplayer)) {
-			return "essos/braavos/bartender/friendly";
-		}
-		return "essos/braavos/bartender/hostile";
+	public GOTUnitTradeEntries getUnits() {
+		return GOTUnitTradeEntries.PROSTITUTE_KEEPER;
+	}
+
+	@Override
+	public GOTInvasions getWarhorn() {
+		return null;
 	}
 
 	@Override
@@ -63,5 +65,9 @@ public class GOTEntityBraavosBartender extends GOTEntityBraavosMan implements GO
 		data = super.onSpawnWithEgg(data);
 		npcItemsInv.setIdleItem(new ItemStack(GOTRegistry.gobletCopper));
 		return data;
+	}
+
+	@Override
+	public void onUnitTrade(EntityPlayer var1) {
 	}
 }

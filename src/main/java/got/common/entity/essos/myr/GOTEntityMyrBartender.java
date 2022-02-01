@@ -2,13 +2,13 @@ package got.common.entity.essos.myr;
 
 import got.common.GOTLevelData;
 import got.common.database.*;
-import got.common.entity.other.GOTTradeable;
+import got.common.entity.other.*;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class GOTEntityMyrBartender extends GOTEntityMyrMan implements GOTTradeable.Bartender {
+public class GOTEntityMyrBartender extends GOTEntityMyrMan implements GOTBartender, GOTTradeable {
 	public GOTEntityMyrBartender(World world) {
 		super(world);
 		canBeMarried = false;
@@ -46,11 +46,13 @@ public class GOTEntityMyrBartender extends GOTEntityMyrMan implements GOTTradeab
 	}
 
 	@Override
-	public String getSpeechBank(EntityPlayer entityplayer) {
-		if (isFriendly(entityplayer)) {
-			return "essos/myr/bartender/friendly";
-		}
-		return "essos/myr/bartender/hostile";
+	public GOTUnitTradeEntries getUnits() {
+		return GOTUnitTradeEntries.PROSTITUTE_KEEPER;
+	}
+
+	@Override
+	public GOTInvasions getWarhorn() {
+		return null;
 	}
 
 	@Override
@@ -63,5 +65,9 @@ public class GOTEntityMyrBartender extends GOTEntityMyrMan implements GOTTradeab
 		data = super.onSpawnWithEgg(data);
 		npcItemsInv.setIdleItem(new ItemStack(GOTRegistry.gobletCopper));
 		return data;
+	}
+
+	@Override
+	public void onUnitTrade(EntityPlayer var1) {
 	}
 }

@@ -5,7 +5,7 @@ import java.util.*;
 
 import cpw.mods.fml.client.config.IConfigElement;
 import cpw.mods.fml.common.FMLLog;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import got.GOT;
 import got.common.util.GOTModChecker;
 import net.minecraft.world.World;
 import net.minecraftforge.common.config.*;
@@ -24,7 +24,6 @@ public class GOTConfig {
 	public static boolean allowBountyQuests;
 	public static boolean enableFastTravel;
 	public static boolean enableConquest;
-	public static boolean enableGrapplingHooks;
 	public static boolean removeGoldenAppleRecipes;
 	public static boolean enablePortals;
 	public static boolean enableDothrakiSkirmish;
@@ -131,8 +130,8 @@ public class GOTConfig {
 		changeMap = config.getString("changeMap", CATEGORY_GAMEPLAY, changeMap, "Choose: mapT (Map with Targaryen) or mapN (normal Map)");
 		replaceCrownlandsDragonstoneWithTargaryen = config.get(CATEGORY_GAMEPLAY, "replace Crownlands & Dragonstone with Targaryen", false, "replaces the waypoints and the factions of Dragonstone and Crownlands at Targaryen.").getBoolean();
 		languageCode = config.getString("languageCode", CATEGORY_LANGUAGE, languageCode, "Choose: ru, en, de or zh.");
+		languageCode = config.getString("languageCode", CATEGORY_LANGUAGE, languageCode, "Choose:" + GOT.langsName + ".");
 		clearMap = config.get(CATEGORY_GAMEPLAY, "No fixed structures and characters", false, "Useful for servers. Disable fixed structures to build your own").getBoolean();
-		enableGrapplingHooks = config.get(CATEGORY_GAMEPLAY, "Enable Grappling hooks. SINGLEPLAYER ONLY!", false).getBoolean();
 		allowBannerProtection = config.get(CATEGORY_GAMEPLAY, "Allow Banner Protection", true).getBoolean();
 		allowSelfProtectingBanners = config.get(CATEGORY_GAMEPLAY, "Allow Self-Protecting Banners", true).getBoolean();
 		allowMiniquests = config.get(CATEGORY_GAMEPLAY, "NPCs give mini-quests", true).getBoolean();
@@ -213,12 +212,12 @@ public class GOTConfig {
 	}
 
 	public static void setStructureTimelapseInterval(int i) {
-		strTimelapseInterval = i = Math.max(i, 0);
+		strTimelapseInterval = i;
 		config.getCategory(CATEGORY_MISC).get("Structure Timelapse Interval").set(strTimelapseInterval);
 		config.save();
 	}
 
-	public static void setupAndLoad(FMLPreInitializationEvent event) {
+	public static void setupAndLoad() {
 		config = new Configuration(new File("config", "GOT.cfg"));
 		GOTConfig.load();
 	}

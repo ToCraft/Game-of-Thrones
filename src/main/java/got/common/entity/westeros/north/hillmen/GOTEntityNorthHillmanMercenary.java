@@ -10,6 +10,7 @@ public class GOTEntityNorthHillmanMercenary extends GOTEntityNorthHillmanWarrior
 	public GOTEntityNorthHillmanMercenary(World world) {
 		super(world);
 		canBeMarried = false;
+		spawnRidingHorse = false;
 	}
 
 	@Override
@@ -25,6 +26,17 @@ public class GOTEntityNorthHillmanMercenary extends GOTEntityNorthHillmanWarrior
 	@Override
 	public int getMercBaseCost() {
 		return 5;
+	}
+
+	@Override
+	public String getSpeechBank(EntityPlayer entityplayer) {
+		if (isFriendly(entityplayer)) {
+			if (hiredNPCInfo.getHiringPlayer() == entityplayer) {
+				return "standart/wild/hired_soldier";
+			}
+			return "standart/wild/usual_friendly";
+		}
+		return "standart/wild/usual_hostile";
 	}
 
 	@Override

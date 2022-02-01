@@ -15,14 +15,14 @@ import net.minecraft.block.Block;
 import net.minecraft.world.World;
 
 public class GOTStructurePentosCity extends GOTVillageGen {
-	private boolean isTown;
+	public boolean isTown;
 
 	public GOTStructurePentosCity(GOTBiome biome, float f) {
 		super(biome);
-		gridScale = 14;
+		gridScale = 12;
 		gridRandomDisplace = 1;
 		spawnChance = f;
-		villageChunkRadius = 5;
+		villageChunkRadius = 6;
 	}
 
 	@Override
@@ -44,9 +44,6 @@ public class GOTStructurePentosCity extends GOTVillageGen {
 
 		@Override
 		public void addVillageStructures(Random random) {
-			if (isTown) {
-				villageType = VillageType.TOWN;
-			}
 			switch (villageType) {
 			case VILLAGE:
 				setupVillage(random);
@@ -250,7 +247,7 @@ public class GOTStructurePentosCity extends GOTVillageGen {
 
 				@Override
 				public void setupRespawner(GOTEntityNPCRespawner spawner) {
-					spawner.setSpawnClass(GOTEntityPentosGuard.class);
+					spawner.setSpawnClass(GOTEntityPentosLevyman.class);
 					spawner.setCheckRanges(60, -12, 12, 4);
 					spawner.setSpawnRanges(24, -6, 6, 32);
 				}
@@ -599,7 +596,13 @@ public class GOTStructurePentosCity extends GOTVillageGen {
 
 		@Override
 		public void setupVillageProperties(Random random) {
-			villageType = random.nextInt(4) == 0 ? VillageType.FORT : VillageType.VILLAGE;
+			if (isTown) {
+				villageType = VillageType.TOWN;
+			} else if (random.nextInt(4) == 0) {
+				villageType = VillageType.FORT;
+			} else {
+				villageType = VillageType.VILLAGE;
+			}
 		}
 
 		public void setWarriorSpawnClasses(GOTEntityNPCRespawner spawner) {

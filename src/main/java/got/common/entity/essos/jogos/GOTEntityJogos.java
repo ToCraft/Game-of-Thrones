@@ -36,7 +36,7 @@ public class GOTEntityJogos extends GOTEntityHumanBase implements IPickpocketabl
 		tasks.addTask(8, new EntityAIWatchClosest(this, EntityLiving.class, 8.0f, 0.02f));
 		tasks.addTask(9, new EntityAILookIdle(this));
 		addTargetTasks(true);
-		npcShield = null;
+		spawnRidingHorse = rand.nextInt(10) == 0;
 	}
 
 	@Override
@@ -107,7 +107,7 @@ public class GOTEntityJogos extends GOTEntityHumanBase implements IPickpocketabl
 			int i = MathHelper.floor_double(posX);
 			int j = MathHelper.floor_double(boundingBox.minY);
 			int k = MathHelper.floor_double(posZ);
-			if (j > 62 && worldObj.getBlock(i, j - 1, k) == worldObj.getBiomeGenForCoords(i, k).topBlock) {
+			if (j > 62 && j < 140 && worldObj.getBlock(i, j - 1, k) == worldObj.getBiomeGenForCoords(i, k).topBlock) {
 				return true;
 			}
 		}
@@ -131,13 +131,13 @@ public class GOTEntityJogos extends GOTEntityHumanBase implements IPickpocketabl
 
 	@Override
 	public String getSpeechBank(EntityPlayer entityplayer) {
-		if (isDrunkard()) {
-			return "essos/jogos/man/neutral";
-		}
 		if (isFriendly(entityplayer)) {
-			return "essos/jogos/man/friendly";
+			if (hiredNPCInfo.getHiringPlayer() == entityplayer) {
+				return "standart/wild/hired_soldier";
+			}
+			return "standart/wild/usual_friendly";
 		}
-		return "essos/jogos/man/hostile";
+		return "standart/wild/usual_hostile";
 	}
 
 	@Override

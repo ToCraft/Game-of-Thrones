@@ -16,6 +16,7 @@ public class GOTEntityReachCaptain extends GOTEntityReachSoldier implements GOTU
 		canBeMarried = false;
 		addTargetTasks(false);
 		npcCape = GOTCapes.REACH;
+		spawnRidingHorse = false;
 	}
 
 	@Override
@@ -43,11 +44,11 @@ public class GOTEntityReachCaptain extends GOTEntityReachSoldier implements GOTU
 	public String getSpeechBank(EntityPlayer entityplayer) {
 		if (isFriendly(entityplayer)) {
 			if (canTradeWith(entityplayer)) {
-				return "westeros/reach/captain/friendly";
+				return "standart/civilized/usual_friendly";
 			}
-			return "westeros/reach/captain/neutral";
+			return "standart/civilized/usual_neutral";
 		}
-		return "westeros/reach/soldier/hostile";
+		return "standart/civilized/usual_hostile";
 	}
 
 	@Override

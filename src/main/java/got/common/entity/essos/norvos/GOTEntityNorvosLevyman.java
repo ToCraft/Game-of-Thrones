@@ -17,7 +17,6 @@ public class GOTEntityNorvosLevyman extends GOTEntityNorvosMan {
 		super(world);
 		canBeMarried = false;
 		addTargetTasks(true);
-		spawnRidingHorse = false;
 	}
 
 	@Override
@@ -42,11 +41,11 @@ public class GOTEntityNorvosLevyman extends GOTEntityNorvosMan {
 	public String getSpeechBank(EntityPlayer entityplayer) {
 		if (isFriendly(entityplayer)) {
 			if (hiredNPCInfo.getHiringPlayer() == entityplayer) {
-				return "essos/norvos/warrior/hired";
+				return "standart/civilized/hired_soldier";
 			}
-			return "essos/norvos/warrior/friendly";
+			return "standart/civilized/usual_friendly";
 		}
-		return "essos/norvos/warrior/hostile";
+		return "standart/civilized/usual_hostile";
 	}
 
 	@Override

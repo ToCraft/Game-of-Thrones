@@ -1,15 +1,19 @@
 package got.common.world.structure;
 
+<<<<<<< HEAD
 import got.common.world.structure.westeros.targaryen.*;
 
+=======
+import got.GOT;
+>>>>>>> official
 import got.common.faction.GOTFaction;
+import got.common.util.DatabaseGenerator;
 import got.common.world.biome.GOTBiome;
-import got.common.world.fixed.GOTStructureAsshaiFort;
 import got.common.world.structure.essos.asshai.*;
 import got.common.world.structure.essos.braavos.*;
 import got.common.world.structure.essos.dothraki.*;
 import got.common.world.structure.essos.ghiscar.*;
-import got.common.world.structure.essos.gold.GOTStructureGoldenCamp;
+import got.common.world.structure.essos.gold.*;
 import got.common.world.structure.essos.ibben.*;
 import got.common.world.structure.essos.jogos.*;
 import got.common.world.structure.essos.lhazar.*;
@@ -36,16 +40,16 @@ import got.common.world.structure.westeros.gift.*;
 import got.common.world.structure.westeros.hillmen.*;
 import got.common.world.structure.westeros.ironborn.*;
 import got.common.world.structure.westeros.north.*;
-import got.common.world.structure.westeros.north.hillmen.GOTStructureNorthHillmanCamp;
+import got.common.world.structure.westeros.north.hillmen.*;
 import got.common.world.structure.westeros.reach.*;
 import got.common.world.structure.westeros.riverlands.*;
 import got.common.world.structure.westeros.stormlands.*;
 import got.common.world.structure.westeros.westerlands.*;
-import got.common.world.structure.westeros.wildling.GOTStructureWildlingCamp;
-import got.common.world.structure.westeros.wildling.thenn.GOTStructureThennCamp;
+import got.common.world.structure.westeros.wildling.*;
+import got.common.world.structure.westeros.wildling.thenn.*;
 
 public class GOTStructure {
-	public static int id = 0;
+	public static int id;
 
 	public static void onInit() {
 		GOTStructureRegistry.register(id++, GOTStructureTargaryenWatchfort.class, "TargaryenWatchfort", GOTFaction.TARGARYEN);
@@ -62,18 +66,30 @@ public class GOTStructure {
 		GOTStructureRegistry.register(id++, GOTStructureTargaryenBath.class, "TargaryenBath", GOTFaction.TARGARYEN);
 		
 		GOTStructureRegistry.register(id++, GOTStructureBarrow.class, "Barrow", 9605778);
-		GOTStructureRegistry.register(id++, GOTStructureRuinedHouse.class, "RuinedGiftHouse", 9605778);
-		GOTStructureRegistry.register(id++, GOTStructureBurntHouse.class, "GiftBurntHouse", 9605778);
-		GOTStructureRegistry.register(id++, GOTStructureRottenHouse.class, "GiftRottenHouse", 9605778);
+		GOTStructureRegistry.register(id++, GOTStructureRuinedHouse.class, "RuinedHouse", 9605778);
+		GOTStructureRegistry.register(id++, GOTStructureBurntHouse.class, "BurntHouse", 9605778);
+		GOTStructureRegistry.register(id++, GOTStructureRottenHouse.class, "RottenHouse", 9605778);
+		GOTStructureRegistry.register(id++, GOTStructureSmallStoneRuin.class, "SmallStoneRuin", 9605778);
+		GOTStructureRegistry.register(id++, GOTStructureStoneRuin.STONE.class, "StoneRuinStandart", 9605778);
+		GOTStructureRegistry.register(id++, GOTStructureStoneRuin.YITI.class, "StoneRuinYiTi", 9605778);
+		GOTStructureRegistry.register(id++, GOTStructureStoneRuin.ASSHAI.class, "StoneRuinAsshai", 9605778);
+		GOTStructureRegistry.register(id++, GOTStructureStoneRuin.SANDSTONE.class, "StoneRuinSandstone", 9605778);
+		GOTStructureRegistry.register(id++, GOTStructureStoneRuin.SOTHORYOS.class, "StoneRuinSothoryos", 9605778);
 
-		GOTStructureRegistry.register(id++, GOTStructureWildlingCamp.class, "WildlingCamp", GOTFaction.WILDLING);
-		GOTStructureRegistry.register(id++, GOTStructureThennCamp.class, "ThennCamp", GOTFaction.WILDLING);
+		GOTStructureRegistry.register(id++, GOTStructureWildlingHouse.class, "WildlingHouse", GOTFaction.WILDLING);
+		GOTStructureRegistry.register(id++, GOTStructureWildlingChieftainHouse.class, "WildlingChieftainHouse", GOTFaction.WILDLING);
+
+		GOTStructureRegistry.register(id++, GOTStructureThennHouse.class, "ThennHouse", GOTFaction.WILDLING);
+		GOTStructureRegistry.register(id++, GOTStructureThennMagnarHouse.class, "ThennMagnarHouse", GOTFaction.WILDLING);
 
 		GOTStructureRegistry.register(id++, GOTStructureGiftHouse.class, "GiftHouse", GOTFaction.NIGHT_WATCH);
 		GOTStructureRegistry.register(id++, GOTStructureGiftLodge.class, "GiftLodge", GOTFaction.NIGHT_WATCH);
 		GOTStructureRegistry.register(id++, GOTStructureGiftStables.class, "GiftStables", GOTFaction.NIGHT_WATCH);
 		GOTStructureRegistry.register(id++, GOTStructureGiftSmithy.class, "GiftSmithy", GOTFaction.NIGHT_WATCH);
 		GOTStructureRegistry.register(id++, GOTStructureGiftVillageLight.class, "GiftVillageLight", GOTFaction.NIGHT_WATCH);
+
+		GOTStructureRegistry.register(id++, GOTStructureNorthHillmanHouse.class, "NorthHillmanHouse", GOTFaction.NORTH);
+		GOTStructureRegistry.register(id++, GOTStructureNorthHillmanChieftainHouse.class, "NorthHillmanChieftainHouse", GOTFaction.NORTH);
 
 		GOTStructureRegistry.register(id++, GOTStructureNorthWatchfort.class, "NorthWatchfort", GOTFaction.NORTH);
 		GOTStructureRegistry.register(id++, GOTStructureNorthSmithy.class, "NorthSmithy", GOTFaction.NORTH);
@@ -87,8 +103,6 @@ public class GOTStructure {
 		GOTStructureRegistry.register(id++, GOTStructureNorthFortress.class, "NorthFortress", GOTFaction.NORTH);
 		GOTStructureRegistry.register(id++, GOTStructureNorthTavern.class, "NorthTavern", GOTFaction.NORTH);
 		GOTStructureRegistry.register(id++, GOTStructureNorthBath.class, "NorthBath", GOTFaction.NORTH);
-
-		GOTStructureRegistry.register(id++, GOTStructureNorthHillmanCamp.class, "NorthHillmanCamp", GOTFaction.NORTH);
 
 		GOTStructureRegistry.register(id++, GOTStructureIronbornWatchfort.class, "IronbornWatchfort", GOTFaction.IRONBORN);
 		GOTStructureRegistry.register(id++, GOTStructureIronbornSmithy.class, "IronbornSmithy", GOTFaction.IRONBORN);
@@ -300,8 +314,6 @@ public class GOTStructure {
 		GOTStructureRegistry.register(id++, GOTStructureMyrTower.class, "MyrTower", GOTFaction.MYR);
 		GOTStructureRegistry.register(id++, GOTStructureMyrTraining.class, "MyrTraining", GOTFaction.MYR);
 
-		GOTStructureRegistry.register(id++, GOTStructureGoldenCamp.class, "GoldenCamp", 0xffd700);
-
 		GOTStructureRegistry.register(id++, GOTStructureTyroshBarracks.class, "TyroshBarracks", GOTFaction.TYROSH);
 		GOTStructureRegistry.register(id++, GOTStructureTyroshBazaar.class, "TyroshBazaar", GOTFaction.TYROSH);
 		GOTStructureRegistry.register(id++, GOTStructureTyroshFortress.class, "TyroshFortress", GOTFaction.TYROSH);
@@ -312,9 +324,10 @@ public class GOTStructure {
 		GOTStructureRegistry.register(id++, GOTStructureTyroshTavern.class, "TyroshTavern", GOTFaction.TYROSH);
 		GOTStructureRegistry.register(id++, GOTStructureTyroshTower.class, "TyroshTower", GOTFaction.TYROSH);
 		GOTStructureRegistry.register(id++, GOTStructureTyroshTraining.class, "TyroshTraining", GOTFaction.TYROSH);
+		
+		GOTStructureRegistry.register(id++, GOTStructureGoldenWatchtower.class, "GoldenWatchtower", 0xffd700);
 
 		GOTStructureRegistry.register(id++, GOTStructureGhiscarPyramid.class, "GhiscarPyramid", GOTFaction.GHISCAR);
-		GOTStructureRegistry.register(id++, GOTStructureGhiscarCamp.class, "GhiscarCamp", GOTFaction.GHISCAR);
 		GOTStructureRegistry.register(id++, GOTStructureGhiscarBarracks.class, "GhiscarBarracks", GOTFaction.GHISCAR);
 		GOTStructureRegistry.register(id++, GOTStructureGhiscarBazaar.class, "GhiscarBazaar", GOTFaction.GHISCAR);
 		GOTStructureRegistry.register(id++, GOTStructureGhiscarFortress.class, "GhiscarFortress", GOTFaction.GHISCAR);
@@ -410,6 +423,7 @@ public class GOTStructure {
 		GOTStructureRegistry.register(id++, GOTStructureSothoryosChieftainPyramid.class, "SothoryosChieftainPyramid", GOTFaction.SOTHORYOS);
 		GOTStructureRegistry.register(id++, GOTStructureSothoryosSmithy.class, "SothoryosSmithy", GOTFaction.SOTHORYOS);
 
+<<<<<<< HEAD
 		GOTStructureRegistry.register(id++, new GOTStructureTargaryenCity(GOTBiome.dragonstoneTargaryen, 1.0f), "TargaryenCityLittle", GOTFaction.TARGARYEN, new GOTStructureRegistry.IVillageProperties<GOTStructureTargaryenCity.Instance>() {
 
 			@Override
@@ -451,6 +465,19 @@ GOTStructureRegistry.register(id++, new GOTStructureTargaryenCity(GOTBiome.crown
 			@Override
 	public void apply(GOTStructureTargaryenCity.Instance instance) {
 		instance.villageType = GOTStructureTargaryenCity.VillageType.FORT;
+=======
+		GOTStructureRegistry.register(id++, new GOTStructureWildlingVillage(GOTBiome.hauntedForest, 1.0f), "WildlingVillage", GOTFaction.WILDLING, new GOTStructureRegistry.IVillageProperties<GOTStructureWildlingVillage.Instance>() {
+
+			@Override
+			public void apply(GOTStructureWildlingVillage.Instance instance) {
+			}
+		});
+
+		GOTStructureRegistry.register(id++, new GOTStructureThennVillage(GOTBiome.thenn, 1.0f), "ThennVillage", GOTFaction.WILDLING, new GOTStructureRegistry.IVillageProperties<GOTStructureThennVillage.Instance>() {
+
+			@Override
+			public void apply(GOTStructureThennVillage.Instance instance) {
+>>>>>>> official
 			}
 		});
 
@@ -458,9 +485,15 @@ GOTStructureRegistry.register(id++, new GOTStructureTargaryenCity(GOTBiome.crown
 
 			@Override
 			public void apply(GOTStructureGiftVillage.Instance instance) {
-				instance.villageType = GOTStructureGiftVillage.VillageType.VILLAGE;
 			}
 
+		});
+
+		GOTStructureRegistry.register(id++, new GOTStructureNorthHillmanVillage(GOTBiome.skagos, 1.0f), "NorthHillmanVillage", GOTFaction.NORTH, new GOTStructureRegistry.IVillageProperties<GOTStructureNorthHillmanVillage.Instance>() {
+
+			@Override
+			public void apply(GOTStructureNorthHillmanVillage.Instance instance) {
+			}
 		});
 
 		GOTStructureRegistry.register(id++, new GOTStructureNorthCity(GOTBiome.north, 1.0f), "NorthVillage", GOTFaction.NORTH, new GOTStructureRegistry.IVillageProperties<GOTStructureNorthCity.Instance>() {
@@ -548,6 +581,13 @@ GOTStructureRegistry.register(id++, new GOTStructureTargaryenCity(GOTBiome.crown
 			@Override
 			public void apply(GOTStructureRiverlandsCity.Instance instance) {
 				instance.villageType = GOTStructureRiverlandsCity.VillageType.FORT;
+			}
+		});
+
+		GOTStructureRegistry.register(id++, new GOTStructureHillmanVillage(GOTBiome.sothoryosJungle, 1.0f), "HillmanVillage", GOTFaction.HILL_TRIBES, new GOTStructureRegistry.IVillageProperties<GOTStructureHillmanVillage.Instance>() {
+
+			@Override
+			public void apply(GOTStructureHillmanVillage.Instance instance) {
 			}
 		});
 
@@ -881,6 +921,13 @@ GOTStructureRegistry.register(id++, new GOTStructureTargaryenCity(GOTBiome.crown
 			}
 		});
 
+		GOTStructureRegistry.register(id++, new GOTStructureGoldenCamp(GOTBiome.essos, 1.0f), "GoldenCamp", 0xffd700, new GOTStructureRegistry.IVillageProperties<GOTStructureGoldenCamp.Instance>() {
+
+			@Override
+			public void apply(GOTStructureGoldenCamp.Instance instance) {
+			}
+		});
+
 		GOTStructureRegistry.register(id++, new GOTStructureGhiscarCity(GOTBiome.ghiscar, 1.0f), "GhiscarCityLittle", GOTFaction.GHISCAR, new GOTStructureRegistry.IVillageProperties<GOTStructureGhiscarCity.Instance>() {
 
 			@Override
@@ -995,7 +1042,6 @@ GOTStructureRegistry.register(id++, new GOTStructureTargaryenCity(GOTBiome.crown
 
 			@Override
 			public void apply(GOTStructureMossovyVillage.Instance instance) {
-				instance.villageType = GOTStructureMossovyVillage.VillageType.VILLAGE;
 			}
 
 		});
@@ -1059,12 +1105,9 @@ GOTStructureRegistry.register(id++, new GOTStructureTargaryenCity(GOTBiome.crown
 			}
 		});
 
-		GOTStructureRegistry.register(id++, new GOTStructureHillmanVillage(GOTBiome.sothoryosJungle, 1.0f), "HillmanVillage", GOTFaction.HILL_TRIBES, new GOTStructureRegistry.IVillageProperties<GOTStructureHillmanVillage.Instance>() {
-
-			@Override
-			public void apply(GOTStructureHillmanVillage.Instance instance) {
-			}
-		});
+		if (GOT.isDevMode) {
+			GOTStructureRegistry.register(id++, DatabaseGenerator.class, "DatabaseGenerator", 9605778);
+		}
 
 		GOTStructureSothoryosPyramidMapgen.register();
 		GOTStructureGhiscarPyramidMapgen.register();

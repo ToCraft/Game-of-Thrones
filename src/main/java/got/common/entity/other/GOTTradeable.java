@@ -18,9 +18,6 @@ public interface GOTTradeable {
 
 	void onPlayerTrade(EntityPlayer var1, GOTTradeEntries.TradeType var2, ItemStack var3);
 
-	public interface Bartender extends GOTTradeable {
-	}
-
 	public interface Smith extends GOTTradeable {
 	}
 

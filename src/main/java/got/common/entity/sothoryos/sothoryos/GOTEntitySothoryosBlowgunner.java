@@ -2,13 +2,13 @@ package got.common.entity.sothoryos.sothoryos;
 
 import got.common.database.GOTRegistry;
 import got.common.entity.ai.GOTEntityAIRangedAttack;
-import got.common.entity.other.GOTEntityDart;
+import got.common.entity.other.*;
 import got.common.item.other.GOTItemDart;
 import got.common.item.weapon.GOTItemSarbacane;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.EntityAIBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
 public class GOTEntitySothoryosBlowgunner extends GOTEntitySothoryosMan {
@@ -53,25 +53,32 @@ public class GOTEntitySothoryosBlowgunner extends GOTEntitySothoryosMan {
 	}
 
 	@Override
-	public String getSpeechBank(EntityPlayer entityplayer) {
-		if (isFriendly(entityplayer)) {
-			if (hiredNPCInfo.getHiringPlayer() == entityplayer) {
-				return "sothoryos/sothoryos/warrior/hired";
-			}
-			return "sothoryos/sothoryos/warrior/friendly";
+	public void onAttackModeChange(GOTEntityNPC.AttackMode mode, boolean mounted) {
+		if (mode == GOTEntityNPC.AttackMode.IDLE) {
+			setCurrentItemOrArmor(0, npcItemsInv.getIdleItem());
+		} else {
+			setCurrentItemOrArmor(0, npcItemsInv.getRangedWeapon());
 		}
-		return "sothoryos/sothoryos/warrior/hostile";
 	}
 
 	@Override
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data) {
 		data = super.onSpawnWithEgg(data);
-		npcItemsInv.setMeleeWeapon(new ItemStack(GOTRegistry.sothoryosSarbacane));
-		npcItemsInv.setIdleItem(npcItemsInv.getMeleeWeapon());
+		npcItemsInv.setRangedWeapon(new ItemStack(GOTRegistry.sarbacane));
+		npcItemsInv.setIdleItem(npcItemsInv.getRangedWeapon());
 		setCurrentItemOrArmor(1, new ItemStack(GOTRegistry.sothoryosBoots));
 		setCurrentItemOrArmor(2, new ItemStack(GOTRegistry.sothoryosLeggings));
 		setCurrentItemOrArmor(3, new ItemStack(GOTRegistry.sothoryosChestplate));
 		return data;
+	}
+
+	@Override
+	public void readEntityFromNBT(NBTTagCompound nbt) {
+		super.readEntityFromNBT(nbt);
+		if (npcItemsInv.getRangedWeapon() == null) {
+			npcItemsInv.setRangedWeapon(new ItemStack(GOTRegistry.sarbacane));
+			npcItemsInv.setIdleItem(npcItemsInv.getRangedWeapon());
+		}
 	}
 
 	@Override

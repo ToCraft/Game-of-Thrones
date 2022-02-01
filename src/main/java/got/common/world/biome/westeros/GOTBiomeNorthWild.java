@@ -10,15 +10,31 @@ import got.common.world.feature.GOTTreeType;
 import got.common.world.map.GOTWaypoint.Region;
 import got.common.world.spawning.GOTBiomeSpawnList;
 import got.common.world.spawning.GOTBiomeSpawnList.SpawnListContainer;
-import got.common.world.structure.westeros.north.hillmen.GOTStructureNorthHillmanCamp;
+import got.common.world.structure.other.*;
+import got.common.world.structure.westeros.north.hillmen.GOTStructureNorthHillmanVillage;
 import net.minecraft.world.biome.BiomeGenBase;
 
 public class GOTBiomeNorthWild extends GOTBiome {
 	public GOTBiomeNorthWild(int i, boolean major) {
 		super(i, major);
+		this.addBiomeVariant(GOTBiomeVariant.HILLS);
+		decorator.clearTrees();
+		decorator.addTree(GOTTreeType.SPRUCE, 400);
+		decorator.addTree(GOTTreeType.SPRUCE_THIN, 400);
+		decorator.addTree(GOTTreeType.LARCH, 300);
+		decorator.addTree(GOTTreeType.SPRUCE_MEGA, 100);
+		decorator.addTree(GOTTreeType.SPRUCE_MEGA_THIN, 20);
+		decorator.addTree(GOTTreeType.FIR, 500);
+		decorator.addTree(GOTTreeType.PINE, 500);
+		decorator.treesPerChunk = 2;
+		decorator.grassPerChunk = 6;
+		decorator.doubleGrassPerChunk = 1;
+		decorator.flowersPerChunk = 3;
+		decorator.doubleFlowersPerChunk = 1;
+		registerPlainsFlowers();
 		spawnableCreatureList.clear();
-		spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(GOTEntityBear.class, 4, 1, 1));
 		spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(GOTEntityDeer.class, 8, 1, 2));
+		spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(GOTEntityBear.class, 4, 1, 1));
 
 		SpawnListContainer[] c0 = new SpawnListContainer[1];
 		c0[0] = GOTBiomeSpawnList.entry(GOTSpawnList.NORTH_HILLMEN, 10).setSpawnChance(GOTBiome.SPAWN);
@@ -33,23 +49,13 @@ public class GOTBiomeNorthWild extends GOTBiome {
 		c2[1] = GOTBiomeSpawnList.entry(GOTSpawnList.WILDING_GIANT, 1).setSpawnChance(GOTBiome.CONQUEST_SPAWN);
 		npcSpawnList.newFactionList(0).add(c2);
 
-		addBiomeVariantSet(GOTBiomeVariant.SET_MOUNTAINS);
-		this.addBiomeVariant(GOTBiomeVariant.FOREST_LARCH, 0.4f);
-		this.addBiomeVariant(GOTBiomeVariant.FOREST_PINE, 0.4f);
-		decorator.treesPerChunk = 0;
-		decorator.grassPerChunk = 6;
-		decorator.doubleGrassPerChunk = 1;
-		decorator.clearTrees();
-		decorator.addTree(GOTTreeType.SPRUCE, 500);
-		decorator.addTree(GOTTreeType.OAK_TALL, 200);
-		decorator.addTree(GOTTreeType.OAK_LARGE, 20);
-		decorator.addTree(GOTTreeType.ARAMANT, 60);
-		decorator.addTree(GOTTreeType.FIR, 500);
-		decorator.addTree(GOTTreeType.PINE, 500);
-		registerForestFlowers();
-
-		decorator.addRandomStructure(new GOTStructureNorthHillmanCamp(false), 250);
-
+		decorator.addVillage(new GOTStructureNorthHillmanVillage(this, 1.0f));
+		
+		decorator.addRandomStructure(new GOTStructureSmallStoneRuin(false), 500);
+		decorator.addRandomStructure(new GOTStructureRuinedHouse(false), 2000);
+		decorator.addRandomStructure(new GOTStructureBurntHouse(false), 2000);
+		decorator.addRandomStructure(new GOTStructureRottenHouse(false), 4000);
+		decorator.addRandomStructure(new GOTStructureStoneRuin.STONE(1, 4), 400);
 	}
 
 	@Override
@@ -65,16 +71,6 @@ public class GOTBiomeNorthWild extends GOTBiome {
 	@Override
 	public Region getBiomeWaypoints() {
 		return Region.NORTH;
-	}
-
-	@Override
-	public float getChanceToSpawnAnimals() {
-		return 0.25f;
-	}
-
-	@Override
-	public float getTreeIncreaseChance() {
-		return 0.75f;
 	}
 
 	@Override

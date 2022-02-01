@@ -51,7 +51,7 @@ public class GOTEntityThenn extends GOTEntityHumanBase {
 
 	@Override
 	public GOTMiniQuest createMiniQuest() {
-		return GOTMiniQuestFactory.WESTEROS.createQuest(this);
+		return GOTMiniQuestFactory.WILDLING.createQuest(this);
 	}
 
 	@Override
@@ -87,7 +87,7 @@ public class GOTEntityThenn extends GOTEntityHumanBase {
 
 	@Override
 	public GOTMiniQuestFactory getBountyHelpSpeechDir() {
-		return GOTMiniQuestFactory.WESTEROS;
+		return GOTMiniQuestFactory.WILDLING;
 	}
 
 	@Override
@@ -100,7 +100,7 @@ public class GOTEntityThenn extends GOTEntityHumanBase {
 			int j = MathHelper.floor_double(boundingBox.minY);
 			int k = MathHelper.floor_double(posZ);
 			BiomeGenBase biome = worldObj.getBiomeGenForCoords(i, k);
-			if (j > 62 && worldObj.getBlock(i, j - 1, k) == biome.topBlock) {
+			if (j > 62 && j < 140 && worldObj.getBlock(i, j - 1, k) == biome.topBlock) {
 				return true;
 			}
 		}
@@ -121,11 +121,11 @@ public class GOTEntityThenn extends GOTEntityHumanBase {
 	public String getSpeechBank(EntityPlayer entityplayer) {
 		if (isFriendly(entityplayer)) {
 			if (hiredNPCInfo.getHiringPlayer() == entityplayer) {
-				return "westeros/wildling/thenn/hired";
+				return "standart/wild/hired_soldier";
 			}
-			return "westeros/wildling/thenn/friendly";
+			return "standart/wild/usual_friendly";
 		}
-		return "westeros/wildling/thenn/hostile";
+		return "standart/wild/usual_hostile";
 	}
 
 	public EntityAIBase getThennAttackAI() {

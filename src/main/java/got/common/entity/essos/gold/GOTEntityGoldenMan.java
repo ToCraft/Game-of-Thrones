@@ -19,7 +19,7 @@ import net.minecraft.world.biome.BiomeGenBase;
 public class GOTEntityGoldenMan extends GOTEntityHumanBase implements IPickpocketable {
 	public GOTEntityGoldenMan(World world) {
 		super(world);
-		canBeMarried = true;
+		canBeMarried = false;
 		setSize(0.6f, 1.8f);
 		getNavigator().setAvoidsWater(true);
 		getNavigator().setBreakDoors(true);
@@ -35,13 +35,14 @@ public class GOTEntityGoldenMan extends GOTEntityHumanBase implements IPickpocke
 		tasks.addTask(7, new EntityAIWatchClosest2(this, GOTEntityNPC.class, 5.0f, 0.02f));
 		tasks.addTask(8, new EntityAIWatchClosest(this, EntityLiving.class, 8.0f, 0.02f));
 		tasks.addTask(9, new EntityAILookIdle(this));
-		addTargetTasks(false);
+		npcShield = GOTShields.GOLDENCOMPANY;
+		addTargetTasks(true);
 	}
 
 	@Override
 	public void applyEntityAttributes() {
 		super.applyEntityAttributes();
-		getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(30.0);
+		getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20.0);
 		getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.22);
 	}
 
@@ -74,7 +75,7 @@ public class GOTEntityGoldenMan extends GOTEntityHumanBase implements IPickpocke
 
 	@Override
 	public float getAlignmentBonus() {
-		return 1.0f;
+		return 0.0f;
 	}
 
 	@Override
@@ -96,7 +97,7 @@ public class GOTEntityGoldenMan extends GOTEntityHumanBase implements IPickpocke
 			int i = MathHelper.floor_double(posX);
 			int j = MathHelper.floor_double(boundingBox.minY);
 			int k = MathHelper.floor_double(posZ);
-			if (j > 62 && worldObj.getBlock(i, j - 1, k) == worldObj.getBiomeGenForCoords(i, k).topBlock) {
+			if (j > 62 && j < 140 && worldObj.getBlock(i, j - 1, k) == worldObj.getBiomeGenForCoords(i, k).topBlock) {
 				return true;
 			}
 		}
@@ -109,8 +110,19 @@ public class GOTEntityGoldenMan extends GOTEntityHumanBase implements IPickpocke
 	}
 
 	@Override
-	public int getTotalArmorValue() {
-		return 15;
+	public String getNPCName() {
+		return familyInfo.getName();
+	}
+
+	@Override
+	public String getSpeechBank(EntityPlayer entityplayer) {
+		if (isFriendly(entityplayer)) {
+			if (hiredNPCInfo.getHiringPlayer() == entityplayer) {
+				return "standart/civilized/hired_soldier";
+			}
+			return "standart/civilized/usual_friendly";
+		}
+		return "standart/civilized/usual_hostile";
 	}
 
 	@Override
@@ -123,10 +135,12 @@ public class GOTEntityGoldenMan extends GOTEntityHumanBase implements IPickpocke
 	}
 
 	@Override
-	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data) {
-		data = super.onSpawnWithEgg(data);
-		npcItemsInv.setMeleeWeapon(new ItemStack(GOTRegistry.essosDagger));
-		npcItemsInv.setIdleItem(null);
-		return data;
+	public void setupNPCGender() {
+		familyInfo.setMale(true);
+	}
+
+	@Override
+	public void setupNPCName() {
+		familyInfo.setName(GOTNames.getEssosName(rand, familyInfo.isMale()));
 	}
 }

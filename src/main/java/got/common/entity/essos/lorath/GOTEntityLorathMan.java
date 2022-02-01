@@ -106,7 +106,7 @@ public class GOTEntityLorathMan extends GOTEntityHumanBase implements IPickpocke
 			int i = MathHelper.floor_double(posX);
 			int j = MathHelper.floor_double(boundingBox.minY);
 			int k = MathHelper.floor_double(posZ);
-			if (j > 62 && worldObj.getBlock(i, j - 1, k) == worldObj.getBiomeGenForCoords(i, k).topBlock) {
+			if (j > 62 && j < 140 && worldObj.getBlock(i, j - 1, k) == worldObj.getBiomeGenForCoords(i, k).topBlock) {
 				return true;
 			}
 		}
@@ -125,13 +125,10 @@ public class GOTEntityLorathMan extends GOTEntityHumanBase implements IPickpocke
 
 	@Override
 	public String getSpeechBank(EntityPlayer entityplayer) {
-		if (isDrunkard()) {
-			return "special/drunkard";
-		}
 		if (isFriendly(entityplayer)) {
-			return "essos/lorath/man/friendly";
+			return "standart/civilized/usual_friendly";
 		}
-		return "essos/lorath/man/hostile";
+		return "standart/civilized/usual_hostile";
 	}
 
 	@Override

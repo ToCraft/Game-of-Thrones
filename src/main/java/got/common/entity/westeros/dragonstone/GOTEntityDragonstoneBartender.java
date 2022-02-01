@@ -2,13 +2,13 @@ package got.common.entity.westeros.dragonstone;
 
 import got.common.GOTLevelData;
 import got.common.database.*;
-import got.common.entity.other.GOTTradeable;
+import got.common.entity.other.*;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class GOTEntityDragonstoneBartender extends GOTEntityDragonstoneMan implements GOTTradeable.Bartender {
+public class GOTEntityDragonstoneBartender extends GOTEntityDragonstoneMan implements GOTBartender, GOTTradeable {
 	public GOTEntityDragonstoneBartender(World world) {
 		super(world);
 		canBeMarried = false;
@@ -46,11 +46,13 @@ public class GOTEntityDragonstoneBartender extends GOTEntityDragonstoneMan imple
 	}
 
 	@Override
-	public String getSpeechBank(EntityPlayer entityplayer) {
-		if (isFriendly(entityplayer)) {
-			return "westeros/dragonstone/bartender/friendly";
-		}
-		return "westeros/dragonstone/bartender/hostile";
+	public GOTUnitTradeEntries getUnits() {
+		return GOTUnitTradeEntries.PROSTITUTE_KEEPER;
+	}
+
+	@Override
+	public GOTInvasions getWarhorn() {
+		return null;
 	}
 
 	@Override
@@ -63,5 +65,9 @@ public class GOTEntityDragonstoneBartender extends GOTEntityDragonstoneMan imple
 		data = super.onSpawnWithEgg(data);
 		npcItemsInv.setIdleItem(new ItemStack(GOTRegistry.mug));
 		return data;
+	}
+
+	@Override
+	public void onUnitTrade(EntityPlayer var1) {
 	}
 }

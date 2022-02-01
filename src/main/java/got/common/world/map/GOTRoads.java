@@ -11,19 +11,13 @@ public class GOTRoads {
 	public static int id = 0;
 	public RoadPoint[] roadPoints;
 	public List<RoadPoint> endpoints = new ArrayList<>();
-	public String roadName;
 
-	public GOTRoads(String name, RoadPoint... ends) {
-		roadName = name;
+	public GOTRoads(RoadPoint... ends) {
 		Collections.addAll(endpoints, ends);
 	}
 
 	public String getDisplayName() {
 		return null;
-	}
-
-	public static int[] ingameXZ(int ingameX, int ingameZ) {
-		return new int[] { (int) ((ingameX / 128) + 809.5D), (int) ((ingameZ / 128) + 729.5D) };
 	}
 
 	public static boolean isRoadAt(int x, int z) {
@@ -61,6 +55,8 @@ public class GOTRoads {
 	public static void onInit() {
 		allRoads.clear();
 		roadPointDatabase = new RoadPointDatabase();
+		GOTRoads.registerHiddenRoad(id++, new int[] { 559, 544 }, new int[] { 596, 544 });
+		GOTRoads.registerRoad(id++, GOTWaypoint.Zamettar, near(GOTWaypoint.Zamettar, 0, -1));
 		GOTRoads.registerRoad(id++, GOTWaypoint.Appleton, near(GOTWaypoint.Appleton, 0, -1));
 		GOTRoads.registerRoad(id++, GOTWaypoint.Asabhad, near(GOTWaypoint.Asabhad, -1, 0));
 		GOTRoads.registerRoad(id++, GOTWaypoint.Asabhad, new int[] { 3143, 2263 }, new int[] { 3190, 2276 }, GOTWaypoint.SiQo);
@@ -122,11 +118,11 @@ public class GOTRoads {
 		GOTRoads.registerRoad(id++, GOTWaypoint.Kingsgrave, near(GOTWaypoint.Kingsgrave, -1, 0));
 		GOTRoads.registerRoad(id++, GOTWaypoint.Kosrak, near(GOTWaypoint.Kosrak, 1, 0));
 		GOTRoads.registerRoad(id++, GOTWaypoint.KrazaajHas, GOTWaypoint.VaesMejhah);
-		GOTRoads.registerRoad(id++, GOTWaypoint.KrazaajHas, ingameXZ(207427, 149867), GOTWaypoint.Hesh, GOTWaypoint.Lhazosh, new int[] { 2447, 2138 }, GOTWaypoint.VaesOrvik);
+		GOTRoads.registerRoad(id++, GOTWaypoint.KrazaajHas, new int[] { 2430, 1900 }, GOTWaypoint.Hesh, GOTWaypoint.Lhazosh, new int[] { 2447, 2138 }, GOTWaypoint.VaesOrvik);
 		GOTRoads.registerRoad(id++, GOTWaypoint.Lannisport, near(GOTWaypoint.Lannisport, -1, 0));
 		GOTRoads.registerRoad(id++, GOTWaypoint.Lannisport, new int[] { 371, 1622 }, GOTWaypoint.Crakehall);
 		GOTRoads.registerRoad(id++, GOTWaypoint.Lannisport, new int[] { 477, 1572 }, new int[] { 526, 1598 }, new int[] { 570, 1625 }, new int[] { 656, 1606 }, new int[] { 710, 1633 }, GOTWaypoint.KingsLanding);
-		GOTRoads.registerRoad(id++, GOTWaypoint.Lhazosh, ingameXZ(216131, 159723), GOTWaypoint.Kosrak);
+		GOTRoads.registerRoad(id++, GOTWaypoint.Lhazosh, new int[] { 2498, 1977 }, GOTWaypoint.Kosrak);
 		GOTRoads.registerRoad(id++, GOTWaypoint.Lhazosh, near(GOTWaypoint.Lhazosh, -1, 0));
 		GOTRoads.registerRoad(id++, GOTWaypoint.LittleValyria, GOTWaypoint.ValyrianRoad);
 		GOTRoads.registerRoad(id++, GOTWaypoint.Lizhao, near(GOTWaypoint.Lizhao, 1, 0));
@@ -134,10 +130,10 @@ public class GOTRoads {
 		GOTRoads.registerRoad(id++, GOTWaypoint.Manjin, near(GOTWaypoint.Manjin, 1, 0));
 		GOTRoads.registerRoad(id++, GOTWaypoint.Mantarys, new int[] { 1831, 2092 }, GOTWaypoint.Oros);
 		GOTRoads.registerRoad(id++, GOTWaypoint.Meereen, GOTWaypoint.KrazaajHas);
-		GOTRoads.registerRoad(id++, GOTWaypoint.Meereen, ingameXZ(183429, 153350), ingameXZ(175749, 153350), GOTWaypoint.Bhorash);
+		GOTRoads.registerRoad(id++, GOTWaypoint.Meereen, new int[] { 2243, 1928 }, new int[] { 2183, 1928 }, GOTWaypoint.Bhorash);
 		GOTRoads.registerRoad(id++, GOTWaypoint.Meereen, near(GOTWaypoint.Meereen, -9, 55), new int[] { 2219, 2124 }, GOTWaypoint.Astapor);
 		GOTRoads.registerRoad(id++, GOTWaypoint.Moletown, new int[] { 747, 742 }, new int[] { 711, 783 }, new int[] { 672, 826 }, near(GOTWaypoint.Winterfell, 0, -1));
-		GOTRoads.registerRoad(id++, GOTWaypoint.Myr, ingameXZ(67636, 146432), GOTWaypoint.Chroyane);
+		GOTRoads.registerRoad(id++, GOTWaypoint.Myr, new int[] { 1338, 1874 }, GOTWaypoint.Chroyane);
 		GOTRoads.registerRoad(id++, GOTWaypoint.Nightsong, near(GOTWaypoint.Nightsong, 0, 1));
 		GOTRoads.registerRoad(id++, GOTWaypoint.OldOak, near(GOTWaypoint.OldOak, -1, 0));
 		GOTRoads.registerRoad(id++, GOTWaypoint.OldOak, new int[] { 438, 1773 }, GOTWaypoint.Highgarden);
@@ -224,26 +220,34 @@ public class GOTRoads {
 		GOTRoads.registerRoad(id++, new int[] { 3634, 2281 }, new int[] { 3688, 2321 }, new int[] { 3756, 2321 }, GOTWaypoint.Yunnan);
 	}
 
+	public static void registerHiddenRoad(int id, Object... waypoints) {
+		ArrayList<RoadPoint> points = new ArrayList<>();
+		for (Object obj : waypoints) {
+			if (obj instanceof GOTWaypoint) {
+				GOTWaypoint wp = (GOTWaypoint) obj;
+				points.add(new RoadPoint(wp.getXCoord(), wp.getZCoord(), true));
+			} else if (obj instanceof int[]) {
+				int[] coords = (int[]) obj;
+				points.add(new RoadPoint(GOTWaypoint.mapToWorldX(coords[0]), GOTWaypoint.mapToWorldZ(coords[1]), false));
+			}
+		}
+		RoadPoint[] array = points.toArray(new RoadPoint[0]);
+		BezierCurves.getSplines(array);
+	}
+
 	public static void registerRoad(int id, Object... waypoints) {
 		ArrayList<RoadPoint> points = new ArrayList<>();
 		for (Object obj : waypoints) {
 			if (obj instanceof GOTWaypoint) {
 				GOTWaypoint wp = (GOTWaypoint) obj;
 				points.add(new RoadPoint(wp.getXCoord(), wp.getZCoord(), true));
-				continue;
-			}
-			if (obj instanceof int[]) {
+			} else if (obj instanceof int[]) {
 				int[] coords = (int[]) obj;
-				if (coords.length == 2) {
-					points.add(new RoadPoint(GOTWaypoint.mapToWorldX(coords[0]), GOTWaypoint.mapToWorldZ(coords[1]), false));
-					continue;
-				}
-				throw new IllegalArgumentException("Coords length must be 2!");
+				points.add(new RoadPoint(GOTWaypoint.mapToWorldX(coords[0]), GOTWaypoint.mapToWorldZ(coords[1]), false));
 			}
-			throw new IllegalArgumentException("Wrong road parameter!");
 		}
 		RoadPoint[] array = points.toArray(new RoadPoint[0]);
-		GOTRoads[] roads = BezierCurves.getSplines("null", array);
+		GOTRoads[] roads = BezierCurves.getSplines(array);
 		allRoads.addAll(Arrays.asList(roads));
 	}
 
@@ -298,11 +302,11 @@ public class GOTRoads {
 			return new double[][] { p1, p2 };
 		}
 
-		public static GOTRoads[] getSplines(String name, RoadPoint[] waypoints) {
+		public static GOTRoads[] getSplines(RoadPoint[] waypoints) {
 			if (waypoints.length == 2) {
 				RoadPoint p1 = waypoints[0];
 				RoadPoint p2 = waypoints[1];
-				GOTRoads road = new GOTRoads(name, p1, p2);
+				GOTRoads road = new GOTRoads(p1, p2);
 				double dx = p2.x - p1.x;
 				double dz = p2.z - p1.z;
 				int roadLength = (int) Math.round(Math.sqrt(dx * dx + dz * dz));
@@ -341,7 +345,7 @@ public class GOTRoads {
 				RoadPoint p2 = waypoints[i + 1];
 				RoadPoint cp1 = controlPoints1[i];
 				RoadPoint cp2 = controlPoints2[i];
-				roads[i] = road = new GOTRoads(name, p1, p2);
+				roads[i] = road = new GOTRoads(p1, p2);
 				double dx = p2.x - p1.x;
 				double dz = p2.z - p1.z;
 				int roadLength = (int) Math.round(Math.sqrt(dx * dx + dz * dz));
@@ -400,7 +404,7 @@ public class GOTRoads {
 		}
 
 		public List<RoadPoint> getRoadList(int xKey, int zKey, boolean addToMap) {
-			Pair key = Pair.of((Object) xKey, (Object) zKey);
+			Pair<Integer, Integer> key = Pair.of(xKey, zKey);
 			List<RoadPoint> list = pointMap.get(key);
 			if (list == null) {
 				list = new ArrayList<>();

@@ -48,11 +48,12 @@ public class GOTBiomeSothoryosBushland extends GOTBiome {
 		decorator.logsPerChunk = 1;
 		decorator.grassPerChunk = 16;
 		decorator.doubleGrassPerChunk = 10;
+		decorator.cornPerChunk = 4;
 		decorator.addTree(GOTTreeType.DRAGONBLOOD, 200);
 		SpawnListContainer[] c = new SpawnListContainer[1];
 		c[0] = GOTBiomeSpawnList.entry(GOTSpawnList.SOTHORYOS_MILITARY, 4).setSpawnChance(GOTBiome.SPAWN);
 		npcSpawnList.newFactionList(10).add(c);
-		decorator.affix(new GOTStructureSothoryosVillage(this, 1.0f));
+		decorator.addVillage(new GOTStructureSothoryosVillage(this, 1.0f));
 		setUnreliableChance(GOTEventSpawner.EventChance.NEVER);
 
 		decorator.addRandomStructure(new GOTStructureStoneRuin.SOTHORYOS(1, 4), 400);
@@ -109,11 +110,6 @@ public class GOTBiomeSothoryosBushland extends GOTBiome {
 	@Override
 	public Region getBiomeWaypoints() {
 		return Region.SOTHORYOS;
-	}
-
-	@Override
-	public float getChanceToSpawnAnimals() {
-		return 0.25f;
 	}
 
 	@Override

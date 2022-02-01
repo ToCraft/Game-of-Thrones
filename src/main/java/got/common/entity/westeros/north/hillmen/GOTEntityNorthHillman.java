@@ -2,6 +2,7 @@ package got.common.entity.westeros.north.hillmen;
 
 import got.common.database.*;
 import got.common.entity.ai.*;
+import got.common.entity.animal.GOTEntityWoolyRhino;
 import got.common.entity.other.*;
 import got.common.faction.GOTFaction;
 import got.common.quest.*;
@@ -54,6 +55,13 @@ public class GOTEntityNorthHillman extends GOTEntityHumanBase implements IPickpo
 	}
 
 	@Override
+	public GOTNPCMount createMountToRide() {
+		GOTEntityWoolyRhino horse = (GOTEntityWoolyRhino) super.createMountToRide();
+		horse.setMountArmor(new ItemStack(GOTRegistry.rhinoArmor));
+		return horse;
+	}
+
+	@Override
 	public void dropFewItems(boolean flag, int i) {
 		super.dropFewItems(flag, i);
 		int bones = rand.nextInt(2) + rand.nextInt(i + 1);
@@ -99,7 +107,7 @@ public class GOTEntityNorthHillman extends GOTEntityHumanBase implements IPickpo
 			int j = MathHelper.floor_double(boundingBox.minY);
 			int k = MathHelper.floor_double(posZ);
 			BiomeGenBase biome = worldObj.getBiomeGenForCoords(i, k);
-			if (j > 62 && worldObj.getBlock(i, j - 1, k) == biome.topBlock) {
+			if (j > 62 && j < 140 && worldObj.getBlock(i, j - 1, k) == biome.topBlock) {
 				return true;
 			}
 		}
@@ -123,12 +131,9 @@ public class GOTEntityNorthHillman extends GOTEntityHumanBase implements IPickpo
 	@Override
 	public String getSpeechBank(EntityPlayer entityplayer) {
 		if (isFriendly(entityplayer)) {
-			if (hiredNPCInfo.getHiringPlayer() == entityplayer) {
-				return "westeros/north/soldier/hired";
-			}
-			return "westeros/north/soldier/friendly";
+			return "standart/wild/usual_friendly";
 		}
-		return "westeros/north/soldier/hostile";
+		return "standart/wild/usual_hostile";
 	}
 
 	@Override

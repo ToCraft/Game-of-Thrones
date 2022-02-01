@@ -13,7 +13,6 @@ public class GOTEntityIbbenWarlord extends GOTEntityIbbenWarrior implements GOTU
 		super(world);
 		canBeMarried = false;
 		addTargetTasks(false);
-		spawnRidingHorse = false;
 	}
 
 	@Override
@@ -36,11 +35,11 @@ public class GOTEntityIbbenWarlord extends GOTEntityIbbenWarrior implements GOTU
 	public String getSpeechBank(EntityPlayer entityplayer) {
 		if (isFriendly(entityplayer)) {
 			if (canTradeWith(entityplayer)) {
-				return "essos/ibben/warlord/friendly";
+				return "standart/civilized/usual_friendly";
 			}
-			return "essos/ibben/warlord/neutral";
+			return "standart/civilized/usual_neutral";
 		}
-		return "essos/ibben/warrior/hostile";
+		return "standart/civilized/usual_hostile";
 	}
 
 	@Override

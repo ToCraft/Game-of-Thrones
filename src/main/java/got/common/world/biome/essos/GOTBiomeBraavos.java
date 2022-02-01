@@ -5,7 +5,6 @@ import got.client.sound.GOTBiomeMusic.MusicRegion;
 import got.common.database.*;
 import got.common.world.biome.GOTBiome;
 import got.common.world.biome.variant.GOTBiomeVariant;
-import got.common.world.map.GOTWaypoint;
 import got.common.world.spawning.*;
 import got.common.world.spawning.GOTBiomeSpawnList.SpawnListContainer;
 import got.common.world.structure.essos.braavos.GOTStructureBraavosCity;
@@ -13,7 +12,6 @@ import got.common.world.structure.essos.braavos.GOTStructureBraavosCity;
 public class GOTBiomeBraavos extends GOTBiomeEssos {
 	public GOTBiomeBraavos(int i, boolean major) {
 		super(i, major);
-		this.addBiomeVariant(GOTBiomeVariant.FIELD_CORN, 0.2f);
 		this.addBiomeVariant(GOTBiomeVariant.ORCHARD_ORANGE, 0.2f);
 		this.addBiomeVariant(GOTBiomeVariant.ORCHARD_LEMON, 0.2f);
 		this.addBiomeVariant(GOTBiomeVariant.ORCHARD_LIME, 0.2f);
@@ -35,11 +33,7 @@ public class GOTBiomeBraavos extends GOTBiomeEssos {
 		c2[0] = GOTBiomeSpawnList.entry(GOTSpawnList.PENTOS_MILITARY, 10).setSpawnChance(GOTBiome.CONQUEST_SPAWN);
 		npcSpawnList.newFactionList(0).add(c2);
 
-		decorator.affix(new GOTStructureBraavosCity(this, 1.0f));
-
-		GOTStructureBraavosCity town = new GOTStructureBraavosCity(this, 0.0f).setIsTown();
-		town.affix(GOTWaypoint.Braavos, 0, -1, 2);
-		decorator.affix(town);
+		decorator.addVillage(new GOTStructureBraavosCity(this, 1.0f));
 
 		invasionSpawns.addInvasion(GOTInvasions.VOLANTIS, GOTEventSpawner.EventChance.UNCOMMON);
 		invasionSpawns.addInvasion(GOTInvasions.PENTOS, GOTEventSpawner.EventChance.UNCOMMON);

@@ -5,7 +5,6 @@ import java.util.List;
 import got.common.GOTConfig;
 import got.common.database.*;
 import got.common.entity.ai.*;
-import got.common.entity.animal.GOTEntityHorse;
 import got.common.entity.other.*;
 import got.common.faction.GOTFaction;
 import got.common.quest.*;
@@ -43,7 +42,7 @@ public class GOTEntityDothraki extends GOTEntityHumanBase implements IPickpocket
 		tasks.addTask(9, new EntityAILookIdle(this));
 		int target = addTargetTasks(true);
 		targetTasks.addTask(target + 1, new GOTEntityAIDothrakiSkirmish(this, true));
-		npcShield = null;
+		spawnRidingHorse = rand.nextInt(10) == 0;
 	}
 
 	@Override
@@ -66,13 +65,6 @@ public class GOTEntityDothraki extends GOTEntityHumanBase implements IPickpocket
 	@Override
 	public GOTMiniQuest createMiniQuest() {
 		return GOTMiniQuestFactory.NOMAD.createQuest(this);
-	}
-
-	@Override
-	public GOTNPCMount createMountToRide() {
-		GOTEntityHorse horse = (GOTEntityHorse) super.createMountToRide();
-		horse.setMountArmor(new ItemStack(GOTRegistry.dothrakiHorseArmor));
-		return horse;
 	}
 
 	@Override
@@ -120,11 +112,15 @@ public class GOTEntityDothraki extends GOTEntityHumanBase implements IPickpocket
 			int i = MathHelper.floor_double(posX);
 			int j = MathHelper.floor_double(boundingBox.minY);
 			int k = MathHelper.floor_double(posZ);
-			if (j > 62 && worldObj.getBlock(i, j - 1, k) == worldObj.getBiomeGenForCoords(i, k).topBlock) {
+			if (j > 62 && j < 140 && worldObj.getBlock(i, j - 1, k) == worldObj.getBiomeGenForCoords(i, k).topBlock) {
 				return true;
 			}
 		}
 		return false;
+	}
+
+	public String getDothrakiSkirmishSpeech() {
+		return "standart/special/gladiator";
 	}
 
 	@Override
@@ -137,10 +133,6 @@ public class GOTEntityDothraki extends GOTEntityHumanBase implements IPickpocket
 		return familyInfo.getName();
 	}
 
-	public String getOrcSkirmishSpeech() {
-		return "essos/ghiscar/gladiator/neutral";
-	}
-
 	@Override
 	public float getPoisonedArrowChance() {
 		return 0.5f;
@@ -148,13 +140,13 @@ public class GOTEntityDothraki extends GOTEntityHumanBase implements IPickpocket
 
 	@Override
 	public String getSpeechBank(EntityPlayer entityplayer) {
-		if (isDrunkard()) {
-			return "essos/dothraki/man/neutral";
-		}
 		if (isFriendly(entityplayer)) {
-			return "essos/dothraki/man/friendly";
+			if (hiredNPCInfo.getHiringPlayer() == entityplayer) {
+				return "standart/wild/hired_soldier";
+			}
+			return "standart/wild/usual_friendly";
 		}
-		return "essos/dothraki/man/hostile";
+		return "standart/wild/usual_hostile";
 	}
 
 	public boolean isDothrakSkirmishing() {
@@ -227,7 +219,7 @@ public class GOTEntityDothraki extends GOTEntityHumanBase implements IPickpocket
 			List nearbyPlayers = worldObj.getEntitiesWithinAABB(EntityPlayer.class, boundingBox.expand(24.0, 24.0, 24.0));
 			for (Object nearbyPlayer : nearbyPlayers) {
 				EntityPlayer entityplayer = (EntityPlayer) nearbyPlayer;
-				GOTSpeech.sendSpeech(entityplayer, this, GOTSpeech.getRandomSpeechForPlayer(this, getOrcSkirmishSpeech(), entityplayer));
+				GOTSpeech.sendSpeech(entityplayer, this, GOTSpeech.getRandomSpeechForPlayer(this, getDothrakiSkirmishSpeech(), entityplayer));
 			}
 		}
 	}

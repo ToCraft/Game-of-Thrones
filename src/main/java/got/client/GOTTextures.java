@@ -58,11 +58,11 @@ public class GOTTextures implements IResourceManagerReloadListener {
 	public static Map<ResourceLocation, Integer> averagedPageColors;
 
 	static {
-		overlayTexture = new ResourceLocation("got:map/mapOverlay.png");
-		mapTerrain = new ResourceLocation("got:map/terrain.png");
-		osrsTexture = new ResourceLocation("got:map/osrs.png");
+		overlayTexture = new ResourceLocation("got:textures/map/mapOverlay.png");
+		mapTerrain = new ResourceLocation("got:textures/map/terrain.png");
+		osrsTexture = new ResourceLocation("got:textures/map/osrs.png");
 		particleTextures = new ResourceLocation("textures/particle/particles.png");
-		newWaterParticles = new ResourceLocation("got:misc/waterParticles.png");
+		newWaterParticles = new ResourceLocation("got:textures/misc/waterParticles.png");
 		newWaterU = 0;
 		newWaterV = 8;
 		newWaterWidth = 64;
@@ -172,14 +172,13 @@ public class GOTTextures implements IResourceManagerReloadListener {
 							for (y = -range; y < range; ++y) {
 								x1 = i + x;
 								y1 = y + j;
-								if (x1 < 0 || x1 >= mapWidth || y1 < 0 || y1 >= mapHeight) {
-									continue;
+								if (((x1 >= 0) && (x1 < mapWidth) && (y1 >= 0) && (y1 < mapHeight))) {
+									rgb1 = temp.getRGB(x1, y1);
+									if (rgb1 == 6453158) {
+										++water;
+									}
+									++total;
 								}
-								rgb1 = temp.getRGB(x1, y1);
-								if (rgb1 == 6453158) {
-									++water;
-								}
-								++total;
 							}
 						}
 						if (water > 0) {
@@ -194,14 +193,13 @@ public class GOTTextures implements IResourceManagerReloadListener {
 							for (y = -range; y < range; ++y) {
 								x1 = i + x;
 								y1 = y + j;
-								if (x1 < 0 || x1 >= mapWidth || y1 < 0 || y1 >= mapHeight) {
-									continue;
+								if (((x1 >= 0) && (x1 < mapWidth) && (y1 >= 0) && (y1 < mapHeight))) {
+									rgb1 = temp.getRGB(x1, y1);
+									if (rgb1 != 14736861) {
+										++edge;
+									}
+									++total;
 								}
-								rgb1 = temp.getRGB(x1, y1);
-								if (rgb1 != 14736861) {
-									++edge;
-								}
-								++total;
 							}
 						}
 						if (edge > 0) {
@@ -397,7 +395,7 @@ public class GOTTextures implements IResourceManagerReloadListener {
 		return sepia |= alpha << 24;
 	}
 
-	public static void load() {
+	public static void onInit() {
 		IResourceManager resMgr = mc.getResourceManager();
 		TextureManager texMgr = mc.getTextureManager();
 		GOTTextures textures = new GOTTextures();
@@ -414,7 +412,7 @@ public class GOTTextures implements IResourceManagerReloadListener {
 		mapTexture = new ResourceLocation("got:map/" + GOTConfig.changeMap + ".png");
 		try {
 			BufferedImage mapImage = ImageIO.read(mc.getResourceManager().getResource(mapTexture).getInputStream());
-			sepiaMapTexture = GOTTextures.convertToSepia(mapImage, new ResourceLocation("got:map_sepia"));
+			sepiaMapTexture = GOTTextures.convertToSepia(mapImage, new ResourceLocation("got:textures/map_sepia"));
 		} catch (IOException e) {
 			FMLLog.severe("Failed to generate GOT sepia map");
 			e.printStackTrace();

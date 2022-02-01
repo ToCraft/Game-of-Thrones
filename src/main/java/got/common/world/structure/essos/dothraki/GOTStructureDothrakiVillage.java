@@ -11,14 +11,14 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public class GOTStructureDothrakiVillage extends GOTVillageGen {
-	private boolean isBig;
+	public boolean isBig;
 
 	public GOTStructureDothrakiVillage(GOTBiome biome, float f) {
 		super(biome);
 		gridScale = 12;
 		gridRandomDisplace = 1;
 		spawnChance = f;
-		villageChunkRadius = 4;
+		villageChunkRadius = 5;
 	}
 
 	@Override
@@ -138,7 +138,7 @@ public class GOTStructureDothrakiVillage extends GOTVillageGen {
 		public void setupVillageProperties(Random random) {
 			if (isBig) {
 				villageType = VillageType.BIG;
-				numOuterHouses = 14;
+				numOuterHouses = 13;
 			}
 			if (random.nextInt(3) == 0) {
 				villageType = VillageType.BIG;

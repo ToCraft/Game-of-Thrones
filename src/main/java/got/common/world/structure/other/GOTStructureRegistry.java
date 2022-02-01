@@ -6,7 +6,7 @@ import cpw.mods.fml.common.FMLLog;
 import got.common.faction.GOTFaction;
 import got.common.world.structure.GOTStructure;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
@@ -14,6 +14,8 @@ public class GOTStructureRegistry {
 	public static HashMap<Integer, IStructureProvider> idToClassMapping = new HashMap();
 	public static HashMap<Integer, String> idToStringMapping = new HashMap();
 	public static HashMap<Integer, StructureColorInfo> structureItemSpawners = new LinkedHashMap<>();
+	public static HashMap<Class<? extends WorldGenerator>, String> classToNameMapping = new HashMap();
+	public static HashMap<Class<? extends WorldGenerator>, GOTFaction> classToFactionMapping = new HashMap();
 
 	public static String getNameFromID(int ID) {
 		return idToStringMapping.get(ID);
@@ -27,16 +29,47 @@ public class GOTStructureRegistry {
 		return idToClassMapping.get(ID);
 	}
 
+	public static String getStructureName(Class<? extends WorldGenerator> entityClass) {
+		return StatCollector.translateToLocal("got.structure." + GOTStructureRegistry.getStructureNameFromClass(entityClass) + ".name");
+	}
+
+	public static String getStructureNameFromClass(Class entityClass) {
+		return classToNameMapping.get(entityClass);
+	}
+
 	public static void onInit() {
 		GOTStructure.onInit();
 	}
 
 	public static void register(int id, Class<? extends WorldGenerator> strClass, String name, GOTFaction faction) {
 		GOTStructureRegistry.registerStructure(id, strClass, name, faction.eggColor, faction.eggColor, false);
+		classToNameMapping.put(strClass, name);
+		classToFactionMapping.put(strClass, faction);
 	}
 
 	public static void register(int id, Class<? extends WorldGenerator> strClass, String name, int color) {
 		GOTStructureRegistry.registerStructure(id, strClass, name, color, color, false);
+		classToNameMapping.put(strClass, name);
+	}
+
+	public static void register(int id, GOTVillageGen village, String name, int color, IVillageProperties properties) {
+		IStructureProvider strProvider = new IStructureProvider() {
+
+			@Override
+			public boolean generateStructure(World world, EntityPlayer entityplayer, int i, int j, int k) {
+				GOTVillageGen.AbstractInstance<?> instance = village.createAndSetupVillageInstance(world, i, k, world.rand, LocationInfo.SPAWNED_BY_PLAYER);
+				instance.setRotation((GOTStructureRegistry.getRotationFromPlayer(entityplayer) + 2) % 4);
+				properties.apply(instance);
+				village.generateCompleteVillageInstance(instance, world, i, k);
+				return true;
+			}
+
+			@Override
+			public boolean isVillage() {
+				return true;
+			}
+		};
+		GOTStructureRegistry.registerStructure(id, strProvider, name, color, color, false);
 	}
 
 	public static void register(int id, GOTVillageGen village, String name, GOTFaction faction, IVillageProperties properties) {

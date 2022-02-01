@@ -2,13 +2,13 @@ package got.common.entity.westeros.arryn;
 
 import got.common.GOTLevelData;
 import got.common.database.*;
-import got.common.entity.other.GOTTradeable;
+import got.common.entity.other.*;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class GOTEntityArrynBartender extends GOTEntityArrynMan implements GOTTradeable.Bartender {
+public class GOTEntityArrynBartender extends GOTEntityArrynMan implements GOTBartender, GOTTradeable {
 	public GOTEntityArrynBartender(World world) {
 		super(world);
 		canBeMarried = false;
@@ -46,11 +46,13 @@ public class GOTEntityArrynBartender extends GOTEntityArrynMan implements GOTTra
 	}
 
 	@Override
-	public String getSpeechBank(EntityPlayer entityplayer) {
-		if (isFriendly(entityplayer)) {
-			return "westeros/arryn/bartender/friendly";
-		}
-		return "westeros/arryn/bartender/hostile";
+	public GOTUnitTradeEntries getUnits() {
+		return GOTUnitTradeEntries.PROSTITUTE_KEEPER;
+	}
+
+	@Override
+	public GOTInvasions getWarhorn() {
+		return null;
 	}
 
 	@Override
@@ -63,5 +65,9 @@ public class GOTEntityArrynBartender extends GOTEntityArrynMan implements GOTTra
 		data = super.onSpawnWithEgg(data);
 		npcItemsInv.setIdleItem(new ItemStack(GOTRegistry.mug));
 		return data;
+	}
+
+	@Override
+	public void onUnitTrade(EntityPlayer var1) {
 	}
 }

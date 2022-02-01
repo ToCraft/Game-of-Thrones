@@ -51,10 +51,11 @@ public class GOTBiomeSothoryosKanuka extends GOTBiome {
 		decorator.doubleFlowersPerChunk = 1;
 		decorator.grassPerChunk = 4;
 		decorator.doubleGrassPerChunk = 1;
+		decorator.cornPerChunk = 10;
 		SpawnListContainer[] c = new SpawnListContainer[1];
 		c[0] = GOTBiomeSpawnList.entry(GOTSpawnList.SOTHORYOS_MILITARY, 4).setSpawnChance(GOTBiome.SPAWN);
 		npcSpawnList.newFactionList(10).add(c);
-		decorator.affix(new GOTStructureSothoryosVillage(this, 1.0f));
+		decorator.addVillage(new GOTStructureSothoryosVillage(this, 1.0f));
 		setUnreliableChance(GOTEventSpawner.EventChance.NEVER);
 		decorator.addRandomStructure(new GOTStructureStoneRuin.SOTHORYOS(1, 4), 400);
 	}
@@ -84,7 +85,7 @@ public class GOTBiomeSothoryosKanuka extends GOTBiome {
 			if (world.getHeightValue(i1, k1) <= 75) {
 				continue;
 			}
-			WorldGenerator grassGen = getRandomWorldGenForDoubleGrass(random);
+			WorldGenerator grassGen = getRandomWorldGenForDoubleGrass();
 			grassGen.generate(world, random, i1, j1, k1);
 		}
 	}
@@ -122,11 +123,6 @@ public class GOTBiomeSothoryosKanuka extends GOTBiome {
 	}
 
 	@Override
-	public float getChanceToSpawnAnimals() {
-		return 0.25f;
-	}
-
-	@Override
 	public GOTBiome.GrassBlockAndMeta getRandomGrass(Random random) {
 		if (random.nextInt(5) != 0) {
 			return new GOTBiome.GrassBlockAndMeta(Blocks.tallgrass, 2);
@@ -135,7 +131,7 @@ public class GOTBiomeSothoryosKanuka extends GOTBiome {
 	}
 
 	@Override
-	public WorldGenerator getRandomWorldGenForDoubleGrass(Random random) {
+	public WorldGenerator getRandomWorldGenForDoubleGrass() {
 		WorldGenDoublePlant generator = new WorldGenDoublePlant();
 		generator.func_150548_a(3);
 		return generator;

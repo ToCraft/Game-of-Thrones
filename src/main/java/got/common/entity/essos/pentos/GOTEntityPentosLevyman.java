@@ -17,7 +17,6 @@ public class GOTEntityPentosLevyman extends GOTEntityPentosMan {
 		super(world);
 		canBeMarried = false;
 		addTargetTasks(true);
-		spawnRidingHorse = false;
 	}
 
 	@Override
@@ -42,11 +41,11 @@ public class GOTEntityPentosLevyman extends GOTEntityPentosMan {
 	public String getSpeechBank(EntityPlayer entityplayer) {
 		if (isFriendly(entityplayer)) {
 			if (hiredNPCInfo.getHiringPlayer() == entityplayer) {
-				return "essos/pentos/warrior/hired";
+				return "standart/civilized/hired_soldier";
 			}
-			return "essos/pentos/warrior/friendly";
+			return "standart/civilized/usual_friendly";
 		}
-		return "essos/pentos/warrior/hostile";
+		return "standart/civilized/usual_hostile";
 	}
 
 	@Override

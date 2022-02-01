@@ -110,9 +110,9 @@ public class GOTEntityThief extends GOTEntityHumanBase implements GOTBiome.Immun
 	@Override
 	public String getSpeechBank(EntityPlayer entityplayer) {
 		if (isFriendly(entityplayer)) {
-			return "special/criminal_friendly";
+			return "standart/special/criminal_friendly";
 		}
-		return "special/criminal_hostile";
+		return "standart/special/criminal_hostile";
 	}
 
 	@Override
@@ -148,7 +148,7 @@ public class GOTEntityThief extends GOTEntityHumanBase implements GOTBiome.Immun
 	public void setupNPCGender() {
 		familyInfo.setMale(true);
 	}
-	
+
 	@Override
 	public void setupNPCName() {
 		int i = rand.nextInt(4);

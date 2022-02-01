@@ -10,7 +10,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class GOTEntityAsshaiCaptain extends GOTEntityAsshaiGuard implements GOTUnitTradeable {
+public class GOTEntityAsshaiCaptain extends GOTEntityAsshaiWarrior implements GOTUnitTradeable {
 	public GOTEntityAsshaiCaptain(World world) {
 		super(world);
 		canBeMarried = false;
@@ -43,11 +43,11 @@ public class GOTEntityAsshaiCaptain extends GOTEntityAsshaiGuard implements GOTU
 	public String getSpeechBank(EntityPlayer entityplayer) {
 		if (isFriendly(entityplayer)) {
 			if (canTradeWith(entityplayer)) {
-				return "essos/asshai/captain/friendly";
+				return "standart/civilized/usual_friendly";
 			}
-			return "essos/asshai/captain/neutral";
+			return "standart/civilized/usual_neutral";
 		}
-		return "essos/asshai/man/hostile";
+		return "standart/civilized/usual_hostile";
 	}
 
 	@Override

@@ -12,8 +12,8 @@ public class GOTEntityJogosShaman extends GOTEntityJogos implements GOTTradeable
 	public GOTEntityJogosShaman(World world) {
 		super(world);
 		canBeMarried = false;
-		spawnRidingHorse = false;
 		addTargetTasks(false);
+		spawnRidingHorse = false;
 	}
 
 	@Override
@@ -34,14 +34,6 @@ public class GOTEntityJogosShaman extends GOTEntityJogos implements GOTTradeable
 	@Override
 	public GOTTradeEntries getSellPool() {
 		return GOTTradeEntries.COMMON_FARMER_SELL;
-	}
-
-	@Override
-	public String getSpeechBank(EntityPlayer entityplayer) {
-		if (isFriendly(entityplayer)) {
-			return "essos/jogos/shaman/friendly";
-		}
-		return "essos/jogos/shaman/hostile";
 	}
 
 	@Override

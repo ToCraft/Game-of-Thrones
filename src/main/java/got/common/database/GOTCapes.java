@@ -9,7 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.*;
 
 public enum GOTCapes {
-	NORTH(GOTFaction.NORTH), NORTHGUARD(GOTFaction.NORTH), NIGHT(GOTFaction.NIGHT_WATCH), RIVERLANDS(GOTFaction.RIVERLANDS), ARRYN(GOTFaction.ARRYN), ARRYNGUARD(GOTFaction.ARRYN), IRONBORN(GOTFaction.IRONBORN), WESTERLANDS(GOTFaction.WESTERLANDS), DRAGONSTONE(GOTFaction.DRAGONSTONE), CROWNLANDS(GOTFaction.CROWNLANDS), KINGSGUARD(GOTFaction.CROWNLANDS), ROYALGUARD(GOTFaction.CROWNLANDS), STORMLANDS(GOTFaction.STORMLANDS), REACH(GOTFaction.REACH), DORNE(GOTFaction.DORNE), VOLANTIS(GOTFaction.VOLANTIS), PENTOS(GOTFaction.PENTOS), NORVOS(GOTFaction.NORVOS), BRAAVOS(GOTFaction.BRAAVOS), TYROSH(GOTFaction.TYROSH), LORATH(GOTFaction.LORATH), QOHOR(GOTFaction.QOHOR), LYS(GOTFaction.LYS), MYR(GOTFaction.MYR), QARTH(GOTFaction.QARTH), GHISCAR(GOTFaction.GHISCAR), YITI(GOTFaction.YI_TI), YITI_SAMURAI(GOTFaction.YI_TI), UNSULLIED(GOTFaction.GHISCAR), ASSHAI(GOTFaction.ASSHAI), TARGARYEN(false, GOT.DEVELOPERS);
+	NORTH(GOTFaction.NORTH), NORTHGUARD(GOTFaction.NORTH), NIGHT(GOTFaction.NIGHT_WATCH), RIVERLANDS(GOTFaction.RIVERLANDS), ARRYN(GOTFaction.ARRYN), ARRYNGUARD(GOTFaction.ARRYN), IRONBORN(GOTFaction.IRONBORN), WESTERLANDS(GOTFaction.WESTERLANDS), DRAGONSTONE(GOTFaction.DRAGONSTONE), CROWNLANDS(GOTFaction.CROWNLANDS), KINGSGUARD(GOTFaction.CROWNLANDS), ROYALGUARD(GOTFaction.CROWNLANDS), STORMLANDS(GOTFaction.STORMLANDS), REACH(GOTFaction.REACH), DORNE(GOTFaction.DORNE), VOLANTIS(GOTFaction.VOLANTIS), PENTOS(GOTFaction.PENTOS), NORVOS(GOTFaction.NORVOS), BRAAVOS(GOTFaction.BRAAVOS), TYROSH(GOTFaction.TYROSH), LORATH(GOTFaction.LORATH), QOHOR(GOTFaction.QOHOR), LYS(GOTFaction.LYS), MYR(GOTFaction.MYR), QARTH(GOTFaction.QARTH), GHISCAR(GOTFaction.GHISCAR), UNSULLIED(GOTFaction.GHISCAR), YITI(GOTFaction.YI_TI), YITI_FRONTIER(GOTFaction.YI_TI), YITI_SAMURAI(GOTFaction.YI_TI), ASSHAI(GOTFaction.ASSHAI), TARGARYEN(false, GOT.DEVS);
 
 	public CapeType capeType;
 	public int capeID;
@@ -26,7 +26,7 @@ public enum GOTCapes {
 		capeType = type;
 		capeID = capeType.list.size();
 		capeType.list.add(this);
-		capeTexture = new ResourceLocation("got:cape/" + name().toLowerCase() + ".png");
+		capeTexture = new ResourceLocation("got:textures/cape/" + name().toLowerCase() + ".png");
 		exclusiveUUIDs = new UUID[players.length];
 		for (int i = 0; i < players.length; ++i) {
 			String s = players[i];
@@ -38,10 +38,6 @@ public enum GOTCapes {
 	GOTCapes(GOTFaction faction) {
 		this(CapeType.ALIGNMENT, false, new String[0]);
 		alignmentFaction = faction;
-	}
-
-	GOTCapes(String... players) {
-		this(false, players);
 	}
 
 	public boolean canDisplay(EntityPlayer entityplayer) {
@@ -87,7 +83,7 @@ public enum GOTCapes {
 	public static void preInit() {
 	}
 
-	public static enum CapeType {
+	public enum CapeType {
 		ALIGNMENT, EXCLUSIVE;
 
 		public List<GOTCapes> list = new ArrayList<>();

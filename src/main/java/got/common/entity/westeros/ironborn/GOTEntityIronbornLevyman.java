@@ -16,7 +16,6 @@ public class GOTEntityIronbornLevyman extends GOTEntityIronbornMan {
 	public GOTEntityIronbornLevyman(World world) {
 		super(world);
 		canBeMarried = false;
-		spawnRidingHorse = false;
 		addTargetTasks(true);
 	}
 
@@ -41,11 +40,11 @@ public class GOTEntityIronbornLevyman extends GOTEntityIronbornMan {
 	public String getSpeechBank(EntityPlayer entityplayer) {
 		if (isFriendly(entityplayer)) {
 			if (hiredNPCInfo.getHiringPlayer() == entityplayer) {
-				return "westeros/ironborn/soldier/hired";
+				return "standart/civilized/hired_soldier";
 			}
-			return "westeros/ironborn/soldier/friendly";
+			return "standart/civilized/usual_friendly";
 		}
-		return "westeros/ironborn/soldier/hostile";
+		return "standart/civilized/usual_hostile";
 	}
 
 	@Override

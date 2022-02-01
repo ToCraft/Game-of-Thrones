@@ -17,7 +17,6 @@ public class GOTEntityTyroshLevyman extends GOTEntityTyroshMan {
 		super(world);
 		canBeMarried = false;
 		addTargetTasks(true);
-		spawnRidingHorse = false;
 	}
 
 	@Override
@@ -42,11 +41,11 @@ public class GOTEntityTyroshLevyman extends GOTEntityTyroshMan {
 	public String getSpeechBank(EntityPlayer entityplayer) {
 		if (isFriendly(entityplayer)) {
 			if (hiredNPCInfo.getHiringPlayer() == entityplayer) {
-				return "essos/tyrosh/warrior/hired";
+				return "standart/civilized/hired_soldier";
 			}
-			return "essos/tyrosh/warrior/friendly";
+			return "standart/civilized/usual_friendly";
 		}
-		return "essos/tyrosh/warrior/hostile";
+		return "standart/civilized/usual_hostile";
 	}
 
 	@Override

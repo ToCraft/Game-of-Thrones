@@ -8,7 +8,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class GOTEntitySummerBartender extends GOTEntitySummerMan implements GOTTradeable.Bartender {
+public class GOTEntitySummerBartender extends GOTEntitySummerMan implements GOTTradeable {
 	public GOTEntitySummerBartender(World world) {
 		super(world);
 		canBeMarried = false;
@@ -43,14 +43,6 @@ public class GOTEntitySummerBartender extends GOTEntitySummerMan implements GOTT
 	@Override
 	public GOTTradeEntries getSellPool() {
 		return GOTTradeEntries.COMMON_BARTENDER_SELL;
-	}
-
-	@Override
-	public String getSpeechBank(EntityPlayer entityplayer) {
-		if (isFriendly(entityplayer)) {
-			return "sothoryos/summer/bartender/friendly";
-		}
-		return "sothoryos/summer/bartender/hostile";
 	}
 
 	@Override

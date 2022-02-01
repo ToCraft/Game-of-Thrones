@@ -96,7 +96,7 @@ public class GOTAchievement {
 	public static GOTAchievement KILL_VICTARION_GREYJOY;
 	public static GOTAchievement KILL_WEREWOLF;
 	public static GOTAchievement KILL_WHITE_WALKER;
-	public static GOTAchievement KILL_WHORE;
+	public static GOTAchievement KILL_PROSTITUTRE;
 	public static GOTAchievement KILL_WIGHT;
 	public static GOTAchievement KILL_WIGHT_GIANT;
 	public static GOTAchievement KILL_WITCHER;
@@ -293,6 +293,7 @@ public class GOTAchievement {
 	public static GOTAchievement KILL_ARDRIAN_CELTIGAR;
 	public static GOTAchievement KILL_KRAZNYS_MO_NAKLOZ;
 	public static GOTAchievement WEAR_FULL_JOGOS;
+	public static GOTAchievement HIRE_GOLDEN_COMPANY;
 	public Category category;
 	public int ID;
 	public ItemStack icon;
@@ -518,6 +519,7 @@ public class GOTAchievement {
 		GET_COPPER = new GOTAchievement(Category.GENERAL, id++, GOTRegistry.copperIngot, "GET_COPPER");
 		GET_POUCH = new GOTAchievement(Category.GENERAL, id++, GOTRegistry.pouch, "GET_POUCH");
 		HUNDREDS = new GOTAchievement(Category.GENERAL, id++, GOTRegistry.gregorCleganeSword, "HUNDREDS");
+		HIRE_GOLDEN_COMPANY = new GOTAchievement(Category.GENERAL, id++, GOTRegistry.goldHelmet, "HIRE_GOLDEN_COMPANY");
 		KILLER = new GOTAchievement(Category.KILL, id++, Items.iron_axe, "KILLER");
 		KILL_ALLISER_THORNE = new GOTAchievement(Category.LEGENDARY, id++, GOTRegistry.westerosSword, "KILL_ALLISER_THORNE").createTitle();
 		KILL_ASSHAI_ARCHMAG = new GOTAchievement(Category.LEGENDARY, id++, GOTRegistry.archmagStaff, "KILL_ASSHAI_ARCHMAG").createTitle();
@@ -571,7 +573,7 @@ public class GOTAchievement {
 		KILL_VICTARION_GREYJOY = new GOTAchievement(Category.LEGENDARY, id++, GOTRegistry.victarionAxe, "KILL_VICTARION_GREYJOY");
 		KILL_WEREWOLF = new GOTAchievement(Category.KILL, id++, GOTRegistry.mossovySword, "KILL_WEREWOLF");
 		KILL_WHITE_WALKER = new GOTAchievement(Category.KILL, id++, GOTRegistry.valyrianSword, "KILL_WHITE_WALKER");
-		KILL_WHORE = new GOTAchievement(Category.KILL, id++, GOTRegistry.ironCrossbow, "KILL_WHORE");
+		KILL_PROSTITUTRE = new GOTAchievement(Category.KILL, id++, GOTRegistry.ironCrossbow, "KILL_PROSTITUTRE");
 		KILL_WIGHT = new GOTAchievement(Category.KILL, id++, GOTRegistry.bericSword, "KILL_WIGHT");
 		KILL_WIGHT_GIANT = new GOTAchievement(Category.KILL, id++, GOTRegistry.bericSword, "KILL_WIGHT_GIANT");
 		KILL_WITCHER = new GOTAchievement(Category.KILL, id++, GOTRegistry.mossovySword, "KILL_WITCHER");

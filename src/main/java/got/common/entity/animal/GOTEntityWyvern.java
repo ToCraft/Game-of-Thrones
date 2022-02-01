@@ -26,6 +26,7 @@ public class GOTEntityWyvern extends GOTEntityNPC implements GOTBiome.ImmuneToHe
 		tasks.addTask(3, new EntityAIWatchClosest2(this, EntityPlayer.class, 8.0f, 0.02f));
 		tasks.addTask(4, new EntityAIWatchClosest2(this, GOTEntityNPC.class, 5.0f, 0.02f));
 		spawnsInDarkness = true;
+		isNotHuman = true;
 	}
 
 	@Override
@@ -53,7 +54,6 @@ public class GOTEntityWyvern extends GOTEntityNPC implements GOTBiome.ImmuneToHe
 
 	@Override
 	public void dropFewItems(boolean flag, int i) {
-		super.dropFewItems(flag, i);
 		int count = rand.nextInt(3) + rand.nextInt(i + 1);
 		block7: for (int j = 0; j < count; ++j) {
 			int drop = rand.nextInt(5);
@@ -95,13 +95,10 @@ public class GOTEntityWyvern extends GOTEntityNPC implements GOTBiome.ImmuneToHe
 	@Override
 	public boolean getCanSpawnHere() {
 		if (super.getCanSpawnHere()) {
-			if (liftSpawnRestrictions) {
-				return true;
-			}
 			int i = MathHelper.floor_double(posX);
 			int j = MathHelper.floor_double(boundingBox.minY);
 			int k = MathHelper.floor_double(posZ);
-			if (j > 62 && worldObj.getBlock(i, j - 1, k) == worldObj.getBiomeGenForCoords(i, k).topBlock) {
+			if (j > 62 && j < 140 && worldObj.getBlock(i, j - 1, k) == worldObj.getBiomeGenForCoords(i, k).topBlock) {
 				return true;
 			}
 		}

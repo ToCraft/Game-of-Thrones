@@ -27,6 +27,7 @@ import got.common.entity.essos.asshai.GOTEntityAsshaiMan;
 import got.common.entity.essos.legendary.warrior.GOTEntityAsshaiArchmag;
 import got.common.entity.other.*;
 import got.common.entity.sothoryos.sothoryos.GOTEntitySothoryosMan;
+import got.common.entity.westeros.GOTEntityProstitute;
 import got.common.entity.westeros.reach.GOTEntityReachSoldier;
 import got.common.faction.*;
 import got.common.item.*;
@@ -120,7 +121,7 @@ public class GOTEventHandler implements IFuelHandler {
 		if (item == Item.getItemFromBlock(GOTRegistry.blockMetal1) && itemstack.getItemDamage() == 10) {
 			return 6000;
 		}
-		if (item == Items.reeds || item == Item.getItemFromBlock(GOTRegistry.reeds) || item == Item.getItemFromBlock(GOTRegistry.driedReeds) || item == Item.getItemFromBlock(GOTRegistry.cornStalk)) {
+		if (item == Items.reeds || item == Item.getItemFromBlock(GOTRegistry.reeds) || item == Item.getItemFromBlock(GOTRegistry.kelp) || item == Item.getItemFromBlock(GOTRegistry.driedReeds) || item == Item.getItemFromBlock(GOTRegistry.cornStalk)) {
 			return 100;
 		}
 		return 0;
@@ -560,7 +561,11 @@ public class GOTEventHandler implements IFuelHandler {
 		if (entity instanceof GOTEntityNPC) {
 			GOTEntityNPC npc = (GOTEntityNPC) entity;
 			if (npc.hiredNPCInfo.getHiringPlayer() == entityplayer) {
-				entityplayer.openGui(GOT.instance, 21, world, entity.getEntityId(), 0, 0);
+				if (entity instanceof GOTEntityProstitute) {
+					entityplayer.openGui(GOT.instance, 1, world, entity.getEntityId(), 0, 0);
+				} else {
+					entityplayer.openGui(GOT.instance, 21, world, entity.getEntityId(), 0, 0);
+				}
 				event.setCanceled(true);
 				return;
 			}
@@ -632,7 +637,7 @@ public class GOTEventHandler implements IFuelHandler {
 			} else if (exploder instanceof EntityTNTPrimed) {
 				protectFilter = GOTBannerProtection.forTNT((EntityTNTPrimed) exploder);
 			} else if (exploder instanceof EntityMinecartTNT) {
-				protectFilter = GOTBannerProtection.forTNTMinecart((EntityMinecartTNT) exploder);
+				protectFilter = GOTBannerProtection.forTNTMinecart();
 			}
 			if (protectFilter != null) {
 				List<ChunkPosition> blockList = expl.affectedBlockPositions;
@@ -954,7 +959,7 @@ public class GOTEventHandler implements IFuelHandler {
 			int j = MathHelper.floor_double(entity.boundingBox.minY);
 			int k2 = MathHelper.floor_double(entity.posZ);
 			BiomeGenBase biomeGenBase = world.getBiomeGenForCoords(i, k2);
-			if (biomeGenBase instanceof GOTBiome && shouldApplyWinterOverlay(world, (GOTBiome) biomeGenBase, entity) && (world.canBlockSeeTheSky(i, j, k2) || entity.isInWater()) && world.getSavedLightValue(EnumSkyBlock.Block, i, j, k2) < 10) {
+			if (biomeGenBase instanceof GOTBiome && shouldApplyWinterOverlay(world, biomeGenBase, entity) && (world.canBlockSeeTheSky(i, j, k2) || entity.isInWater()) && world.getSavedLightValue(EnumSkyBlock.Block, i, j, k2) < 10) {
 				event.amount *= 0.3f;
 			}
 		}
@@ -1071,7 +1076,7 @@ public class GOTEventHandler implements IFuelHandler {
 				j = MathHelper.floor_double(entity.boundingBox.minY);
 				k2 = MathHelper.floor_double(entity.posZ);
 				BiomeGenBase biome = world.getBiomeGenForCoords(i, k2);
-				if ((biome.temperature == 0.0F) && (world.canBlockSeeTheSky(i, j, k2) || entity.isInWater()) && world.getSavedLightValue(EnumSkyBlock.Block, i, j, k2) < 10) {
+				if ((biome.temperature == 0.0F || biome instanceof GOTBiome && ((GOTBiome)biome).isAltitudeZone && j >= 140) && (world.canBlockSeeTheSky(i, j, k2) || entity.isInWater()) && world.getSavedLightValue(EnumSkyBlock.Block, i, j, k2) < 10) {
 					int frostProtection = 50;
 					for (int l1 = 1; l1 < 4; ++l1) {
 						ItemStack armor = entity.getEquipmentInSlot(l1);

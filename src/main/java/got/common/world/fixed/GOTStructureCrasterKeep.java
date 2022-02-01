@@ -6,7 +6,7 @@ import com.google.common.math.IntMath;
 
 import got.common.database.*;
 import got.common.entity.other.GOTEntityNPCRespawner;
-import got.common.entity.westeros.GOTEntityCrasterWife;
+import got.common.entity.westeros.legendary.GOTEntityCrasterWife;
 import got.common.entity.westeros.legendary.trader.GOTEntityCraster;
 import got.common.world.biome.GOTBiome;
 import got.common.world.map.GOTBezierType;
@@ -565,9 +565,7 @@ public class GOTStructureCrasterKeep extends GOTVillageGen {
 			for (i12 = -4; i12 <= 3; ++i12) {
 				for (k14 = -7; k14 <= 5; ++k14) {
 					boolean beam = false;
-					if (k14 == -7 && (i12 == -4 || i12 == -2 || i12 == 1 || i12 == 3)) {
-						beam = true;
-					} else if (Math.abs(k14) == 5 && (i12 == -4 || i12 == 3)) {
+					if ((k14 == -7 && (i12 == -4 || i12 == -2 || i12 == 1 || i12 == 3)) || (Math.abs(k14) == 5 && (i12 == -4 || i12 == 3))) {
 						beam = true;
 					}
 					if (beam) {

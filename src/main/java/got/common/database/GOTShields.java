@@ -9,7 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.*;
 
 public enum GOTShields {
-	NORTH(GOTFaction.NORTH), NORTHGUARD(GOTFaction.NORTH), RIVERLANDS(GOTFaction.RIVERLANDS), ARRYN(GOTFaction.ARRYN), ARRYNGUARD(GOTFaction.ARRYN), HILLMEN(GOTFaction.HILL_TRIBES), IRONBORN(GOTFaction.IRONBORN), WESTERLANDS(GOTFaction.WESTERLANDS), DRAGONSTONE(GOTFaction.DRAGONSTONE), CROWNLANDS(GOTFaction.CROWNLANDS), STORMLANDS(GOTFaction.STORMLANDS), REACH(GOTFaction.REACH), REACHGUARD(GOTFaction.REACH), DORNE(GOTFaction.DORNE), VOLANTIS(GOTFaction.VOLANTIS), PENTOS(GOTFaction.PENTOS), NORVOS(GOTFaction.NORVOS), BRAAVOS(GOTFaction.BRAAVOS), TYROSH(GOTFaction.TYROSH), LORATH(GOTFaction.LORATH), QOHOR(GOTFaction.QOHOR), LYS(GOTFaction.LYS), MYR(GOTFaction.MYR), QARTH(GOTFaction.QARTH), GHISCAR(GOTFaction.GHISCAR), UNSULLIED(GOTFaction.GHISCAR), YITI(GOTFaction.YI_TI), YITI_SAMURAI(GOTFaction.YI_TI), YITI_FRONTIER(GOTFaction.YI_TI), SUMMER(GOTFaction.SUMMER_ISLANDS), SOTHORYOS(GOTFaction.SOTHORYOS), TARGARYEN(false, GOT.DEVELOPERS), ALCOHOLIC, ACHIEVEMENT_BRONZE, ACHIEVEMENT_SILVER, ACHIEVEMENT_GOLD, ACHIEVEMENT_VALYRIAN;
+	NORTH(GOTFaction.NORTH), NORTHGUARD(GOTFaction.NORTH), RIVERLANDS(GOTFaction.RIVERLANDS), ARRYN(GOTFaction.ARRYN), ARRYNGUARD(GOTFaction.ARRYN), HILLMEN(GOTFaction.HILL_TRIBES), IRONBORN(GOTFaction.IRONBORN), WESTERLANDS(GOTFaction.WESTERLANDS), WESTERLANDSGUARD(GOTFaction.WESTERLANDS), DRAGONSTONE(GOTFaction.DRAGONSTONE), CROWNLANDS(GOTFaction.CROWNLANDS), STORMLANDS(GOTFaction.STORMLANDS), REACH(GOTFaction.REACH), REACHGUARD(GOTFaction.REACH), DORNE(GOTFaction.DORNE), VOLANTIS(GOTFaction.VOLANTIS), PENTOS(GOTFaction.PENTOS), NORVOS(GOTFaction.NORVOS), BRAAVOS(GOTFaction.BRAAVOS), TYROSH(GOTFaction.TYROSH), LORATH(GOTFaction.LORATH), QOHOR(GOTFaction.QOHOR), LYS(GOTFaction.LYS), MYR(GOTFaction.MYR), QARTH(GOTFaction.QARTH), GHISCAR(GOTFaction.GHISCAR), UNSULLIED(GOTFaction.GHISCAR), YITI(GOTFaction.YI_TI), YITI_FRONTIER(GOTFaction.YI_TI), YITI_SAMURAI(GOTFaction.YI_TI), ASSHAI(GOTFaction.ASSHAI), SUMMER(GOTFaction.SUMMER_ISLANDS), SOTHORYOS(GOTFaction.SOTHORYOS), GOLDENCOMPANY, ALCOHOLIC, ACHIEVEMENT_BRONZE, ACHIEVEMENT_SILVER, ACHIEVEMENT_GOLD, ACHIEVEMENT_VALYRIAN, TARGARYEN(false, GOT.DEVS);
 
 	public ShieldType shieldType;
 	public int shieldID;
@@ -35,7 +35,7 @@ public enum GOTShields {
 		shieldType = type;
 		shieldID = shieldType.list.size();
 		shieldType.list.add(this);
-		shieldTexture = new ResourceLocation("got:shield/" + name().toLowerCase() + ".png");
+		shieldTexture = new ResourceLocation("got:textures/shield/" + name().toLowerCase() + ".png");
 		exclusiveUUIDs = new UUID[players.length];
 		for (int i = 0; i < players.length; ++i) {
 			String s = players[i];
@@ -70,6 +70,9 @@ public enum GOTShields {
 		}
 		if (this == ALCOHOLIC) {
 			return GOTLevelData.getData(entityplayer).hasAchievement(GOTAchievement.GAIN_HIGH_ALCOHOL_TOLERANCE);
+		}
+		if (this == GOLDENCOMPANY) {
+			return GOTLevelData.getData(entityplayer).hasAchievement(GOTAchievement.HIRE_GOLDEN_COMPANY);
 		}
 		if (shieldType == ShieldType.EXCLUSIVE) {
 			for (UUID uuid : exclusiveUUIDs) {

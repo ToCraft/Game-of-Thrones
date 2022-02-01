@@ -16,6 +16,7 @@ public class GOTEntityArrynCaptain extends GOTEntityArrynSoldier implements GOTU
 		canBeMarried = false;
 		addTargetTasks(false);
 		npcCape = GOTCapes.ARRYN;
+		spawnRidingHorse = false;
 	}
 
 	@Override
@@ -43,11 +44,11 @@ public class GOTEntityArrynCaptain extends GOTEntityArrynSoldier implements GOTU
 	public String getSpeechBank(EntityPlayer entityplayer) {
 		if (isFriendly(entityplayer)) {
 			if (canTradeWith(entityplayer)) {
-				return "westeros/arryn/captain/friendly";
+				return "standart/civilized/usual_friendly";
 			}
-			return "westeros/arryn/captain/neutral";
+			return "standart/civilized/usual_neutral";
 		}
-		return "westeros/arryn/soldier/hostile";
+		return "standart/civilized/usual_hostile";
 	}
 
 	@Override

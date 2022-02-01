@@ -18,14 +18,14 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public class GOTStructureCrownlandsCity extends GOTVillageGen {
-	private boolean isTown;
-	private boolean isCastle;
-	private boolean isCapital;
+	public boolean isTown;
+	public boolean isCastle;
+	public boolean isCapital;
 
 	public GOTStructureCrownlandsCity(GOTBiome biome, float f) {
 		super(biome);
-		gridScale = 16;
-		gridRandomDisplace = 2;
+		gridScale = 12;
+		gridRandomDisplace = 1;
 		spawnChance = f;
 		villageChunkRadius = 6;
 	}
@@ -58,17 +58,7 @@ public class GOTStructureCrownlandsCity extends GOTVillageGen {
 		}
 
 		@Override
-		public void addStructure(GOTStructureBase structure, int x, int z, int r, boolean force) {
-			super.addStructure(structure, x, z, r, force);
-		}
-
-		@Override
 		public void addVillageStructures(Random random) {
-			if (isTown || isCapital) {
-				villageType = VillageType.TOWN;
-			} else if (isCastle) {
-				villageType = VillageType.FORT;
-			}
 			switch (villageType) {
 			case TOWN:
 				setupTown(random);
@@ -215,7 +205,7 @@ public class GOTStructureCrownlandsCity extends GOTVillageGen {
 			int wallX;
 			boolean outerTavern = random.nextBoolean();
 			if (isCapital) {
-				this.addStructure(new GOTSpawner.KingsLanding(false), 0, 0, 0);
+				this.addStructure(new GOTFixer.KingsLanding(), 0, 0, 0);
 				this.addStructure(new GOTStructureNPCRespawner(false) {
 
 					@Override
@@ -563,8 +553,13 @@ public class GOTStructureCrownlandsCity extends GOTVillageGen {
 
 		@Override
 		public void setupVillageProperties(Random random) {
-
-			villageType = VillageType.VILLAGE;
+			if (isTown || isCapital) {
+				villageType = VillageType.TOWN;
+			} else if (isCastle || random.nextInt(4) == 0) {
+				villageType = VillageType.FORT;
+			} else {
+				villageType = VillageType.VILLAGE;
+			}
 		}
 
 	}

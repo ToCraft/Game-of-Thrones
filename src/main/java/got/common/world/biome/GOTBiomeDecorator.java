@@ -7,9 +7,9 @@ import got.common.database.GOTRegistry;
 import got.common.world.*;
 import got.common.world.biome.variant.GOTBiomeVariant;
 import got.common.world.feature.*;
-import got.common.world.fixed.*;
+import got.common.world.fixed.GOTFixer;
 import got.common.world.map.*;
-import got.common.world.structure.other.*;
+import got.common.world.structure.other.GOTVillageGen;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
@@ -18,7 +18,6 @@ import net.minecraft.world.gen.feature.*;
 public class GOTBiomeDecorator {
 	public World worldObj;
 	public Random rand;
-	public Random structureRand = new Random();
 	public int chunkX;
 	public int chunkZ;
 	public GOTBiome biome;
@@ -37,28 +36,35 @@ public class GOTBiomeDecorator {
 	public WorldGenerator caneGen = new WorldGenReed();
 	public WorldGenerator reedGen = new GOTWorldGenReeds(GOTRegistry.reeds);
 	public WorldGenerator dryReedGen = new GOTWorldGenReeds(GOTRegistry.driedReeds);
+	public WorldGenerator cornGen = new GOTWorldGenCorn();
 	public WorldGenerator waterlilyGen = new WorldGenWaterlily();
 	public WorldGenerator stalactiteGen = new GOTWorldGenStalactites();
 	public WorldGenerator cactusGen = new WorldGenCactus();
-	public int clayPerChunk = 3;
 	public int sandPerChunk = 4;
-	public int quagmirePerChunk = 0;
-	public int treesPerChunk = 0;
-	public int logsPerChunk = 0;
+	public int clayPerChunk = 3;
+	public int quagmirePerChunk;
+	public int treesPerChunk;
+	public int logsPerChunk;
 	public int flowersPerChunk = 2;
-	public int doubleFlowersPerChunk = 0;
+	public int doubleFlowersPerChunk;
 	public int grassPerChunk = 1;
-	public int doubleGrassPerChunk = 0;
-	public int waterlilyPerChunk = 0;
-	public int canePerChunk = 0;
+	public int doubleGrassPerChunk;
+	public boolean enableFern;
+	public boolean enableSpecialGrasses = true;
+	public int deadBushPerChunk;
+	public int waterlilyPerChunk;
+	public int canePerChunk;
 	public int reedPerChunk = 1;
 	public float dryReedChance = 0.1f;
-	public int cactiPerChunk = 0;
-	public boolean generatePipeweed = false;
-	public boolean whiteSand = false;
+	public int cornPerChunk;
+	public int cactiPerChunk;
+	public boolean generatePipeweed;
+	public boolean whiteSand;
 	public List<GOTTreeType.WeightedTreeType> treeTypes = new ArrayList<>();
+	public Random structureRand = new Random();
 	public List<RandomStructure> randomStructures = new ArrayList<>();
 	public List<GOTVillageGen> villages = new ArrayList<>();
+	public List<GOTVillageGen> fixedVillages = new ArrayList<>();
 
 	public GOTBiomeDecorator(GOTBiome gotbiome) {
 		biome = gotbiome;
@@ -94,6 +100,11 @@ public class GOTBiomeDecorator {
 		addGem(new WorldGenMinable(GOTRegistry.oreGem, 5, 4, Blocks.stone), 0.5f, 0, 16);
 	}
 
+	public void addFixedVillage(GOTVillageGen village) {
+		villages.add(village);
+		fixedVillages.add(village);
+	}
+
 	public void addGem(WorldGenerator gen, float f, int min, int max) {
 		biomeGems.add(new OreGenerant(gen, f, min, max));
 	}
@@ -110,27 +121,16 @@ public class GOTBiomeDecorator {
 		biomeSoils.add(new OreGenerant(gen, f, min, max));
 	}
 
-	public void addSpecialStructures(World world, Random random, int i, int k) {
-		new GOTStructureFiveFortsWall(false, GOTWaypoint.FiveForts1).generate(world, random, i, 0, k, 0);
-		new GOTStructureFiveFortsWall(false, GOTWaypoint.FiveForts2).generate(world, random, i, 0, k, 0);
-		new GOTStructureFiveFortsWall(false, GOTWaypoint.FiveForts3).generate(world, random, i, 0, k, 0);
-		new GOTStructureFiveFortsWall(false, GOTWaypoint.FiveForts4).generate(world, random, i, 0, k, 0);
-		new GOTStructureFiveFortsWall(false, GOTWaypoint.FiveForts5).generate(world, random, i, 0, k, 0);
-		if (GOTFixedStructures.fixedAtMapImageCoords(i, k, GOTWaypoint.WhiteWood) || (GOTFixedStructures.fixedAtMapImageCoords(i, k, GOTWaypoint.Winterfell))) {
-			((GOTWorldGenPartyTrees) GOTTreeType.WEIRWOOD.create(false, random)).disableRestrictions().generate(world, random, i + 50, world.getTopSolidOrLiquidBlock(i + 50, k), k);
-		}
-	}
-
 	public void addTree(GOTTreeType type, int weight) {
 		treeTypes.add(new GOTTreeType.WeightedTreeType(type, weight));
 	}
 
-	public void affix(GOTVillageGen village) {
+	public void addVillage(GOTVillageGen village) {
 		villages.add(village);
 	}
 
 	public boolean anyFixedVillagesAt(World world, int i, int k) {
-		for (GOTVillageGen village : villages) {
+		for (GOTVillageGen village : fixedVillages) {
 			if (!village.anyFixedVillagesAt(world, i, k)) {
 				continue;
 			}
@@ -143,10 +143,9 @@ public class GOTBiomeDecorator {
 		chunkFlags.isVillage = false;
 		for (GOTVillageGen village : villages) {
 			List<GOTVillageGen.AbstractInstance<?>> instances = village.getNearbyVillagesAtPosition(world, i, k);
-			if (instances.isEmpty()) {
-				continue;
+			if (!instances.isEmpty()) {
+				chunkFlags.isVillage = true;
 			}
-			chunkFlags.isVillage = true;
 		}
 	}
 
@@ -166,6 +165,7 @@ public class GOTBiomeDecorator {
 
 	public void clearVillages() {
 		villages.clear();
+		villages.addAll(fixedVillages);
 	}
 
 	public void decorate() {
@@ -230,15 +230,14 @@ public class GOTBiomeDecorator {
 			structureRand.setSeed(seed);
 			boolean roadNear = GOTRoads.isRoadNear(chunkX + 8, chunkZ + 8, 16) >= 0.0f;
 			boolean wallNear = GOTWalls.isWallNear(chunkX + 8, chunkZ + 8, 16) >= 0.0f;
-			if (!roadNear || !wallNear) {
+			if ((!roadNear && !wallNear && !anyFixedVillagesAt(worldObj, chunkX, chunkZ))) {
 				for (RandomStructure randomstructure : randomStructures) {
-					if (structureRand.nextInt(randomstructure.chunkChance) != 0) {
-						continue;
+					if (structureRand.nextInt(randomstructure.chunkChance) == 0) {
+						int i6 = chunkX + rand.nextInt(16) + 8;
+						k2 = chunkZ + rand.nextInt(16) + 8;
+						j5 = worldObj.getTopSolidOrLiquidBlock(i6, k2);
+						randomstructure.structureGen.generate(worldObj, rand, i6, j5, k2);
 					}
-					int i6 = chunkX + rand.nextInt(16) + 8;
-					k2 = chunkZ + rand.nextInt(16) + 8;
-					j5 = worldObj.getTopSolidOrLiquidBlock(i6, k2);
-					randomstructure.structureGen.generate(worldObj, rand, i6, j5, k2);
 				}
 			}
 			for (GOTVillageGen village : villages) {
@@ -257,11 +256,6 @@ public class GOTBiomeDecorator {
 		}
 		if (trees > 0) {
 			float fallenLeaves = trees / 2.0f;
-			int fallenLeavesI = (int) fallenLeaves;
-			float fallenLeavesR = fallenLeaves - fallenLeavesI;
-			if (rand.nextFloat() < fallenLeavesR) {
-				++fallenLeavesI;
-			}
 			l3 = 0;
 			while (l3 < fallenLeaves) {
 				i5 = chunkX + rand.nextInt(16) + 8;
@@ -269,14 +263,7 @@ public class GOTBiomeDecorator {
 				new GOTWorldGenFallenLeaves().generate(worldObj, rand, i5, worldObj.getTopSolidOrLiquidBlock(i5, k4), k4);
 				++l3;
 			}
-		}
-		if (trees > 0) {
 			float bushes = trees / 3.0f;
-			int bushesI = (int) bushes;
-			float bushesR = bushes - bushesI;
-			if (rand.nextFloat() < bushesR) {
-				++bushesI;
-			}
 			l3 = 0;
 			while (l3 < bushes) {
 				i5 = chunkX + rand.nextInt(16) + 8;
@@ -322,15 +309,20 @@ public class GOTBiomeDecorator {
 			i2 = chunkX + rand.nextInt(16) + 8;
 			int j9 = rand.nextInt(128);
 			int k12 = chunkZ + rand.nextInt(16) + 8;
-			WorldGenerator grassGen = biome.getRandomWorldGenForDoubleGrass(rand);
+			WorldGenerator grassGen = biome.getRandomWorldGenForDoubleGrass();
 			grassGen.generate(worldObj, rand, i2, j9, k12);
+		}
+		for (l7 = 0; l7 < deadBushPerChunk; ++l7) {
+			i2 = chunkX + rand.nextInt(16) + 8;
+			int j10 = rand.nextInt(128);
+			int k13 = chunkZ + rand.nextInt(16) + 8;
+			new WorldGenDeadBush(Blocks.deadbush).generate(worldObj, rand, i2, j10, k13);
 		}
 		for (l7 = 0; l7 < waterlilyPerChunk; ++l7) {
 			int j11;
 			i2 = chunkX + rand.nextInt(16) + 8;
 			int k14 = chunkZ + rand.nextInt(16) + 8;
-			for (j11 = rand.nextInt(128); j11 > 0 && worldObj.getBlock(i2, j11 - 1, k14) == Blocks.air; --j11) {
-			}
+			j11 = rand.nextInt(128);
 			waterlilyGen.generate(worldObj, rand, i2, j11, k14);
 		}
 		for (l7 = 0; l7 < canePerChunk; ++l7) {
@@ -349,13 +341,18 @@ public class GOTBiomeDecorator {
 			int j13;
 			i2 = chunkX + rand.nextInt(16) + 8;
 			k5 = chunkZ + rand.nextInt(16) + 8;
-			for (j13 = rand.nextInt(128); j13 > 0 && worldObj.getBlock(i2, j13 - 1, k5) == Blocks.air; --j13) {
-			}
+			j13 = rand.nextInt(128);
 			if (rand.nextFloat() < dryReedChance) {
 				dryReedGen.generate(worldObj, rand, i2, j13, k5);
 				continue;
 			}
 			reedGen.generate(worldObj, rand, i2, j13, k5);
+		}
+		for (l7 = 0; l7 < cornPerChunk; ++l7) {
+			i2 = chunkX + rand.nextInt(16) + 8;
+			j2 = rand.nextInt(128);
+			int k19 = chunkZ + rand.nextInt(16) + 8;
+			cornGen.generate(worldObj, rand, i2, j2, k19);
 		}
 		for (l7 = 0; l7 < cactiPerChunk; ++l7) {
 			i2 = chunkX + rand.nextInt(16) + 8;
@@ -392,10 +389,11 @@ public class GOTBiomeDecorator {
 		chunkZ = k;
 		this.decorate();
 		if (!GOTConfig.clearMap) {
-			addSpecialStructures(world, random, i, k);
-			GOTStructureBase structure = getFixedStructure(world, random, i, k);
-			if (structure != null) {
-				structure.generate(world, random, i, world.getTopSolidOrLiquidBlock(i, k), k, 0);
+			GOTFixer.addSpecialLocations(world, random, i, k);
+			for (GOTWaypoint wp : GOTFixer.structures.keySet()) {
+				if (GOTFixedStructures.fixedAt(i, k, wp)) {
+					GOTFixer.structures.get(wp).generate(world, random, i, world.getTopSolidOrLiquidBlock(i, k), k, 0);
+				}
 			}
 		}
 	}
@@ -417,7 +415,7 @@ public class GOTBiomeDecorator {
 
 	public void genStandardOre(float ores, WorldGenerator oreGen, int minHeight, int maxHeight) {
 		while (ores > 0.0f) {
-			boolean generate = ores >= 1.0f ? true : rand.nextFloat() < ores;
+			boolean generate = ores >= 1.0f || rand.nextFloat() < ores;
 			ores -= 1.0f;
 			if (!generate) {
 				continue;
@@ -430,303 +428,8 @@ public class GOTBiomeDecorator {
 	}
 
 	public void genTree(World world, Random random, int i, int j, int k) {
-		WorldGenAbstractTree treeGen = biome.getTreeGen(world, random, i, j, k);
+		WorldGenAbstractTree treeGen = biome.getTreeGen(world, random, i, j);
 		treeGen.generate(world, random, i, j, k);
-	}
-
-	public GOTStructureBase getFixedStructure(World world, Random random, int i, int k) {
-		if (GOTSpawner.AddamMarbrand.fixedAt(world, i, k)) {
-			return new GOTSpawner.AddamMarbrand(false);
-		}
-		if (GOTSpawner.AeronGreyjoy.fixedAt(world, i, k)) {
-			return new GOTSpawner.AeronGreyjoy(false);
-		}
-		if (GOTSpawner.AndersYronwood.fixedAt(world, i, k)) {
-			return new GOTSpawner.AndersYronwood(false);
-		}
-		if (GOTSpawner.AndrikTheUnsmilling.fixedAt(world, i, k)) {
-			return new GOTSpawner.AndrikTheUnsmilling(false);
-		}
-		if (GOTSpawner.AnyaWaynwood.fixedAt(world, i, k)) {
-			return new GOTSpawner.AnyaWaynwood(false);
-		}
-		if (GOTSpawner.ArdrianCeltigar.fixedAt(world, i, k)) {
-			return new GOTSpawner.ArdrianCeltigar(false);
-		}
-		if (GOTSpawner.Asshai.fixedAt(world, i, k)) {
-			return new GOTSpawner.Asshai(false);
-		}
-		if (GOTSpawner.Astapor.fixedAt(world, i, k)) {
-			return new GOTSpawner.Astapor(false);
-		}
-		if (GOTSpawner.BaelorBlacktyde.fixedAt(world, i, k)) {
-			return new GOTSpawner.BaelorBlacktyde(false);
-		}
-		if (GOTSpawner.BarbreyDustin.fixedAt(world, i, k)) {
-			return new GOTSpawner.BarbreyDustin(false);
-		}
-		if (GOTSpawner.BenedarBelmore.fixedAt(world, i, k)) {
-			return new GOTSpawner.BenedarBelmore(false);
-		}
-		if (GOTSpawner.BenjenStark.fixedAt(world, i, k)) {
-			return new GOTSpawner.BenjenStark(false);
-		}
-		if (GOTSpawner.BericDayne.fixedAt(world, i, k)) {
-			return new GOTSpawner.BericDayne(false);
-		}
-		if (GOTSpawner.BericDondarrion.fixedAt(world, i, k)) {
-			return new GOTSpawner.BericDondarrion(false);
-		}
-		if (GOTSpawner.BuGai.fixedAt(world, i, k)) {
-			return new GOTSpawner.BuGai(false);
-		}
-		if (GOTSpawner.CasterlyRock.fixedAt(world, i, k)) {
-			return new GOTSpawner.CasterlyRock(false);
-		}
-		if (GOTSpawner.ClementPiper.fixedAt(world, i, k)) {
-			return new GOTSpawner.ClementPiper(false);
-		}
-		if (GOTSpawner.CleyCerwyn.fixedAt(world, i, k)) {
-			return new GOTSpawner.CleyCerwyn(false);
-		}
-		if (GOTSpawner.DaenerysTargaryen.fixedAt(world, i, k)) {
-			return new GOTSpawner.DaenerysTargaryen(false);
-		}
-		if (GOTSpawner.Dagmer.fixedAt(world, i, k)) {
-			return new GOTSpawner.Dagmer(false);
-		}
-		if (GOTSpawner.Dragonstone.fixedAt(world, i, k)) {
-			return new GOTSpawner.Dragonstone(false);
-		}
-		if (GOTSpawner.Dreadfort.fixedAt(world, i, k)) {
-			return new GOTSpawner.Dreadfort(false);
-		}
-		if (GOTSpawner.Driftmark.fixedAt(world, i, k)) {
-			return new GOTSpawner.Driftmark(false);
-		}
-		if (GOTSpawner.DunstanDrumm.fixedAt(world, i, k)) {
-			return new GOTSpawner.DunstanDrumm(false);
-		}
-		if (GOTSpawner.Ebrose.fixedAt(world, i, k)) {
-			return new GOTSpawner.Ebrose(false);
-		}
-		if (GOTSpawner.EldonEstermont.fixedAt(world, i, k)) {
-			return new GOTSpawner.EldonEstermont(false);
-		}
-		if (GOTSpawner.ErikIronmaker.fixedAt(world, i, k)) {
-			return new GOTSpawner.ErikIronmaker(false);
-		}
-		if (GOTSpawner.ForleyPrester.fixedAt(world, i, k)) {
-			return new GOTSpawner.ForleyPrester(false);
-		}
-		if (GOTSpawner.FranklynFowler.fixedAt(world, i, k)) {
-			return new GOTSpawner.FranklynFowler(false);
-		}
-		if (GOTSpawner.GarlanTyrell.fixedAt(world, i, k)) {
-			return new GOTSpawner.GarlanTyrell(false);
-		}
-		if (GOTSpawner.GateOfTheMoon.fixedAt(world, i, k)) {
-			return new GOTSpawner.GateOfTheMoon(false);
-		}
-		if (GOTSpawner.GeroldDayne.fixedAt(world, i, k)) {
-			return new GOTSpawner.GeroldDayne(false);
-		}
-		if (GOTSpawner.GeroldGrafton.fixedAt(world, i, k)) {
-			return new GOTSpawner.GeroldGrafton(false);
-		}
-		if (GOTSpawner.GilwoodHunter.fixedAt(world, i, k)) {
-			return new GOTSpawner.GilwoodHunter(false);
-		}
-		if (GOTSpawner.GoroldGoodbrother.fixedAt(world, i, k)) {
-			return new GOTSpawner.GoroldGoodbrother(false);
-		}
-		if (GOTSpawner.GregorClegane.fixedAt(world, i, k)) {
-			return new GOTSpawner.GregorClegane(false);
-		}
-		if (GOTSpawner.GulianSwann.fixedAt(world, i, k)) {
-			return new GOTSpawner.GulianSwann(false);
-		}
-		if (GOTSpawner.GylbertFarwynd.fixedAt(world, i, k)) {
-			return new GOTSpawner.GylbertFarwynd(false);
-		}
-		if (GOTSpawner.HarmenUller.fixedAt(world, i, k)) {
-			return new GOTSpawner.HarmenUller(false);
-		}
-		if (GOTSpawner.HarrasHarlaw.fixedAt(world, i, k)) {
-			return new GOTSpawner.HarrasHarlaw(false);
-		}
-		if (GOTSpawner.HarroldHardyng.fixedAt(world, i, k)) {
-			return new GOTSpawner.HarroldHardyng(false);
-		}
-		if (GOTSpawner.HarryStrickland.fixedAt(world, i, k)) {
-			return new GOTSpawner.HarryStrickland(false);
-		}
-		if (GOTSpawner.HarysSwyft.fixedAt(world, i, k)) {
-			return new GOTSpawner.HarysSwyft(false);
-		}
-		if (GOTSpawner.HelmanTallhart.fixedAt(world, i, k)) {
-			return new GOTSpawner.HelmanTallhart(false);
-		}
-		if (GOTSpawner.Highgarden.fixedAt(world, i, k)) {
-			return new GOTSpawner.Highgarden(false);
-		}
-		if (GOTSpawner.HizdahrZoLoraq.fixedAt(world, i, k)) {
-			return new GOTSpawner.HizdahrZoLoraq(false);
-		}
-		if (GOTSpawner.HortonRedfort.fixedAt(world, i, k)) {
-			return new GOTSpawner.HortonRedfort(false);
-		}
-		if (GOTSpawner.HowlandReed.fixedAt(world, i, k)) {
-			return new GOTSpawner.HowlandReed(false);
-		}
-		if (GOTSpawner.Hummel009.fixedAt(world, i, k)) {
-			return new GOTSpawner.Hummel009(false);
-		}
-		if (GOTSpawner.IllyrioMopatis.fixedAt(world, i, k)) {
-			return new GOTSpawner.IllyrioMopatis(false);
-		}
-		if (GOTSpawner.JasonMallister.fixedAt(world, i, k)) {
-			return new GOTSpawner.JasonMallister(false);
-		}
-		if (GOTSpawner.JohnUmber.fixedAt(world, i, k)) {
-			return new GOTSpawner.JohnUmber(false);
-		}
-		if (GOTSpawner.JonConnington.fixedAt(world, i, k)) {
-			return new GOTSpawner.JonConnington(false);
-		}
-		if (GOTSpawner.JonosBracken.fixedAt(world, i, k)) {
-			return new GOTSpawner.JonosBracken(false);
-		}
-		if (GOTSpawner.Lannisport.fixedAt(world, i, k)) {
-			return new GOTSpawner.Lannisport(false);
-		}
-		if (GOTSpawner.LeoLefford.fixedAt(world, i, k)) {
-			return new GOTSpawner.LeoLefford(false);
-		}
-		if (GOTSpawner.LeytonHightower.fixedAt(world, i, k)) {
-			return new GOTSpawner.LeytonHightower(false);
-		}
-		if (GOTSpawner.LyleCrakehall.fixedAt(world, i, k)) {
-			return new GOTSpawner.LyleCrakehall(false);
-		}
-		if (GOTSpawner.LynCorbray.fixedAt(world, i, k)) {
-			return new GOTSpawner.LynCorbray(false);
-		}
-		if (GOTSpawner.MaegeMormont.fixedAt(world, i, k)) {
-			return new GOTSpawner.MaegeMormont(false);
-		}
-		if (GOTSpawner.MaronVolmark.fixedAt(world, i, k)) {
-			return new GOTSpawner.MaronVolmark(false);
-		}
-		if (GOTSpawner.MathisRowan.fixedAt(world, i, k)) {
-			return new GOTSpawner.MathisRowan(false);
-		}
-		if (GOTSpawner.Mellario.fixedAt(world, i, k)) {
-			return new GOTSpawner.Mellario(false);
-		}
-		if (GOTSpawner.Moqorro.fixedAt(world, i, k)) {
-			return new GOTSpawner.Moqorro(false);
-		}
-		if (GOTSpawner.OrtonMerryweather.fixedAt(world, i, k)) {
-			return new GOTSpawner.OrtonMerryweather(false);
-		}
-		if (GOTSpawner.PaxterRedwyne.fixedAt(world, i, k)) {
-			return new GOTSpawner.PaxterRedwyne(false);
-		}
-		if (GOTSpawner.Pyke.fixedAt(world, i, k)) {
-			return new GOTSpawner.Pyke(false);
-		}
-		if (GOTSpawner.QuennRoxton.fixedAt(world, i, k)) {
-			return new GOTSpawner.QuennRoxton(false);
-		}
-		if (GOTSpawner.QuentenBanefort.fixedAt(world, i, k)) {
-			return new GOTSpawner.QuentenBanefort(false);
-		}
-		if (GOTSpawner.QuentynMartell.fixedAt(world, i, k)) {
-			return new GOTSpawner.QuentynMartell(false);
-		}
-		if (GOTSpawner.QuentynQorgyle.fixedAt(world, i, k)) {
-			return new GOTSpawner.QuentynQorgyle(false);
-		}
-		if (GOTSpawner.RandyllTarly.fixedAt(world, i, k)) {
-			return new GOTSpawner.RandyllTarly(false);
-		}
-		if (GOTSpawner.RickardKarstark.fixedAt(world, i, k)) {
-			return new GOTSpawner.RickardKarstark(false);
-		}
-		if (GOTSpawner.Riverrun.fixedAt(world, i, k)) {
-			return new GOTSpawner.Riverrun(false);
-		}
-		if (GOTSpawner.RodrikHarlaw.fixedAt(world, i, k)) {
-			return new GOTSpawner.RodrikHarlaw(false);
-		}
-		if (GOTSpawner.RodrikRyswell.fixedAt(world, i, k)) {
-			return new GOTSpawner.RodrikRyswell(false);
-		}
-		if (GOTSpawner.SalladhorSaan.fixedAt(world, i, k)) {
-			return new GOTSpawner.SalladhorSaan(false);
-		}
-		if (GOTSpawner.SebastonFarman.fixedAt(world, i, k)) {
-			return new GOTSpawner.SebastonFarman(false);
-		}
-		if (GOTSpawner.SelwynTarth.fixedAt(world, i, k)) {
-			return new GOTSpawner.SelwynTarth(false);
-		}
-		if (GOTSpawner.StormsEnd.fixedAt(world, i, k)) {
-			return new GOTSpawner.StormsEnd(false);
-		}
-		if (GOTSpawner.Sunspear.fixedAt(world, i, k)) {
-			return new GOTSpawner.Sunspear(false);
-		}
-		if (GOTSpawner.SymondTempleton.fixedAt(world, i, k)) {
-			return new GOTSpawner.SymondTempleton(false);
-		}
-		if (GOTSpawner.ThreeEyedRaven.fixedAt(world, i, k)) {
-			return new GOTSpawner.ThreeEyedRaven(false);
-		}
-		if (GOTSpawner.TugarKhan.fixedAt(world, i, k)) {
-			return new GOTSpawner.TugarKhan(false);
-		}
-		if (GOTSpawner.TwinsLeft.fixedAt(world, i, k)) {
-			return new GOTSpawner.TwinsLeft(false);
-		}
-		if (GOTSpawner.TychoNestoris.fixedAt(world, i, k)) {
-			return new GOTSpawner.TychoNestoris(false);
-		}
-		if (GOTSpawner.TytosBlackwood.fixedAt(world, i, k)) {
-			return new GOTSpawner.TytosBlackwood(false);
-		}
-		if (GOTSpawner.TytosBrax.fixedAt(world, i, k)) {
-			return new GOTSpawner.TytosBrax(false);
-		}
-		if (GOTSpawner.WalderFrey.fixedAt(world, i, k)) {
-			return new GOTSpawner.WalderFrey(false);
-		}
-		if (GOTSpawner.WilliamMooton.fixedAt(world, i, k)) {
-			return new GOTSpawner.WilliamMooton(false);
-		}
-		if (GOTSpawner.Winterfell.fixedAt(world, i, k)) {
-			return new GOTSpawner.Winterfell(false);
-		}
-		if (GOTSpawner.WymanManderly.fixedAt(world, i, k)) {
-			return new GOTSpawner.WymanManderly(false);
-		}
-		if (GOTSpawner.XaroXhoanDaxos.fixedAt(world, i, k)) {
-			return new GOTSpawner.XaroXhoanDaxos(false);
-		}
-		if (GOTSpawner.YohnRoyce.fixedAt(world, i, k)) {
-			return new GOTSpawner.YohnRoyce(false);
-		}
-		if (GOTSpawner.YoungGriff.fixedAt(world, i, k)) {
-			return new GOTSpawner.YoungGriff(false);
-		}
-		if (GOTSpawner.Yunkai.fixedAt(world, i, k)) {
-			return new GOTSpawner.Yunkai(false);
-		}
-		if (GOTStructureEuronShip.fixedAt(world, i, k)) {
-			return new GOTStructureEuronShip(false);
-		}
-		return null;
 	}
 
 	public GOTTreeType getRandomTree(Random random) {

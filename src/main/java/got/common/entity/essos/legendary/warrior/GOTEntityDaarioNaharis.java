@@ -79,7 +79,7 @@ public class GOTEntityDaarioNaharis extends GOTEntityHumanBase implements GOTMer
 		if (isFriendly(entityplayer)) {
 			return "legendary/daario_friendly";
 		}
-		return "legendary/daario_hostile";
+		return "standart/civilized/usual_hostile";
 	}
 
 	@Override

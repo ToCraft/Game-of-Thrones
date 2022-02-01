@@ -2,21 +2,19 @@ package got.common.entity.essos.asshai;
 
 import java.util.*;
 
-import got.common.database.GOTRegistry;
 import got.common.entity.ai.GOTEntityAIAttackOnCollide;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.server.S27PacketExplosion;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
-public class GOTEntityAsshaiSpherebinder extends GOTEntityAsshaiGuard {
+public class GOTEntityAsshaiSpherebinder extends GOTEntityAsshaiWarrior {
 	public GOTEntityAsshaiSpherebinder(World world) {
 		super(world);
-		canBeMarried = false;
 		isImmuneToFire = true;
+		npcShield = null;
 	}
 
 	@Override
@@ -74,9 +72,6 @@ public class GOTEntityAsshaiSpherebinder extends GOTEntityAsshaiGuard {
 		data = super.onSpawnWithEgg(data);
 		npcItemsInv.setMeleeWeapon(null);
 		npcItemsInv.setIdleItem(null);
-		setCurrentItemOrArmor(1, new ItemStack(GOTRegistry.asshaiBoots));
-		setCurrentItemOrArmor(2, new ItemStack(GOTRegistry.asshaiLeggings));
-		setCurrentItemOrArmor(3, new ItemStack(GOTRegistry.asshaiChestplate));
 		setCurrentItemOrArmor(4, null);
 		return data;
 	}

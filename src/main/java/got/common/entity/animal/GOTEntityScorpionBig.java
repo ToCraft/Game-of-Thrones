@@ -33,6 +33,7 @@ public abstract class GOTEntityScorpionBig extends GOTEntityNPC implements GOTBi
 		tasks.addTask(3, new EntityAIWatchClosest2(this, EntityPlayer.class, 8.0f, 0.02f));
 		tasks.addTask(4, new EntityAIWatchClosest2(this, GOTEntityNPC.class, 5.0f, 0.02f));
 		spawnsInDarkness = true;
+		isNotHuman = true;
 	}
 
 	@Override
@@ -87,13 +88,10 @@ public abstract class GOTEntityScorpionBig extends GOTEntityNPC implements GOTBi
 	@Override
 	public boolean getCanSpawnHere() {
 		if (super.getCanSpawnHere()) {
-			if (liftSpawnRestrictions) {
-				return true;
-			}
 			int i = MathHelper.floor_double(posX);
 			int j = MathHelper.floor_double(boundingBox.minY);
 			int k = MathHelper.floor_double(posZ);
-			if (j > 62 && worldObj.getBlock(i, j - 1, k) == worldObj.getBiomeGenForCoords(i, k).topBlock) {
+			if (j > 62 && j < 140 && worldObj.getBlock(i, j - 1, k) == worldObj.getBiomeGenForCoords(i, k).topBlock) {
 				return true;
 			}
 		}

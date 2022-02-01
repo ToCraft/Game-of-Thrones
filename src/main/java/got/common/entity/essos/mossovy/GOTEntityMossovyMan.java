@@ -34,7 +34,6 @@ public class GOTEntityMossovyMan extends GOTEntityHumanBase implements IPickpock
 		tasks.addTask(9, new EntityAILookIdle(this));
 		addTargetTasks(true);
 		isImmuneToFrost = true;
-		spawnRidingHorse = false;
 	}
 
 	@Override
@@ -104,9 +103,9 @@ public class GOTEntityMossovyMan extends GOTEntityHumanBase implements IPickpock
 	@Override
 	public String getSpeechBank(EntityPlayer entityplayer) {
 		if (isFriendly(entityplayer)) {
-			return "essos/mossovy/man/friendly";
+			return "standart/civilized/usual_friendly";
 		}
-		return "essos/mossovy/man/hostile";
+		return "standart/civilized/usual_hostile";
 	}
 
 	@Override

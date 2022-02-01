@@ -11,7 +11,6 @@ public class GOTEntityLhazarWarrior extends GOTEntityLhazarMan {
 		super(world);
 		canBeMarried = false;
 		this.addTargetTasks(true);
-		spawnRidingHorse = rand.nextInt(10) == 0;
 	}
 
 	@Override
@@ -29,11 +28,11 @@ public class GOTEntityLhazarWarrior extends GOTEntityLhazarMan {
 	public String getSpeechBank(EntityPlayer entityplayer) {
 		if (isFriendly(entityplayer)) {
 			if (hiredNPCInfo.getHiringPlayer() == entityplayer) {
-				return "essos/lhazar/man/hired";
+				return "standart/civilized/hired_soldier";
 			}
-			return "essos/lhazar/man/friendly";
+			return "standart/civilized/usual_friendly";
 		}
-		return "essos/lhazar/man/hostile";
+		return "standart/civilized/usual_hostile";
 	}
 
 	@Override

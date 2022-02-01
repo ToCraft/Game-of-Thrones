@@ -7,7 +7,7 @@ import got.common.entity.animal.*;
 import got.common.world.biome.GOTBiome;
 import got.common.world.biome.variant.GOTBiomeVariant;
 import got.common.world.feature.GOTTreeType;
-import got.common.world.map.*;
+import got.common.world.map.GOTBezierType;
 import got.common.world.map.GOTWaypoint.Region;
 import got.common.world.spawning.*;
 import got.common.world.spawning.GOTBiomeSpawnList.SpawnListContainer;
@@ -57,11 +57,7 @@ public class GOTBiomeIbben extends GOTBiome {
 		c2[0] = GOTBiomeSpawnList.entry(GOTSpawnList.IRONBORN_CONQUEST, 10).setSpawnChance(GOTBiome.CONQUEST_SPAWN);
 		npcSpawnList.newFactionList(0).add(c2);
 
-		GOTStructureIbbenVillage village = new GOTStructureIbbenVillage(this, 1.0f);
-		village.affix(GOTWaypoint.IbNor);
-		village.affix(GOTWaypoint.PortOfIbben);
-		village.affix(GOTWaypoint.IbSar);
-		decorator.affix(village);
+		decorator.addVillage(new GOTStructureIbbenVillage(this, 1.0f));
 
 		decorator.addRandomStructure(new GOTStructureBarrow(false), 250);
 
@@ -86,11 +82,6 @@ public class GOTBiomeIbben extends GOTBiome {
 	@Override
 	public Region getBiomeWaypoints() {
 		return Region.IBBEN;
-	}
-
-	@Override
-	public float getChanceToSpawnAnimals() {
-		return 0.25f;
 	}
 
 	@Override

@@ -14,7 +14,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.*;
 
 public class GOTGuiMenu extends GOTGuiScreenBase {
-	public static ResourceLocation menuIconsTexture = new ResourceLocation("got:gui/menu_icons.png");
+	public static ResourceLocation menuIconsTexture = new ResourceLocation("got:textures/gui/menu_icons.png");
 	public static Class<? extends GOTGuiMenuWBBase> lastMenuScreen = null;
 	public boolean sentCheckPacket = false;
 
@@ -119,7 +119,7 @@ public class GOTGuiMenu extends GOTGuiScreenBase {
 	}
 
 	public static GuiScreen openMenu(EntityPlayer entityplayer) {
-		boolean[] map_factions = GOTMiniQuestWelcome.forceMenu_Map_Factions(entityplayer);
+		boolean[] map_factions = GOTMiniQuestWelcome.forceMenuMapFactions(entityplayer);
 		if (map_factions[0]) {
 			return new GOTGuiMap();
 		}

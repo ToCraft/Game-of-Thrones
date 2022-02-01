@@ -15,7 +15,7 @@ public class GOTEntityLorathGeneral extends GOTEntityLorathSoldier implements GO
 		super(world);
 		canBeMarried = false;
 		addTargetTasks(false);
-		npcCape = GOTCapes.LORATH;
+		spawnRidingHorse = false;
 	}
 
 	@Override
@@ -43,11 +43,11 @@ public class GOTEntityLorathGeneral extends GOTEntityLorathSoldier implements GO
 	public String getSpeechBank(EntityPlayer entityplayer) {
 		if (isFriendly(entityplayer)) {
 			if (canTradeWith(entityplayer)) {
-				return "essos/lorath/warlord/friendly";
+				return "standart/civilized/usual_friendly";
 			}
-			return "essos/lorath/warlord/neutral";
+			return "standart/civilized/usual_neutral";
 		}
-		return "essos/lorath/warrior/hostile";
+		return "standart/civilized/usual_hostile";
 	}
 
 	@Override

@@ -23,7 +23,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.World;
 
 public abstract class GOTGuiHireBase extends GuiContainer {
-	public static ResourceLocation guiTexture = new ResourceLocation("got:gui/npc/unit_trade.png");
+	public static ResourceLocation guiTexture;
 	public GOTHireableBase theUnitTrader;
 	public GOTFaction traderFaction;
 	public GOTUnitTradeEntries trades;
@@ -35,6 +35,7 @@ public abstract class GOTGuiHireBase extends GuiContainer {
 	public GOTGuiUnitTradeButton buttonHire;
 	public GOTGuiUnitTradeButton buttonLeftUnit;
 	public GOTGuiUnitTradeButton buttonRightUnit;
+
 	public GuiTextField squadronNameField;
 
 	public GOTGuiHireBase(EntityPlayer entityplayer, GOTHireableBase trader, World world) {
@@ -74,6 +75,7 @@ public abstract class GOTGuiHireBase extends GuiContainer {
 	public void drawGuiContainerBackgroundLayer(float f, int i, int j) {
 		boolean squadronPrompt;
 		GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+		guiTexture = new ResourceLocation("got:textures/gui/npc/unit_trade.png");
 		mc.getTextureManager().bindTexture(guiTexture);
 		drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
 		if (((GOTContainerUnitTrade) inventorySlots).alignmentRewardSlots > 0) {

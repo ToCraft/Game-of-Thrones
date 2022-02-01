@@ -7,10 +7,9 @@ import got.common.entity.animal.*;
 import got.common.world.biome.GOTBiome;
 import got.common.world.biome.variant.GOTBiomeVariant;
 import got.common.world.feature.GOTTreeType;
-import got.common.world.map.*;
+import got.common.world.map.GOTBezierType;
 import got.common.world.map.GOTWaypoint.Region;
-import got.common.world.spawning.*;
-import got.common.world.spawning.GOTBiomeSpawnList.SpawnListContainer;
+import got.common.world.spawning.GOTEventSpawner;
 import got.common.world.structure.essos.jogos.GOTStructureJogosVillage;
 import net.minecraft.world.biome.BiomeGenBase;
 
@@ -52,15 +51,7 @@ public class GOTBiomeJogosNhai extends GOTBiome {
 		decorator.addTree(GOTTreeType.BAOBAB, 20);
 		registerExoticFlowers();
 
-		decorator.affix(new GOTStructureJogosVillage(this, 1.0f));
-
-		SpawnListContainer[] c1 = new SpawnListContainer[1];
-		c1[0] = GOTBiomeSpawnList.entry(GOTSpawnList.YITI_CONQUEST, 10).setSpawnChance(GOTBiome.CONQUEST_SPAWN);
-		npcSpawnList.newFactionList(0).add(c1);
-
-		GOTStructureJogosVillage camp = new GOTStructureJogosVillage(this, 0.0f).setIsBig();
-		camp.affix(GOTWaypoint.Hojdbaatar);
-		decorator.affix(camp);
+		decorator.addVillage(new GOTStructureJogosVillage(this, 1.0f));
 
 		invasionSpawns.addInvasion(GOTInvasions.YI_TI, GOTEventSpawner.EventChance.UNCOMMON);
 		setUnreliableChance(GOTEventSpawner.EventChance.NEVER);

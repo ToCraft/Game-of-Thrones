@@ -9,7 +9,6 @@ public class GOTEntityQohorUnsullied extends GOTEntityQohorLevyman {
 	public GOTEntityQohorUnsullied(World world) {
 		super(world);
 		canBeMarried = false;
-		spawnRidingHorse = false;
 		npcCape = GOTCapes.UNSULLIED;
 		npcShield = GOTShields.UNSULLIED;
 	}
@@ -26,11 +25,6 @@ public class GOTEntityQohorUnsullied extends GOTEntityQohorLevyman {
 	@Override
 	public GOTAchievement getKillAchievement() {
 		return GOTAchievement.KILL_UNSULLIED;
-	}
-
-	@Override
-	public int getTotalArmorValue() {
-		return 15;
 	}
 
 	@Override

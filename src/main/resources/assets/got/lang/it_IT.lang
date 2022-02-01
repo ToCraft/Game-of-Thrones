@@ -64,15 +64,6 @@ got.structure.TargaryenTurret.name=
 got.structure.TargaryenWatchfort.name=
 got.structure.TargaryenWatchtower.name=
 
-got.achievement.KILL_PRIEST.desc≠
-got.achievement.KILL_PRIEST.title≠
-got.achievement.WEAR_FULL_JOGOS.desc≠
-got.achievement.WEAR_FULL_JOGOS.title≠
-item.got:tugarKhanSword.name≠
-item.got:jogosBoots.name≠
-item.got:jogosChestplate.name≠
-item.got:jogosHelmet.name≠
-item.got:jogosLeggings.name≠
 attribute.name.generic.movementSpeedAir=Velocità (aria)
 color.black=Nero
 color.blue=Blu
@@ -144,7 +135,6 @@ entity.got.AsshaiMan.name=Uomo di Asshai
 entity.got.AsshaiShadowbinder.name=Shadowbinder di Asshai
 entity.got.AsshaiSpherebinder.name=Spherebinder di Asshai
 entity.got.AuraneWaters.name=Aurane Waters
-entity.got.Bison.name=Uro
 entity.got.BaelorBlacktyde.name≠
 entity.got.BalonGreyjoy.name=Balon Greyjoy
 entity.got.Banner.name=Stendardo
@@ -164,6 +154,7 @@ entity.got.BericDondarrion4.name=Beric Dondarrion
 entity.got.BericDondarrion5.name=Beric Dondarrion
 entity.got.BericDondarrion6.name=Beric Dondarrion
 entity.got.Bird.name=Uccello
+entity.got.Bison.name=Uro
 entity.got.BlackWalderFrey.name≠
 entity.got.Boar.name=Cinghiale
 entity.got.BraavosArcher.name=Arciere di Braavos
@@ -296,6 +287,8 @@ entity.got.Elk.name=Alce
 entity.got.EllaryaSand.name=Ellarya Sand
 entity.got.ErikIronmaker.name≠
 entity.got.EssosBandit.name=Bandit
+entity.got.EssosScrapTrader.name≠
+entity.got.EssosThief.name=Thief
 entity.got.EuronGreyjoy.name=Euron Greyjoy
 entity.got.Fish.name=Pesce
 entity.got.Flamingo.name=Fenicottero
@@ -434,6 +427,7 @@ entity.got.JasonMallister.name≠
 entity.got.JeorMormont.name=Jeor Mormont
 entity.got.JoffreyBaratheon.name=Joffrey Baratheon
 entity.got.JogosArcher.name=Arciere di Jogos Nhai
+entity.got.JogosBannerBearer.name≠
 entity.got.JogosChief.name=Capotribù di Jogos Nhai
 entity.got.JogosMan.name=Nomade di Jogos Nhai
 entity.got.JogosShaman.name=Sciamano di Jogos Nhai
@@ -445,9 +439,7 @@ entity.got.JonosBracken.name=Jonos Bracken
 entity.got.JorahMormont.name=Jorah Mormont
 entity.got.JungleScorpion.name=Scorpione della giungla
 entity.got.KevanLannister.name=Kevan Lannister
-entity.got.WhiteBison.name=Bufalo di White Bison
 entity.got.Kingsguard.name=Guardia reale
-entity.got.TugarKhan.name=Tugar Khan
 entity.got.KraznysMoNakloz.name=Kraznys Mo Nakloz
 entity.got.LancelLannister.name=Lancel Lannister
 entity.got.LancelLannisterR.name=Lancel Lannister
@@ -544,6 +536,7 @@ entity.got.Midges.name=Moscerini
 entity.got.Missandei.name≠
 entity.got.MonfordVelaryon.name=Monford Velaryon
 entity.got.Moqorro.name≠
+entity.got.MoribaldChester.name≠
 entity.got.MossovyBannerBearer.name≠
 entity.got.MossovyBartender.name≠
 entity.got.MossovyBlacksmith.name≠
@@ -660,6 +653,7 @@ entity.got.Plate.name=Piatto
 entity.got.PodrickPayne.name=Podrick Payne
 entity.got.Polarbear.name=Orso delle nevi
 entity.got.Polliver.name≠
+entity.got.Prostitute.name=Prostituta
 entity.got.Pycelle.name=Pycelle
 entity.got.QarthArcher.name=Arciere di Qarth
 entity.got.QarthBaker.name=Panettiere di Qarth
@@ -771,8 +765,6 @@ entity.got.SalladhorSaan.name≠
 entity.got.SamwellTarly.name≠
 entity.got.SandorClegane.name=Sandor Clegane
 entity.got.SansaStark.name=Sansa Stark
-entity.got.WesterosScrapTrader.name≠
-entity.got.EssosScrapTrader.name≠
 entity.got.Seagull.name=Gabbiano
 entity.got.SebastonFarman.name=Sebaston Farman
 entity.got.SelwynTarth.name=Selwyn Tarth
@@ -847,8 +839,6 @@ entity.got.ThennBlacksmith.name=Thenn Blacksmith
 entity.got.ThennMagnar.name=Thenn Magnar
 entity.got.TheonGreyjoy.name=Theon Greyjoy
 entity.got.TheonGreyjoyV.name=Theon Greyjoy
-entity.got.WesterosThief.name=Thief
-entity.got.EssosThief.name=Thief
 entity.got.Thoros.name=Thoros
 entity.got.ThreeEyedRaven.name=Corvo con tre occhi
 entity.got.ThrowingAxe.name=Ascia da lancio
@@ -862,6 +852,7 @@ entity.got.Tormund.name=Tormund
 entity.got.TraderRespawn.name=Respawner di commercianti
 entity.got.TrollSnowball.name=Palla di neve dei troll
 entity.got.TrystaneMartell.name≠
+entity.got.TugarKhan.name=Tugar Khan
 entity.got.TychoNestoris.name≠
 entity.got.TyrionLannister.name=Tyrion Lannister
 entity.got.TyroshBaker.name=Panettiere di Tyrosh
@@ -945,9 +936,11 @@ entity.got.WesterlandsMason.name=Massone di Terre dell'Ovest
 entity.got.WesterlandsSoldier.name=Guerriero delle Terre dell'Ovest
 entity.got.WesterlandsSoldierArcher.name=Arciere guerriero delle Terre dell'Ovest
 entity.got.WesterosBandit.name=Bandito
+entity.got.WesterosScrapTrader.name≠
+entity.got.WesterosThief.name=Thief
+entity.got.WhiteBison.name=Bufalo di White Bison
 entity.got.WhiteOryx.name=Orice
 entity.got.WhiteWalker.name=White Walker
-entity.got.Whore.name=Prostituta
 entity.got.Wicht.name=Wight
 entity.got.WichtGiant.name=Wight-Giant
 entity.got.Wildling.name=Bruti
@@ -1042,6 +1035,8 @@ got.achievement.GET_COPPER.desc=Prendi il rame
 got.achievement.GET_COPPER.title=1.17?
 got.achievement.GET_POUCH.desc=Prendi il marsupio
 got.achievement.GET_POUCH.title=Di più, quello prima
+got.achievement.HIRE_GOLDEN_COMPANY.desc≠
+got.achievement.HIRE_GOLDEN_COMPANY.title≠
 got.achievement.HUNDREDS.desc=Hire 100 units
 got.achievement.HUNDREDS.title=With iron & blood!
 got.achievement.KILLER.desc=Uccidi l'umano
@@ -1118,8 +1113,6 @@ got.achievement.KILL_KEVAN_LANNISTER.desc=Uccidi Kevan Lannister
 got.achievement.KILL_KEVAN_LANNISTER.title=Uomoo meno del re
 got.achievement.KILL_KHAL.desc=Uccidi il khal
 got.achievement.KILL_KHAL.title=Khal Killer
-got.achievement.KILL_TUGAR_KHAN.desc=Uccidi Tugar Khan
-got.achievement.KILL_TUGAR_KHAN.title=Imperatore leggendario
 got.achievement.KILL_KRAZNYS_MO_NAKLOZ.desc=Uccidi Kraznys Mo Nakloz
 got.achievement.KILL_KRAZNYS_MO_NAKLOZ.title=Scambia il drago con l'esercito
 got.achievement.KILL_LANCEL_LANNISTER.desc=Uccidi il religioso Lancel Lannister
@@ -1146,6 +1139,10 @@ got.achievement.KILL_OBERYN_MARTELL.desc=Uccidi Oberyn Martell
 got.achievement.KILL_OBERYN_MARTELL.title=Montagna
 got.achievement.KILL_PETYR_BAELISH.desc=Uccidi Petyr Baelish
 got.achievement.KILL_PETYR_BAELISH.title=Il caos è una scala
+got.achievement.KILL_PRIEST.desc≠
+got.achievement.KILL_PRIEST.title≠
+got.achievement.KILL_PROSTITUTE.desc=Uccidi la puttana
+got.achievement.KILL_PROSTITUTE.title=Spietato pervertito
 got.achievement.KILL_RAMSAY_BOLTON.desc=Uccidi Ramsay Bolton
 got.achievement.KILL_RAMSAY_BOLTON.title=Preventivamente
 got.achievement.KILL_ROBB_STARK.desc=Uccidi Robb Stark
@@ -1166,6 +1163,8 @@ got.achievement.KILL_THOROS.desc=Uccidi Thoros
 got.achievement.KILL_THOROS.title=Non ti salverà più
 got.achievement.KILL_TORMUND.desc=Uccidi Tormund
 got.achievement.KILL_TORMUND.title=La spada nella notte
+got.achievement.KILL_TUGAR_KHAN.desc=Uccidi Tugar Khan
+got.achievement.KILL_TUGAR_KHAN.title=Imperatore leggendario
 got.achievement.KILL_TYRION.desc=Uccidi Tyrion Lannister
 got.achievement.KILL_TYRION.title=Come vuoi morire, Tyrion, figlio di Tywin?
 got.achievement.KILL_TYWIN.desc=Uccidi Tywin Lannister
@@ -1184,8 +1183,6 @@ got.achievement.KILL_WEREWOLF.desc=Uccidi il lupo mannaro
 got.achievement.KILL_WEREWOLF.title=Lancia una moneta al tuo giocatore
 got.achievement.KILL_WHITE_WALKER.desc=Uccidi il camminatore bianco
 got.achievement.KILL_WHITE_WALKER.title=Valyrian Warrior
-got.achievement.KILL_WHORE.desc=Uccidi la puttana
-got.achievement.KILL_WHORE.title=Spietato pervertito
 got.achievement.KILL_WIGHT.desc=Uccidi lo spettro
 got.achievement.KILL_WIGHT.title=Con fuoco e spada
 got.achievement.KILL_WIGHT_GIANT.desc=Uccidi il gigante wight
@@ -1206,6 +1203,8 @@ got.achievement.OBAMA.desc=Scegli una banana dall'albero
 got.achievement.OBAMA.title=Obama
 got.achievement.PLEDGE_SERVICE.desc=Prometti una fazione
 got.achievement.PLEDGE_SERVICE.title=Impegnato!
+got.achievement.REFORGE.desc≠
+got.achievement.REFORGE.title≠
 got.achievement.SHOOT_DOWN_MIDGES.desc=Lascia che i tuoi arcieri uccidano i moscerini
 got.achievement.SHOOT_DOWN_MIDGES.title=DIFESA AEREA!
 got.achievement.STEAL.desc=Steal un oggetto per un partner ladro
@@ -1216,6 +1215,18 @@ got.achievement.TORMENT_THEON_GREYJOY.desc=Tormento Theon Greyjoy
 got.achievement.TORMENT_THEON_GREYJOY.title=È solo una salsiccia
 got.achievement.TRADE.desc=Scambia con qualcuno
 got.achievement.TRADE.title=Iniziare un attività
+got.achievement.TRAVEL10.desc≠
+got.achievement.TRAVEL10.title≠
+got.achievement.TRAVEL20.desc≠
+got.achievement.TRAVEL20.title≠
+got.achievement.TRAVEL30.desc≠
+got.achievement.TRAVEL30.title≠
+got.achievement.TRAVEL40.desc≠
+got.achievement.TRAVEL40.title≠
+got.achievement.TRAVEL50.desc≠
+got.achievement.TRAVEL50.title≠
+got.achievement.UNSMELT.desc≠
+got.achievement.UNSMELT.title≠
 got.achievement.VISIT_ALWAYS_WINTER.desc=Visita la terra di Always Winter
 got.achievement.VISIT_ALWAYS_WINTER.title=Tra il ghiaccio eterno
 got.achievement.VISIT_ARBOR.desc=Visita The Arbor
@@ -1440,6 +1451,8 @@ got.achievement.WEAR_FULL_CROWNLANDS.desc=Indossa un set completo di mantelli do
 got.achievement.WEAR_FULL_CROWNLANDS.title=Capitano delle guardie di Approdo del Re
 got.achievement.WEAR_FULL_DORNE.desc=Indossa un set completo di Dorne
 got.achievement.WEAR_FULL_DORNE.title=Guardia di Dorne
+got.achievement.WEAR_FULL_DOTHRAKI.desc≠
+got.achievement.WEAR_FULL_DOTHRAKI.title≠
 got.achievement.WEAR_FULL_DRAGONSTONE.desc=Indossa il set completo di Dragonstone
 got.achievement.WEAR_FULL_DRAGONSTONE.title=Guardia di Roccia del Drago
 got.achievement.WEAR_FULL_FUR.desc=Indossa un set completo di armature di pelliccia
@@ -1460,6 +1473,8 @@ got.achievement.WEAR_FULL_HILLMEN.desc=Indossa il set completo di Hill Tribes
 got.achievement.WEAR_FULL_HILLMEN.title=Follia delle montagne lunari
 got.achievement.WEAR_FULL_IRONBORN.desc=Indossa un set completo di Isole di Ferro
 got.achievement.WEAR_FULL_IRONBORN.title=Guardia delle Isole di Ferro
+got.achievement.WEAR_FULL_JOGOS.desc≠
+got.achievement.WEAR_FULL_JOGOS.title≠
 got.achievement.WEAR_FULL_KINGSGUARD.desc=Indossa un set completo di Guardia Reale
 got.achievement.WEAR_FULL_KINGSGUARD.title=Lunga vita al Re!
 got.achievement.WEAR_FULL_LHAZAR.desc=Indossa il set completo di Lhazar
@@ -1474,8 +1489,6 @@ got.achievement.WEAR_FULL_MOSSOVY.desc=Indossa il set completo di Mossovy
 got.achievement.WEAR_FULL_MOSSOVY.title=Guardia di Mossovy
 got.achievement.WEAR_FULL_MYR.desc=Indossa un set completo di Myr
 got.achievement.WEAR_FULL_MYR.title=Guardia di Myr
-got.achievement.WEAR_FULL_DOTHRAKI.desc≠
-got.achievement.WEAR_FULL_DOTHRAKI.title≠
 got.achievement.WEAR_FULL_NORTH.desc=Indossa un set completo di North
 got.achievement.WEAR_FULL_NORTH.title=Guardia del Nord
 got.achievement.WEAR_FULL_NORTHGUARD.desc=Indossa un set completo di guardie nord
@@ -1538,20 +1551,6 @@ got.achievement.category.LEGENDARY=Leggendario
 got.achievement.category.TITLES=Titoli
 got.achievement.category.VISIT=Biomi
 got.achievement.category.WEAR=Armatura
-got.achievement.reforge.desc=Riforgia un oggetto in un'incudine
-got.achievement.reforge.title=Fabbro
-got.achievement.travel10.desc=Viaggia per 10 diverse regioni della Trono di Spade
-got.achievement.travel10.title=Fuori dalla porta
-got.achievement.travel20.desc=Viaggia per 20 diverse regioni della Trono di Spade
-got.achievement.travel20.title=Una faccenda pericolosa
-got.achievement.travel30.desc=Viaggia per 30 diverse regioni della Trono di Spade
-got.achievement.travel30.title=La Via prosegue senza fine...
-got.achievement.travel40.desc=Viaggia per 40 diverse regioni della Trono di Spade
-got.achievement.travel40.title=...Lungi dall'uscio...
-got.achievement.travel50.desc=Viaggia per 50 diverse regioni della Trono di Spade
-got.achievement.travel50.title=...dal quale parte
-got.achievement.unsmelt.desc=Fondi un oggetto in un crogiolo
-got.achievement.unsmelt.title=Il Disfacimento
 got.alignment.bountyKilled=Ucciso per una taglia!
 got.alignment.breakPledge=Giuramento infranto
 got.alignment.cutFangornTree=Crudeltà sugli alberi
@@ -1731,6 +1730,7 @@ got.capes.REACH.name=Capo di Altopiano
 got.capes.RIVERLANDS.name=Capo di Terre dei Fiumi
 got.capes.ROYALGUARD.name≠
 got.capes.STORMLANDS.name=Capo di Terre della Tempesta
+got.capes.TARGARYEN.desc≠
 got.capes.TARGARYEN.name=Capo di Targaryen
 got.capes.TYROSH.name=Capo di Tyrosh
 got.capes.UNSULLIED.name=Capo degli Immacolati
@@ -2220,6 +2220,7 @@ got.faction.HILL_TRIBES.rank.warlord=Signore della guerra
 got.faction.HILL_TRIBES.rank.warrior.f=Guerriero delle tribù delle colline
 got.faction.HILL_TRIBES.rank.warrior=Guerriero
 got.faction.HILL_TRIBES.subtitle=Tribù delle Colline della Valle
+got.faction.HOSTILE.name≠
 got.faction.IBBEN.entity=Uomini di Ibben
 got.faction.IBBEN.name=Ibben
 got.faction.IBBEN.rank.commander.f=Ammiraglio di Ibben
@@ -2634,6 +2635,7 @@ got.faction.rel.FRIEND=Amici
 got.faction.rel.MORTAL_ENEMY=Nemici mortali
 got.faction.rel.NEUTRAL=Neutrali
 got.fastTravel.available=Ora puoi viaggiare velocemente
+got.fastTravel.inBed≠
 got.fastTravel.motion=Viaggio rapido interrotto. Non muoverti!
 got.fastTravel.skip=Premi “%s” per saltare
 got.fastTravel.travel=Viaggio rapido verso %s
@@ -2795,7 +2797,8 @@ got.gui.help2=Premi "Invio" per nascondere questo testo sullo schermo.
 got.gui.hornSelect.haltReady=Arresta/Prepara Unità
 got.gui.hornSelect.summon=Richiama unità
 got.gui.hornSelect.title=Selezione del Corno di Comando
-got.gui.languages.guide=The Game of Thrones mod contains a lot of text assets, such as names, books, quests and replicas. They are translated into 4 languages: Russian, English, German and Chinese. To change the language, you need to open the configuration folder, open the GOT.cfg file using notepad and edit the languageCode value to ru/de/en/zh. After that, restart the game.
+got.gui.languages.guide1=Mod "Game of Thrones" contiene molti dati di testo, come libri, nomi, missioni, linee. Sono tradotti nelle seguenti lingue: 
+got.gui.languages.guide2=. Per cambiare la lingua, apri la cartella di configurazione, apri il file GOT.cfg con il blocco note e modifica il valore languageCode. Dopo di che, riavvia il gioco.
 got.gui.languages=Localization
 got.gui.map.conquest.allyBoost=Supporta i tuoi alleati di %s
 got.gui.map.conquest.needRank=Sei fedele a %s, quindi puoi vedere la loro conquista e la conquista dei loro alleati, nemici, e nemici mortali.\n\nPer vedere le conquiste di tutte le altre fazioni (neutrali e amichevoli), devi raggiungere il rango di %s (%s reputazione).
@@ -3044,6 +3047,7 @@ got.miniquest.collect.progress=%d di %d consegnati
 got.miniquest.collect=Raccogli %d %s
 got.miniquest.kill.progress=%d di %d uccisi
 got.miniquest.kill=Uccidi %d %s
+got.miniquest.pickpocket.progress≠
 got.miniquest.pickpocket=Furto NPC (Shift + RMB)
 got.miniquest.progressShort=%d / %d
 got.miniquest.retrieve.progress=%d di %d consegnati
@@ -3075,6 +3079,8 @@ got.shields.CROWNLANDS.name=Scudo di Terre della Corona
 got.shields.DORNE.name=Scudo di Dorne
 got.shields.DRAGONSTONE.name=Scudo di Roccia del Drago
 got.shields.GHISCAR.name=Scudo di Ghiscar
+got.shields.GOLDENCOMPANY.desc≠
+got.shields.GOLDENCOMPANY.name≠
 got.shields.HILLMEN.name=Scudo delle tribù delle colline
 got.shields.IRONBORN.name=Scudo delle Isole di Ferro
 got.shields.LORATH.name=Scudo di Lorath
@@ -3098,6 +3104,7 @@ got.shields.TYROSH.name=Scudo di Tyrosh
 got.shields.UNSULLIED.name=Scudo degli Immacolati
 got.shields.VOLANTIS.name=Scudo di Volantis
 got.shields.WESTERLANDS.name=Scudo delle Terre dell'Ovest
+got.shields.WESTERLANDSGUARD.name≠
 got.shields.YITI.name=Scudo di Yi Ti
 got.shields.YITI_FRONTIER.name≠
 got.shields.YITI_SAMURAI.name=Scudo di Yi Ti Samurai
@@ -3140,6 +3147,7 @@ got.structure.BraavosStables.name=Scuderie di Braavos
 got.structure.BraavosTavern.name=Taverna di Braavos
 got.structure.BraavosTower.name=Torre di Braavos
 got.structure.BraavosTraining.name=Formazione di Braavos
+got.structure.BurntHouse.name≠
 got.structure.CrownlandsBarn.name=Fienile di Terre della Corona
 got.structure.CrownlandsBath.name=Bagno di Terre della Corona
 got.structure.CrownlandsCityBig.name=Città di Terre della Corona
@@ -3221,6 +3229,8 @@ got.structure.GiftVillage.name=Villaggio dei Guardiani della Notte
 got.structure.GiftVillageLight.name=Village Light di Night's Watch
 got.structure.GiftWatchtower.name=Torre di Guardia dei Guardiani della Notte
 got.structure.GoldenCamp.name=Campo di Golden Company
+got.structure.GoldenWatchtower.name≠
+got.structure.HillmanVillage.name≠
 got.structure.HillmenCampfire.name=Camp di Hill Tribes
 got.structure.HillmenHillFort.name=Forte delle tribù della collina
 got.structure.HillmenHouse.name=House di Hill Tribes
@@ -3326,6 +3336,9 @@ got.structure.NorthCottage.name=Cottage del Nord
 got.structure.NorthFortVillage.name=Castello del Nord
 got.structure.NorthFortress.name=Fortezza del Nord
 got.structure.NorthHillmanCamp.name=Campo di North Hillmen
+got.structure.NorthHillmanChieftainHouse.name≠
+got.structure.NorthHillmanHouse.name≠
+got.structure.NorthHillmanVillage.name≠
 got.structure.NorthHouse.name=Piccola casa del nord
 got.structure.NorthSmithy.name=Fucina del Nord
 got.structure.NorthStables.name=Scuderie del Nord
@@ -3419,10 +3432,13 @@ got.structure.RiverlandsTavern.name=Taverna di Terre dei Fiumi
 got.structure.RiverlandsTurret.name=Torretta delle Terre dei Fiumi
 got.structure.RiverlandsWatchfort.name=Watchfort di Terre dei Fiumi
 got.structure.RiverlandsWatchtower.name=Torre di guardia di Terre dei Fiumi
+got.structure.RottenHouse.name≠
 got.structure.RuinedBeaconTower.name=Torre faro di Gondor in rovina
 got.structure.RuinedGiftHouse.name=Casa regalo in rovina
 got.structure.RuinedGiftTower.name=Torre dei regali in rovina
+got.structure.RuinedHouse.name≠
 got.structure.RuinedNorthTower.name=Rovina della torre faro del nord
+got.structure.SmallStoneRuin.name≠
 got.structure.SothoryosChieftainPyramid.name=Piramide del capo tribù di Sothoryos
 got.structure.SothoryosHouseLarge.name=Casa di pietra di Sothoryos
 got.structure.SothoryosHouseSimple.name=Piccola casa di Sothoryos
@@ -3431,6 +3447,11 @@ got.structure.SothoryosPyramid.name=Piramide di Sothoryos
 got.structure.SothoryosSmithy.name=Sothoryos Smithy
 got.structure.SothoryosVillage.name=Villaggio di Sothoryos
 got.structure.SothoryosWatchtower.name=Torre di guardia di Sothoryos
+got.structure.StoneRuinAsshai.name≠
+got.structure.StoneRuinSandstone.name≠
+got.structure.StoneRuinSothoryos.name≠
+got.structure.StoneRuinStandart.name≠
+got.structure.StoneRuinYiTi.name≠
 got.structure.StormlandsBarn.name=Fienile di Terre della Tempesta
 got.structure.StormlandsBath.name=Bath di Terre della Tempesta
 got.structure.StormlandsCityBig.name=Città di Terre della Tempesta
@@ -3458,6 +3479,9 @@ got.structure.SummerTower.name=Torre delle Isole d'Estate
 got.structure.SummerVillage.name=Villaggio delle Isole d'Estate
 got.structure.SummerVillageRuined.name=Villaggio abbandonato delle Isole d'Estate
 got.structure.ThennCamp.name=ThennCamp
+got.structure.ThennHouse.name≠
+got.structure.ThennMagnarHouse.name≠
+got.structure.ThennVillage.name≠
 got.structure.TyroshBarracks.name=Caserma di Tyrosh
 got.structure.TyroshBazaar.name=Bazar di Tyrosh
 got.structure.TyroshCityBig.name=Castello di Tyrosh
@@ -3503,6 +3527,7 @@ got.structure.WildlingCamp.name=Campo dei Bruti
 got.structure.WildlingChieftainHouse.name=Capotribù dei Bruti House
 got.structure.WildlingHouse.name=Casa dei Bruti
 got.structure.WildlingTent.name=Tenda dei Bruti
+got.structure.WildlingVillage.name≠
 got.structure.YiTiBath.name=Bagno di Yi Ti
 got.structure.YiTiBrewery.name=Birreria di Yi Ti
 got.structure.YiTiCaptainTent.name=Grande tenda di Yi Ti
@@ -3545,11 +3570,11 @@ got.title.KILL_GREGOR_CLEGANE=Assassino leggendario III
 got.title.KILL_JAQEN_HGHAR=Valar Morgulis
 got.title.KILL_JEOR_MORMONT=Impostore
 got.title.KILL_JON_SNOW=Per i guardiani della notte
-got.title.KILL_TUGAR_KHAN=Imperatore leggendario
 got.title.KILL_NIGHT_KING=Il leggendario Killer I
 got.title.KILL_OBERYN_MARTELL=Montagna
 got.title.KILL_SANDOR_CLEGANE=Doghunter
 got.title.KILL_THE_KING=Kingslayer
+got.title.KILL_TUGAR_KHAN=Imperatore leggendario
 got.title.KILL_TYWIN=Statham
 got.title.targaryenF=Stormborn
 got.title.targaryenM=Stormborn
@@ -3561,10 +3586,130 @@ got.titles.unlock.starter=Titolo di partenza
 got.travellingTrader.arrive=%s è arrivato nelle vicinanze
 got.travellingTrader.arriveMP=%s è arrivato vicino a %s
 got.travellingTrader.depart=%s ha lasciato la zona
+got.tree.acacia.name≠
+got.tree.almond.name≠
+got.tree.apple.name≠
+got.tree.aspen.name≠
+got.tree.aspen_large.name≠
+got.tree.banana.name≠
+got.tree.baobab.name≠
+got.tree.beech.name≠
+got.tree.beech_large.name≠
+got.tree.birch.name≠
+got.tree.birch_large.name≠
+got.tree.catalpa.name≠
+got.tree.cedar.name≠
+got.tree.cedar_large.name≠
+got.tree.charred.name≠
+got.tree.cherry.name≠
+got.tree.chestnut.name≠
+got.tree.chestnut_large.name≠
+got.tree.cypress.name≠
+got.tree.cypress_large.name≠
+got.tree.date_palm.name≠
+got.tree.dragonblood.name≠
+got.tree.fir.name≠
+got.tree.fotinia.name≠
+got.tree.holly.name≠
+got.tree.holly_large.name≠
+got.tree.ibben_pine.name≠
+got.tree.jungle.name≠
+got.tree.jungle_large.name≠
+got.tree.jungle_shrub.name≠
+got.tree.kanuka.name≠
+got.tree.larch.name≠
+got.tree.lemon.name≠
+got.tree.lime.name≠
+got.tree.mahogany.name≠
+got.tree.mango.name≠
+got.tree.mangrove.name≠
+got.tree.maple.name≠
+got.tree.maple_large.name≠
+got.tree.oak.name≠
+got.tree.oak_dead.name≠
+got.tree.oak_desert.name≠
+got.tree.oak_large.name≠
+got.tree.oak_party.name≠
+got.tree.oak_tall.name≠
+got.tree.olive.name≠
+got.tree.olive_large.name≠
+got.tree.orange.name≠
+got.tree.palm.name≠
+got.tree.pear.name≠
+got.tree.pine.name≠
+got.tree.plum.name≠
+got.tree.pomegranate.name≠
+got.tree.redwood.name≠
+got.tree.redwood_2.name≠
+got.tree.redwood_3.name≠
+got.tree.redwood_4.name≠
+got.tree.redwood_5.name≠
+got.tree.spruce.name≠
+got.tree.spruce_mega.name≠
+got.tree.spruce_mega_thin.name≠
+got.tree.spruce_thin.name≠
+got.tree.ulthos_green_oak.name≠
+got.tree.ulthos_green_oak_large.name≠
+got.tree.ulthos_oak.name≠
+got.tree.ulthos_oak_large.name≠
+got.tree.ulthos_red_oak.name≠
+got.tree.ulthos_red_oak_large.name≠
+got.tree.weirwood.name≠
+got.tree.willow.name≠
 got.unit.Rider=Rider
 got.unitinfo.Banner=Gli alfieri forniscono varie migliorie di combattimento agli NPC vicini della stessa fazione
 got.unitinfo.Corsair=I corsari sono più bravi a saccheggiare denaro dai nemici uccisi
 got.usemem=RAM usata
+got.variant.boulders_red.name≠
+got.variant.clearing.name≠
+got.variant.deadForest_oak.name≠
+got.variant.deadForest_oak_spruce.name≠
+got.variant.deadForest_spruce.name≠
+got.variant.denseForest_birch.name≠
+got.variant.denseForest_darkOak.name≠
+got.variant.denseForest_oak.name≠
+got.variant.denseForest_oak_spruce.name≠
+got.variant.denseForest_spruce.name≠
+got.variant.dunes.name≠
+got.variant.flowers.name≠
+got.variant.forest.name≠
+got.variant.forest_aspen.name≠
+got.variant.forest_beech.name≠
+got.variant.forest_birch.name≠
+got.variant.forest_cherry.name≠
+got.variant.forest_larch.name≠
+got.variant.forest_lemon.name≠
+got.variant.forest_light.name≠
+got.variant.forest_lime.name≠
+got.variant.forest_maple.name≠
+got.variant.forest_pine.name≠
+got.variant.forest_weirwood.name≠
+got.variant.hills.name≠
+got.variant.hills_forest.name≠
+got.variant.hills_scrubland.name≠
+got.variant.hills_scrubland_sand.name≠
+got.variant.lake.name≠
+got.variant.mountain.name≠
+got.variant.orchard_almond.name≠
+got.variant.orchard_apple_pear.name≠
+got.variant.orchard_date.name≠
+got.variant.orchard_lemon.name≠
+got.variant.orchard_lime.name≠
+got.variant.orchard_olive.name≠
+got.variant.orchard_orange.name≠
+got.variant.orchard_plum.name≠
+got.variant.orchard_pomegranate.name≠
+got.variant.river.name≠
+got.variant.savannahBaobab.name≠
+got.variant.scrubland.name≠
+got.variant.scrubland_sand.name≠
+got.variant.shrubland_oak.name≠
+got.variant.standard.name≠
+got.variant.swampLowland.name≠
+got.variant.swampUpland.name≠
+got.variant.vineyard.name≠
+got.variant.wasteland.name≠
+got.variant.wasteland_sand.name≠
 got.weaponstat.kb=Contraccolpo: +%d
 got.weaponstat.meleeDamage=Danno: +%d
 got.weaponstat.meleeSpeed=Velocità: %d%%
@@ -3877,6 +4022,8 @@ got.wp.HoarfrostHill.info=Uno dei castelli abbandonati dei Guardiani della Notte
 got.wp.HoarfrostHill=Hoarfrost Hill
 got.wp.HoggHall.info=Il castello fu bruciato da Vhagar durante la Danza dei Draghi.
 got.wp.HoggHall=Hogg Hall
+got.wp.Hojdbaatar.info≠
+got.wp.Hojdbaatar=Hojdbaatar
 got.wp.HollardCastle.info=Le rovine del castello Hollard, distrutto in punizione per aver catturato Aerys il Pazzo.
 got.wp.HollardCastle=Castello di Hollard
 got.wp.HollowHill.info=Il nascondiglio di Berik Dondarrion, leader della Confraternita senza Stendardi.
@@ -3937,8 +4084,6 @@ got.wp.Kingshouse.info=La tenuta di famiglia dei Magnars di Skagos. Dall'antico 
 got.wp.Kingshouse=Kingshouse
 got.wp.KissLock.info=Castello dei Cavalieri di Teschi e Baci.
 got.wp.KissLock=Kiss Lock
-got.wp.Hojdbaatar.info≠
-got.wp.Hojdbaatar=Hojdbaatar
 got.wp.Koj.info=Il più grande cantiere navale delle Isole d'Estate.
 got.wp.Koj=Koj
 got.wp.Kosrak.info=Una delle città Lkhazar.
@@ -4027,6 +4172,8 @@ got.wp.NewGhis.info=Una città di schiavi che si è unita alla coalizione contro
 got.wp.NewGhis=New Ghis
 got.wp.NewIbbish.info=Una città costruita dagli Ibbeni dopo la caduta di Ibbish, su una piccola penisola dietro un Muretto di legno solo leggermente più piccolo del Muretto dei Guardiani della notte. Ombra debole rispetto a Ibbish, ma ancora l'unica colonia di Ibben sulla terraferma.
 got.wp.NewIbbish=Nuovo Ibbish
+got.wp.NightKing.info≠
+got.wp.NightKing≠
 got.wp.Nightfort.info=L'enorme, primo castello costruito e primo abbandonato dei Guardiani della Notte. C'erano molte leggende terrificanti sul castello. Qui, nel Muretto, è stato scolpito un passaggio oltre il Muretto: la Porta Nera dal legno delle streghe.
 got.wp.Nightfort=Nightfort
 got.wp.Nightsong.info=Il castello ancestrale di Karon, preso da loro a favore dei Piedi perché i Karon sostenevano Stannis contro Joffrey Baratheon.
@@ -4193,6 +4340,8 @@ got.wp.Sisterton.info=La città principale delle Tre Sorelle e il più grande po
 got.wp.Sisterton=Sisterton
 got.wp.Skane.info=Al giorno d'oggi solo le rovine degli insediamenti ricordano gli abitanti dell'isola. Secondo la leggenda, nei tempi antichi, gli Skagos nati in pietra violentarono e catturarono tutte le donne locali, e gli uomini furono uccisi e mangiati durante una festa che durò per due settimane.
 got.wp.Skane=Skane
+got.wp.SkirlingPass.info≠
+got.wp.SkirlingPass≠
 got.wp.SkyReach.info=Castello di Fowler House. Si chiamavano re, finché Nymeria alla fine non li sottomise, esiliando l'ultimo re in catene d'oro al Muretto.
 got.wp.SkyReach=SkyAltopiano
 got.wp.Smithyton.info=La città della Casa Shermer, che Renly Baratheon ha menzionato tra coloro le cui spade sarebbe salito al trono.
@@ -4207,6 +4356,8 @@ got.wp.SparrCastle.info=Il castello della Casa di Sparres, vassalli dei Greyjoy.
 got.wp.SparrCastle=Castello di Sparr
 got.wp.Spicetown.info=La città portuale distrutta durante la Danza dei Draghi.
 got.wp.Spicetown=Spicetown
+got.wp.Spider.info≠
+got.wp.Spider≠
 got.wp.Spottswood.info=Il castello della casa dei Santagars, vassalli dei Martell.
 got.wp.Spottswood=Spottswood
 got.wp.Standfast.info=Una torre abbandonata agli Osgrey dopo la sconfitta della Ribellione del Fuoco Nero. La scena della storia "La spada giurata".
@@ -4527,7 +4678,6 @@ item.got:banner.arlan.name≠
 item.got:banner.arryn.name=Stendardo di Arryn
 item.got:banner.arrynBook.name≠
 item.got:banner.arrynGT.name=Stendardo di Arryn di Moon Gate
-item.got:banner.arrynHD.name≠
 item.got:banner.ashford.name=Banner di Ashford
 item.got:banner.ashwood.name≠
 item.got:banner.asshai.name≠
@@ -4539,7 +4689,6 @@ item.got:banner.baelishold.name=Stendardo di Baelish (vecchio)
 item.got:banner.ball.name=Banner di palla
 item.got:banner.banefort.name=Banner di Banefort
 item.got:banner.banefortBook.name≠
-item.got:banner.baratheonHD.name≠
 item.got:banner.barbrey.name≠
 item.got:banner.baremmon.name=Banner di Baremoon
 item.got:banner.beesbury.name=Banner di Beesbury
@@ -4731,7 +4880,6 @@ item.got:banner.grell.name=Banner di Grell
 item.got:banner.greyiron.name=Banner di Greyiron
 item.got:banner.greyjoy.name=Stendardo di Greyjoy
 item.got:banner.greyjoyBook.name≠
-item.got:banner.greyjoyHD.name≠
 item.got:banner.greystark.name=Banner di Greystark
 item.got:banner.grimm.name=Stendardo di Grimm
 item.got:banner.haigh.name=Banner di Haigh
@@ -4780,7 +4928,7 @@ item.got:banner.ironsmith.name≠
 item.got:banner.jaremymallister.name≠
 item.got:banner.jast.name=Banner di Jast
 item.got:banner.joffrey.name=Banner di Joffrey
-item.got:banner.joffreyHD.name≠
+item.got:banner.jogos.name≠
 item.got:banner.jonconnington.name≠
 item.got:banner.jonking.name≠
 item.got:banner.jonsnow.name≠
@@ -4806,7 +4954,6 @@ item.got:banner.lannisterB.name=Banner di Lannister (libro)
 item.got:banner.lannisterBook.name≠
 item.got:banner.lannisterC.name≠
 item.got:banner.lannisterD.name=Stendardo di Lannister di Darry
-item.got:banner.lannisterHD.name≠
 item.got:banner.lannisterTygett.name=Stendardo di Tygett Lannister
 item.got:banner.lanny.name≠
 item.got:banner.lantell.name≠
@@ -4850,7 +4997,6 @@ item.got:banner.marbrand.name=Banner di Marbrand
 item.got:banner.marsh.name=Banner di Marsh
 item.got:banner.martell.name=Stendardo di Martell
 item.got:banner.martellBook.name≠
-item.got:banner.martellHD.name≠
 item.got:banner.massey.name=Banner di Massey
 item.got:banner.mazin.name=Stendardo di Mazin
 item.got:banner.meadows.name=Banner di Meadows
@@ -4930,7 +5076,6 @@ item.got:banner.reedBook.name≠
 item.got:banner.reedHBO.name≠
 item.got:banner.renly.name=Banner di Renly
 item.got:banner.renlyBook.name≠
-item.got:banner.renlyHD.name≠
 item.got:banner.renlyguard.name=Stendardo di Renlyguard
 item.got:banner.reyne.name=Stendardo di Reyne
 item.got:banner.reyneBook.name≠
@@ -4999,9 +5144,7 @@ item.got:banner.staedmon.name=Stendardo di Staedmon
 item.got:banner.stane.name=Stendardo di Stane
 item.got:banner.stannis.name=Stendardo di Stannis
 item.got:banner.stannisBook.name≠
-item.got:banner.stannisHD.name≠
 item.got:banner.starkD.name≠
-item.got:banner.starkHD.name≠
 item.got:banner.staunton.name=Banner di Staunton
 item.got:banner.stokeworth.name=Banner di Stokeworth
 item.got:banner.stonehouse.name=Banner di Stonehouse
@@ -5023,7 +5166,6 @@ item.got:banner.tallad.name=Stendardo di Tallad
 item.got:banner.tallhart.name=Stendardo di Tallhart
 item.got:banner.tarbeck.name=Stendardo di Tarbeck
 item.got:banner.targaryen.name=Stendardo di Targaryen
-item.got:banner.targaryen2.name=Stendardo di Targaryen
 item.got:banner.targaryenBook.name≠
 item.got:banner.tarly.name=Stendardo di Tarly
 item.got:banner.tarlyBook.name≠
@@ -5047,12 +5189,10 @@ item.got:banner.truefyre.name≠
 item.got:banner.tudbury.name≠
 item.got:banner.tully.name=Stendardo di Tully
 item.got:banner.tullyBook.name=Banner di Tully (Libro)
-item.got:banner.tullyHD.name≠
 item.got:banner.turnberry.name=Banner di Turnberry
 item.got:banner.tybolt.name≠
 item.got:banner.tyrell.name=Stendardo di Tyrrel
 item.got:banner.tyrellBK.name=Stendardo di Tyrell di Brightwater Keep
-item.got:banner.tyrellHD.name≠
 item.got:banner.tyrelll.name=Stendardo di Loras Tyrell
 item.got:banner.tyrion.name=Stendardo di Tyrion
 item.got:banner.tyrosh.name=Stendardo di Tyrosh
@@ -5221,6 +5361,7 @@ item.got:crownlandsBoots.name=Stivali di Mantelli Dorati
 item.got:crownlandsChestplate.name=Corazza di Mantelli Dorati
 item.got:crownlandsHelmet.name=Elmo di Mantelli d'Oro
 item.got:crownlandsLeggings.name=Gambiere di Mantelli Dorati
+item.got:cucumber.name≠
 item.got:cutwave.name≠
 item.got:daarioArakh.name=Daario Arakh
 item.got:darkSister.name=Sorella Oscura
@@ -5237,7 +5378,11 @@ item.got:dorneBoots.name=Stivali di Dorne
 item.got:dorneChestplate.name=Corazza di Dorne
 item.got:dorneHelmet.name=Elmo di Dorne
 item.got:dorneLeggings.name=Gambali di Dorne
+item.got:dothrakiBoots.name≠
+item.got:dothrakiChestplate.name≠
+item.got:dothrakiHelmet.name≠
 item.got:dothrakiHorseArmor.name=Armatura da cavallo nomade
+item.got:dothrakiLeggings.name≠
 item.got:dragonstoneBoots.name=Stivali di Roccia del Drago
 item.got:dragonstoneChestplate.name=Corazza di Roccia del Drago
 item.got:dragonstoneHelmet.name=Elmo di Roccia del Drago
@@ -5345,12 +5490,15 @@ item.got:ironbornHelmet.name=Elmo delle Isole di Ferro
 item.got:ironbornLeggings.name=Gambiere delle Isole di Ferro
 item.got:jaimeSword.name=Jaime Lannister Sword
 item.got:joffreyCrossbow.name=Balestra Joffrey Baratheon
+item.got:jogosBoots.name≠
+item.got:jogosChestplate.name≠
+item.got:jogosHelmet.name≠
+item.got:jogosLeggings.name≠
 item.got:justMaid.name=JustMaid
 item.got:kaftanChestplate.name=Kaftan
 item.got:kaftanLeggings.name=Leggings in caftano
 item.got:katana.name=Katana dell'Imperatore
 item.got:kebab.name=Kebab
-item.got:whiteBisonHorn.name=Corno di bufalo di White Bison
 item.got:kingsguardBoots.name=Stivali della Guardia Reale
 item.got:kingsguardChestplate.name=Corazza della Guardia Reale
 item.got:kingsguardHelmet.name=Elmo della Guardia Reale
@@ -5467,11 +5615,7 @@ item.got:needle.name=Ago
 item.got:nightKingSword.name=Spada del re della notte
 item.got:nightfall.name=Cala la notte
 item.got:nomadBattleaxe.name=Nomad Battleaxe
-item.got:dothrakiBoots.name≠
 item.got:nomadBow.name=Arco nomade
-item.got:dothrakiChestplate.name≠
-item.got:dothrakiHelmet.name≠
-item.got:dothrakiLeggings.name≠
 item.got:nomadSpear.name=Nomadi Spear
 item.got:nomadSword.name=Nomad Arakh
 item.got:northBoots.name=North Boots
@@ -5574,6 +5718,7 @@ item.got:rhinoArmor.name=Rhino Armor
 item.got:rhinoCooked.name=Rinoceronte cotto
 item.got:rhinoHorn.name=Corno di Rinoceronte
 item.got:rhinoRaw.name=Rinoceronte crudo
+item.got:rice.name≠
 item.got:riverlandsBoots.name=Stivali delle Terre dei Fiumi
 item.got:riverlandsChestplate.name=Pettorale delle Terre dei Fiumi
 item.got:riverlandsHelmet.name=Elmo delle Terre dei Fiumi
@@ -5597,6 +5742,7 @@ item.got:saltpeter.name=Salnitro
 item.got:sandorCleganeSword.name=Spada di Sandor Clegane
 item.got:sandorHelmet.name=Elmo Clegane di Sandor
 item.got:sapphire.name=Zaffiro
+item.got:sarbacane.name=Blowgun
 item.got:seedsGrapeRed.name=Semi di uva rossa
 item.got:seedsGrapeWhite.name=Semi di uva verde
 item.got:shishKebab.name=Shish Kebab
@@ -5627,7 +5773,6 @@ item.got:sothoryosLeggings.name=Leggings di Sothoryos
 item.got:sothoryosLeggingsGold.name=Gambali dorati di Sothoryos
 item.got:sothoryosPickaxe.name=Piccone di Sothoryos
 item.got:sothoryosPike.name=Sothoryos Pike
-item.got:sothoryosSarbacane.name=Sothoryos Blowgun
 item.got:sothoryosShovel.name=Pala di Sothoryos
 item.got:sothoryosSpear.name=Lancia di Sothoryos
 item.got:sothoryosSword.name=Spada di Sothoryos
@@ -5665,6 +5810,7 @@ item.got:tormundSword.name=Spada di Tormund
 item.got:trident.name=Tridente della tribù delle colline
 item.got:truth.name=Verità
 item.got:trystaneSword.name=Trystane Martell Sword
+item.got:tugarKhanSword.name≠
 item.got:turnip.name=Rapa
 item.got:turnipCooked.name=Rapa arrostita
 item.got:tyeneDagger.name=Tyene Sand Dagger
@@ -5734,6 +5880,7 @@ item.got:westkingChestplate.name=Corazza dei Re dell'Ovest
 item.got:westkingHelmet.name=Elmo dei Re dell'Ovest
 item.got:westkingLeggings.name=Gambiere dei Re dell'Ovest
 item.got:wheel.name=Ruota
+item.got:whiteBisonHorn.name=Corno di bufalo di White Bison
 item.got:whiteWalkersBoots.name≠
 item.got:whiteWalkersChestplate.name≠
 item.got:whiteWalkersHoe.name≠
@@ -5935,6 +6082,8 @@ tile.got:cobblebrick.0.name=Muro a secco
 tile.got:commandTable.name=Tavolo di comando
 tile.got:coralReef.name=Barriera corallina
 tile.got:cornStalk.name=Stelo di mais
+tile.got:cucumberPlant.name≠
+tile.got:cucumberSeeds.name≠
 tile.got:daub.name=Canne e fango
 tile.got:deadMarshPlant.name=Pianta delle Paludi Morte
 tile.got:dirtPath.0.name=Sentiero di terra
@@ -6115,6 +6264,7 @@ tile.got:kebabStand.cooked=Cucinato
 tile.got:kebabStand.meats=%d carne
 tile.got:kebabStand.name=Asta per kebab
 tile.got:kebabStandSand.name=Asta per kebab di arenaria
+tile.got:kelp.name≠
 tile.got:leaves1.0.name=Foglie di Ibbinia
 tile.got:leaves1.1.name=Foglie di Catalpa
 tile.got:leaves1.2.name=Foglie di quercia nera

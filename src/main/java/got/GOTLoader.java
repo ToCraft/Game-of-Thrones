@@ -11,6 +11,7 @@ import got.common.recipe.*;
 import got.common.tileentity.GOTTileEntityRegistry;
 import got.common.util.GOTModChecker;
 import got.common.world.biome.GOTBiome;
+import got.common.world.fixed.GOTFixer;
 import got.common.world.map.*;
 import got.common.world.structure.GOTStructure;
 import got.common.world.structure.other.GOTStructureScan;
@@ -39,6 +40,7 @@ public class GOTLoader {
 		GOTMiniQuestFactory.onInit();
 		GOTLore.onInit();
 		GOTTitle.onInit();
+		GOTFixer.onInit();
 		if (GOTModChecker.hasLOTR()) {
 			GOTRegistry.fallenLeaves1.setCreativeTab(null);
 			GOTRegistry.fallenLeaves2.setCreativeTab(null);
@@ -48,6 +50,11 @@ public class GOTLoader {
 	}
 
 	public static void preInit() {
+		GOTConfig.setupAndLoad();
+		GOTRegistry.assignContent();
+		GOTRegistry.assignMetadata();
+		GOTRegistry.registerBlocks();
+		GOTRegistry.registerItems();
 		GOTEntity.preInit();
 		GOTInvasions.preInit();
 		GOTBiome.preInit();

@@ -8,7 +8,6 @@ import got.common.entity.essos.GOTEntityRedPriest;
 import got.common.entity.essos.asshai.*;
 import got.common.entity.other.GOTEntityNPCRespawner;
 import got.common.world.biome.GOTBiome;
-import got.common.world.fixed.GOTStructureAsshaiFort;
 import got.common.world.map.GOTBezierType;
 import got.common.world.structure.other.*;
 import net.minecraft.block.Block;
@@ -18,8 +17,8 @@ import net.minecraft.world.World;
 public class GOTStructureAsshaiCity extends GOTVillageGen {
 	public GOTStructureAsshaiCity(GOTBiome biome, float f) {
 		super(biome);
-		gridScale = 16;
-		gridRandomDisplace = 2;
+		gridScale = 12;
+		gridRandomDisplace = 1;
 		spawnChance = f;
 		villageChunkRadius = 6;
 	}
@@ -34,11 +33,6 @@ public class GOTStructureAsshaiCity extends GOTVillageGen {
 
 		public Instance(GOTStructureAsshaiCity village, World world, int i, int k, Random random, LocationInfo loc) {
 			super(village, world, i, k, random, loc);
-		}
-
-		@Override
-		public void addStructure(GOTStructureBase structure, int x, int z, int r, boolean force) {
-			super.addStructure(structure, x, z, r, force);
 		}
 
 		@Override
@@ -72,7 +66,7 @@ public class GOTStructureAsshaiCity extends GOTVillageGen {
 
 						@Override
 						public void setupRespawner(GOTEntityNPCRespawner spawner) {
-							spawner.setSpawnClass(GOTEntityAsshaiGuard.class);
+							spawner.setSpawnClass(GOTEntityAsshaiWarrior.class);
 							spawner.setCheckRanges(40, -12, 12, 16);
 							spawner.setSpawnRanges(20, -6, 6, 64);
 							spawner.setBlockEnemySpawnRange(60);

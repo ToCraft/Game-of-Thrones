@@ -1,8 +1,33 @@
 CHANGELOG
 
->>VERSION 17.6
-* Recoded all the flat biome system
+>>VERSION 17.7
++ Added Asshai Shield
 
+* Optimized rendering code
+
+* Fixed 5 minor bugs (thanks to Stalker Kir)
+* Fixed 7 minor bugs (thanks to VVVIP2)
+* Fixed bug with shields GUI
+* Reduced quality of some too elite unrealistic shields
+
+>>VERSION 17.6
++ Added full Ukrainian edition (lore, speech, names, quests: prod. DDPAT Knife Series)
++ Added full Turkish edition (lore, speech, names, quests: prod. Ness)
+
+* Recoded all the flat biome system
+* Reworked all the speechbank system
+* Great Texture Update (armor sets, shields, capes and banners: prod. Hummel009)
+
++ Added rice and cucumbers
++ Added riders to natural spawn
++ Added Moribald Chester
++ Added 4 waypoints
++ Added new Jogos Nhai units
++ Added Jogos Nhai banner
++ Added new Hardhome
++ Added skirling pass as a hidden road in mountains
++ Added villages and houses for wildling, thenn and north hillmen
++ Added random corn plants spawning
 + Added random structures
 + Added Tugar Khan
 + Added Hojtbaatar waypoint
@@ -10,6 +35,11 @@ CHANGELOG
 + Added Tugar Khan achievement
 + Added dark variants of scrap trader and thief
 
+* Improved hillmen villages
+* Improved essos structures
+* Improved roads
+* Improved guards: sync between Essos and Westeros
+* Improved Yi Ti Roads
 * Improved almost all biomes
 * Improved summer islands' strscans
 * Improved white walkers attack AI
@@ -20,6 +50,24 @@ CHANGELOG
 * Improved structures generator
 * Improved wall gate
 
+* Optimized iron bank code
+
+* Fixed exactly 100 bugs in gameplay. Thanks to VVVIP2 for this challenge.
+* Fixed bug with map screen sometimes opening onto empty sea at integer max value coordinates
+* Fixed bug with FT in bed
+* Fixed bug with sothoryos sarbacaners
+* Fixed bug with birds
+* Fixed bug with capes and shields
+* Fixed bug with unsmeltery-NEI compatibility
+* Fixed bug with riders without horse armor
+* Fixed bug with horses in houses
+* Fixed bug with Twins
+* Fixed bug with crashing removed biomes
+* Fixed bug with Yi Ti border
+* Fixed bug with attack
+* Fixed bug with village spawning
+* Fixed bug with scorpion drop
+* Fixed bug with iron bank
 * Fixed bug with alchemist skin
 * Fixed bug with speech and chat
 * Fixed bug with structures of Mossovy
@@ -28,10 +76,14 @@ CHANGELOG
 * Fixed bug with Yi Ti cities
 * Fixed bug with valyrian smelting
 
-- Removed Kitra achievement
+- Removed HD banners
+- Removed Skirling pass as a biome
+- Removed corn fields
+- Removed Kitra's achievement
 - Removed Kitra
 - Removed Kitra's Camp waypoint
 - Removed 28 technical biomes
+- Removed camps and tents of wildling, thenn and north hillmen
 
 >>VERSION 17.5
 +ADDED TARGARYEN-Faction

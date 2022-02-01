@@ -12,6 +12,7 @@ import got.common.world.map.GOTWaypoint.Region;
 import got.common.world.spawning.*;
 import got.common.world.spawning.GOTBiomeSpawnList.SpawnListContainer;
 import got.common.world.structure.other.GOTStructureStoneRuin;
+import got.common.world.structure.sothoryos.sothoryos.GOTStructureSothoryosVillage;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenMinable;
@@ -43,6 +44,7 @@ public class GOTBiomeSothoryosJungle extends GOTBiome {
 		decorator.grassPerChunk = 15;
 		decorator.doubleGrassPerChunk = 10;
 		decorator.canePerChunk = 5;
+		decorator.cornPerChunk = 10;
 		decorator.clearTrees();
 		decorator.addTree(GOTTreeType.JUNGLE, 1000);
 		decorator.addTree(GOTTreeType.JUNGLE_LARGE, 500);
@@ -53,6 +55,7 @@ public class GOTBiomeSothoryosJungle extends GOTBiome {
 		registerJungleFlowers();
 		setUnreliableChance(GOTEventSpawner.EventChance.NEVER);
 		setDarkUnreliable();
+		decorator.addVillage(new GOTStructureSothoryosVillage(this, 1.0f));
 		decorator.addRandomStructure(new GOTStructureStoneRuin.SOTHORYOS(1, 4), 400);
 	}
 
@@ -69,11 +72,6 @@ public class GOTBiomeSothoryosJungle extends GOTBiome {
 	@Override
 	public Region getBiomeWaypoints() {
 		return Region.SOTHORYOS;
-	}
-
-	@Override
-	public float getChanceToSpawnAnimals() {
-		return 0.25f;
 	}
 
 	@Override

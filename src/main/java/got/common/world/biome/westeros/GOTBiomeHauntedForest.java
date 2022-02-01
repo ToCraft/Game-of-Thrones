@@ -6,11 +6,11 @@ import got.common.database.*;
 import got.common.entity.animal.*;
 import got.common.world.biome.GOTBiome;
 import got.common.world.feature.GOTTreeType;
-import got.common.world.fixed.GOTStructureCrasterKeep;
-import got.common.world.map.*;
+import got.common.world.map.GOTBezierType;
 import got.common.world.map.GOTWaypoint.Region;
 import got.common.world.spawning.*;
 import got.common.world.spawning.GOTBiomeSpawnList.SpawnListContainer;
+import got.common.world.structure.westeros.wildling.GOTStructureWildlingVillage;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.biome.BiomeGenBase;
 
@@ -49,9 +49,8 @@ public class GOTBiomeHauntedForest extends GOTBiome {
 		c6[0] = GOTBiomeSpawnList.entry(GOTSpawnList.GIFT_GUARDIAN, 10).setSpawnChance(GOTBiome.CONQUEST_SPAWN);
 		npcSpawnList.newFactionList(0).add(c6);
 
-		GOTStructureCrasterKeep keep = new GOTStructureCrasterKeep(this, 0.0f);
-		keep.affix(GOTWaypoint.CrastersKeep);
-		decorator.affix(keep);
+		decorator.addVillage(new GOTStructureWildlingVillage(this, 1.0f));
+
 		setUnreliableChance(GOTEventSpawner.EventChance.NEVER);
 	}
 
@@ -68,11 +67,6 @@ public class GOTBiomeHauntedForest extends GOTBiome {
 	@Override
 	public Region getBiomeWaypoints() {
 		return Region.ICE;
-	}
-
-	@Override
-	public float getChanceToSpawnAnimals() {
-		return 0.25f;
 	}
 
 	@Override

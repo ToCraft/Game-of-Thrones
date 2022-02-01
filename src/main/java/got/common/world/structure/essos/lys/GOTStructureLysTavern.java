@@ -3,8 +3,10 @@ package got.common.world.structure.essos.lys;
 import java.util.Random;
 
 import got.common.database.*;
+import got.common.entity.essos.gold.GOTEntityGoldenCaptain;
 import got.common.entity.essos.lys.GOTEntityLysBartender;
-import got.common.entity.westeros.GOTEntityWhore;
+import got.common.entity.other.GOTEntityThief;
+import got.common.entity.westeros.GOTEntityProstitute;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
@@ -136,10 +138,12 @@ public class GOTStructureLysTavern extends GOTStructureLysBase {
 		placeWallBanner(world, 2, 5, -15, bannerType, 0);
 		GOTEntityLysBartender bartender = new GOTEntityLysBartender(world);
 		spawnNPCAndSetHome(bartender, world, -2, 1, 8, 4);
-		int npc = 4 + random.nextInt(10);
-		for (int l = 0; l < npc; ++l) {
-			GOTEntityWhore npc1 = new GOTEntityWhore(world);
-			spawnNPCAndSetHome(npc1, world, 0, 1, 0, 16);
+		GOTEntityGoldenCaptain mercenary = new GOTEntityGoldenCaptain(world);
+		spawnNPCAndSetHome(mercenary, world, 0, 1, 0, 16);
+		GOTEntityThief thief = new GOTEntityThief(world);
+		spawnNPCAndSetHome(thief, world, 0, 1, 0, 16);
+		for (int l = 0; l < 5; ++l) {
+			spawnNPCAndSetHome(new GOTEntityProstitute(world), world, 0, 1, 0, 16);
 		}
 		block11: for (int i13 = -1; i13 <= 1; ++i13) {
 			int j12 = 0;

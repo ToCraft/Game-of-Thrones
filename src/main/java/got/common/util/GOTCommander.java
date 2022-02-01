@@ -299,19 +299,17 @@ public class GOTCommander {
 		ArrayList<Object> list = new ArrayList<>();
 		try {
 			for (Field field : clazz.getDeclaredFields()) {
-				if (field == null) {
-					continue;
+				if (field != null) {
+					Object fieldObj = null;
+					if (Modifier.isStatic(field.getModifiers())) {
+						fieldObj = field.get(null);
+					} else if (instance != null) {
+						fieldObj = field.get(instance);
+					}
+					if (((fieldObj != null) && type.isAssignableFrom(fieldObj.getClass()))) {
+						list.add(fieldObj);
+					}
 				}
-				Object fieldObj = null;
-				if (Modifier.isStatic(field.getModifiers())) {
-					fieldObj = field.get(null);
-				} else if (instance != null) {
-					fieldObj = field.get(instance);
-				}
-				if (fieldObj == null || !type.isAssignableFrom(fieldObj.getClass())) {
-					continue;
-				}
-				list.add(fieldObj);
 			}
 		} catch (IllegalAccessException | IllegalArgumentException exception) {
 		}
@@ -489,7 +487,7 @@ public class GOTCommander {
 		ReflectionHelper.setPrivateValue(GOTTextures.class, null, res, "mapTexture");
 		try {
 			BufferedImage mapImage = GOTCommander.getImage(Minecraft.getMinecraft().getResourceManager().getResource(res).getInputStream());
-			sepiaMapTexture = GOTCommander.findAndInvokeMethod(new Object[] { mapImage, new ResourceLocation("got:map_sepia") }, GOTTextures.class, null, "convertToSepia", BufferedImage.class, ResourceLocation.class);
+			sepiaMapTexture = GOTCommander.findAndInvokeMethod(new Object[] { mapImage, new ResourceLocation("got:textures/map_sepia") }, GOTTextures.class, null, "convertToSepia", BufferedImage.class, ResourceLocation.class);
 		} catch (IOException e) {
 			FMLLog.severe("Failed to generate GOT sepia map");
 			e.printStackTrace();

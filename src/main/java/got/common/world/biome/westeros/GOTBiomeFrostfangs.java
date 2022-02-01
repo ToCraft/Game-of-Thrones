@@ -8,6 +8,7 @@ import got.common.database.GOTAchievement;
 import got.common.entity.animal.GOTEntityShadowcat;
 import got.common.world.biome.GOTBiome;
 import got.common.world.biome.variant.GOTBiomeVariant;
+import got.common.world.map.GOTBezierType;
 import got.common.world.map.GOTWaypoint.Region;
 import got.common.world.spawning.GOTEventSpawner;
 import net.minecraft.block.Block;
@@ -83,6 +84,11 @@ public class GOTBiomeFrostfangs extends GOTBiome {
 	@Override
 	public float getChanceToSpawnAnimals() {
 		return 0.1f;
+	}
+
+	@Override
+	public GOTBezierType getRoadBlock() {
+		return GOTBezierType.SNOW;
 	}
 
 	@Override

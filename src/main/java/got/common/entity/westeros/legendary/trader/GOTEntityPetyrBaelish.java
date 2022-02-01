@@ -11,7 +11,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class GOTEntityPetyrBaelish extends GOTEntityHumanBase implements GOTTradeable {
+public class GOTEntityPetyrBaelish extends GOTEntityHumanBase implements GOTBartender, GOTTradeable {
 	public GOTEntityPetyrBaelish(World world) {
 		super(world);
 		canBeMarried = false;
@@ -80,7 +80,17 @@ public class GOTEntityPetyrBaelish extends GOTEntityHumanBase implements GOTTrad
 		if (isFriendly(entityplayer)) {
 			return "legendary/baelish_friendly";
 		}
-		return "legendary/baelish_hostile";
+		return "standart/civilized/usual_hostile";
+	}
+
+	@Override
+	public GOTUnitTradeEntries getUnits() {
+		return GOTUnitTradeEntries.PROSTITUTE_KEEPER;
+	}
+
+	@Override
+	public GOTInvasions getWarhorn() {
+		return null;
 	}
 
 	@Override
@@ -104,6 +114,10 @@ public class GOTEntityPetyrBaelish extends GOTEntityHumanBase implements GOTTrad
 		setCurrentItemOrArmor(3, new ItemStack(GOTRegistry.baelishBrooch));
 		npcItemsInv.setIdleItem(null);
 		return data;
+	}
+
+	@Override
+	public void onUnitTrade(EntityPlayer var1) {
 	}
 
 	@Override

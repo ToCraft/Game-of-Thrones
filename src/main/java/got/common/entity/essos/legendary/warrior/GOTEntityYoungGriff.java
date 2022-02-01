@@ -54,7 +54,7 @@ public class GOTEntityYoungGriff extends GOTEntityHumanBase {
 		if (isFriendly(entityplayer)) {
 			return "legendary/griff_friendly";
 		}
-		return "legendary/griff_hostile";
+		return "standart/civilized/usual_hostile";
 	}
 
 	@Override

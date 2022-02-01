@@ -15,7 +15,6 @@ public class GOTEntityPentosGuardCaptain extends GOTEntityPentosGuard implements
 		super(world);
 		canBeMarried = false;
 		addTargetTasks(false);
-		npcCape = GOTCapes.PENTOS;
 	}
 
 	@Override
@@ -43,11 +42,11 @@ public class GOTEntityPentosGuardCaptain extends GOTEntityPentosGuard implements
 	public String getSpeechBank(EntityPlayer entityplayer) {
 		if (isFriendly(entityplayer)) {
 			if (canTradeWith(entityplayer)) {
-				return "essos/pentos/warlord/friendly";
+				return "standart/civilized/usual_friendly";
 			}
-			return "essos/pentos/warlord/neutral";
+			return "standart/civilized/usual_neutral";
 		}
-		return "essos/pentos/warrior/hostile";
+		return "standart/civilized/usual_hostile";
 	}
 
 	@Override

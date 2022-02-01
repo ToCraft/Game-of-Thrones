@@ -8,15 +8,15 @@ import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.util.ResourceLocation;
 
 public class GOTGuiButtonIronBank extends GuiButton {
-	public GOTGuiButtonIronBank(int id, int x, int y, int w, int h, String text) {
-		super(id, x, y, w, h, text);
+	public GOTGuiButtonIronBank(int id, int x, int y) {
+		super(id, x, y, 28, 28, "");
 	}
 
 	@Override
 	public void drawButton(Minecraft mc, int mousex, int mousey) {
 		if (visible) {
 			FontRenderer fontrenderer = mc.fontRenderer;
-			mc.getTextureManager().bindTexture(new ResourceLocation("got", "gui/transparent.png"));
+			mc.getTextureManager().bindTexture(new ResourceLocation("got:textures/gui/transparent.png"));
 			GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 			field_146123_n = mousex >= xPosition && mousey >= yPosition && mousex < xPosition + width && mousey < yPosition + height;
 			int k = getHoverState(field_146123_n);

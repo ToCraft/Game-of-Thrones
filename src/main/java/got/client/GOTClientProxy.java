@@ -2,7 +2,6 @@ package got.client;
 
 import java.util.*;
 
-import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
 import com.mojang.authlib.GameProfile;
@@ -24,7 +23,7 @@ import got.common.entity.animal.*;
 import got.common.entity.dragon.GOTEntityDragon3DViewer;
 import got.common.entity.other.*;
 import got.common.faction.*;
-import got.common.item.other.*;
+import got.common.item.other.GOTItemClick;
 import got.common.network.*;
 import got.common.quest.GOTMiniQuest;
 import got.common.tileentity.*;
@@ -37,7 +36,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.texture.TextureManager;
-import net.minecraft.client.settings.*;
+import net.minecraft.client.settings.GameSettings;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -51,10 +50,10 @@ import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 
 public class GOTClientProxy extends GOTCommonProxy {
 	public static ResourceLocation enchantmentTexture = new ResourceLocation("textures/misc/enchanted_item_glint.png");
-	public static ResourceLocation alignmentTexture = new ResourceLocation("got:gui/alignment.png");
-	public static ResourceLocation particlesTexture = new ResourceLocation("got:misc/particles.png");
-	public static ResourceLocation particles2Texture = new ResourceLocation("got:misc/particles2.png");
-	public static ResourceLocation customEffectsTexture = new ResourceLocation("got:gui/effects.png");
+	public static ResourceLocation alignmentTexture = new ResourceLocation("got:textures/gui/alignment.png");
+	public static ResourceLocation particlesTexture = new ResourceLocation("got:textures/misc/particles.png");
+	public static ResourceLocation particles2Texture = new ResourceLocation("got:textures/misc/particles2.png");
+	public static ResourceLocation customEffectsTexture = new ResourceLocation("got:textures/gui/effects.png");
 	public static int TESSELLATOR_MAX_BRIGHTNESS = 15728880;
 	public static int FONTRENDERER_ALPHA_MIN = 4;
 	public static GOTEffectRenderer customEffectRenderer;
@@ -103,9 +102,9 @@ public class GOTClientProxy extends GOTCommonProxy {
 	public int ropeRenderID;
 	public int chainRenderID;
 	public int trapdoorRenderID;
-	public boolean leftclick = false;
-	public boolean prevleftclick = false;
-	public HashMap<Integer, Long> enderlaunchtimer = new HashMap<>();
+	public boolean leftclick;
+	public boolean prevleftclick;
+	public Map<Integer, Long> enderlaunchtimer = new HashMap<>();
 
 	public int reusetime = 50;
 
@@ -117,7 +116,7 @@ public class GOTClientProxy extends GOTCommonProxy {
 	@Override
 	public void blockbreak(BreakEvent event) {
 		GOTBlockPos pos = new GOTBlockPos(event.x, event.y, event.z);
-		if ((pos != null) && GOTGrappleHelper.controllerpos.containsKey(pos)) {
+		if (GOTGrappleHelper.controllerpos.containsKey(pos)) {
 			GOTControllerGrabble control = GOTGrappleHelper.controllerpos.get(pos);
 
 			control.unattach();
@@ -305,50 +304,6 @@ public class GOTClientProxy extends GOTCommonProxy {
 	}
 
 	@Override
-	public String getkeyname(GOTCommonProxy.keys keyenum) {
-		KeyBinding binding = null;
-
-		GameSettings gs = Minecraft.getMinecraft().gameSettings;
-
-		if (keyenum == keys.keyBindAttack) {
-			binding = gs.keyBindAttack;
-		} else if (keyenum == keys.keyBindBack) {
-			binding = gs.keyBindBack;
-		} else if (keyenum == keys.keyBindForward) {
-			binding = gs.keyBindForward;
-		} else if (keyenum == keys.keyBindJump) {
-			binding = gs.keyBindJump;
-		} else if (keyenum == keys.keyBindLeft) {
-			binding = gs.keyBindLeft;
-		} else if (keyenum == keys.keyBindRight) {
-			binding = gs.keyBindRight;
-		} else if (keyenum == keys.keyBindSneak) {
-			binding = gs.keyBindSneak;
-		} else if (keyenum == keys.keyBindUseItem) {
-			binding = gs.keyBindUseItem;
-		}
-
-		if (binding == null) {
-			return "";
-		}
-
-		String displayname;
-		int keycode = binding.getKeyCode();
-		if (keycode == -99) {
-			return "Right Click";
-		}
-		if (keycode == -100) {
-			return "Left Click";
-		}
-		try {
-			displayname = Keyboard.getKeyName(keycode);
-		} catch (ArrayIndexOutOfBoundsException e) {
-			displayname = "???";
-		}
-		return displayname;
-	}
-
-	@Override
 	public int getPlantainRenderID() {
 		return plantainRenderID;
 	}
@@ -430,7 +385,8 @@ public class GOTClientProxy extends GOTCommonProxy {
 	public void handleInvasionWatch(int invasionEntityID, boolean overrideAlreadyWatched) {
 		Entity e;
 		GOTInvasionStatus status = GOTTickHandlerClient.watchedInvasion;
-		if ((overrideAlreadyWatched || !status.isActive()) && (e = getClientWorld().getEntityByID(invasionEntityID)) instanceof GOTEntityInvasionSpawner) {
+		e = getClientWorld().getEntityByID(invasionEntityID);
+		if ((overrideAlreadyWatched || !status.isActive()) && e instanceof GOTEntityInvasionSpawner) {
 			status.setWatchedInvasion((GOTEntityInvasionSpawner) e);
 		}
 	}
@@ -452,7 +408,7 @@ public class GOTClientProxy extends GOTCommonProxy {
 
 	@Override
 	public boolean isSneaking(Entity entity) {
-		if (entity == Minecraft.getMinecraft().thePlayer) {
+		if (entity.equals(Minecraft.getMinecraft().thePlayer)) {
 			return (GameSettings.isKeyDown(Minecraft.getMinecraft().gameSettings.keyBindSneak));
 		}
 		return entity.isSneaking();
@@ -462,7 +418,6 @@ public class GOTClientProxy extends GOTCommonProxy {
 	public void launchplayer(EntityPlayer player) {
 		if (enderlaunchtimer.containsKey(player.getEntityId())) {
 			enderlaunchtimer.get(player.getEntityId());
-		} else {
 		}
 		player.worldObj.getTotalWorldTime();
 	}
@@ -481,7 +436,7 @@ public class GOTClientProxy extends GOTCommonProxy {
 			}
 
 			leftclick = (GameSettings.isKeyDown(Minecraft.getMinecraft().gameSettings.keyBindAttack) && Minecraft.getMinecraft().currentScreen == null);
-			if ((prevleftclick != leftclick) && (player != null)) {
+			if (prevleftclick != leftclick) {
 				ItemStack stack = player.getHeldItem();
 				if (stack != null) {
 					Item item = stack.getItem();
@@ -509,17 +464,12 @@ public class GOTClientProxy extends GOTCommonProxy {
 	@Override
 	public void onLoad() {
 		super.onLoad();
-		DRRenderGrappleArrow rga = new DRRenderGrappleArrow(GOTRegistry.grapplingHook);
-		RenderingRegistry.registerEntityRenderingHandler(GOTEntityGrapplingArrow.class, rga);
-
 		customEffectRenderer = new GOTEffectRenderer(Minecraft.getMinecraft());
-		GOTTextures.load();
-		GOTRender.renderFactionNPC();
-		GOTRender.renderLegendaryNPC();
-		GOTRender.renderLegendaryNPCLayered();
-		GOTRender.renderMonofolderNPC();
-		GOTRender.renderMonotextureNPC();
-		GOTRender.renderOther();
+		GOTTextures.onInit();
+		GOTRender.onInit();
+		for (Class cl : GOTRender.renders.keySet()) {
+			RenderingRegistry.registerEntityRenderingHandler(cl, GOTRender.renders.get(cl));
+		}
 		beaconRenderID = RenderingRegistry.getNextAvailableRenderId();
 		barrelRenderID = RenderingRegistry.getNextAvailableRenderId();
 		bombRenderID = RenderingRegistry.getNextAvailableRenderId();
@@ -834,7 +784,7 @@ public class GOTClientProxy extends GOTCommonProxy {
 		GuiScreen gui = mc.currentScreen;
 		if (gui instanceof GOTGuiBanner) {
 			GOTGuiBanner guiBanner = (GOTGuiBanner) gui;
-			if (guiBanner.theBanner == banner) {
+			if (guiBanner.theBanner.equals(banner)) {
 				guiBanner.validateUsername(slot, prevText, valid);
 			}
 		}
@@ -850,19 +800,6 @@ public class GOTClientProxy extends GOTCommonProxy {
 	public static int getAlphaInt(float alphaF) {
 		int alphaI = (int) (alphaF * 255.0f);
 		return MathHelper.clamp_int(alphaI, FONTRENDERER_ALPHA_MIN, 255);
-	}
-
-	public static boolean isactive(ItemStack stack) {
-		EntityPlayer p = Minecraft.getMinecraft().thePlayer;
-		int entityid = p.getEntityId();
-		if (GOTGrappleHelper.controllers.containsKey(entityid)) {
-			Item item = stack.getItem();
-			GOTControllerGrabble controller = GOTGrappleHelper.controllers.get(entityid);
-			if ((item.getClass() == GOTItemGrapplingHook.class && controller.controllerid == GOTGrappleHelper.GRAPPLEID) || (item.getClass() == GOTItemMotorGrapplingHook.class && controller.controllerid == GOTGrappleHelper.HOOKID)) {
-				return true;
-			}
-		}
-		return false;
 	}
 
 	public static void renderEnchantmentEffect() {

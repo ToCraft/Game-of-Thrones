@@ -5,7 +5,6 @@ import got.client.sound.GOTBiomeMusic.MusicRegion;
 import got.common.database.*;
 import got.common.world.biome.GOTBiome;
 import got.common.world.biome.variant.GOTBiomeVariant;
-import got.common.world.map.GOTWaypoint;
 import got.common.world.spawning.*;
 import got.common.world.spawning.GOTBiomeSpawnList.SpawnListContainer;
 import got.common.world.structure.essos.myr.GOTStructureMyrCity;
@@ -20,7 +19,6 @@ public class GOTBiomeMyr extends GOTBiomeEssos {
 		this.addBiomeVariant(GOTBiomeVariant.ORCHARD_ALMOND, 0.2f);
 		this.addBiomeVariant(GOTBiomeVariant.ORCHARD_PLUM, 0.2f);
 		this.addBiomeVariant(GOTBiomeVariant.ORCHARD_DATE, 0.2f);
-		this.addBiomeVariant(GOTBiomeVariant.FIELD_CORN, 0.2f);
 
 		SpawnListContainer[] c0 = new SpawnListContainer[2];
 		c0[0] = GOTBiomeSpawnList.entry(GOTSpawnList.MYR_CONQUEST, 4).setSpawnChance(GOTBiome.SPAWN);
@@ -39,11 +37,7 @@ public class GOTBiomeMyr extends GOTBiomeEssos {
 		c3[0] = GOTBiomeSpawnList.entry(GOTSpawnList.LYS_CONQUEST, 10).setSpawnChance(GOTBiome.CONQUEST_SPAWN);
 		npcSpawnList.newFactionList(0).add(c3);
 
-		decorator.affix(new GOTStructureMyrCity(this, 1.0f));
-
-		GOTStructureMyrCity town = new GOTStructureMyrCity(this, 0.0f).setIsTown();
-		town.affix(GOTWaypoint.Myr, -1, 0, 1);
-		decorator.affix(town);
+		decorator.addVillage(new GOTStructureMyrCity(this, 1.0f));
 
 		invasionSpawns.addInvasion(GOTInvasions.LYS, GOTEventSpawner.EventChance.UNCOMMON);
 		invasionSpawns.addInvasion(GOTInvasions.VOLANTIS, GOTEventSpawner.EventChance.UNCOMMON);

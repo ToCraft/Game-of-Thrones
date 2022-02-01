@@ -36,7 +36,6 @@ public class GOTEntityGiftMan extends GOTEntityHumanBase implements IPickpocketa
 		tasks.addTask(9, new EntityAILookIdle(this));
 		addTargetTasks(false);
 		isImmuneToFrost = true;
-		spawnRidingHorse = false;
 	}
 
 	@Override
@@ -58,7 +57,7 @@ public class GOTEntityGiftMan extends GOTEntityHumanBase implements IPickpocketa
 	@Override
 	public GOTNPCMount createMountToRide() {
 		GOTEntityHorse horse = (GOTEntityHorse) super.createMountToRide();
-		horse.setMountArmor(new ItemStack(GOTRegistry.ironHorseArmor));
+		horse.setMountArmor(new ItemStack(GOTRegistry.westerosHorseArmor));
 		return horse;
 	}
 
@@ -100,13 +99,10 @@ public class GOTEntityGiftMan extends GOTEntityHumanBase implements IPickpocketa
 
 	@Override
 	public String getSpeechBank(EntityPlayer entityplayer) {
-		if (isDrunkard()) {
-			return "special/drunkard";
-		}
 		if (isFriendly(entityplayer)) {
-			return "westeros/gift/man/friendly";
+			return "standart/civilized/usual_friendly";
 		}
-		return "westeros/gift/man/hostile";
+		return "standart/civilized/usual_hostile";
 	}
 
 	@Override

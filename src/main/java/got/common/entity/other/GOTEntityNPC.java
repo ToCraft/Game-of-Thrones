@@ -11,6 +11,7 @@ import got.common.*;
 import got.common.database.*;
 import got.common.entity.ai.*;
 import got.common.entity.animal.GOTEntityHorse;
+import got.common.entity.westeros.GOTEntityProstitute;
 import got.common.faction.GOTFaction;
 import got.common.inventory.*;
 import got.common.item.GOTWeaponStats;
@@ -224,7 +225,7 @@ public abstract class GOTEntityNPC extends EntityCreature implements IRangedAtta
 	}
 
 	public boolean canDropRares() {
-		return !hiredNPCInfo.isActive;
+		return !hiredNPCInfo.isActive || !isNotHuman;
 	}
 
 	public boolean canGetDrunk() {
@@ -544,7 +545,7 @@ public abstract class GOTEntityNPC extends EntityCreature implements IRangedAtta
 			GOTBannerBearer bannerBearer = (GOTBannerBearer) (this);
 			return new ItemStack(GOTRegistry.banner, 1, bannerBearer.getBannerType().bannerID);
 		}
-		if (isTrader() && !isLegendaryNPC) {
+		if (isTrader() && !isLegendaryNPC && !(this instanceof GOTMercenary)) {
 			boolean showCoin = false;
 			if ((npcShield == null) || (!clientCombatStance && hiredNPCInfo.getHiringPlayerUUID() == null)) {
 				showCoin = true;
@@ -1238,6 +1239,9 @@ public abstract class GOTEntityNPC extends EntityCreature implements IRangedAtta
 	}
 
 	public boolean shouldRenderNPCChest() {
+		if (this instanceof GOTEntityProstitute && hasCustomNameTag() && "Ayase".equalsIgnoreCase(getCustomNameTag())) {
+			return false;
+		}
 		return !familyInfo.isMale() && !isChild() && getEquipmentInSlot(3) == null;
 	}
 
@@ -1296,12 +1300,6 @@ public abstract class GOTEntityNPC extends EntityCreature implements IRangedAtta
 
 	public boolean speakTo(EntityPlayer entityplayer) {
 		String speechBank = getSpeechBank(entityplayer);
-		if ((rand.nextInt(8) == 0) && GOT.isNewYear()) {
-			speechBank = "special/newYear";
-		}
-		if (rand.nextInt(10000) == 0) {
-			speechBank = "special/smilebc";
-		}
 		if (speechBank != null) {
 			this.sendSpeechBank(entityplayer, speechBank);
 			if (getTalkAchievement() != null) {

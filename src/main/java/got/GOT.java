@@ -55,8 +55,8 @@ public class GOT {
 	@Mod.Instance(value = "got")
 	public static GOT instance;
 	public static final String NAME = "Game of Thrones";
-	public static final String VERSION = "Version 17.5 - Targaryen";
-	public static String[] DEVELOPERS = { "ce6eec82-0678-4be3-933d-05acb902d558", "ce924ff6-8450-41ad-865e-89c5897837c4", "9aee5b32-8e19-4d4b-a2d6-1318af62733d", "1f63e38e-4059-4a4f-b7c4-0fac4a48e744", "72fd4cfd-064e-4cf1-874d-74000c152f48", "a05ba4aa-2cd0-43b1-957c-7971c9af53d4", "22be67c2-ba43-48db-b2ba-32857e78ddad" };
+	public static final String VERSION = "Version 17.6 - Targaryen";
+	public static String[] DEVS = { "ce6eec82-0678-4be3-933d-05acb902d558", "ce924ff6-8450-41ad-865e-89c5897837c4", "9aee5b32-8e19-4d4b-a2d6-1318af62733d", "1f63e38e-4059-4a4f-b7c4-0fac4a48e744", "72fd4cfd-064e-4cf1-874d-74000c152f48", "a05ba4aa-2cd0-43b1-957c-7971c9af53d4", "22be67c2-ba43-48db-b2ba-32857e78ddad", "694406b3-10e4-407d-99bb-17218696627a" };
 	public static GOTEventHandler eventHandler;
 	public static GOTPacketHandler packetHandler;
 	public static GOTTickHandlerServer tickHandler;
@@ -64,10 +64,8 @@ public class GOT {
 	public static WorldType worldTypeGOTClassic;
 	public static Map<ItemStack, Integer> buy = new GOTItemStackMapImpl<>();
 	public static Map<ItemStack, Integer> sell = new GOTItemStackMapImpl<>();
-
-	public GOT() {
-		instance = this;
-	}
+	public static String langsName = "\u0420\u0443\u0441\u0441\u043A\u0438\u0439 (ru), \u0423\u043A\u0440\u0430\u0457\u043D\u0441\u044C\u043A\u0430 (uk), English (en), Deutsch (de), T\u00FCrk\u00E7e (tr), \u4E2D\u6587 (zh)";
+	public static boolean isDevMode = false;
 
 	@Mod.EventHandler
 	public void load(FMLInitializationEvent event) {
@@ -111,48 +109,50 @@ public class GOT {
 		}
 		Blocks.fire.setFireInfo(Blocks.acacia_stairs, 5, 20);
 		Blocks.fire.setFireInfo(Blocks.dark_oak_stairs, 5, 20);
-		GOTRegistry.oreCopper.setHarvestLevel("pickaxe", 1);
-		GOTRegistry.oreTin.setHarvestLevel("pickaxe", 1);
-		GOTRegistry.oreSilver.setHarvestLevel("pickaxe", 2);
-		GOTRegistry.oreCobalt.setHarvestLevel("pickaxe", 2);
-		GOTRegistry.oreValyrian.setHarvestLevel("pickaxe", 2);
-		GOTRegistry.blockMetal1.setHarvestLevel("pickaxe", 1, 0);
-		GOTRegistry.blockMetal1.setHarvestLevel("pickaxe", 1, 1);
-		GOTRegistry.blockMetal1.setHarvestLevel("pickaxe", 1, 2);
-		GOTRegistry.blockMetal1.setHarvestLevel("pickaxe", 2, 3);
-		GOTRegistry.blockMetal1.setHarvestLevel("pickaxe", 2, 4);
-		GOTRegistry.blockMetal1.setHarvestLevel("pickaxe", 1, 5);
-		GOTRegistry.blockMetal1.setHarvestLevel("pickaxe", 2, 6);
-		GOTRegistry.blockMetal1.setHarvestLevel("pickaxe", 1, 7);
-		GOTRegistry.blockMetal1.setHarvestLevel("pickaxe", 2, 8);
-		GOTRegistry.blockMetal1.setHarvestLevel("pickaxe", 1, 9);
-		GOTRegistry.blockMetal1.setHarvestLevel("pickaxe", 2, 11);
-		GOTRegistry.blockMetal1.setHarvestLevel("pickaxe", 2, 12);
-		GOTRegistry.blockMetal1.setHarvestLevel("pickaxe", 1, 15);
-		GOTRegistry.oreGlowstone.setHarvestLevel("pickaxe", 1);
-		GOTRegistry.quagmire.setHarvestLevel("shovel", 0);
-		GOTRegistry.quicksand.setHarvestLevel("shovel", 0);
-		GOTRegistry.blockMetal2.setHarvestLevel("pickaxe", 1, 0);
-		GOTRegistry.blockMetal2.setHarvestLevel("pickaxe", 1, 4);
-		GOTRegistry.asshaiDirt.setHarvestLevel("shovel", 0);
-		GOTRegistry.basaltGravel.setHarvestLevel("shovel", 0);
-		GOTRegistry.obsidianGravel.setHarvestLevel("shovel", 0);
-		GOTRegistry.mud.setHarvestLevel("shovel", 0);
-		GOTRegistry.mudGrass.setHarvestLevel("shovel", 0);
-		GOTRegistry.mudFarmland.setHarvestLevel("shovel", 0);
-		GOTRegistry.dirtPath.setHarvestLevel("shovel", 0);
-		GOTRegistry.slabSingleDirt.setHarvestLevel("shovel", 0);
-		GOTRegistry.slabDoubleDirt.setHarvestLevel("shovel", 0);
-		GOTRegistry.slabSingleSand.setHarvestLevel("shovel", 0);
-		GOTRegistry.slabDoubleSand.setHarvestLevel("shovel", 0);
-		GOTRegistry.slabSingleGravel.setHarvestLevel("shovel", 0);
-		GOTRegistry.slabDoubleGravel.setHarvestLevel("shovel", 0);
-		GOTRegistry.whiteSand.setHarvestLevel("shovel", 0);
-		GOTRegistry.stalactiteObsidian.setHarvestLevel("pickaxe", 3);
-		GOTRegistry.oreGem.setHarvestLevel("pickaxe", 2);
-		GOTRegistry.blockGem.setHarvestLevel("pickaxe", 2);
-		GOTRegistry.blockGem.setHarvestLevel("pickaxe", 0, 8);
-		GOTRegistry.redClay.setHarvestLevel("shovel", 0);
+		String pickaxe = "pickaxe";
+		String shovel = "shovel";
+		GOTRegistry.oreCopper.setHarvestLevel(pickaxe, 1);
+		GOTRegistry.oreTin.setHarvestLevel(pickaxe, 1);
+		GOTRegistry.oreSilver.setHarvestLevel(pickaxe, 2);
+		GOTRegistry.oreCobalt.setHarvestLevel(pickaxe, 2);
+		GOTRegistry.oreValyrian.setHarvestLevel(pickaxe, 2);
+		GOTRegistry.blockMetal1.setHarvestLevel(pickaxe, 1, 0);
+		GOTRegistry.blockMetal1.setHarvestLevel(pickaxe, 1, 1);
+		GOTRegistry.blockMetal1.setHarvestLevel(pickaxe, 1, 2);
+		GOTRegistry.blockMetal1.setHarvestLevel(pickaxe, 2, 3);
+		GOTRegistry.blockMetal1.setHarvestLevel(pickaxe, 2, 4);
+		GOTRegistry.blockMetal1.setHarvestLevel(pickaxe, 1, 5);
+		GOTRegistry.blockMetal1.setHarvestLevel(pickaxe, 2, 6);
+		GOTRegistry.blockMetal1.setHarvestLevel(pickaxe, 1, 7);
+		GOTRegistry.blockMetal1.setHarvestLevel(pickaxe, 2, 8);
+		GOTRegistry.blockMetal1.setHarvestLevel(pickaxe, 1, 9);
+		GOTRegistry.blockMetal1.setHarvestLevel(pickaxe, 2, 11);
+		GOTRegistry.blockMetal1.setHarvestLevel(pickaxe, 2, 12);
+		GOTRegistry.blockMetal1.setHarvestLevel(pickaxe, 1, 15);
+		GOTRegistry.oreGlowstone.setHarvestLevel(pickaxe, 1);
+		GOTRegistry.quagmire.setHarvestLevel(shovel, 0);
+		GOTRegistry.quicksand.setHarvestLevel(shovel, 0);
+		GOTRegistry.blockMetal2.setHarvestLevel(pickaxe, 1, 0);
+		GOTRegistry.blockMetal2.setHarvestLevel(pickaxe, 1, 4);
+		GOTRegistry.asshaiDirt.setHarvestLevel(shovel, 0);
+		GOTRegistry.basaltGravel.setHarvestLevel(shovel, 0);
+		GOTRegistry.obsidianGravel.setHarvestLevel(shovel, 0);
+		GOTRegistry.mud.setHarvestLevel(shovel, 0);
+		GOTRegistry.mudGrass.setHarvestLevel(shovel, 0);
+		GOTRegistry.mudFarmland.setHarvestLevel(shovel, 0);
+		GOTRegistry.dirtPath.setHarvestLevel(shovel, 0);
+		GOTRegistry.slabSingleDirt.setHarvestLevel(shovel, 0);
+		GOTRegistry.slabDoubleDirt.setHarvestLevel(shovel, 0);
+		GOTRegistry.slabSingleSand.setHarvestLevel(shovel, 0);
+		GOTRegistry.slabDoubleSand.setHarvestLevel(shovel, 0);
+		GOTRegistry.slabSingleGravel.setHarvestLevel(shovel, 0);
+		GOTRegistry.slabDoubleGravel.setHarvestLevel(shovel, 0);
+		GOTRegistry.whiteSand.setHarvestLevel(shovel, 0);
+		GOTRegistry.stalactiteObsidian.setHarvestLevel(pickaxe, 3);
+		GOTRegistry.oreGem.setHarvestLevel(pickaxe, 2);
+		GOTRegistry.blockGem.setHarvestLevel(pickaxe, 2);
+		GOTRegistry.blockGem.setHarvestLevel(pickaxe, 0, 8);
+		GOTRegistry.redClay.setHarvestLevel(shovel, 0);
 		GOTLoader.onInit();
 	}
 
@@ -211,20 +211,21 @@ public class GOT {
 		}
 		int items = 0;
 		for (Item item : GOTCommander.getObjectFieldsOfType(GOTRegistry.class, Item.class)) {
-			items = items + 1;
+			items++;
 		}
 		int blocks = 0;
 		for (Block block : GOTCommander.getObjectFieldsOfType(GOTRegistry.class, Block.class)) {
-			blocks = blocks + 1;
+			blocks++;
 		}
 		int biomes = 0;
 		for (GOTBiome biome : GOTCommander.getObjectFieldsOfType(GOTBiome.class, GOTBiome.class)) {
-			biomes = biomes + 1;
+			biomes++;
 		}
 		int waypoints = GOTWaypoint.values().length;
 		int factions = GOTFaction.values().length - 2;
+		int banners = GOTItemBanner.BannerType.values().length;
 		GOTLog.logger.info("Hummel009: Registered " + GOTPacketHandler.id + " packets");
-		GOTLog.logger.info("Hummel009: Registered " + GOTItemBanner.id + " banners");
+		GOTLog.logger.info("Hummel009: Registered " + banners + " banners");
 		GOTLog.logger.info("Hummel009: Registered " + GOTEntity.id + " mobs");
 		GOTLog.logger.info("Hummel009: Registered " + GOTStructure.id + " structures");
 		GOTLog.logger.info("Hummel009: Registered " + biomes + " biomes");
@@ -234,6 +235,13 @@ public class GOT {
 		GOTLog.logger.info("Hummel009: Registered " + factions + " factions");
 		GOTLog.logger.info("Hummel009: Registered " + items + " items");
 		GOTLog.logger.info("Hummel009: Registered " + blocks + " blocks");
+		if (GOT.isDevMode) {
+			try {
+				DatabaseGenerator.generateWikiaDatabases();
+			} catch (NoSuchFieldException | IllegalAccessException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	@Mod.EventHandler
@@ -252,34 +260,17 @@ public class GOT {
 		GOTBlockReplacement.replaceVanillaItem(Items.cake, new GOTItemPlaceableFood(Blocks.cake).setTextureName("cake").setCreativeTab(CreativeTabs.tabFood));
 		GOTBlockReplacement.replaceVanillaItem(Items.potionitem, new GOTItemPotion().setTextureName("potion"));
 		GOTBlockReplacement.replaceVanillaItem(Items.glass_bottle, new GOTItemGlassBottle().setTextureName("potion_bottle_empty"));
-		GOTConfig.setupAndLoad(event);
-		GOTRegistry.assignContent();
-		GOTRegistry.assignMetadata();
-		GOTRegistry.registerBlocks();
-		GOTRegistry.registerItems();
-
-		buy.put(new ItemStack(GOTRegistry.coin, 1, 0), 1);
-		buy.put(new ItemStack(GOTRegistry.coin, 1, 1), 2);
-		buy.put(new ItemStack(GOTRegistry.coin, 1, 2), 4);
-		buy.put(new ItemStack(GOTRegistry.coin, 1, 3), 8);
-		buy.put(new ItemStack(GOTRegistry.coin, 1, 4), 56);
-		buy.put(new ItemStack(GOTRegistry.coin, 1, 5), 392);
-		buy.put(new ItemStack(GOTRegistry.coin, 1, 6), 11760);
-		buy.put(new ItemStack(GOTRegistry.coin, 1, 7), 105840);
-
-		sell.put(new ItemStack(GOTRegistry.coin, 1, 0), 1);
-		sell.put(new ItemStack(GOTRegistry.coin, 1, 1), 2);
-		sell.put(new ItemStack(GOTRegistry.coin, 1, 2), 4);
-		sell.put(new ItemStack(GOTRegistry.coin, 1, 3), 8);
-		sell.put(new ItemStack(GOTRegistry.coin, 1, 4), 56);
-		sell.put(new ItemStack(GOTRegistry.coin, 1, 5), 392);
-		sell.put(new ItemStack(GOTRegistry.coin, 1, 6), 11760);
-		sell.put(new ItemStack(GOTRegistry.coin, 1, 7), 105840);
-
+		GOTLoader.preInit();
 		Blocks.dragon_egg.setCreativeTab(GOTCreativeTabs.tabStory);
 		MinecraftForge.EVENT_BUS.register(new GOTTrackingEventHandler());
-		GOTLoader.preInit();
 		proxy.onPreload();
+
+		int k = 1;
+		for (int i = 0; i < 8; ++i) {
+			buy.put(new ItemStack(GOTRegistry.coin, 1, i), k);
+			sell.put(new ItemStack(GOTRegistry.coin, 1, i), k);
+			k *= 4;
+		}
 	}
 
 	public static boolean canDropLoot(World world) {
@@ -473,6 +464,11 @@ public class GOT {
 			return j + 1;
 		}
 		return -1;
+	}
+
+	public static boolean isAprilFools() {
+		Calendar calendar = Calendar.getInstance();
+		return calendar.get(2) == 3 && calendar.get(5) == 1;
 	}
 
 	public static boolean isGuyFawkes() {

@@ -15,7 +15,6 @@ public class GOTEntityNorvosGuardCaptain extends GOTEntityNorvosGuard implements
 		super(world);
 		canBeMarried = false;
 		addTargetTasks(false);
-		npcCape = GOTCapes.NORVOS;
 	}
 
 	@Override
@@ -43,11 +42,11 @@ public class GOTEntityNorvosGuardCaptain extends GOTEntityNorvosGuard implements
 	public String getSpeechBank(EntityPlayer entityplayer) {
 		if (isFriendly(entityplayer)) {
 			if (canTradeWith(entityplayer)) {
-				return "essos/norvos/warlord/friendly";
+				return "standart/civilized/usual_friendly";
 			}
-			return "essos/norvos/warlord/neutral";
+			return "standart/civilized/usual_neutral";
 		}
-		return "essos/norvos/warrior/hostile";
+		return "standart/civilized/usual_hostile";
 	}
 
 	@Override
