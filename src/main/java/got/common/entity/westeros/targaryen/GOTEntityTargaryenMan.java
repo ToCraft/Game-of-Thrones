@@ -17,7 +17,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 
 public class GOTEntityTargaryenMan extends GOTEntityHumanBase implements IPickpocketable {
-	public static ItemStack[] weapons = new ItemStack[] { new ItemStack(GOTRegistry.westerosDagger), new ItemStack(GOTRegistry.ironDagger), new ItemStack(GOTRegistry.bronzeDagger), new ItemStack(Items.iron_axe), new ItemStack(GOTRegistry.bronzeAxe), new ItemStack(Items.stone_axe) };
+	public static ItemStack[] weapons = { new ItemStack(GOTRegistry.westerosDagger), new ItemStack(GOTRegistry.ironDagger), new ItemStack(GOTRegistry.bronzeDagger), new ItemStack(Items.iron_axe), new ItemStack(GOTRegistry.bronzeAxe), new ItemStack(Items.stone_axe) };
 
 	public GOTEntityTargaryenMan(World world) {
 		super(world);
@@ -59,6 +59,7 @@ public class GOTEntityTargaryenMan extends GOTEntityHumanBase implements IPickpo
 	@Override
 	public GOTNPCMount createMountToRide() {
 		GOTEntityHorse horse = (GOTEntityHorse) super.createMountToRide();
+		horse.setMountArmor(new ItemStack(GOTRegistry.westerosHorseArmor));
 		return horse;
 	}
 
@@ -107,7 +108,7 @@ public class GOTEntityTargaryenMan extends GOTEntityHumanBase implements IPickpo
 			int i = MathHelper.floor_double(posX);
 			int j = MathHelper.floor_double(boundingBox.minY);
 			int k = MathHelper.floor_double(posZ);
-			if (j > 62 && worldObj.getBlock(i, j - 1, k) == worldObj.getBiomeGenForCoords(i, k).topBlock) {
+			if (j > 62 && j < 140 && worldObj.getBlock(i, j - 1, k) == worldObj.getBiomeGenForCoords(i, k).topBlock) {
 				return true;
 			}
 		}
@@ -126,13 +127,10 @@ public class GOTEntityTargaryenMan extends GOTEntityHumanBase implements IPickpo
 
 	@Override
 	public String getSpeechBank(EntityPlayer entityplayer) {
-		if (isDrunkard()) {
-			return "special/drunkard";
-		}
 		if (isFriendly(entityplayer)) {
-			return "westeros/targaryen/man/friendly";
+			return "standart/civilized/usual_friendly";
 		}
-		return "westeros/targaryen/man/hostile";
+		return "standart/civilized/usual_hostile";
 	}
 
 	@Override

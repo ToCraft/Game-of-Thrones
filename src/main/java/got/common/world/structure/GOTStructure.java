@@ -1,11 +1,9 @@
 package got.common.world.structure;
 
-<<<<<<< HEAD
 import got.common.world.structure.westeros.targaryen.*;
 
-=======
 import got.GOT;
->>>>>>> official
+
 import got.common.faction.GOTFaction;
 import got.common.util.DatabaseGenerator;
 import got.common.world.biome.GOTBiome;
@@ -423,49 +421,6 @@ public class GOTStructure {
 		GOTStructureRegistry.register(id++, GOTStructureSothoryosChieftainPyramid.class, "SothoryosChieftainPyramid", GOTFaction.SOTHORYOS);
 		GOTStructureRegistry.register(id++, GOTStructureSothoryosSmithy.class, "SothoryosSmithy", GOTFaction.SOTHORYOS);
 
-<<<<<<< HEAD
-		GOTStructureRegistry.register(id++, new GOTStructureTargaryenCity(GOTBiome.dragonstoneTargaryen, 1.0f), "TargaryenCityLittle", GOTFaction.TARGARYEN, new GOTStructureRegistry.IVillageProperties<GOTStructureTargaryenCity.Instance>() {
-
-			@Override
-	public void apply(GOTStructureTargaryenCity.Instance instance) {
-		instance.villageType = GOTStructureTargaryenCity.VillageType.VILLAGE;
-			}
-		});
-GOTStructureRegistry.register(id++, new GOTStructureTargaryenCity(GOTBiome.dragonstoneTargaryen, 1.0f), "TargaryenCityBig", GOTFaction.TARGARYEN, new GOTStructureRegistry.IVillageProperties<GOTStructureTargaryenCity.Instance>() {
-
-			@Override
-	public void apply(GOTStructureTargaryenCity.Instance instance) {
-		instance.villageType = GOTStructureTargaryenCity.VillageType.TOWN;
-			}
-		});
-GOTStructureRegistry.register(id++, new GOTStructureTargaryenCity(GOTBiome.dragonstoneTargaryen, 1.0f), "TargaryenCityMedium", GOTFaction.TARGARYEN, new GOTStructureRegistry.IVillageProperties<GOTStructureTargaryenCity.Instance>() {
-
-			@Override
-	public void apply(GOTStructureTargaryenCity.Instance instance) {
-		instance.villageType = GOTStructureTargaryenCity.VillageType.FORT;
-			}
-		});
-
-GOTStructureRegistry.register(id++, new GOTStructureTargaryenCity(GOTBiome.crownlandsTargaryen, 1.0f), "TargaryenCityLittle", GOTFaction.TARGARYEN, new GOTStructureRegistry.IVillageProperties<GOTStructureTargaryenCity.Instance>() {
-
-			@Override
-	public void apply(GOTStructureTargaryenCity.Instance instance) {
-		instance.villageType = GOTStructureTargaryenCity.VillageType.VILLAGE;
-			}
-		});
-GOTStructureRegistry.register(id++, new GOTStructureTargaryenCity(GOTBiome.crownlandsTargaryen, 1.0f), "TargaryenCityBig", GOTFaction.TARGARYEN, new GOTStructureRegistry.IVillageProperties<GOTStructureTargaryenCity.Instance>() {
-
-			@Override
-	public void apply(GOTStructureTargaryenCity.Instance instance) {
-		instance.villageType = GOTStructureTargaryenCity.VillageType.TOWN;
-			}
-		});
-GOTStructureRegistry.register(id++, new GOTStructureTargaryenCity(GOTBiome.crownlandsTargaryen, 1.0f), "TargaryenCityMedium", GOTFaction.TARGARYEN, new GOTStructureRegistry.IVillageProperties<GOTStructureTargaryenCity.Instance>() {
-
-			@Override
-	public void apply(GOTStructureTargaryenCity.Instance instance) {
-		instance.villageType = GOTStructureTargaryenCity.VillageType.FORT;
-=======
 		GOTStructureRegistry.register(id++, new GOTStructureWildlingVillage(GOTBiome.hauntedForest, 1.0f), "WildlingVillage", GOTFaction.WILDLING, new GOTStructureRegistry.IVillageProperties<GOTStructureWildlingVillage.Instance>() {
 
 			@Override
@@ -473,11 +428,55 @@ GOTStructureRegistry.register(id++, new GOTStructureTargaryenCity(GOTBiome.crown
 			}
 		});
 
+		
+		GOTStructureRegistry.register(id++, new GOTStructureTargaryenCity(GOTBiome.crownlandsTargaryen, 1.0f), "TargaryenCityLittle", GOTFaction.TARGARYEN, new GOTStructureRegistry.IVillageProperties<GOTStructureTargaryenCity.Instance>() {
+
+			@Override
+			public void apply(GOTStructureTargaryenCity.Instance instance) {
+				instance.villageType = GOTStructureTargaryenCity.VillageType.VILLAGE;
+			}
+		});
+		GOTStructureRegistry.register(id++, new GOTStructureTargaryenCity(GOTBiome.crownlandsTargaryen, 1.0f), "TargaryenCityBig", GOTFaction.TARGARYEN, new GOTStructureRegistry.IVillageProperties<GOTStructureTargaryenCity.Instance>() {
+
+			@Override
+			public void apply(GOTStructureTargaryenCity.Instance instance) {
+				instance.villageType = GOTStructureTargaryenCity.VillageType.TOWN;
+			}
+		});
+		GOTStructureRegistry.register(id++, new GOTStructureTargaryenCity(GOTBiome.crownlandsTargaryen, 1.0f), "TargaryenCityMedium", GOTFaction.TARGARYEN, new GOTStructureRegistry.IVillageProperties<GOTStructureTargaryenCity.Instance>() {
+
+			@Override
+			public void apply(GOTStructureTargaryenCity.Instance instance) {
+				instance.villageType = GOTStructureTargaryenCity.VillageType.FORT;
+			}
+		});
+		
+		GOTStructureRegistry.register(id++, new GOTStructureTargaryenCity(GOTBiome.dragonstoneTargaryen, 1.0f), "TargaryenCityLittle", GOTFaction.TARGARYEN, new GOTStructureRegistry.IVillageProperties<GOTStructureTargaryenCity.Instance>() {
+
+			@Override
+			public void apply(GOTStructureTargaryenCity.Instance instance) {
+				instance.villageType = GOTStructureTargaryenCity.VillageType.VILLAGE;
+			}
+		});
+		GOTStructureRegistry.register(id++, new GOTStructureTargaryenCity(GOTBiome.dragonstoneTargaryen, 1.0f), "TargaryenCityBig", GOTFaction.TARGARYEN, new GOTStructureRegistry.IVillageProperties<GOTStructureTargaryenCity.Instance>() {
+
+			@Override
+			public void apply(GOTStructureTargaryenCity.Instance instance) {
+				instance.villageType = GOTStructureTargaryenCity.VillageType.TOWN;
+			}
+		});
+		GOTStructureRegistry.register(id++, new GOTStructureTargaryenCity(GOTBiome.dragonstoneTargaryen, 1.0f), "TargaryenCityMedium", GOTFaction.TARGARYEN, new GOTStructureRegistry.IVillageProperties<GOTStructureTargaryenCity.Instance>() {
+
+			@Override
+			public void apply(GOTStructureTargaryenCity.Instance instance) {
+				instance.villageType = GOTStructureTargaryenCity.VillageType.FORT;
+			}
+		});
+
 		GOTStructureRegistry.register(id++, new GOTStructureThennVillage(GOTBiome.thenn, 1.0f), "ThennVillage", GOTFaction.WILDLING, new GOTStructureRegistry.IVillageProperties<GOTStructureThennVillage.Instance>() {
 
 			@Override
 			public void apply(GOTStructureThennVillage.Instance instance) {
->>>>>>> official
 			}
 		});
 

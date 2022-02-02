@@ -13,7 +13,7 @@ public class GOTBlockTableTargaryen extends GOTBlockCraftingTable {
 	public IIcon[] tableIcons;
 
 	public GOTBlockTableTargaryen() {
-		super(Material.rock, GOTFaction.TARGARYEN, 86);
+		super(Material.rock, GOTFaction.TARGARYEN, 89);
 		setStepSound(Block.soundTypeStone);
 	}
 

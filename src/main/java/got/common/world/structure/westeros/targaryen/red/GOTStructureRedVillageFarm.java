@@ -3,7 +3,7 @@ package got.common.world.structure.westeros.targaryen.red;
 import java.util.Random;
 
 import got.common.database.GOTRegistry;
-import got.common.entity.westeros.crownlands.GOTEntityCrownlandsFarmhand;
+import got.common.entity.westeros.targaryen.GOTEntityTargaryenFarmhand;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 
@@ -124,7 +124,7 @@ public abstract class GOTStructureRedVillageFarm extends GOTStructureRedBase {
 			setBlockAndMetadata(world, 5, 1, 0, fenceGateBlock, 3);
 			int farmhands = 1 + random.nextInt(2);
 			for (int l = 0; l < farmhands; ++l) {
-				GOTEntityCrownlandsFarmhand farmhand = new GOTEntityCrownlandsFarmhand(world);
+				GOTEntityTargaryenFarmhand farmhand = new GOTEntityTargaryenFarmhand(world);
 				spawnNPCAndSetHome(farmhand, world, 0, 1, -1, 8);
 				farmhand.seedsItem = seedItem;
 			}

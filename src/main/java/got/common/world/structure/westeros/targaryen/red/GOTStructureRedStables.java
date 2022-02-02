@@ -4,7 +4,7 @@ import java.util.Random;
 
 import got.common.database.*;
 import got.common.entity.animal.GOTEntityHorse;
-import got.common.entity.westeros.crownlands.GOTEntityCrownlandsMan;
+import got.common.entity.westeros.targaryen.GOTEntityTargaryenMan;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 
@@ -222,7 +222,7 @@ public class GOTStructureRedStables extends GOTStructureRedBase {
 		setBlockAndMetadata(world, -3, 5, 3, bedBlock, 11);
 		this.placeChest(world, random, -3, 5, 1, 3, GOTChestContents.WESTEROS);
 		this.placeBarrel(world, random, -2, 5, 1, 3, GOTFoods.WESTEROS_DRINK);
-		GOTEntityCrownlandsMan westerosman = new GOTEntityCrownlandsMan(world);
+		GOTEntityTargaryenMan westerosman = new GOTEntityTargaryenMan(world);
 		spawnNPCAndSetHome(westerosman, world, 0, 1, 2, 8);
 		return true;
 	}

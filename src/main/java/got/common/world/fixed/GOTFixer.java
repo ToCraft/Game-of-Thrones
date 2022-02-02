@@ -2,6 +2,7 @@ package got.common.world.fixed;
 
 import java.util.*;
 
+import got.common.GOTConfig;
 import got.common.entity.essos.legendary.GOTEntityMissandei;
 import got.common.entity.essos.legendary.captain.*;
 import got.common.entity.essos.legendary.quest.*;
@@ -49,6 +50,7 @@ import got.common.world.structure.westeros.north.hillmen.GOTStructureNorthHillma
 import got.common.world.structure.westeros.reach.GOTStructureReachCity;
 import got.common.world.structure.westeros.riverlands.GOTStructureRiverlandsCity;
 import got.common.world.structure.westeros.stormlands.GOTStructureStormlandsCity;
+import got.common.world.structure.westeros.targaryen.GOTStructureTargaryenCity;
 import got.common.world.structure.westeros.westerlands.GOTStructureWesterlandsCity;
 import net.minecraft.world.World;
 
@@ -82,13 +84,20 @@ public class GOTFixer {
 		f[5].affix(GOTWaypoint.CrastersKeep);
 		f[6] = new GOTStructureCrossroadsInn(biome, 0.0f);
 		f[6].affix(GOTWaypoint.CrossroadsInn);
-		f[7] = new GOTStructureCrownlandsCity(biome, 0.0f).setIsCapital();
+		if (GOTConfig.replaceCrownlandsDragonstoneWithTargaryen) {
+			f[7] = new GOTStructureTargaryenCity(biome, 0.0f).setIsCapital();
+			f[8] = new GOTStructureTargaryenCity(biome, 0.0f).setIsCastle();
+			f[9] = new GOTStructureTargaryenCity(biome, 0.0f).setIsTown();
+			f[10] = new GOTStructureTargaryenCity(biome, 0.0f);
+		} else {
+			f[7] = new GOTStructureCrownlandsCity(biome, 0.0f).setIsCapital();
+			f[8] = new GOTStructureCrownlandsCity(biome, 0.0f).setIsCastle();
+			f[9] = new GOTStructureCrownlandsCity(biome, 0.0f).setIsTown();
+			f[10] = new GOTStructureCrownlandsCity(biome, 0.0f);
+		}
 		f[7].affix(GOTWaypoint.KingsLanding.info(1, 0, 1));
-		f[8] = new GOTStructureCrownlandsCity(biome, 0.0f).setIsCastle();
 		f[8].affix(GOTWaypoint.Antlers, GOTWaypoint.Brownhollow, GOTWaypoint.DyreDen, GOTWaypoint.Stokeworth, GOTWaypoint.Hayford.info(-1, 0, 0), GOTWaypoint.RooksRest.info(0, -1, 0), GOTWaypoint.Rosby.info(0, -1, 0));
-		f[9] = new GOTStructureCrownlandsCity(biome, 0.0f).setIsTown();
 		f[9].affix(GOTWaypoint.Duskendale.info(-2, 0, 3));
-		f[10] = new GOTStructureCrownlandsCity(biome, 0.0f);
 		f[10].affix(GOTWaypoint.Briarwhite);
 		f[11] = new GOTStructureDorneCity(biome, 0.0f).setIsCastle();
 		f[11].affix(GOTWaypoint.Blackmont, GOTWaypoint.GhostHill, GOTWaypoint.Godsgrace, GOTWaypoint.Hellholt, GOTWaypoint.HighHermitage, GOTWaypoint.Tor, GOTWaypoint.Vaith, GOTWaypoint.WaterGardens, GOTWaypoint.Spottswood, GOTWaypoint.Lemonwood, GOTWaypoint.Saltshore, GOTWaypoint.Sandstone, GOTWaypoint.Kingsgrave.info(-1, 0, 0), GOTWaypoint.SkyReach.info(0, 1, 0), GOTWaypoint.Starfall.info(0, -1, 0), GOTWaypoint.Wyl.info(0, -1, 0), GOTWaypoint.Yronwood.info(1, 0, 0));
@@ -96,9 +105,14 @@ public class GOTFixer {
 		f[12].affix(GOTWaypoint.GhastonGrey, GOTWaypoint.PlankyTown, GOTWaypoint.Sunspear);
 		f[13] = new GOTStructureDothrakiVillage(biome, 0.0f).setIsBig();
 		f[13].affix(GOTWaypoint.Hornoth, GOTWaypoint.Kyth, GOTWaypoint.Sathar, GOTWaypoint.Rathylar, GOTWaypoint.VaesAthjikhari, GOTWaypoint.VaesDiaf, GOTWaypoint.VaesDothrak, GOTWaypoint.VaesEfe, GOTWaypoint.VaesGorqoyi, GOTWaypoint.VaesGraddakh, GOTWaypoint.VaesJini, GOTWaypoint.VaesKhadokh, GOTWaypoint.VaesKhewo, GOTWaypoint.VaesLeisi, GOTWaypoint.VaesLeqse, GOTWaypoint.VaesMejhah);
-		f[14] = new GOTStructureDragonstoneCity(biome, 0.0f).setIsCastle();
+		if (GOTConfig.replaceCrownlandsDragonstoneWithTargaryen) {
+			f[14] = new GOTStructureTargaryenCity(biome, 0.0f).setIsCastle();
+			f[15] = new GOTStructureTargaryenCity(biome, 0.0f).setIsTown();
 		f[14].affix(GOTWaypoint.ClawIsle, GOTWaypoint.Dragonstone, GOTWaypoint.Driftmark, GOTWaypoint.HighTide, GOTWaypoint.SharpPoint, GOTWaypoint.Stonedance, GOTWaypoint.SweetportSound);
+		} else {
+		f[14] = new GOTStructureDragonstoneCity(biome, 0.0f).setIsCastle();
 		f[15] = new GOTStructureDragonstoneCity(biome, 0.0f).setIsTown();
+		}
 		f[15].affix(GOTWaypoint.Hull);
 		f[16] = new GOTStructureEastWatch(biome, 0.0f);
 		f[16].affix(GOTWaypoint.EastWatch);
@@ -160,7 +174,11 @@ public class GOTFixer {
 		f[44].affix(GOTWaypoint.Highgarden.info(0, -1, 0), GOTWaypoint.Appleton.info(0, -1, 0), GOTWaypoint.Ashford.info(0, 1, 0), GOTWaypoint.Bandallon, GOTWaypoint.Goldengrove, GOTWaypoint.GrassyVale, GOTWaypoint.Greenshield, GOTWaypoint.Grimston, GOTWaypoint.Hammerhal, GOTWaypoint.RedLake, GOTWaypoint.Ring, GOTWaypoint.Southshield, GOTWaypoint.Uplands, GOTWaypoint.Holyhall, GOTWaypoint.Honeyholt, GOTWaypoint.HornHill, GOTWaypoint.IvyHall, GOTWaypoint.Longtable, GOTWaypoint.NewBarrel, GOTWaypoint.Blackcrown, GOTWaypoint.BrightwaterKeep, GOTWaypoint.CiderHall, GOTWaypoint.Coldmoat, GOTWaypoint.DarkDell, GOTWaypoint.Dunstonbury, GOTWaypoint.Bitterbridge.info(0, 1, 0), GOTWaypoint.GarnetGrove.info(-1, 0, 0), GOTWaypoint.HewettTown.info(0, -1, 0), GOTWaypoint.OldOak.info(-1, 0, 0), GOTWaypoint.SunHouse.info(0, -1, 0), GOTWaypoint.Whitegrove.info(-1, 0, 0));
 		f[45] = new GOTStructureReachCity(biome, 0.0f).setIsTown();
 		f[45].affix(GOTWaypoint.Oldtown.info(-1, 0, 3), GOTWaypoint.Appleton.info(0, 1, 2), GOTWaypoint.Ashford.info(0, -1, 0), GOTWaypoint.HewettTown.info(0, 1, 0), GOTWaypoint.Smithyton.info(0, 1, 2), GOTWaypoint.StarfishHarbor, GOTWaypoint.Vinetown, GOTWaypoint.Ryamsport, GOTWaypoint.Tumbleton.info(0, -1, 0));
-		f[46] = new GOTStructureRedCastle(biome, 0.0f);
+		if (GOTConfig.replaceCrownlandsDragonstoneWithTargaryen) {
+			f[46] = new GOTStructureRedCastleT(biome, 0.0f);
+		} else {
+			f[46] = new GOTStructureRedCastle(biome, 0.0f);
+		}
 		f[46].affix(GOTWaypoint.KingsLanding.info(2, 0, 1));
 		f[47] = new GOTStructureRiverlandsCity(biome, 0.0f).setIsCastle();
 		f[47].affix(GOTWaypoint.Darry.info(1, 0, 0), GOTWaypoint.Maidenpool.info(1, 0, 0), GOTWaypoint.PinkmaidenCastle, GOTWaypoint.RaventreeHall, GOTWaypoint.WayfarerRest, GOTWaypoint.AcornHall, GOTWaypoint.Atranta, GOTWaypoint.Riverrun.info(1, 0, 0), GOTWaypoint.Seagard.info(0, -1, 0), GOTWaypoint.StoneHedge.info(0, 1, 0));
@@ -447,12 +465,14 @@ public class GOTFixer {
 
 		@Override
 		public void spawnLegendaryNPC(World world) {
+			if (!GOTConfig.replaceCrownlandsDragonstoneWithTargaryen) {
 			spawnLegendaryNPC(new GOTEntityStannisBaratheon(world), world, -2, 1, -2);
 			spawnLegendaryNPC(new GOTEntityDavosSeaworth(world), world, 2, 1, 2);
 			spawnLegendaryNPC(new GOTEntityMelisandra(world), world, -2, 1, 2);
 			spawnLegendaryNPC(new GOTEntityShireenBaratheon(world), world, 2, 1, -2);
 			spawnLegendaryNPC(new GOTEntitySelyseBaratheon(world), world, 0, 1, 2);
 			spawnLegendaryNPC(new GOTEntityMatthosSeaworth(world), world, 0, 1, -2);
+			}
 		}
 	}
 

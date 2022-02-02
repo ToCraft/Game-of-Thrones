@@ -2,6 +2,7 @@ package got.common.world.structure.westeros.common;
 
 import java.util.Random;
 
+import got.common.GOTConfig;
 import got.common.database.GOTRegistry;
 import got.common.world.structure.other.GOTStructureBase;
 import net.minecraft.block.Block;
@@ -278,8 +279,12 @@ public abstract class GOTStructureWesterosBase extends GOTStructureBase {
 				}
 			}
 		} else {
-
-			tableBlock = GOTRegistry.tableCrownlands;
+			if (GOTConfig.replaceCrownlandsDragonstoneWithTargaryen) {
+				tableBlock = GOTRegistry.tableTargaryen;
+			}
+			else {
+				tableBlock = GOTRegistry.tableCrownlands;
+			}
 			rockBlock = GOTRegistry.rock;
 			rockMeta = 4;
 			rockSlabDoubleBlock = GOTRegistry.smoothStone;

@@ -6,7 +6,7 @@ import com.google.common.math.IntMath;
 
 import got.common.database.*;
 import got.common.entity.other.GOTEntityNPCRespawner;
-import got.common.entity.westeros.crownlands.GOTEntityKingsguard;
+import got.common.entity.westeros.targaryen.GOTEntityTargaryenKingsguard;
 import got.common.item.other.GOTItemBanner;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
@@ -108,7 +108,7 @@ public class GOTStructureRedWatchtower extends GOTStructureRedBase {
 		setBlockAndMetadata(world, 0, 6, 3, GOTRegistry.brick3, 1);
 		setBlockAndMetadata(world, -3, 6, 0, GOTRegistry.brick3, 1);
 		setBlockAndMetadata(world, 3, 6, 0, GOTRegistry.brick3, 1);
-		placeWallBanner(world, 0, 5, -3, GOTItemBanner.BannerType.JOFFREY, 2);
+		placeWallBanner(world, 0, 5, -3, GOTItemBanner.BannerType.TARGARYEN, 2);
 		for (j1 = 1; j1 <= 9; j1++) {
 			setBlockAndMetadata(world, 0, j1, 2, Blocks.ladder, 2);
 		}
@@ -162,18 +162,18 @@ public class GOTStructureRedWatchtower extends GOTStructureRedBase {
 		setBlockAndMetadata(world, 0, 11, 0, pillarBlock, pillarMeta);
 		setBlockAndMetadata(world, 0, 12, 0, pillarBlock, pillarMeta);
 		setBlockAndMetadata(world, 0, 13, 0, GOTRegistry.brick3, 1);
-		placeBanner(world, 0, 14, 0, GOTItemBanner.BannerType.JOFFREY, 2);
+		placeBanner(world, 0, 14, 0, GOTItemBanner.BannerType.TARGARYEN, 2);
 		setBlockAndMetadata(world, 0, 11, -3, Blocks.torch, 3);
 		setBlockAndMetadata(world, 0, 11, 3, Blocks.torch, 4);
 		setBlockAndMetadata(world, -3, 11, 0, Blocks.torch, 2);
 		setBlockAndMetadata(world, 3, 11, 0, Blocks.torch, 1);
-		GOTEntityKingsguard soldier = new GOTEntityKingsguard(world);
+		GOTEntityTargaryenKingsguard soldier = new GOTEntityTargaryenKingsguard(world);
 		soldier.spawnRidingHorse = false;
 		spawnNPCAndSetHome(soldier, world, 0, 1, 0, 16);
-		GOTEntityKingsguard levyman = new GOTEntityKingsguard(world);
+		GOTEntityTargaryenKingsguard levyman = new GOTEntityTargaryenKingsguard(world);
 		spawnNPCAndSetHome(levyman, world, 0, 11, 1, 16);
 		GOTEntityNPCRespawner respawner = new GOTEntityNPCRespawner(world);
-		respawner.setSpawnClass(GOTEntityKingsguard.class);
+		respawner.setSpawnClass(GOTEntityTargaryenKingsguard.class);
 		respawner.setCheckRanges(16, -12, 8, 6);
 		respawner.setSpawnRanges(3, -6, 6, 16);
 		placeNPCRespawner(respawner, world, 0, 6, 0);

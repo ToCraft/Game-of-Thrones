@@ -1,18 +1,19 @@
-package got.common.world.structure.westeros.targaryen.red;
+package got.common.world.fixed;
 
 import java.util.Random;
 
 import got.common.world.biome.GOTBiome;
-import got.common.world.fixed.GOTStructureRedCastle;
 import got.common.world.map.GOTBezierType;
 import got.common.world.structure.other.*;
+import got.common.world.structure.westeros.targaryen.red.*;
+
 import net.minecraft.world.World;
 
-public class GOTWaypointRedCastle extends GOTVillageGen {
-	public GOTWaypointRedCastle(GOTBiome biome, float f) {
+public class GOTStructureRedCastleT extends GOTVillageGen {
+	public GOTStructureRedCastleT(GOTBiome biome, float f) {
 		super(biome);
 		gridScale = 16;
-		gridRandomDisplace = 2;
+		gridRandomDisplace = 1;
 		spawnChance = f;
 		villageChunkRadius = 6;
 	}
@@ -25,7 +26,7 @@ public class GOTWaypointRedCastle extends GOTVillageGen {
 	public class Instance extends GOTVillageGen.AbstractInstance {
 		public VillageType villageType;
 
-		public Instance(GOTWaypointRedCastle village, World world, int i, int k, Random random, LocationInfo loc) {
+		public Instance(GOTStructureRedCastleT village, World world, int i, int k, Random random, LocationInfo loc) {
 			super(village, world, i, k, random, loc);
 		}
 
@@ -36,7 +37,7 @@ public class GOTWaypointRedCastle extends GOTVillageGen {
 
 		@Override
 		public void addVillageStructures(Random random) {
-			this.addStructure(new GOTStructureRedCastle(false), 0, 12, 2, true);
+			this.addStructure(new GOTStructureRedFortT(false), 0, 12, 2, true);
 			this.addStructure(new GOTStructureRedFortGate(false), 0, -37, 0, true);
 			this.addStructure(new GOTStructureRedFortWall.Right(false), -11, -37, 0, true);
 			this.addStructure(new GOTStructureRedFortWall.Left(false), 11, -37, 0, true);

@@ -85,7 +85,7 @@ public class GOTConfig {
 	public static boolean fixRenderDistance;
 	public static boolean preventMessageExploit;
 	public static boolean cwpLog;
-	public static String languageCode = "ru";
+	public static String languageCode = "en";
 
 	public static boolean replaceCrownlandsDragonstoneWithTargaryen;
 	public static String changeMap = "mapN";

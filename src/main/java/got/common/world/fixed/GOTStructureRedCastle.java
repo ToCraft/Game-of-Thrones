@@ -6,6 +6,7 @@ import got.common.world.biome.GOTBiome;
 import got.common.world.map.GOTBezierType;
 import got.common.world.structure.other.*;
 import got.common.world.structure.westeros.crownlands.red.*;
+
 import net.minecraft.world.World;
 
 public class GOTStructureRedCastle extends GOTVillageGen {

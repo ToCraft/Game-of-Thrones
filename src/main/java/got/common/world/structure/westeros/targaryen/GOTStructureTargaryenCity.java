@@ -8,6 +8,7 @@ import got.common.entity.other.GOTEntityNPCRespawner;
 import got.common.entity.westeros.targaryen.GOTEntityTargaryenAlchemist;
 import got.common.entity.westeros.targaryen.GOTEntityTargaryenMan;
 import got.common.entity.westeros.targaryen.GOTEntityTargaryenSoldier;
+import got.common.entity.westeros.westerlands.GOTEntityWesterlandsSoldier;
 import got.common.world.biome.GOTBiome;
 import got.common.world.fixed.*;
 import got.common.world.map.GOTBezierType;
@@ -216,7 +217,7 @@ public class GOTStructureTargaryenCity extends GOTVillageGen {
 			int wallX;
 			boolean outerTavern = random.nextBoolean();
 			if (isCapital) {
-				this.addStructure(new GOTSpawner.KingsLanding(false), 0, 0, 0);
+				this.addStructure(new GOTFixer.KingsLanding(), 0, 0, 0);
 				this.addStructure(new GOTStructureNPCRespawner(false) {
 
 					@Override
@@ -247,7 +248,7 @@ public class GOTStructureTargaryenCity extends GOTVillageGen {
 
 						@Override
 						public void setupRespawner(GOTEntityNPCRespawner spawner) {
-							spawner.setSpawnClass(GOTEntityTargaryenSoldier.class);
+							spawner.setSpawnClass(GOTEntityWesterlandsSoldier.class);
 							spawner.setCheckRanges(40, -12, 12, 16);
 							spawner.setSpawnRanges(20, -6, 6, 64);
 							spawner.setBlockEnemySpawnRange(60);

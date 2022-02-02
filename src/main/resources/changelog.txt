@@ -85,7 +85,7 @@ CHANGELOG
 - Removed 28 technical biomes
 - Removed camps and tents of wildling, thenn and north hillmen
 
->>VERSION 17.5
+>>TARGARYEN-Update
 +ADDED TARGARYEN-Faction
 +added Targaryen Mobs
 +added Targaryen structures
@@ -95,6 +95,8 @@ CHANGELOG
 +added Targaryen recipes
 +updated Config
 +changed de_DE file
+
+>>VERSION 17.5
 * Reworked Mossovy. Added table, new mobs, structures, villages and fixed genstructures.
 * Reworked economics. New gold, silver and valyrian prices. New prices for all items made of these materials
 * Reworked units, their prices and armor stats. Balance everywhere!
@@ -165,6 +167,16 @@ CHANGELOG
 - Removed Ghiscar Captain
 - Removed Ironborn Corsair
 - Removed levyman riders from units
+
+>> TARGARYEN-Update
++ADDED TARGARYEN-Faction
++added Targaryen Mobs
++added Targaryen structures
++added 2. map
++added Targarye Waypoints
++added Targaryen Crafting Table
++added Targaryen recipes
++updated Config
 
 >>VERSION 17.4
 + ADDED SEASONS

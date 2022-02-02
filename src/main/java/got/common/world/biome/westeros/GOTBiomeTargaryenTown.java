@@ -3,58 +3,65 @@ package got.common.world.biome.westeros;
 import got.client.sound.GOTBiomeMusic;
 import got.client.sound.GOTBiomeMusic.MusicRegion;
 import got.common.database.*;
+import got.common.entity.westeros.targaryen.GOTEntityTargaryenBannerBearer;
+import got.common.entity.westeros.targaryen.GOTEntityTargaryenCaptain;
+import got.common.entity.westeros.targaryen.GOTEntityTargaryenLevyman;
+import got.common.entity.westeros.targaryen.GOTEntityTargaryenLevymanArcher;
+import got.common.entity.westeros.targaryen.GOTEntityTargaryenMan;
+import got.common.entity.westeros.targaryen.GOTEntityTargaryenSoldier;
+import got.common.entity.westeros.targaryen.GOTEntityTargaryenSoldierArcher;
 import got.common.world.biome.GOTBiome;
 import got.common.world.map.GOTBezierType;
-import got.common.world.map.GOTWaypoint;
 import got.common.world.spawning.GOTBiomeSpawnList;
 import got.common.world.spawning.GOTEventSpawner;
+import got.common.world.spawning.GOTSpawnEntry;
 import got.common.world.spawning.GOTBiomeSpawnList.SpawnListContainer;
-import got.common.world.structure.westeros.targaryen.*;
-import got.common.world.structure.westeros.targaryen.red.*;
+import got.common.world.structure.westeros.crownlands.GOTStructureCrownlandsCity;
 
-public class GOTBiomeTargaryenTown extends GOTBiomeWesteros {
+public class GOTBiomeTargaryenTown extends GOTBiomeTargaryen {
 	public GOTBiomeTargaryenTown(int i, boolean major) {
 		super(i, major);
 		npcSpawnList.clear();
 		decorator.clearVillages();
 		decorator.clearRandomStructures();
 
-		SpawnListContainer[] c0 = new SpawnListContainer[2];
-		c0[0] = GOTBiomeSpawnList.entry(GOTSpawnList.TARGARYEN_CIVILIAN, 10).setSpawnChance(GOTBiome.SPAWN);
-		c0[1] = GOTBiomeSpawnList.entry(GOTSpawnList.TARGARYEN_MILITARY, 4).setSpawnChance(GOTBiome.SPAWN);
-		npcSpawnList.newFactionList(6).add(c0);
+		SpawnListContainer[] container0 = new SpawnListContainer[2];
+		container0[0] = GOTBiomeSpawnList.entry(new GOTSpawnList(new GOTSpawnEntry(GOTEntityTargaryenMan.class, 10, 4, 6)), 15).setSpawnChance(100);
+		container0[1] = GOTBiomeSpawnList.entry(new GOTSpawnList(new GOTSpawnEntry(GOTEntityTargaryenLevyman.class, 20, 2, 4), new GOTSpawnEntry(GOTEntityTargaryenLevymanArcher.class, 10, 2, 8), new GOTSpawnEntry(GOTEntityTargaryenSoldier.class, 20, 2, 4), new GOTSpawnEntry(GOTEntityTargaryenSoldierArcher.class, 10, 2, 8), new GOTSpawnEntry(GOTEntityTargaryenBannerBearer.class, 20, 2, 4), new GOTSpawnEntry(GOTEntityTargaryenCaptain.class, 5, 4, 1)), 10).setSpawnChance(100);
+		npcSpawnList.newFactionList(100, 0.0f).add(container0);
+
+		SpawnListContainer[] container1 = new SpawnListContainer[1];
+		container1[0] = GOTBiomeSpawnList.entry(GOTSpawnList.DRAGONSTONE_CONQUEST, 10).setSpawnChance(100).setConquestOnly();
+		npcSpawnList.newFactionList(0).add(container1);
+
+		SpawnListContainer[] container2 = new SpawnListContainer[1];
+		container2[0] = GOTBiomeSpawnList.entry(GOTSpawnList.WESTERLANDS_CONQUEST, 10).setSpawnChance(100).setConquestOnly();
+		npcSpawnList.newFactionList(0).add(container2);
+
+		SpawnListContainer[] container3 = new SpawnListContainer[1];
+		container3[0] = GOTBiomeSpawnList.entry(GOTSpawnList.STORMLANDS_CONQUEST, 10).setSpawnChance(100).setConquestOnly();
+		npcSpawnList.newFactionList(0).add(container3);
+
+		SpawnListContainer[] container4 = new SpawnListContainer[1];
+		container4[0] = GOTBiomeSpawnList.entry(GOTSpawnList.NORTH_CONQUEST, 10).setSpawnChance(100).setConquestOnly();
+		npcSpawnList.newFactionList(0).add(container4);
+
+		SpawnListContainer[] container5 = new SpawnListContainer[1];
+		container5[0] = GOTBiomeSpawnList.entry(GOTSpawnList.RIVERLANDS_CONQUEST, 10).setSpawnChance(100).setConquestOnly();
+		npcSpawnList.newFactionList(0).add(container5);
+
+		SpawnListContainer[] container6 = new SpawnListContainer[1];
+		container6[0] = GOTBiomeSpawnList.entry(GOTSpawnList.IRONBORN_CONQUEST, 10).setSpawnChance(100).setConquestOnly();
+		npcSpawnList.newFactionList(0).add(container6);
+
+		decorator.addVillage(new GOTStructureCrownlandsCity(this, 1.0f));
 
 		invasionSpawns.addInvasion(GOTInvasions.NORTH, GOTEventSpawner.EventChance.COMMON);
 		invasionSpawns.addInvasion(GOTInvasions.RIVERLANDS, GOTEventSpawner.EventChance.COMMON);
 		invasionSpawns.addInvasion(GOTInvasions.WESTERLANDS, GOTEventSpawner.EventChance.COMMON);
 		invasionSpawns.addInvasion(GOTInvasions.STORMLANDS, GOTEventSpawner.EventChance.COMMON);
 		invasionSpawns.addInvasion(GOTInvasions.IRONBORN, GOTEventSpawner.EventChance.COMMON);
-
-        SpawnListContainer[] containerLSR = new SpawnListContainer[1];
-        containerLSR[0] = GOTBiomeSpawnList.entry(GOTSpawnList.UNRELIABLE, 10).setSpawnChance(500);
-        this.npcSpawnList.newFactionList(5).add(containerLSR);
-
-		GOTStructureTargaryenCity castle = new GOTStructureTargaryenCity(this, 0.0f).setIsCastle();
-		castle.affix(GOTWaypoint.Dragonstone);
-		castle.affix(GOTWaypoint.HighTide);
-		castle.affix(GOTWaypoint.Driftmark);
-		castle.affix(GOTWaypoint.SharpPoint);
-		castle.affix(GOTWaypoint.Stonedance);
-		castle.affix(GOTWaypoint.SweetportSound);
-		castle.affix(GOTWaypoint.ClawIsle);
-		decorator.affix(castle);
-
-		GOTStructureTargaryenCity town = new GOTStructureTargaryenCity(this, 0.0f).setIsTown();
-		town.affix(GOTWaypoint.Hull);
-		decorator.affix(town);
-
-		GOTStructureTargaryenCity capital = new GOTStructureTargaryenCity(this, 0.0f).setIsCapital();
-		capital.affix(GOTWaypoint.KingsLanding, 1, 0, 1);
-		decorator.affix(capital);
-
-		GOTWaypointRedCastle rc = new GOTWaypointRedCastle(this, 0.0f);
-		rc.affix(GOTWaypoint.KingsLanding, 2, 0, 1);
-		decorator.affix(rc);
+		invasionSpawns.addInvasion(GOTInvasions.REACH, GOTEventSpawner.EventChance.COMMON);
 	}
 
 	@Override

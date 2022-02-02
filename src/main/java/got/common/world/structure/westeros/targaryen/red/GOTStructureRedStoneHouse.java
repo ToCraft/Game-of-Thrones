@@ -3,7 +3,7 @@ package got.common.world.structure.westeros.targaryen.red;
 import java.util.Random;
 
 import got.common.database.*;
-import got.common.entity.westeros.crownlands.GOTEntityCrownlandsMan;
+import got.common.entity.westeros.targaryen.GOTEntityTargaryenMan;
 import got.common.item.other.GOTItemBanner;
 import net.minecraft.init.*;
 import net.minecraft.item.ItemStack;
@@ -213,7 +213,7 @@ public class GOTStructureRedStoneHouse extends GOTStructureRedBase {
 		for (int j15 = 1; j15 <= 3; ++j15) {
 			setBlockAndMetadata(world, 0, j15, 5, pillarBlock, pillarMeta);
 		}
-		placeWallBanner(world, 0, 3, 5, GOTItemBanner.BannerType.JOFFREY, 2);
+		placeWallBanner(world, 0, 3, 5, GOTItemBanner.BannerType.TARGARYEN, 2);
 		for (int i13 : new int[] { -3, 1 }) {
 			setBlockAndMetadata(world, i13, 2, 5, brickStairBlock, 0);
 			setBlockAndMetadata(world, i13, 3, 5, brickStairBlock, 4);
@@ -276,7 +276,7 @@ public class GOTStructureRedStoneHouse extends GOTStructureRedBase {
 		setBlockAndMetadata(world, -4, 13, 1, brickWallBlock, brickWallMeta);
 		int men = 2;
 		for (int l = 0; l < men; ++l) {
-			GOTEntityCrownlandsMan westerosMan = new GOTEntityCrownlandsMan(world);
+			GOTEntityTargaryenMan westerosMan = new GOTEntityTargaryenMan(world);
 			spawnNPCAndSetHome(westerosMan, world, 0, 1, 0, 16);
 		}
 		return true;

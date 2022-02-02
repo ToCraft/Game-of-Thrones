@@ -21,7 +21,7 @@ apply plugin: 'forge'
 sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
 
-version = "17.5 - Targaryen"
+version = "17.6 - Targaryen"
 group= "de.tocraft.gotT" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "gotT"
 

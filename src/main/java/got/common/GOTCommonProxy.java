@@ -37,6 +37,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 
@@ -820,11 +821,6 @@ public class GOTCommonProxy implements IGuiHandler {
 		else {
 			GOTCommander.removeFaction(GOTFaction.TARGARYEN);
 			FMLLog.info("Hummel009: TARGARYEN faction successfully deleted");
-		}
-		
-		if (GOTConfig.enableGrapplingHooks) {
-			FMLCommonHandler.instance().bus().register(this);
-			MinecraftForge.EVENT_BUS.register(this);
 		}
 	}
 

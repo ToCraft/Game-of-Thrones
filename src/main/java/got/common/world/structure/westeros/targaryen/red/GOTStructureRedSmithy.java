@@ -3,7 +3,7 @@ package got.common.world.structure.westeros.targaryen.red;
 import java.util.Random;
 
 import got.common.database.*;
-import got.common.entity.westeros.crownlands.GOTEntityCrownlandsBlacksmith;
+import got.common.entity.westeros.targaryen.GOTEntityTargaryenBlacksmith;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 
@@ -156,7 +156,7 @@ public class GOTStructureRedSmithy extends GOTStructureRedBase {
 			}
 		}
 		setAir(world, -3, 5, 10);
-		GOTEntityCrownlandsBlacksmith blacksmith = new GOTEntityCrownlandsBlacksmith(world);
+		GOTEntityTargaryenBlacksmith blacksmith = new GOTEntityTargaryenBlacksmith(world);
 		spawnNPCAndSetHome(blacksmith, world, 0, 1, 6, 4);
 		return true;
 	}
