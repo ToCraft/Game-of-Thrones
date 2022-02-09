@@ -3,7 +3,7 @@ package got.common.world.fixed;
 import java.util.Random;
 
 import got.common.database.*;
-import got.common.entity.westeros.GOTEntityProstitute;
+import got.common.entity.other.GOTEntityProstitute;
 import got.common.entity.westeros.legendary.quest.GOTEntityTyrionLannister;
 import got.common.entity.westeros.legendary.reborn.GOTEntityLancelLannister;
 import got.common.entity.westeros.legendary.trader.GOTEntityPetyrBaelish;
@@ -151,7 +151,8 @@ public class GOTStructurePetyrBaelishBrothel extends GOTStructureNorthBase {
 				int j2;
 				int k13 = -17 - step;
 				if (isOpaque(world, i13, j12 + 1, k13)) {
-					setAir(world, i13, ++j12 + 1, k13);
+					j12++;
+					setAir(world, i13, j12 + 1, k13);
 					setAir(world, i13, j12 + 2, k13);
 					setAir(world, i13, j12 + 3, k13);
 					setBlockAndMetadata(world, i13, j12, k13, brickStairBlock, 3);

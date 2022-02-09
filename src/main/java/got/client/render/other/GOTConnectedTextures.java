@@ -50,7 +50,7 @@ public class GOTConnectedTextures {
 			int key = entry.getKey();
 			Set<IconElement> set = entry.getValue();
 			List<IconElement> list = IconElement.sortIconSet(set);
-			if ((includeNoBase || list.contains(IconElement.BASE))) {
+			if (includeNoBase || list.contains(IconElement.BASE)) {
 				String iconName = modID + ":textures/blocks/" + baseIconName + "_" + key;
 				if (textureMap.getTextureExtry(iconName) != null) {
 					FMLLog.severe("Icon is already registered for %s", iconName);
@@ -380,15 +380,11 @@ public class GOTConnectedTextures {
 				}
 				allCombos.put(key, iconSet);
 			}
-			comparator = new Comparator<IconElement>() {
-
-				@Override
-				public int compare(IconElement e1, IconElement e2) {
-					if (e1.priority == e2.priority) {
-						return e1.compareTo(e2);
-					}
-					return Integer.compare(e1.priority, e2.priority);
+			comparator = (e1, e2) -> {
+				if (e1.priority == e2.priority) {
+					return e1.compareTo(e2);
 				}
+				return Integer.compare(e1.priority, e2.priority);
 			};
 		}
 		public String iconName;

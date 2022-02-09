@@ -6,7 +6,6 @@ import java.util.*;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.Pair;
 
-import com.google.common.base.Supplier;
 import com.google.common.collect.ImmutableList;
 
 import cpw.mods.fml.common.FMLLog;
@@ -39,73 +38,74 @@ import net.minecraft.world.*;
 import net.minecraft.world.biome.BiomeGenBase;
 
 public class GOTPlayerData {
-	public static int ticksUntilFT_max = 200;
-	public ChunkCoordinates deathPoint;
-	public GOTAbstractWaypoint targetFTWaypoint;
-	public GOTBiome lastBiome;
-	public GOTCapes cape;
-	public GOTFaction brokenPledgeFaction = null;
-	public GOTFaction pledgeFaction;
-	public GOTFaction viewingFaction;
-	public GOTPlayerQuestData questData = new GOTPlayerQuestData(this);
-	public GOTShields shield;
-	public GOTWaypoint lastWaypoint;
-	public List<GOTAchievement> achievements = new ArrayList<>();
-	public List<GOTCustomWaypoint> customWaypoints = new ArrayList<>();
-	public List<GOTCustomWaypoint> customWaypointsShared = new ArrayList<>();
-	public List<GOTFaction> bountiesPlaced = new ArrayList<>();
-	public List<GOTFellowshipClient> fellowshipInvitesClient = new ArrayList<>();
-	public List<GOTFellowshipClient> fellowshipsClient = new ArrayList<>();
-	public List<GOTFellowshipInvite> fellowshipInvites = new ArrayList<>();
-	public List<GOTMiniQuest> miniQuests = new ArrayList<>();
-	public List<GOTMiniQuest> miniQuestsCompleted = new ArrayList<>();
-	public List<UUID> fellowshipIDs = new ArrayList<>();
-	public Map<CWPSharedKey, Integer> cwpSharedUseCounts = new HashMap<>();
-	public Map<GOTDimension.DimensionRegion, GOTFaction> prevRegionFactions = new EnumMap<>(GOTDimension.DimensionRegion.class);
-	public Map<GOTFaction, Float> alignments = new EnumMap<>(GOTFaction.class);
-	public Map<GOTFaction, GOTFactionData> factionDataMap = new EnumMap<>(GOTFaction.class);
-	public Map<GOTGuiMessageTypes, Boolean> sentMessageTypes = new EnumMap<>(GOTGuiMessageTypes.class);
-	public Map<GOTWaypoint, Integer> wpUseCounts = new EnumMap<>(GOTWaypoint.class);
-	public Map<Integer, Integer> cwpUseCounts = new HashMap<>();
-	public PlayerTitle playerTitle;
-	public Set<CWPSharedKey> cwpSharedHidden = new HashSet<>();
-	public Set<CWPSharedKey> cwpSharedUnlocked = new HashSet<>();
-	public Set<GOTFaction> takenAlignmentRewards = new HashSet<>();
-	public Set<GOTWaypoint.Region> unlockedFTRegions = new HashSet<>();
-	public UUID chatBoundFellowshipID;
-	public UUID playerUUID;
-	public UUID trackingMiniQuestID;
-	public UUID uuidToMount;
-	public boolean adminHideMap;
-	public boolean askedForJaqen;
-	public boolean checkedMenu;
-	public boolean conquestKills = true;
-	public boolean friendlyFire;
-	public boolean hideAlignment;
-	public boolean hideOnMap;
-	public boolean hiredDeathMessages = true;
-	public boolean needsSave;
-	public boolean showCustomWaypoints = true;
-	public boolean showHiddenSharedWaypoints = true;
-	public boolean showWaypoints = true;
-	public boolean structuresBanned;
-	public boolean tableSwitched;
-	public boolean teleportedKW;
-	public int alcoholTolerance;
-	public int balance = 0;
-	public int completedBountyQuests;
-	public int completedMiniquestCount;
-	public int deathDim;
-	public int ftSinceTick;
-	public int nextCwpID = 20000;
-	public int pdTick = 0;
-	public int pledgeBreakCooldown;
-	public int pledgeBreakCooldownStart;
-	public int pledgeKillCooldown = 0;
-	public int siegeActiveTime;
-	public int ticksUntilFT;
-	public int uuidToMountTime;
-	public long lastOnlineTime = -1L;
+	private static int ticksUntilFT_max = 200;
+	private ChunkCoordinates deathPoint;
+	private GOTAbstractWaypoint targetFTWaypoint;
+	private GOTBiome lastBiome;
+	private GOTCapes cape;
+	private GOTFaction brokenPledgeFaction = null;
+	private GOTFaction pledgeFaction;
+	private GOTFaction viewingFaction;
+	private GOTPlayerQuestData questData = new GOTPlayerQuestData(this);
+	private GOTShields shield;
+	private GOTWaypoint lastWaypoint;
+	private List<GOTAchievement> achievements = new ArrayList<>();
+	private List<GOTCustomWaypoint> customWaypoints = new ArrayList<>();
+	private List<GOTCustomWaypoint> customWaypointsShared = new ArrayList<>();
+	private List<GOTFaction> bountiesPlaced = new ArrayList<>();
+	private List<GOTFellowshipClient> fellowshipInvitesClient = new ArrayList<>();
+	private List<GOTFellowshipClient> fellowshipsClient = new ArrayList<>();
+	private List<GOTFellowshipInvite> fellowshipInvites = new ArrayList<>();
+	private List<GOTMiniQuest> miniQuests = new ArrayList<>();
+	private List<GOTMiniQuest> miniQuestsCompleted = new ArrayList<>();
+	private List<UUID> fellowshipIDs = new ArrayList<>();
+	private Map<CWPSharedKey, Integer> cwpSharedUseCounts = new HashMap<>();
+	private Map<GOTDimension.DimensionRegion, GOTFaction> prevRegionFactions = new EnumMap<>(GOTDimension.DimensionRegion.class);
+	private Map<GOTFaction, Float> alignments = new EnumMap<>(GOTFaction.class);
+	private Map<GOTFaction, GOTFactionData> factionDataMap = new EnumMap<>(GOTFaction.class);
+	private Map<GOTGuiMessageTypes, Boolean> sentMessageTypes = new EnumMap<>(GOTGuiMessageTypes.class);
+	private Map<GOTWaypoint, Integer> wpUseCounts = new EnumMap<>(GOTWaypoint.class);
+	private Map<Integer, Integer> cwpUseCounts = new HashMap<>();
+	private PlayerTitle playerTitle;
+	private Set<CWPSharedKey> cwpSharedHidden = new HashSet<>();
+	private Set<CWPSharedKey> cwpSharedUnlocked = new HashSet<>();
+	private Set<GOTFaction> takenAlignmentRewards = new HashSet<>();
+	private Set<GOTWaypoint.Region> unlockedFTRegions = new HashSet<>();
+	private UUID chatBoundFellowshipID;
+	private UUID playerUUID;
+	private UUID trackingMiniQuestID;
+	private UUID uuidToMount;
+	private boolean adminHideMap;
+	private boolean askedForJaqen;
+	private boolean checkedMenu;
+	private boolean conquestKills = true;
+	private boolean friendlyFire;
+	private boolean hideAlignment;
+	private boolean hideOnMap;
+	private boolean hiredDeathMessages = true;
+	private boolean needsSave;
+	private boolean showCustomWaypoints = true;
+	private boolean showHiddenSharedWaypoints = true;
+	private boolean showWaypoints = true;
+	private boolean structuresBanned;
+	private boolean tableSwitched;
+	private boolean teleportedKW;
+	private int alcoholTolerance;
+	private int balance = 0;
+	private int completedBountyQuests;
+	private int completedMiniquestCount;
+	private int deathDim;
+	private int ftSinceTick;
+	private int nextCwpID = 20000;
+	private int pdTick = 0;
+	private int pledgeBreakCooldown;
+	private int pledgeBreakCooldownStart;
+	private int pledgeKillCooldown = 0;
+	private int siegeActiveTime;
+	private int ticksUntilFT;
+	private int uuidToMountTime;
+	private long lastOnlineTime = -1L;
+	private boolean femRankOverride = false;
 
 	public GOTPlayerData(UUID uuid) {
 		playerUUID = uuid;
@@ -137,7 +137,8 @@ public class GOTPlayerData {
 				if (inviterID == null) {
 					inviterID = fs.getOwner();
 				}
-				if ((inviter = getOtherPlayer(inviterID)) != null) {
+				inviter = getOtherPlayer(inviterID);
+				if (inviter != null) {
 					fs.sendNotification(inviter, "got.gui.fellowships.notifyAccept", entityplayer.getCommandSenderName());
 				}
 			}
@@ -563,7 +564,8 @@ public class GOTPlayerData {
 		if (isPledgeEnemyAlignmentLimited(fac)) {
 			float limit;
 			float alignment = getAlignment(fac);
-			if (alignment > (limit = getPledgeEnemyAlignmentLimit(fac))) {
+			limit = getPledgeEnemyAlignmentLimit(fac);
+			if (alignment > limit) {
 				bonus = 0.0f;
 			} else if (alignment + bonus > limit) {
 				bonus = limit - alignment;
@@ -577,7 +579,7 @@ public class GOTPlayerData {
 		for (GOTCustomWaypoint waypoint : customWaypointsShared) {
 			GOTCustomWaypoint wpOriginal;
 			UUID waypointSharingPlayer = waypoint.getSharingPlayerID();
-			if (checkSpecificPlayers != null && !checkSpecificPlayers.contains(waypointSharingPlayer) || (wpOriginal = GOTLevelData.getData(waypointSharingPlayer).getCustomWaypointByID(waypoint.getID())) == null || (wpOriginal.getPlayersInAllSharedFellowships()).contains(playerUUID)) {
+			if (checkSpecificPlayers != null && !checkSpecificPlayers.contains(waypointSharingPlayer) || (wpOriginal = GOTLevelData.getData(waypointSharingPlayer).getCustomWaypointByID(waypoint.getID())) == null || wpOriginal.getPlayersInAllSharedFellowships().contains(playerUUID)) {
 				continue;
 			}
 			removes.add(waypoint);
@@ -609,7 +611,7 @@ public class GOTPlayerData {
 	}
 
 	public void createFellowship(String name, boolean normalCreation) {
-		if ((normalCreation && (!canCreateFellowships(false)))) {
+		if (normalCreation && !canCreateFellowships(false)) {
 			return;
 		}
 		if (!anyMatchingFellowshipNames(name, false)) {
@@ -824,6 +826,10 @@ public class GOTPlayerData {
 		return askedForJaqen;
 	}
 
+	public int getBalance() {
+		return balance;
+	}
+
 	public GOTFaction getBrokenPledgeFaction() {
 		return brokenPledgeFaction;
 	}
@@ -944,7 +950,7 @@ public class GOTPlayerData {
 	public List<GOTFaction> getFactionsPreventingPledgeTo(GOTFaction fac) {
 		ArrayList<GOTFaction> enemies = new ArrayList<>();
 		for (GOTFaction otherFac : GOTFaction.values()) {
-			if (!otherFac.isPlayableAlignmentFaction() || !doesFactionPreventPledge(fac, otherFac) || ((getAlignment(otherFac)) <= 0.0f)) {
+			if (!otherFac.isPlayableAlignmentFaction() || !doesFactionPreventPledge(fac, otherFac) || getAlignment(otherFac) <= 0.0f) {
 				continue;
 			}
 			enemies.add(otherFac);
@@ -977,6 +983,10 @@ public class GOTPlayerData {
 			fellowships.add(fs);
 		}
 		return fellowships;
+	}
+
+	public boolean getFemRankOverride() {
+		return femRankOverride;
 	}
 
 	public boolean getFriendlyFire() {
@@ -1041,13 +1051,7 @@ public class GOTPlayerData {
 	}
 
 	public List<GOTMiniQuest> getMiniQuestsForFaction(GOTFaction f, boolean activeOnly) {
-		MiniQuestSelector.Faction sel = new MiniQuestSelector.Faction(new Supplier<GOTFaction>() {
-
-			@Override
-			public GOTFaction get() {
-				return f;
-			}
-		});
+		MiniQuestSelector.Faction sel = new MiniQuestSelector.Faction(() -> f);
 		if (activeOnly) {
 			sel.setActiveOnly();
 		}
@@ -1326,7 +1330,8 @@ public class GOTPlayerData {
 			if (fellowshipIDs.contains(fs.getFellowshipID())) {
 				removeFellowship(fs);
 			}
-			if ((entityplayer = getPlayer()) != null && !entityplayer.worldObj.isRemote && (owner = getOtherPlayer(fs.getOwner())) != null) {
+			entityplayer = getPlayer();
+			if (entityplayer != null && !entityplayer.worldObj.isRemote && (owner = getOtherPlayer(fs.getOwner())) != null) {
 				fs.sendNotification(owner, "got.gui.fellowships.notifyLeave", entityplayer.getCommandSenderName());
 			}
 		}
@@ -1545,6 +1550,9 @@ public class GOTPlayerData {
 			int colorCode = playerData.getInteger("PlayerTitleColor");
 			EnumChatFormatting color = GOTTitle.PlayerTitle.colorForID(colorCode);
 			playerTitle = new GOTTitle.PlayerTitle(title, color);
+		}
+		if (playerData.hasKey("FemRankOverride")) {
+			femRankOverride = playerData.getBoolean("FemRankOverride");
 		}
 		if (playerData.hasKey("FTSince")) {
 			ftSinceTick = playerData.getInteger("FTSince");
@@ -2094,16 +2102,20 @@ public class GOTPlayerData {
 				addAchievement(GOTAchievement.HUNDREDS);
 			}
 		}
-		if ((fullMaterial = getBodyMaterial(entityplayer)) != null && fullMaterial == GOTMaterial.HAND) {
+		fullMaterial = getBodyMaterial(entityplayer);
+		if (fullMaterial != null && fullMaterial == GOTMaterial.HAND) {
 			addAchievement(GOTAchievement.WEAR_FULL_HAND);
 		}
-		if ((fullMaterial = getHelmetMaterial(entityplayer)) != null && fullMaterial == GOTMaterial.HELMET) {
+		fullMaterial = getHelmetMaterial(entityplayer);
+		if (fullMaterial != null && fullMaterial == GOTMaterial.HELMET) {
 			addAchievement(GOTAchievement.WEAR_FULL_HELMET);
 		}
-		if ((fullMaterial = getFullArmorMaterialWithoutHelmet(entityplayer)) != null && fullMaterial == GOTMaterial.MOSSOVY) {
+		fullMaterial = getFullArmorMaterialWithoutHelmet(entityplayer);
+		if (fullMaterial != null && fullMaterial == GOTMaterial.MOSSOVY) {
 			addAchievement(GOTAchievement.WEAR_FULL_MOSSOVY);
 		}
-		if ((fullMaterial = getFullArmorMaterialWithoutHelmet(entityplayer)) != null && fullMaterial == GOTMaterial.ICE) {
+		fullMaterial = getFullArmorMaterialWithoutHelmet(entityplayer);
+		if (fullMaterial != null && fullMaterial == GOTMaterial.ICE) {
 			addAchievement(GOTAchievement.WEAR_FULL_WHITEWALKERS);
 		}
 	}
@@ -2233,6 +2245,7 @@ public class GOTPlayerData {
 			playerData.setString("PlayerTitle", playerTitle.getTitle().getTitleName());
 			playerData.setInteger("PlayerTitleColor", playerTitle.getColor().getFormattingCode());
 		}
+		playerData.setBoolean("FemRankOverride", femRankOverride);
 		playerData.setInteger("FTSince", ftSinceTick);
 		if (uuidToMount != null) {
 			playerData.setString("MountUUID", uuidToMount.toString());
@@ -2341,7 +2354,8 @@ public class GOTPlayerData {
 		if (biome instanceof GOTBiome) {
 			Region biomeRegion;
 			GOTBiome GOTbiome = (GOTBiome) biome;
-			if ((biomeRegion = GOTbiome.getBiomeWaypoints()) != null) {
+			biomeRegion = GOTbiome.getBiomeWaypoints();
+			if (biomeRegion != null) {
 				unlockFTRegion(biomeRegion);
 			}
 		}
@@ -2532,6 +2546,11 @@ public class GOTPlayerData {
 		markDirty();
 	}
 
+	public void setBalance(int b) {
+		balance = b;
+		markDirty();
+	}
+
 	public void setBrokenPledgeFaction(GOTFaction f) {
 		brokenPledgeFaction = f;
 		markDirty();
@@ -2619,6 +2638,12 @@ public class GOTPlayerData {
 		}
 	}
 
+	public void setFemRankOverride(boolean flag) {
+		femRankOverride = flag;
+		markDirty();
+		sendOptionsPacket(4, flag);
+	}
+
 	public void setFriendlyFire(boolean flag) {
 		friendlyFire = flag;
 		markDirty();
@@ -2701,7 +2726,8 @@ public class GOTPlayerData {
 			checkAlignmentAchievements(fac, getAlignment(fac));
 			addAchievement(GOTAchievement.PLEDGE_SERVICE);
 		}
-		if ((entityplayer = getPlayer()) != null && !entityplayer.worldObj.isRemote) {
+		entityplayer = getPlayer();
+		if (entityplayer != null && !entityplayer.worldObj.isRemote) {
 			if (fac != null) {
 				World world = entityplayer.worldObj;
 				world.playSoundAtEntity(entityplayer, "got:event.pledge", 1.0f, 1.0f);
@@ -2948,7 +2974,8 @@ public class GOTPlayerData {
 			return;
 		}
 		MinecraftServer.getServer();
-		if ((ftClockIncrease = (int) (((int) ((getCurrentOnlineTime()) - lastOnlineTime)) * (0.1))) > 0) {
+		ftClockIncrease = (int) ((int) (getCurrentOnlineTime() - lastOnlineTime) * 0.1);
+		if (ftClockIncrease > 0) {
 			setTimeSinceFTWithUpdate(ftSinceTick + ftClockIncrease);
 		}
 	}
@@ -2964,7 +2991,8 @@ public class GOTPlayerData {
 				GOTLog.logger.error("No associated packet for fellowship update type " + updateType.getClass().getName());
 			}
 		}
-		if ((playersToCheckSharedWaypointsFrom = updateType.getPlayersToCheckSharedWaypointsFrom(fs)) != null && !playersToCheckSharedWaypointsFrom.isEmpty()) {
+		playersToCheckSharedWaypointsFrom = updateType.getPlayersToCheckSharedWaypointsFrom(fs);
+		if (playersToCheckSharedWaypointsFrom != null && !playersToCheckSharedWaypointsFrom.isEmpty()) {
 			addSharedCustomWaypointsFrom(fs.getFellowshipID(), playersToCheckSharedWaypointsFrom);
 			checkCustomWaypointsSharedBy(playersToCheckSharedWaypointsFrom);
 		}
@@ -2981,6 +3009,17 @@ public class GOTPlayerData {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	public boolean useFeminineRanks() {
+		if (femRankOverride) {
+			return true;
+		}
+		if (playerTitle != null) {
+			GOTTitle title = playerTitle.getTitle();
+			return title.isFeminineRank();
+		}
+		return false;
 	}
 
 	public static GOTMaterial getBodyMaterial(EntityLivingBase entity) {

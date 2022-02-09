@@ -7,7 +7,6 @@ import got.common.*;
 import got.common.database.GOTAchievement.Category;
 import got.common.faction.GOTFaction;
 import got.common.util.GOTEnumDyeColor;
-import got.common.world.biome.GOTBiome;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.event.HoverEvent;
@@ -96,7 +95,7 @@ public class GOTAchievement {
 	public static GOTAchievement KILL_VICTARION_GREYJOY;
 	public static GOTAchievement KILL_WEREWOLF;
 	public static GOTAchievement KILL_WHITE_WALKER;
-	public static GOTAchievement KILL_PROSTITUTRE;
+	public static GOTAchievement KILL_PROSTITUTE;
 	public static GOTAchievement KILL_WIGHT;
 	public static GOTAchievement KILL_WIGHT_GIANT;
 	public static GOTAchievement KILL_WITCHER;
@@ -328,8 +327,6 @@ public class GOTAchievement {
 	}
 
 	public void broadcastEarning(EntityPlayer entityplayer) {
-
-		getDimension().getDimensionName();
 		IChatComponent earnName = getChatComponentForEarn(entityplayer);
 		ChatComponentTranslation msg = new ChatComponentTranslation("got.chat.achievement", entityplayer.func_145748_c_(), earnName);
 		MinecraftServer.getServer().getConfigurationManager().sendChatMsg(msg);
@@ -380,7 +377,7 @@ public class GOTAchievement {
 	}
 
 	public IChatComponent getAchievementChatComponent(EntityPlayer entityplayer) {
-		ChatComponentTranslation component = new ChatComponentTranslation(getTitle(entityplayer)).createCopy();
+		ChatComponentTranslation component = new ChatComponentTranslation(getUntranslatedTitle(entityplayer)).createCopy();
 		component.getChatStyle().setColor(EnumChatFormatting.YELLOW);
 		component.getChatStyle().setChatHoverEvent(new HoverEvent(GOTChatEvents.SHOW_GOT_ACHIEVEMENT, new ChatComponentText(category.name() + "$" + ID)));
 		return component;
@@ -410,10 +407,10 @@ public class GOTAchievement {
 	}
 
 	public String getTitle(EntityPlayer entityplayer) {
-		return StatCollector.translateToLocal(getUntranslatedTitle());
+		return StatCollector.translateToLocal(getUntranslatedTitle(entityplayer));
 	}
 
-	public String getUntranslatedTitle() {
+	public String getUntranslatedTitle(EntityPlayer entityplayer) {
 		return "got.achievement." + name + ".title";
 	}
 
@@ -427,17 +424,17 @@ public class GOTAchievement {
 		return this;
 	}
 
-	public GOTAchievement setRequiresAlly(List<GOTFaction> f) {
-		return this.setRequiresAlly(f.toArray(new GOTFaction[0]));
+	public GOTAchievement setRequiresAnyAlly(List<GOTFaction> f) {
+		return setRequiresAlly(f.toArray(new GOTFaction[0]));
+	}
+
+	public GOTAchievement setRequiresAnyEnemy(List<GOTFaction> f) {
+		return setRequiresEnemy(f.toArray(new GOTFaction[0]));
 	}
 
 	public GOTAchievement setRequiresEnemy(GOTFaction... f) {
 		enemyFactions.addAll(Arrays.asList(f));
 		return this;
-	}
-
-	public GOTAchievement setRequiresEnemy(List<GOTFaction> f) {
-		return this.setRequiresEnemy(f.toArray(new GOTFaction[0]));
 	}
 
 	public GOTAchievement setSpecial() {
@@ -573,7 +570,7 @@ public class GOTAchievement {
 		KILL_VICTARION_GREYJOY = new GOTAchievement(Category.LEGENDARY, id++, GOTRegistry.victarionAxe, "KILL_VICTARION_GREYJOY");
 		KILL_WEREWOLF = new GOTAchievement(Category.KILL, id++, GOTRegistry.mossovySword, "KILL_WEREWOLF");
 		KILL_WHITE_WALKER = new GOTAchievement(Category.KILL, id++, GOTRegistry.valyrianSword, "KILL_WHITE_WALKER");
-		KILL_PROSTITUTRE = new GOTAchievement(Category.KILL, id++, GOTRegistry.ironCrossbow, "KILL_PROSTITUTRE");
+		KILL_PROSTITUTE = new GOTAchievement(Category.KILL, id++, GOTRegistry.ironCrossbow, "KILL_PROSTITUTE");
 		KILL_WIGHT = new GOTAchievement(Category.KILL, id++, GOTRegistry.bericSword, "KILL_WIGHT");
 		KILL_WIGHT_GIANT = new GOTAchievement(Category.KILL, id++, GOTRegistry.bericSword, "KILL_WIGHT_GIANT");
 		KILL_WITCHER = new GOTAchievement(Category.KILL, id++, GOTRegistry.mossovySword, "KILL_WITCHER");
@@ -776,37 +773,33 @@ public class GOTAchievement {
 	}
 
 	public static Comparator<GOTAchievement> sortForDisplay(EntityPlayer entityplayer) {
-		return new Comparator<GOTAchievement>() {
-
-			@Override
-			public int compare(GOTAchievement ach1, GOTAchievement ach2) {
-				if (ach1.isSpecial) {
-					if (!ach2.isSpecial) {
-						return -1;
-					}
-					if (ach2.ID < ach1.ID) {
-						return 1;
-					}
-					if (ach2.ID == ach1.ID) {
-						return 0;
-					}
-					if (ach2.ID > ach1.ID) {
-						return -1;
-					}
-				} else if (ach2.isSpecial) {
-					return 1;
-				}
-				if (ach1.isBiomeAchievement) {
-					if (ach2.isBiomeAchievement) {
-						return ach1.getTitle(entityplayer).compareTo(ach2.getTitle(entityplayer));
-					}
+		return (ach1, ach2) -> {
+			if (ach1.isSpecial) {
+				if (!ach2.isSpecial) {
 					return -1;
 				}
-				if (!ach2.isBiomeAchievement) {
-					return ach1.getTitle(entityplayer).compareTo(ach2.getTitle(entityplayer));
+				if (ach2.ID < ach1.ID) {
+					return 1;
 				}
+				if (ach2.ID == ach1.ID) {
+					return 0;
+				}
+				if (ach2.ID > ach1.ID) {
+					return -1;
+				}
+			} else if (ach2.isSpecial) {
 				return 1;
 			}
+			if (ach1.isBiomeAchievement) {
+				if (ach2.isBiomeAchievement) {
+					return ach1.getTitle(entityplayer).compareTo(ach2.getTitle(entityplayer));
+				}
+				return -1;
+			}
+			if (!ach2.isBiomeAchievement) {
+				return ach1.getTitle(entityplayer).compareTo(ach2.getTitle(entityplayer));
+			}
+			return 1;
 		};
 	}
 
@@ -818,10 +811,6 @@ public class GOTAchievement {
 		public GOTDimension dimension;
 		public List<GOTAchievement> list = new ArrayList<>();
 		public int nextRankAchID = 1000;
-
-		Category(GOTBiome biome) {
-			this(biome.color);
-		}
 
 		Category(GOTDimension dim, int color) {
 			codeName = name();

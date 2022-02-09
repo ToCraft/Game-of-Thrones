@@ -172,7 +172,7 @@ public class GOTTextures implements IResourceManagerReloadListener {
 							for (y = -range; y < range; ++y) {
 								x1 = i + x;
 								y1 = y + j;
-								if (((x1 >= 0) && (x1 < mapWidth) && (y1 >= 0) && (y1 < mapHeight))) {
+								if (x1 >= 0 && x1 < mapWidth && y1 >= 0 && y1 < mapHeight) {
 									rgb1 = temp.getRGB(x1, y1);
 									if (rgb1 == 6453158) {
 										++water;
@@ -193,7 +193,7 @@ public class GOTTextures implements IResourceManagerReloadListener {
 							for (y = -range; y < range; ++y) {
 								x1 = i + x;
 								y1 = y + j;
-								if (((x1 >= 0) && (x1 < mapWidth) && (y1 >= 0) && (y1 < mapHeight))) {
+								if (x1 >= 0 && x1 < mapWidth && y1 >= 0 && y1 < mapHeight) {
 									rgb1 = temp.getRGB(x1, y1);
 									if (rgb1 != 14736861) {
 										++edge;
@@ -395,6 +395,18 @@ public class GOTTextures implements IResourceManagerReloadListener {
 		return sepia |= alpha << 24;
 	}
 
+	public static void loadMapTextures() {
+		mapTexture = new ResourceLocation("got:map/" + GOTConfig.changeMap + ".png");
+		try {
+			BufferedImage mapImage = ImageIO.read(mc.getResourceManager().getResource(mapTexture).getInputStream());
+			sepiaMapTexture = GOTTextures.convertToSepia(mapImage, new ResourceLocation("got:textures/map_sepia"));
+		} catch (IOException e) {
+			FMLLog.severe("Failed to generate GOT sepia map");
+			e.printStackTrace();
+			sepiaMapTexture = mapTexture;
+		}
+	}
+
 	public static void onInit() {
 		IResourceManager resMgr = mc.getResourceManager();
 		TextureManager texMgr = mc.getTextureManager();
@@ -406,18 +418,6 @@ public class GOTTextures implements IResourceManagerReloadListener {
 		TextureMap texMapItems = (TextureMap) texMgr.getTexture(TextureMap.locationItemsTexture);
 		textures.preTextureStitch(new TextureStitchEvent.Pre(texMapBlocks));
 		textures.preTextureStitch(new TextureStitchEvent.Pre(texMapItems));
-	}
-
-	public static void loadMapTextures() {
-		mapTexture = new ResourceLocation("got:map/" + GOTConfig.changeMap + ".png");
-		try {
-			BufferedImage mapImage = ImageIO.read(mc.getResourceManager().getResource(mapTexture).getInputStream());
-			sepiaMapTexture = GOTTextures.convertToSepia(mapImage, new ResourceLocation("got:textures/map_sepia"));
-		} catch (IOException e) {
-			FMLLog.severe("Failed to generate GOT sepia map");
-			e.printStackTrace();
-			sepiaMapTexture = mapTexture;
-		}
 	}
 
 	public static void replaceWaterParticles() {

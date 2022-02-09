@@ -1,23 +1,32 @@
 package got.common.faction;
 
 import got.common.*;
-import got.common.database.*;
-import net.minecraft.entity.player.EntityPlayer;
+import got.common.database.GOTTitle;
 import net.minecraft.util.StatCollector;
 
 public class GOTFactionRank implements Comparable<GOTFactionRank> {
-	public static GOTFactionRank RANK_NEUTRAL = new Dummy("got.faction.rank.neutral");
-	public static GOTFactionRank RANK_ENEMY = new Dummy("got.faction.rank.enemy");
-	public GOTFaction fac;
-	public float alignment;
-	public String name;
+	public static final GOTFactionRank RANK_NEUTRAL = new Dummy("got.rank.neutral");
+	public static final GOTFactionRank RANK_ENEMY = new Dummy("got.rank.enemy");
+	public final GOTFaction fac;
+	public final float alignment;
+	public final String name;
 	public GOTAchievementRank rankAchievement;
 	public GOTTitle rankTitle;
+	public GOTTitle rankTitleMasc;
+	public GOTTitle rankTitleFem;
+	public boolean addFacName = true;
 
 	public GOTFactionRank(GOTFaction f, float al, String s) {
 		fac = f;
 		alignment = al;
 		name = s;
+	}
+
+	public GOTFactionRank(GOTFaction f, float al, String s, Boolean add) {
+		fac = f;
+		alignment = al;
+		name = s;
+		addFacName = add;
 	}
 
 	@Override
@@ -33,20 +42,15 @@ public class GOTFactionRank implements Comparable<GOTFactionRank> {
 		return -Float.compare(al1, al2);
 	}
 
-	public String getCodeFullName() {
-		return getCodeName() + ".f";
-	}
-
-	public String getCodeFullNameFem() {
-		return getCodeNameFem() + ".f";
-	}
-
 	public String getCodeFullNameWithGender(GOTPlayerData pd) {
-		return getCodeFullName();
+		if (pd.useFeminineRanks()) {
+			return getCodeNameFem();
+		}
+		return getCodeName();
 	}
 
 	public String getCodeName() {
-		return "got.faction." + fac.codeName() + ".rank." + name;
+		return "got.rank." + name;
 	}
 
 	public String getCodeNameFem() {
@@ -54,11 +58,17 @@ public class GOTFactionRank implements Comparable<GOTFactionRank> {
 	}
 
 	public String getDisplayFullName() {
-		return StatCollector.translateToLocal(getCodeFullName());
+		if (addFacName) {
+			return StatCollector.translateToLocal(getCodeName()) + " " + getFacName();
+		}
+		return StatCollector.translateToLocal(getCodeName());
 	}
 
 	public String getDisplayFullNameFem() {
-		return StatCollector.translateToLocal(getCodeFullNameFem());
+		if (addFacName) {
+			return StatCollector.translateToLocal(getCodeNameFem()) + " " + getFacName();
+		}
+		return StatCollector.translateToLocal(getCodeNameFem());
 	}
 
 	public String getDisplayName() {
@@ -69,7 +79,17 @@ public class GOTFactionRank implements Comparable<GOTFactionRank> {
 		return StatCollector.translateToLocal(getCodeNameFem());
 	}
 
+	public String getFacName() {
+		if (fac != null) {
+			return StatCollector.translateToLocal("got.rank." + fac.codeName());
+		}
+		return "";
+	}
+
 	public String getFullNameWithGender(GOTPlayerData pd) {
+		if (pd.useFeminineRanks()) {
+			return getDisplayFullNameFem();
+		}
 		return getDisplayFullName();
 	}
 
@@ -78,6 +98,9 @@ public class GOTFactionRank implements Comparable<GOTFactionRank> {
 	}
 
 	public String getShortNameWithGender(GOTPlayerData pd) {
+		if (pd.useFeminineRanks()) {
+			return getDisplayNameFem();
+		}
 		return getDisplayName();
 	}
 
@@ -99,7 +122,8 @@ public class GOTFactionRank implements Comparable<GOTFactionRank> {
 	}
 
 	public GOTFactionRank makeTitle() {
-		rankTitle = new GOTTitle(this);
+		rankTitleMasc = new GOTTitle(this, false);
+		rankTitleFem = new GOTTitle(this, true);
 		return this;
 	}
 
@@ -108,7 +132,7 @@ public class GOTFactionRank implements Comparable<GOTFactionRank> {
 		return this;
 	}
 
-	public static class Dummy extends GOTFactionRank {
+	public static final class Dummy extends GOTFactionRank {
 		public Dummy(String s) {
 			super(null, 0.0f, s);
 		}
@@ -131,53 +155,6 @@ public class GOTFactionRank implements Comparable<GOTFactionRank> {
 		@Override
 		public boolean isDummyRank() {
 			return true;
-		}
-	}
-
-	public static class GOTAchievementRank extends GOTAchievement {
-		public GOTFactionRank theRank;
-		public GOTFaction theFac;
-
-		public GOTAchievementRank(GOTFactionRank rank) {
-			super(GOTAchievement.Category.TITLES, GOTAchievement.Category.TITLES.getNextRankAchID(), GOTRegistry.gregorCleganeSword, "alignment_" + rank.fac.codeName() + "_" + rank.alignment);
-			theRank = rank;
-			theFac = theRank.fac;
-			this.setRequiresAlly(theFac);
-			setSpecial();
-		}
-
-		@Override
-		public boolean canPlayerEarn(EntityPlayer entityplayer) {
-			GOTPlayerData pd = GOTLevelData.getData(entityplayer);
-			float align = pd.getAlignment(theFac);
-			if (align < 0.0f) {
-				return false;
-			}
-			return !requiresPledge() || pd.isPledgedTo(theFac);
-		}
-
-		@Override
-		public String getDescription(EntityPlayer entityplayer) {
-			return StatCollector.translateToLocalFormatted("got.faction.achieveRank", GOTAlignmentValues.formatAlignForDisplay(theRank.alignment));
-		}
-
-		@Override
-		public String getTitle(EntityPlayer entityplayer) {
-			return theRank.getFullNameWithGender(GOTLevelData.getData(entityplayer));
-		}
-
-		public boolean isPlayerRequiredRank(EntityPlayer entityplayer) {
-			GOTPlayerData pd = GOTLevelData.getData(entityplayer);
-			float align = pd.getAlignment(theFac);
-			float rankAlign = theRank.alignment;
-			if (requiresPledge() && !pd.isPledgedTo(theFac)) {
-				return false;
-			}
-			return align >= rankAlign;
-		}
-
-		public boolean requiresPledge() {
-			return theRank.isAbovePledgeRank();
 		}
 	}
 

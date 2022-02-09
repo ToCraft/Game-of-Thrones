@@ -5,8 +5,7 @@ import java.util.Random;
 import got.common.database.*;
 import got.common.entity.essos.gold.GOTEntityGoldenCaptain;
 import got.common.entity.essos.qarth.GOTEntityQarthBartender;
-import got.common.entity.other.GOTEntityThief;
-import got.common.entity.westeros.GOTEntityProstitute;
+import got.common.entity.other.*;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
@@ -151,7 +150,8 @@ public class GOTStructureQarthTavern extends GOTStructureQarthBase {
 				int j2;
 				int k13 = -17 - step;
 				if (isOpaque(world, i13, j12 + 1, k13)) {
-					setAir(world, i13, ++j12 + 1, k13);
+					j12++;
+					setAir(world, i13, j12 + 1, k13);
 					setAir(world, i13, j12 + 2, k13);
 					setAir(world, i13, j12 + 3, k13);
 					setBlockAndMetadata(world, i13, j12, k13, stoneStairBlock, 3);

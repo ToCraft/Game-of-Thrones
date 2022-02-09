@@ -5,7 +5,7 @@ import java.util.Random;
 import com.google.common.math.IntMath;
 
 import got.common.database.*;
-import got.common.entity.westeros.GOTEntityProstitute;
+import got.common.entity.other.GOTEntityProstitute;
 import got.common.entity.westeros.north.GOTEntityNorthBartender;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
@@ -146,7 +146,8 @@ public class GOTStructureNorthTavern extends GOTStructureNorthBase {
 					setGrassToDirt(world, i1, j2 - 1, k142);
 					--j2;
 				}
-				if (++i1 >= 15) {
+				i1++;
+				if (i1 >= 15) {
 					continue block13;
 				}
 				--j14;

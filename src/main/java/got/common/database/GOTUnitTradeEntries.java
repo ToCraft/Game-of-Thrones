@@ -22,7 +22,6 @@ import got.common.entity.essos.yiti.*;
 import got.common.entity.other.*;
 import got.common.entity.sothoryos.sothoryos.*;
 import got.common.entity.sothoryos.summer.*;
-import got.common.entity.westeros.GOTEntityProstitute;
 import got.common.entity.westeros.arryn.*;
 import got.common.entity.westeros.crownlands.*;
 import got.common.entity.westeros.dorne.*;
@@ -131,7 +130,7 @@ public class GOTUnitTradeEntries {
 	public GOTUnitTradeEntries(float baseAlignment, GOTUnitTradeEntry... trades) {
 		for (GOTUnitTradeEntry trade : tradeEntries = trades) {
 			trade.alignmentRequired += baseAlignment;
-			if ((trade.alignmentRequired >= 0.0f)) {
+			if (trade.alignmentRequired >= 0.0f) {
 				continue;
 			}
 			throw new IllegalArgumentException("Units cannot require negative alignment!");

@@ -1,13 +1,23 @@
 CHANGELOG
 
 >>VERSION 17.7
+* Greatly improved all the banners in the game (prod. Hummel009)
 + Added Asshai Shield
++ Added feminized ranks
+
+* Improved iron bank texture (prod. Hummel009)
+* Improved tool & weapon stats
+* Improved prostitute names & skins
+* Improved ranks
 
 * Optimized rendering code
 
+* Fixed bug with farmers
+* Fixed crash in Stepstones
 * Fixed 5 minor bugs (thanks to Stalker Kir)
 * Fixed 7 minor bugs (thanks to VVVIP2)
 * Fixed bug with shields GUI
+* Fixed bug with smithing
 * Reduced quality of some too elite unrealistic shields
 
 >>VERSION 17.6
